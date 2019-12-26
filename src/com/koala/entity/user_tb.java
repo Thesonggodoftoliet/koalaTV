@@ -11,6 +11,7 @@ public class user_tb {
     private String userpasswrod;
     private int isAudience; // 0 否  1 是 下同
     private int isYoutuber;
+    private int isAdmin;
     private int isBarhost;
     private int isForbidden;
     private String nickname;
@@ -104,5 +105,13 @@ public class user_tb {
 
     public void setFollow(String follow) {
         this.follow = follow;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
