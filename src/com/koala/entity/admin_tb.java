@@ -1,12 +1,10 @@
 package com.koala.entity;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/26
- * @Description_admin_tb  房管信息
- * UserId 指用户的id  roomID是指房间号
- * 一一对应
- */
 
+/**
+  *描述每个房间的房管，user指房管，room指直播间
+  *@author Marting.Lee
+  *date 2019/12/26
+  **/
 public class admin_tb {
     private int userid;
     private int roomid;

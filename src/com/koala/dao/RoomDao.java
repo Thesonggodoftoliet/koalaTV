@@ -8,11 +8,15 @@ package com.koala.dao;
 import com.koala.entity.room_tb;
 
 import java.util.List;
-
+/**
+  *对直播间进行增删查改.
+  *@author Marting.Lee
+  *date 2019/12/27
+  **/
 public interface RoomDao {
     room_tb getRoomByRoomId(int roomid);
     room_tb getRoomByUserId(int userid);
-    List<room_tb> getAllRoom(String exasql);//exasql 额外选项（全部房间或者是标题或者分类）
+    List<room_tb> getAllRoom();
     room_tb addRoom(room_tb room);
     boolean updateRoom(room_tb room);
     int getNumOfRoom();

@@ -1,10 +1,10 @@
 package com.koala.entity;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/26
- * @Description_user_tb
- */
 
+/**
+  *用户所有的信息.
+  *@author Marting.Lee
+  *date 2019/12/26
+  **/
 public class user_tb {
     private int userid;//用户ID自增
     private String phone;
