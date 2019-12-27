@@ -69,4 +69,12 @@ public class bar_ {
     public void setLastreply(int lastreply) {
         this.lastreply = lastreply;
     }
+
+    public int getHostid() {
+        return hostid;
+    }
+
+    public void setHostid(int hostid) {
+        this.hostid = hostid;
+    }
 }

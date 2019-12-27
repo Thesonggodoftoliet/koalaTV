@@ -52,4 +52,12 @@ public class post_ {
     public void setPic(String pic) {
         this.pic = pic;
     }
+
+    public int getBarid() {
+        return barid;
+    }
+
+    public void setBarid(int barid) {
+        this.barid = barid;
+    }
 }

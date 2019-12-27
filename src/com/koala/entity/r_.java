@@ -25,4 +25,12 @@ public class r_ {
     public void setLimits(int limits) {
         this.limits = limits;
     }
+
+    public int getRoomid() {
+        return roomid;
+    }
+
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
+    }
 }

@@ -11,6 +11,15 @@ public class room_tb {
     private String title;//直播标题
     private String category;//直播分类
     private String coverpic;//直播封面
+    private int isLive;
+
+    public int getIsLive() {
+        return isLive;
+    }
+
+    public void setIsLive(int isLive) {
+        this.isLive = isLive;
+    }
 
     public int getRoomid() {
         return roomid;

@@ -17,6 +17,7 @@ public interface RoomDao {
     room_tb getRoomByRoomId(int roomid);
     room_tb getRoomByUserId(int userid);
     List<room_tb> getAllRoom();
+    List<room_tb> getAllLivingRoom();
     room_tb addRoom(room_tb room);
     boolean updateRoom(room_tb room);
     int getNumOfRoom();
