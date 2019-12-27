@@ -1,9 +1,4 @@
-package com.koala.utils;/*
- * @Author_Marting.Lee
- * @Date_2019/12/25
- * @Description_JdbcUtils
- */
-
+package com.koala.utils;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;
@@ -14,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+  *JAVA连接数据库.
+  *@author Marting.Lee
+  *date 2019/12/27
+  **/
 public class JdbcUtils {
     private static String driver;
     private static String url;
@@ -39,7 +39,10 @@ public class JdbcUtils {
         }
     }
 
-    //与数据库取得连接
+    /**
+      *与数据库建立连接.
+      * @return java.sql.Connection
+      **/
     public static Connection getCon(){
         Connection con = null;
         try{
@@ -50,7 +53,12 @@ public class JdbcUtils {
         return con;
     }
 
-    //多结果返回
+    /**
+      *返回查找集.
+      * @param clazz Class
+     * @param sql String
+      * @return java.util.List
+      **/
     public static List getList(Class clazz,String sql){
         List list = new ArrayList();
         Connection con = getCon();
@@ -88,7 +96,13 @@ public class JdbcUtils {
     }
 
 
-    //获取单个结果
+    /**
+      *返回一条记录.
+      * @param clazz Class
+     * @param sql String
+     * @param id id
+      * @return java.lang.Object
+      **/
     public static Object getObjectById(Class clazz, String sql,Object id) {
         Connection conn = getCon();
         PreparedStatement st = null;
@@ -122,7 +136,11 @@ public class JdbcUtils {
     }
 
 
-    //获取查询结果数量
+    /**
+      *获取结果数量.
+      * @param sql String
+      * @return int
+      **/
     public static int getListCount(String sql) {
         int result = 0;
         Connection conn = getCon();
@@ -142,7 +160,12 @@ public class JdbcUtils {
         return result;
     }
 
-    //执行数据库语句，返回受影响行数(即查询失败为0)
+    /**
+      *执行数据库语句，返回受影响行数.
+      * @param sql String
+     * @param ps Object
+      * @return int
+      **/
     public static int executeSQL(String sql, Object... ps) {
         Connection conn = getCon();
         int executeUpdate = 0;
@@ -163,7 +186,13 @@ public class JdbcUtils {
     }
 
 
-    //关闭连接
+    /**
+      *关闭连接.
+      * @param resultSet ResultSet
+     * @param statement Statement
+     * @param con Connection
+      * @return void
+      **/
     public static void close(ResultSet resultSet,Statement statement,Connection con){
         try{
             if (resultSet != null){

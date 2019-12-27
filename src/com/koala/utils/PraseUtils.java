@@ -1,14 +1,19 @@
 package com.koala.utils;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/26
- * @Description_PraseUtils
- */
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+  *转换工具.
+  *@author Marting.Lee
+  *date 2019/12/27
+  **/
 public class PraseUtils {
+    /**
+      *将String分离成int，比如[9,8] 变成 9 8.
+      * @param str String
+      * @return java.util.List(java.lang.Integer)
+      **/
     public static List<Integer> sToi(String str){
         System.out.println("调用sToi"+str);
         List list = new ArrayList();
