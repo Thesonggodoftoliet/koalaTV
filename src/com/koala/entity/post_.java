@@ -6,7 +6,8 @@ package com.koala.entity;
   *date 2019/12/26
   **/
 public class post_ {
-    private int postid;
+    private int barid;//属于哪个帖子
+    private int postid;//该回复的ID
     private int userid;
     private String posttime;
     private String content;
@@ -50,5 +51,13 @@ public class post_ {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public int getBarid() {
+        return barid;
+    }
+
+    public void setBarid(int barid) {
+        this.barid = barid;
     }
 }

@@ -1,9 +1,5 @@
 package com.koala.entity;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/26
- * @Description_room_tb
- */
+
 /**
   *一个直播间的信息.
   *@author Marting.Lee
@@ -15,6 +11,15 @@ public class room_tb {
     private String title;//直播标题
     private String category;//直播分类
     private String coverpic;//直播封面
+    private int isLive;
+
+    public int getIsLive() {
+        return isLive;
+    }
+
+    public void setIsLive(int isLive) {
+        this.isLive = isLive;
+    }
 
     public int getRoomid() {
         return roomid;
