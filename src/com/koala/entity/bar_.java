@@ -5,10 +5,10 @@ package com.koala.entity;
   *date 2019/12/26
   **/
 public class bar_ {
-    private int hostid;
-    private int barid;
+    private int hostid;//属于哪个主播
+    private int barid;//该贴的ID
     private String title;
-    private int barnum;
+    private int replynum;
     private String lastreplytime;//最后回复时间
     private int userid;//发帖人
     private String posttime;//发帖时间
@@ -30,12 +30,12 @@ public class bar_ {
         this.title = title;
     }
 
-    public int getBarnum() {
-        return barnum;
+    public int getReplynum() {
+        return replynum;
     }
 
-    public void setBarnum(int barnum) {
-        this.barnum = barnum;
+    public void setReplynum(int replynum) {
+        this.replynum = replynum;
     }
 
     public String getLastreplytime() {

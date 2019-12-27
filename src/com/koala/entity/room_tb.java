@@ -1,9 +1,5 @@
 package com.koala.entity;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/26
- * @Description_room_tb
- */
+
 /**
   *一个直播间的信息.
   *@author Marting.Lee
