@@ -5,7 +5,11 @@ package com.koala.entity;
  * @Description_programmer_tb
  * 后台超级管理员
  */
-
+/**
+  *后台管理员.
+  *@author Marting.Lee
+  *date 2019/12/26
+  **/
 public class programmer_tb {
     private int useraccout;
     private int userpassword;

@@ -1,10 +1,10 @@
 package com.koala.entity;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/26
- * @Description_bar_tb  话圈
- */
 
+/**
+  *整个圈子的模型实体，单独一个是某一个.
+  *@author Marting.Lee
+  *date 2019/12/26
+  **/
 public class bar_tb {
     private int hostid;//主播id
     private int adminid;//主持人id

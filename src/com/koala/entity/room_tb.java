@@ -4,10 +4,14 @@ package com.koala.entity;
  * @Date_2019/12/26
  * @Description_room_tb
  */
-
+/**
+  *一个直播间的信息.
+  *@author Marting.Lee
+  *date 2019/12/26
+  **/
 public class room_tb {
     private int roomid;//房间号
-    private int userid;//主播号
+    private int hostid;//主播号
     private String title;//直播标题
     private String category;//直播分类
     private String coverpic;//直播封面
@@ -20,12 +24,12 @@ public class room_tb {
         this.roomid = roomid;
     }
 
-    public int getUserid() {
-        return userid;
+    public int getHostid() {
+        return hostid;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setHostid(int hostid) {
+        this.hostid = hostid;
     }
 
     public String getTitle() {

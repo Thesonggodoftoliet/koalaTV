@@ -1,55 +1,93 @@
 package com.koala.dao.Implement;
-/*
- * @Author_KevinMarkVine
- * @Date_2019/12/26
- * @Description_RoomDaoImpl
- */
 
+import com.koala.dao.RoomDao;
+import com.koala.entity.room_tb;
+import com.koala.utils.JdbcUtils;
 
+import java.util.List;
+/**
+ *对直播间进行增删查改.
+ *@author Marting.Lee
+ *date 2019/12/27
+ **/
 
 public class RoomDaoImpl implements RoomDao {
+	/**
+	  *通过直播间号查找直播间.
+	  * @param roomid int
+	  * @return com.koala.entity.room_tb 
+	  **/
 	@Override
 	public room_tb getRoomByRoomId(int roomid) {
 		String sql = "select * from room_tb where roomid = ?";
         return (room_tb) JdbcUtils.getObjectById(room_tb.class,sql,roomid);
 	}
 
+	/**
+	  *通过主播号查找直播间.
+	  * @param hostid int
+	  * @return com.koala.entity.room_tb
+	  **/
 	@Override
-	public room_tb getRoomByUserId(int userid) {
-		String sql = "select * from room_tb where userid = ?";
-        return (room_tb) JdbcUtils.getObjectById(room_tb.class,sql,userid);
+	public room_tb getRoomByUserId(int hostid) {
+		String sql = "select * from room_tb where hostid = ?";
+        return (room_tb) JdbcUtils.getObjectById(room_tb.class,sql,hostid);
 
 	}
-	//这个函数需要重新写，K.M.Vine——19:40
+
+	/**
+	  *获取所有直播间.
+	  * @return java.util.List(com.koala.entity.room_tb)
+	  **/
 	@Override
-	public List<room_tb> getAllRoom(String exasql) {
+	public List<room_tb> getAllRoom() {
+		//模糊搜索不在此处实现
 		String sql = "select * from room_tb";
         return JdbcUtils.getList(room_tb.class,sql);
 	}
 
+	/**
+	  *增加直播间.
+	  * @param room com.koala.entity.room_tb
+	  * @return com.koala.entity.room_tb
+	  **/
 	@Override
 	public room_tb addRoom(room_tb room) {
 		String sql = "insert into room_tb values(?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getUserid(), room.getTitle(), room.getCategory(), room.getCoverpic());
+        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(), room.getTitle(), room.getCategory(), room.getCoverpic());
         if (tag == 0)return null;
         else
             return room;
 	}
 
+	/**
+	  *修改直播间的信息.
+	  * @param room com.koala.entity.room_tb
+	  * @return boolean
+	  **/
 	@Override
 	public boolean updateRoom(room_tb room) {
-		String sql = "update room_tb set roomid = ?, userid = ?, title = ?, category = ?, coverpic = ?";
-        int tag = JdbcUtils.executeSQL(sql, room.getRoomid(), room.getUserid(), room.getTitle(), room.getCategory(), room.getCoverpic());
+		String sql = "update room_tb set title = ?, category = ?, coverpic = ? where roomid=?";
+        int tag = JdbcUtils.executeSQL(sql, room.getTitle(), room.getCategory(), room.getCoverpic(),room.getRoomid());
         if (tag == 0)return false;
         else return true;
 	}
 
+	/**
+	  *获取直播间总数.
+	  * @return int
+	  **/
 	@Override
 	public int getNumOfRoom() {
 		String sql = "select * from room_tb";
         return JdbcUtils.getListCount(sql);
 	}
-//删房间是主播号和房间号都行，我就直接用了主播号
+
+	/**
+	  *删除该直播间.
+	  * @param userid int
+	  * @return boolean
+	  **/
 	@Override
 	public boolean deleteRoom(int userid) {
 		String sql = "delete from room_tb where userid = ?";
