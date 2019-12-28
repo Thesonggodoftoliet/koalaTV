@@ -12,6 +12,7 @@ import java.util.List;
 public interface Post_Dao {
     List<post_> getAllReply(int barid);
     post_ getReplyById(post_ post);
+    post_ getLastReply(int barid);
     post_ addReply(post_ post);
     int numOfReply(int barid);
     boolean updateReply(post_ post);

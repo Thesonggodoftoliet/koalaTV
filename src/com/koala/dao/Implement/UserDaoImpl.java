@@ -34,6 +34,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
+      *获取最后一个用户.
+      * @return com.koala.entity.user_tb
+      **/
+    @Override
+    public user_tb getLastUser() {
+        String sql = "select * from user_tb order by userid desc limit 0,1";
+        return (user_tb)JdbcUtils.getObject(user_tb.class,sql);
+    }
+
+    /**
       *添加用户.
       * @param user com.koala.entity.user_tb
       * @return com.koala.entity.user_tb
@@ -41,7 +51,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public user_tb addUser(user_tb user) {
         String sql = "insert into user_tb values(?,?,?,?,?,?,?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,user.getUserid(),user.getPhone(),user.getUserpasswrod(),user.getIsAudience(),user.getIsYoutuber(),user.getIsAdmin(),user.getIsBarhost(),user.getIsForbidden(),user.getNickname(),user.getGender(),user.getIcon(),user.getFollow());
+        int tag = JdbcUtils.executeSQL(sql,user.getUserid(),user.getPhone(),user.getUserpassword(),user.getIsAudience(),user.getIsYoutuber(),user.getIsAdmin(),user.getIsBarhost(),user.getIsForbidden(),user.getNickname(),user.getGender(),user.getIcon(),user.getFollow());
         if (tag == 0)return null;
         else
             return user;
@@ -96,7 +106,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUserById(user_tb user) {
         String sql = "update user_tb set phone =?, userpassword = ?, isAudience = ?, isYoutuber = ?,isAdmin=?,isBarhost=?,isForbidden=?,nickname=?,gender=?,icon=?,follow=? where userid = ?";
-        int tag = JdbcUtils.executeSQL(sql,user.getPhone(),user.getUserpasswrod(),user.getIsAudience(),user.getIsYoutuber(),user.getIsAdmin(),user.getIsBarhost(),user.getIsForbidden(),user.getNickname(),user.getGender(),user.getIcon(),user.getFollow(),user.getUserid());
+        int tag = JdbcUtils.executeSQL(sql,user.getPhone(),user.getUserpassword(),user.getIsAudience(),user.getIsYoutuber(),user.getIsAdmin(),user.getIsBarhost(),user.getIsForbidden(),user.getNickname(),user.getGender(),user.getIcon(),user.getFollow(),user.getUserid());
         if (tag == 0)return false;
         else return true;
     }

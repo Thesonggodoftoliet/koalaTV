@@ -1,8 +1,9 @@
-package com.koala.servlet.auth;
+package com.koala.servlet.manage;
 
 import com.koala.entity.user_tb;
 import com.koala.service.UserManage;
 import com.koala.service.impl.UserManageImpl;
+import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,49 +16,46 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/auth/login")
-public class login extends HttpServlet {
-    public login() {
+@WebServlet("/api/manage/vimpersonalinfo")
+public class vimpersonalinfo extends HttpServlet {
+    public vimpersonalinfo() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*
-          tag = -1 密码错误  tag = -2 无此用户 tag = 0 服务器错误 tag = 1 成功
-         */
-        System.out.println("login");
-        int tag = 0;
-        String token = null;
+        System.out.println("vimpersonalinfo");
+        JSONObject jsonObject;
         PrintWriter out = response.getWriter();
         JSONObject msg = new JSONObject();
-        JSONObject jsonObject = null;
+        int tag =0;
+        String token = null;
         user_tb user = new user_tb();
         try {
             jsonObject = ReciveUtils.getObject(request);
-            String phone = jsonObject.getString("phone");
-            String password = jsonObject.getString("userpassword");
-            user.setPhone(phone);
-            user.setUserpassword(password);
+            token = jsonObject.getString("token");
+            user.setUserid(JwtUtils.decodeToken(token));
+            user.setIcon(jsonObject.getString("icon"));
+            user.setNickname(jsonObject.getString("nickname"));
+            user.setGender(jsonObject.getInt("gender"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
         UserManage userManage = new UserManageImpl();
-        token = userManage.authUser(user);
-        if (token == null)
-            tag = -2;
-        else if (token.equals("wrong"))
-            tag = -1;
-        else
-            tag =1;
+        tag = userManage.modifyUser(user);
+        if (tag == 1)
+            token = JwtUtils.createToken(user.getUserid());
+
         try {
-            msg.put("tag",tag);
             msg.put("token",token);
+            msg.put("tag",tag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         out.print(msg);
         out.flush();
         out.close();
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

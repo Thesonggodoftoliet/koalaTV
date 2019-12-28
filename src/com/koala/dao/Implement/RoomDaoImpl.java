@@ -36,6 +36,16 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	/**
+	  *获取最后一个直播间.
+	  * @return com.koala.entity.room_tb
+	  **/
+	@Override
+	public room_tb getLastRoom() {
+		String sql = "select * from room_tb oder by roomid desc limit 0,1";
+		return (room_tb)JdbcUtils.getObject(room_tb.class,sql);
+	}
+
+	/**
 	  *获取所有直播间.
 	  * @return java.util.List(com.koala.entity.room_tb)
 	  **/

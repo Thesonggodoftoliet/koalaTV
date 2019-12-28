@@ -15,40 +15,41 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/auth/login")
-public class login extends HttpServlet {
-    public login() {
+@WebServlet("/api/auth/register")
+public class register extends HttpServlet {
+    public register() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*
-          tag = -1 密码错误  tag = -2 无此用户 tag = 0 服务器错误 tag = 1 成功
-         */
-        System.out.println("login");
+        System.out.println("register");
         int tag = 0;
         String token = null;
-        PrintWriter out = response.getWriter();
+        JSONObject jsonObject =null;
         JSONObject msg = new JSONObject();
-        JSONObject jsonObject = null;
         user_tb user = new user_tb();
+        PrintWriter out = response.getWriter();
+
         try {
             jsonObject = ReciveUtils.getObject(request);
-            String phone = jsonObject.getString("phone");
-            String password = jsonObject.getString("userpassword");
-            user.setPhone(phone);
-            user.setUserpassword(password);
+            user.setPhone(jsonObject.getString("phone"));
+            user.setUserpassword(jsonObject.getString("userpassword"));
+            user.setGender(jsonObject.getInt("gender"));
+            user.setNickname(jsonObject.getString("nickname"));
+            user.setIcon(jsonObject.getString("icon"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
         UserManage userManage = new UserManageImpl();
-        token = userManage.authUser(user);
+        token =userManage.addUser(user);
         if (token == null)
-            tag = -2;
-        else if (token.equals("wrong"))
             tag = -1;
+        else if (token.equals("wrong"))
+            tag = 0;
         else
-            tag =1;
+            tag = 1;
+
+
         try {
             msg.put("tag",tag);
             msg.put("token",token);

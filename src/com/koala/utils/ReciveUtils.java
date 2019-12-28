@@ -23,7 +23,7 @@ public class ReciveUtils {
       * @param request HttpServletRequest
       * @return org.json.JSONObject
       **/
-    public static JSONObject getObject(HttpServletRequest request)throws IOException, JSONException {
+    public static JSONObject getObject(HttpServletRequest request)throws IOException {
         InputStream js = request.getInputStream();
         InputStreamReader jsr = new InputStreamReader(js);
         BufferedReader br = new BufferedReader(jsr);

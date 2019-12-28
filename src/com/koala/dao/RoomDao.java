@@ -16,6 +16,7 @@ import java.util.List;
 public interface RoomDao {
     room_tb getRoomByRoomId(int roomid);
     room_tb getRoomByUserId(int userid);
+    room_tb getLastRoom();
     List<room_tb> getAllRoom();
     List<room_tb> getAllLivingRoom();
     room_tb addRoom(room_tb room);

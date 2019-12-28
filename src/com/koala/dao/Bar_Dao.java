@@ -12,6 +12,7 @@ import java.util.List;
 public interface Bar_Dao {
     List<bar_> getAllPost(int hostid);
     bar_ getPostById(bar_ bar);
+    bar_ getLastPost(int hostid);
     bar_ addPost(bar_ bar);
     int getNumOfPost(int hostid);
     boolean updatePost(bar_ bar);
