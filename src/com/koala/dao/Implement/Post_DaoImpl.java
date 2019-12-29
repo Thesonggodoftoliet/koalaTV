@@ -35,6 +35,17 @@ public class Post_DaoImpl implements Post_Dao {
     }
 
     /**
+      *获取最后一个回复.
+      * @param barid int
+      * @return com.koala.entity.post_
+      **/
+    @Override
+    public post_ getLastReply(int barid) {
+        String sql = "select * from post_"+barid+" oder by postid desc limit 0,1";
+        return (post_)JdbcUtils.getObject(post_.class,sql);
+    }
+
+    /**
       *添加回复.
       * @param post com.koala.entity.post_
       * @return com.koala.entity.post_

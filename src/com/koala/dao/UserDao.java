@@ -12,6 +12,7 @@ import java.util.List;
 public interface UserDao {
     user_tb getUserById(int userid);
     user_tb getUserByPhone(String phone);
+    user_tb getLastUser();
     user_tb addUser(user_tb user);
     List<user_tb> getAllUser();
     List<user_tb> getAllHost();

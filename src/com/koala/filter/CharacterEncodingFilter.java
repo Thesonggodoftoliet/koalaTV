@@ -1,15 +1,15 @@
 package com.koala.filter;
-/*
- * @Author_Marting.Lee
- * @Date_2019/12/25
- * @Description_CharacterEncodingFilter
- */
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+  *规范编码为UTF-8.
+  *@author Marting.Lee
+  *date 2019/12/27
+  **/
 public class CharacterEncodingFilter implements Filter {
     private String encoding = "utf-8";
     @Override

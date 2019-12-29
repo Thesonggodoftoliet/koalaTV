@@ -35,6 +35,17 @@ public class Bar_DaoImpl implements Bar_Dao {
     }
 
     /**
+      *获取最后一个帖子.
+      * @param hostid int
+      * @return com.koala.entity.bar_ 
+      **/
+    @Override
+    public bar_ getLastPost(int hostid) {
+        String sql = "select * from bar_"+hostid+" oder by barid desc limit 0,1";
+        return (bar_)JdbcUtils.getObject(bar_.class,sql);
+    }
+
+    /**
       *发表一个新帖子.
       * @param bar com.koala.entity.bar_
       * @return com.koala.entity.bar_

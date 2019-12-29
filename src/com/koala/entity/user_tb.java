@@ -8,7 +8,7 @@ package com.koala.entity;
 public class user_tb {
     private int userid;//用户ID自增
     private String phone;
-    private String userpasswrod;
+    private String userpassword;
     private int isAudience; // 0 否  1 是 下同
     private int isYoutuber;
     private int isAdmin;
@@ -35,12 +35,12 @@ public class user_tb {
         this.phone = phone;
     }
 
-    public String getUserpasswrod() {
-        return userpasswrod;
+    public String getUserpassword() {
+        return userpassword;
     }
 
-    public void setUserpasswrod(String userpasswrod) {
-        this.userpasswrod = userpasswrod;
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
     }
 
     public int getIsAudience() {
