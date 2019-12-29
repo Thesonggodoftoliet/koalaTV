@@ -248,14 +248,14 @@
             </li>
 
             <li class="submenu">
-              <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+              <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
               <a><i class="fa fa-fw fa-th"></i> <span> 个人中心 </span> <span class="menu-arrow"></span></a>
               <ul class="list-unstyled">
-                <li><a href="personcenter_basic.html">基本信息</a></li>
-                <li><a href="personcenter_live.html">直播管理</a></li>
+                <li><a href="personcenter_basic.jsp">基本信息</a></li>
+                <li><a href="personcenter_live.jsp">直播管理</a></li>
                 <li><a>退出登陆</a></li>
               </ul>
             </li>
@@ -275,94 +275,91 @@
 
 
     <div class="content-page">
-      <div>
-        <div class="content">
-
-          <br/>   <br/>   <br/>
-
-
-          <div class="row">
-
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h3><i class="fa fa-search"></i> 直播房间 1</h3>
-                </div>
-
-                <div class="card-body">
-
-                  <div style="display: box"><img class="img-fluid" data-toggle="magnify" src="assets/images/sample-image-1.jpg" alt="Sample Image"></div>
-
-                </div>
-              </div><!-- end card-->
+      <!-- Start content -->
+      <div class="content" style="width: 90%;padding: 5%;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="card mb-3">
+            <div class="card-header"  style="text-align:center;">
+              <h3><i class="fa fa-hand-pointer-o"></i> 欢迎注册KoalaTV</h3>
+              请填写以下信息
             </div>
 
+            <div class="card-body">
+
+              <form class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9" action="#" data-parsley-validate="" novalidate="">
+                <div class="form-group">
+                  <label for="userName">账号<span class="text-danger">*</span></label>
+                  <input type="text" name="nick" data-parsley-trigger="change" required="" placeholder="请输入11位手机号" class="form-control" id="userName">
+                </div>
+                <div class="form-group">
+                  <label for="emailAddress">用户密码<span class="text-danger">*</span></label>
+                  <input type="email" name="email" data-parsley-trigger="change" required="" placeholder="请输入10到19位密码" class="form-control" id="emailAddress">
+                </div>
+                <div class="form-group">
+                  <label for="pass1">确认密码<span class="text-danger">*</span></label>
+                  <input id="pass1" type="password" placeholder="请再次输入你的密码" required="" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="passWord2">昵称 <span class="text-danger">*</span></label>
+                  <input data-parsley-equalto="#pass1" type="password" required="" placeholder="昵称" class="form-control" id="passWord2">
+                </div>
+                <div class="form-group">
+                  <label>性别</label>
+                  <div>
+                    <input data-parsley-type="url" type="url" class="form-control" required="" placeholder="性别">
+                  </div>
+                </div>
+                <div class="form-row col-md-12">
+                  <div class="form-group col-md-4">
+
+                    <input type="text" class="form-control" id="inputphoneNum" placeholder="会发送短信给您的手机号">
+
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputphoneNum"> </label>
+                    <button type="submit" class="btn btn-primary">获取验证码</button>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="card mb-3">
+                      <div class="card-header">
+                        <h3><i class="fa fa-file"></i> 头像</h3>
+                        文件大小必须小于1MB，且格式为jpg
+                      </div>
+
+                      <div class="card-body">
+
+                        <input type="file" name="files[]" id="filer_example2" multiple="multiple">
+
+                      </div>
+                    </div><!-- end card-->
+                  </div>
 
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h3><i class="fa fa-search"></i> 直播房间 2</h3>
+                </div>
+                <div class="form-group text-right m-b-6">
+                  <div class="checkbox">
+                    <input id="remember-1" type="checkbox" data-parsley-multiple="remember-1">
+                    <label for="remember-1"> 记住我 </label>
+                  </div>
                 </div>
 
-                <div class="card-body">
-
-                  <div style="display: box"><img class="img-fluid" data-toggle="magnify" src="assets/images/sample-image-2.jpg" alt="Sample Image"></div>
-
+                <div class="form-group text-right m-b-6">
+                  <button class="btn btn-primary" type="submit">
+                    提交
+                  </button>
                 </div>
-              </div><!-- end card-->
+
+              </form>
+
             </div>
+          </div><!-- end card-->
+        </div>
 
-
-
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h3><i class="fa fa-search"></i> 直播房间 3</h3>
-                </div>
-
-                <div class="card-body">
-
-                  <div style="display: box"><img class="img-fluid" data-toggle="magnify" src="assets/images/sample-image-3.jpg" alt="Sample Image"></div>
-
-                </div>
-              </div><!-- end card-->
-            </div>
-
-
-          </div>
-          <!-- END content -->
-          <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">热 门 主 播</h4>
-          </div>
-
-          <div class="row">
-
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h3><i class="fa fa-table"></i>主播的名字</h3>
-
-                </div>
-                <div class="card-body">
-                </div>
-
-              </div><!-- end card-->
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <h3><i class="fa fa-table"></i>主播的名字</h3>
-
-                </div>
-                <div class="card-body">
-                </div>
-
-              </div><!-- end card-->
-            </div>
-          </div>
-
-        </div></div>
+      </div>
+      <!-- END content -->
     </div>
     <!-- END content-page -->
 
