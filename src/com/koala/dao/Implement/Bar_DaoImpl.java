@@ -24,6 +24,17 @@ public class Bar_DaoImpl implements Bar_Dao {
     }
 
     /**
+      *根据时间降序获取帖子.
+      * @param hostid int
+      * @return java.util.List<com.koala.entity.bar_>
+      **/
+    @Override
+    public List<bar_> getLatestPosts(int hostid,int index) {
+        String sql = "select * from bar_"+hostid+" order by lastreplytime desc limit 0,"+index;
+        return JdbcUtils.getList(bar_.class,sql);
+    }
+
+    /**
       *获取单个帖子.
       * @param bar com.koala.entity.bar_
       * @return com.koala.entity.bar_
@@ -35,13 +46,24 @@ public class Bar_DaoImpl implements Bar_Dao {
     }
 
     /**
+      *获取一个最新的帖子.
+      * @param hostid int
+      * @return com.koala.entity.bar_
+      **/
+    @Override
+    public bar_ getLatestPost(int hostid,int index) {
+        String sql = "select * from bar_"+hostid+" order by lastreplytime desc limit "+index+","+(index+1);
+        return (bar_)JdbcUtils.getObject(bar_.class,sql);
+    }
+
+    /**
       *获取最后一个帖子.
       * @param hostid int
       * @return com.koala.entity.bar_ 
       **/
     @Override
     public bar_ getLastPost(int hostid) {
-        String sql = "select * from bar_"+hostid+" oder by barid desc limit 0,1";
+        String sql = "select * from bar_"+hostid+" order by barid desc limit 0,1";
         return (bar_)JdbcUtils.getObject(bar_.class,sql);
     }
 
@@ -52,8 +74,8 @@ public class Bar_DaoImpl implements Bar_Dao {
       **/
     @Override
     public bar_ addPost(bar_ bar) {
-        String sql = "insert into bar_"+bar.getHostid()+" values(?,?,?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,bar.getHostid(),bar.getBarid(),bar.getTitle(),bar.getReplynum(),bar.getLastreplytime(),bar.getUserid(),bar.getPosttime(),bar.getLastreply());
+        String sql = "insert into bar_"+bar.getHostid()+" values(?,?,?,?,?,?,?,?,?)";
+        int tag = JdbcUtils.executeSQL(sql,bar.getHostid(),bar.getBarid(),bar.getTitle(),bar.getReplynum(),bar.getLastreplytime(),bar.getUserid(),bar.getPosttime(),bar.getContent(),bar.getPic());
         if (tag ==0)return null;
         else return bar;
     }
@@ -69,6 +91,24 @@ public class Bar_DaoImpl implements Bar_Dao {
         return JdbcUtils.getListCount(sql);
     }
 
+    @Override
+    public boolean createTable(int hostid) {
+        String sql = "create table bar_"+hostid+"(hostid int unsigned,"+
+                "barid int unsigned," +
+                "title varchar(20)," +
+                "replynum int," +
+                "lastreplytime varchar(60)," +
+                "userid int unsigned," +
+                "posttime varchar(60)," +
+                "content varchar(255)," +
+                "pic varchar(255)," +
+                "primary key(barid)" +
+                ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        JdbcUtils.executeSQL(sql);
+
+        return true;
+    }
+
     /**
       *修改帖子.
       * @param bar com.koala.entity.bar_
@@ -76,8 +116,8 @@ public class Bar_DaoImpl implements Bar_Dao {
       **/
     @Override
     public boolean updatePost(bar_ bar) {
-        String sql = "update bar_"+bar.getHostid()+" set title=?,replynum = ?,lastreplytime=?,lastreply=? where barid=?";
-        int tag = JdbcUtils.executeSQL(sql,bar.getTitle(),bar.getReplynum(),bar.getLastreplytime(),bar.getLastreply(),bar.getBarid());
+        String sql = "update bar_"+bar.getHostid()+" set title=?,replynum = ?,lastreplytime=?,content=?,pic=? where barid=?";
+        int tag = JdbcUtils.executeSQL(sql,bar.getTitle(),bar.getReplynum(),bar.getLastreplytime(),bar.getContent(),bar.getPic(),bar.getBarid());
         if (tag == 0)return false;
         else return true;
     }

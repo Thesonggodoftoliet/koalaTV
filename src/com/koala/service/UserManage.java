@@ -13,4 +13,6 @@ public interface UserManage {
     String authUser(user_tb user);
     String addUser(user_tb user);
     int modifyUser(user_tb user);
+    int applyForBar(user_tb user);
+    int followYoutuber(user_tb user);
 }
