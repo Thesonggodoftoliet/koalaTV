@@ -70,6 +70,25 @@ public class Post_DaoImpl implements Post_Dao {
     }
 
     /**
+      *添加回复表.
+      * @param barid int
+      * @return boolean 
+      **/
+    @Override
+    public boolean createTable(int barid) {
+        String sql = "create table if not exists post_" +barid+
+                "(barid int unsigned," +
+                "postid int unsigned," +
+                "userid int unsigned," +
+                "posttime varchar(60)," +
+                "content varchar(255)," +
+                "pic varchar(255)," +
+                "primary key(postid)" +
+                ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        return true;
+    }
+
+    /**
       *编辑回复.
       * @param post com.koala.entity.post_
       * @return boolean

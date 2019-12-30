@@ -12,7 +12,8 @@ public class bar_ {
     private String lastreplytime;//最后回复时间
     private int userid;//发帖人
     private String posttime;//发帖时间
-    private int lastreply;//最后回复人
+    private String content;
+    private String pic;
 
     public int getBarid() {
         return barid;
@@ -62,19 +63,27 @@ public class bar_ {
         this.posttime = posttime;
     }
 
-    public int getLastreply() {
-        return lastreply;
-    }
-
-    public void setLastreply(int lastreply) {
-        this.lastreply = lastreply;
-    }
-
     public int getHostid() {
         return hostid;
     }
 
     public void setHostid(int hostid) {
         this.hostid = hostid;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

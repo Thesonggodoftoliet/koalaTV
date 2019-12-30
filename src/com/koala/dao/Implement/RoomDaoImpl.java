@@ -41,7 +41,7 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public room_tb getLastRoom() {
-		String sql = "select * from room_tb oder by roomid desc limit 0,1";
+		String sql = "select * from room_tb order by roomid desc limit 0,1";
 		return (room_tb)JdbcUtils.getObject(room_tb.class,sql);
 	}
 
@@ -73,8 +73,8 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public room_tb addRoom(room_tb room) {
-		String sql = "insert into room_tb values(?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(), room.getTitle(), room.getCategory(), room.getCoverpic());
+		String sql = "insert into room_tb values(?,?,?,?,?,?)";
+        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(), room.getTitle(), room.getCategory(), room.getCoverpic(),room.getIsLive());
         if (tag == 0)return null;
         else
             return room;

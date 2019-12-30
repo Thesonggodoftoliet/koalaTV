@@ -1,10 +1,15 @@
 package com.koala.service.impl;
 
+import com.koala.dao.Fans_Dao;
+import com.koala.dao.Implement.Fans_DaoImpl;
 import com.koala.dao.Implement.UserDaoImpl;
 import com.koala.dao.UserDao;
+import com.koala.entity.fans_;
 import com.koala.entity.user_tb;
 import com.koala.service.UserManage;
+import com.koala.utils.JdbcUtils;
 import com.koala.utils.JwtUtils;
+import com.koala.utils.PraseUtils;
 
 /**
  * 有关用户的服务.
@@ -98,6 +103,49 @@ public class UserManageImpl implements UserManage {
         if (user.getNickname()!=null && !user.getNickname().equals(sqluser.getNickname()))
             sqluser.setNickname(user.getNickname());
         if(userDao.updateUserById(sqluser))
+            return 1;
+        else
+            return 0;
+    }
+
+    /**
+      *申请成为主播.
+      * @param user com.koala.entity.user_tb
+      * @return int
+      **/
+    @Override
+    public int applyForBar(user_tb user) {
+        user_tb sqluser = userDao.getUserById(user.getUserid());
+        sqluser.setIsBarhost(1);
+        Fans_Dao fans_dao = new Fans_DaoImpl();
+        fans_dao.createTable(user.getUserid());
+        if (userDao.updateUserById(sqluser))
+            return 1;
+        else
+            return 0;
+    }
+
+    /**
+      *关注主播.
+      * @param user com.koala.entity.user_tb
+      * @return int
+      **/
+    @Override
+    public int followYoutuber(user_tb user) {
+        user_tb sqluser = userDao.getUserById(user.getUserid());
+        Fans_Dao fans_dao = new Fans_DaoImpl();
+
+        //注入粉丝表
+        fans_ fans = new fans_();
+        fans.setHostid(Integer.parseInt(user.getFollow()));
+        fans.setUserid(user.getUserid());
+
+        //修改个人的表
+        String follow = sqluser.getFollow();
+        String str = user.getFollow();
+        sqluser.setFollow(PraseUtils.addStr(follow,str));
+
+        if (userDao.updateUserById(sqluser) && fans_dao.addFan(fans)!=null)
             return 1;
         else
             return 0;

@@ -17,6 +17,8 @@ public class PraseUtils {
     public static List<Integer> sToi(String str){
         System.out.println("调用sToi"+str);
         List list = new ArrayList();
+        if (str == null)
+            return null;
         if (str.indexOf("[")!=-1 || str.indexOf("]")!=-1)
         {
             str = str.substring(1);
@@ -40,5 +42,26 @@ public class PraseUtils {
             }
         }
         return list;
+    }
+
+    /**
+      *在字符串后面添加新子串.
+      * @param oldstr String
+     * @param newstr String
+      * @return java.lang.String
+      **/
+    public static String addStr(String oldstr,String newstr){
+
+        if (oldstr == null)
+            return newstr;
+
+        if (oldstr.indexOf('[')!=-1 || oldstr.indexOf(']')!=-1) {
+            oldstr.substring(1);
+            oldstr.substring(0, oldstr.length() - 1);
+        }
+
+        oldstr = oldstr+newstr+',';
+        System.out.println("follow"+oldstr);
+        return oldstr;
     }
 }
