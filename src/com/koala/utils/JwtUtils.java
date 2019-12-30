@@ -36,6 +36,24 @@ public class JwtUtils {
     }
 
     /**
+      *隐藏验证码.
+      * @param code String
+      * @return java.lang.String
+      **/
+    public static String createToken(String code){
+        try {
+            Calendar calendar = Calendar.getInstance();
+            Algorithm algorithm = Algorithm.HMAC256("secret");
+            String token = JWT.create().withIssuer("LYF").withClaim("code",code).withClaim("time",calendar.getTimeInMillis()).sign(algorithm);
+            return token;
+        }catch (JWTCreationException e){
+
+        }
+        return null;
+
+    }
+
+    /**
       *验证Token 失败返回0.
       * @param token String
       * @return int

@@ -7,9 +7,10 @@ import com.koala.dao.UserDao;
 import com.koala.entity.fans_;
 import com.koala.entity.user_tb;
 import com.koala.service.UserManage;
-import com.koala.utils.JdbcUtils;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.PraseUtils;
+
+import java.util.List;
 
 /**
  * 有关用户的服务.
@@ -45,7 +46,7 @@ public class UserManageImpl implements UserManage {
 
     /**
       *登陆验证.
-      * @param user
+      * @param user com.koala.entity.user_tb
       * @return java.lang.String
       **/
     @Override
@@ -134,6 +135,10 @@ public class UserManageImpl implements UserManage {
     public int followYoutuber(user_tb user) {
         user_tb sqluser = userDao.getUserById(user.getUserid());
         Fans_Dao fans_dao = new Fans_DaoImpl();
+        List<Integer> id = PraseUtils.sToi(sqluser.getFollow());
+
+        if (id !=null && id.contains(Integer.parseInt(user.getFollow())))
+            return -1;
 
         //注入粉丝表
         fans_ fans = new fans_();

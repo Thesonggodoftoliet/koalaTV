@@ -137,8 +137,8 @@ public class JdbcUtils {
 
     /**
       *执行SQL语句并返回一个结果.
-      * @param clazz
-     * @param sql
+      * @param clazz Class
+     * @param sql String
       * @return java.lang.Object
       **/
     public static Object getObject(Class clazz, String sql) {
@@ -227,7 +227,6 @@ public class JdbcUtils {
       * @param resultSet ResultSet
      * @param statement Statement
      * @param con Connection
-      * @return void
       **/
     public static void close(ResultSet resultSet,Statement statement,Connection con){
         try{

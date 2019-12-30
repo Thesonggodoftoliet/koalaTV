@@ -1,24 +1,41 @@
 package com.koala.utils;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
-  *转换工具.
-  *@author Marting.Lee
-  *date 2019/12/27
-  **/
-public class PraseUtils {
-    /**
-      *将String分离成int，比如[9,8] 变成 9 8.
-      * @param str String
-      * @return java.util.List(java.lang.Integer)
-      **/
-    public static List<Integer> sToi(String str){
-        System.out.println("调用sToi"+str);
+import static java.lang.System.exit;
+import static java.lang.System.in;
+import static org.junit.jupiter.api.Assertions.*;
+
+class PraseUtilsTest {
+
+    @Test
+    void addStr() {
+        String oldstr = "1,1";
+        String newstr = "1";
+        if (oldstr == null) {
+            System.out.println("follow " + newstr);
+            exit(0);
+        }
+        if (oldstr.indexOf('[')!=-1 || oldstr.indexOf(']')!=-1) {
+            oldstr.substring(1);
+            oldstr.substring(0, oldstr.length() - 1);
+        }
+
+        oldstr = oldstr+","+newstr;
+        System.out.println("follow "+oldstr);
+    }
+
+    @Test
+    void sToi() {
+        String str = "1,2,3,";
         List list = new ArrayList();
-        if (str == null)
-            return null;
+        if (str == null) {
+            System.out.println("没有");
+            exit(0);
+        }
         if (str.indexOf("[")!=-1 || str.indexOf("]")!=-1)
         {
             str = str.substring(1);
@@ -41,27 +58,8 @@ public class PraseUtils {
                 str=str.substring(1);
             }
         }
-        return list;
-    }
 
-    /**
-      *在字符串后面添加新子串.
-      * @param oldstr String
-     * @param newstr String
-      * @return java.lang.String
-      **/
-    public static String addStr(String oldstr,String newstr){
-
-        if (oldstr == null)
-            return newstr;
-
-        if (oldstr.indexOf('[')!=-1 || oldstr.indexOf(']')!=-1) {
-            oldstr.substring(1);
-            oldstr.substring(0, oldstr.length() - 1);
-        }
-
-        oldstr = oldstr+","+newstr;
-        System.out.println("follow"+oldstr);
-        return oldstr;
+        for (int i = 0;i<list.size();i++)
+            System.out.println(list.get(i));
     }
 }

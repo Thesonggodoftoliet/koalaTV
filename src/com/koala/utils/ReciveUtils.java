@@ -22,6 +22,7 @@ public class ReciveUtils {
       *将字节流转换为JSON对象.
       * @param request HttpServletRequest
       * @return org.json.JSONObject
+     * @throws IOException 读写错误
       **/
     public static JSONObject getObject(HttpServletRequest request)throws IOException {
         InputStream js = request.getInputStream();
@@ -47,6 +48,8 @@ public class ReciveUtils {
       * @param request HttpServletRequest
      * @param key String
       * @return org.json.JSONArray
+     * @throws IOException 读写错误
+     * @throws JSONException 转换失败
       **/
     public static JSONArray getArray(HttpServletRequest request,String key)throws IOException,JSONException{
         InputStream js =request.getInputStream();
