@@ -110,6 +110,32 @@ public class UserManageImpl implements UserManage {
     }
 
     /**
+      *修改需要手机验证的信息.
+      * @param user com.koala.entity.user_tb
+     * @param choice int
+      * @return int
+      **/
+    @Override
+    public int modifyKeyInfo(user_tb user, int choice) {
+        user_tb sqluser;
+        if (choice == 1) {
+            sqluser = userDao.getUserById(user.getUserid());
+            sqluser.setPhone(user.getPhone());
+            if (userDao.updateUserById(sqluser))
+                return 1;
+            else return 0;
+        }
+        else {
+            sqluser = userDao.getUserByPhone(user.getPhone());
+            sqluser.setUserpassword(user.getUserpassword());
+            if (userDao.updateUserById(sqluser))
+                return 1;
+            else
+                return 0;
+        }
+    }
+
+    /**
       *申请成为主播.
       * @param user com.koala.entity.user_tb
       * @return int

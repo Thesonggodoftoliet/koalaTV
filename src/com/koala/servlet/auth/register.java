@@ -3,6 +3,7 @@ package com.koala.servlet.auth;
 import com.koala.entity.user_tb;
 import com.koala.service.UserManage;
 import com.koala.service.impl.UserManageImpl;
+import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,9 +30,13 @@ public class register extends HttpServlet {
         JSONObject msg = new JSONObject();
         user_tb user = new user_tb();
         PrintWriter out = response.getWriter();
+        String oldcode =null;
+        String newcode =null;
 
         try {
             jsonObject = ReciveUtils.getObject(request);
+            oldcode = jsonObject.getString("oldcode");
+            newcode = jsonObject.getString("newcode");
             user.setPhone(jsonObject.getString("phone"));
             user.setUserpassword(jsonObject.getString("userpassword"));
             user.setGender(jsonObject.getInt("gender"));
@@ -40,15 +45,21 @@ public class register extends HttpServlet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        UserManage userManage = new UserManageImpl();
-        token =userManage.addUser(user);
-        if (token == null)
-            tag = -1;
-        else if (token.equals("wrong"))
-            tag = 0;
-        else
-            tag = 1;
 
+        if (JwtUtils.verifyToken(oldcode) == 0)
+            tag = -2;
+        else if (!newcode.equals(JwtUtils.decodeTokenToS(oldcode)))
+            tag = -3;
+        else {
+            UserManage userManage = new UserManageImpl();
+            token = userManage.addUser(user);
+            if (token == null)
+                tag = -1;
+            else if (token.equals("wrong"))
+                tag = 0;
+            else
+                tag = 1;
+        }
 
         try {
             msg.put("tag",tag);
