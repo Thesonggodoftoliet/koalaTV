@@ -1,10 +1,10 @@
 package com.koala.servlet.bar;
 
-import com.koala.entity.bar_;
+import com.koala.entity.post_;
 import com.koala.entity.user_tb;
-import com.koala.service.PostGet;
+import com.koala.service.ReplyGet;
 import com.koala.service.UserManage;
-import com.koala.service.impl.PostGetImpl;
+import com.koala.service.impl.ReplyGetImpl;
 import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
@@ -21,61 +21,59 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/api/bar/getposts")
-public class getposts extends HttpServlet {
-    public getposts() {
+@WebServlet("/api/bar/getreplies")
+public class getreplies extends HttpServlet {
+    public getreplies() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("getposts");
+        System.out.println("getreplies");
+        PrintWriter out  = response.getWriter();
+        JSONObject msg= new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        JSONObject msg = new JSONObject();
-        JSONArray posts = new JSONArray();
-        PrintWriter out = response.getWriter();
-        int tag = 0;
-        user_tb user = new user_tb();
         String token = null;
+        int tag = 0;
+        int hostid= 0;
+        int barid = 0;
         try {
             token = jsonObject.getString("token");
-            user.setUserid(JwtUtils.decodeToken(token));
+            hostid = jsonObject.getInt("hostid");
+            barid = jsonObject.getInt("barid");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        PostGet postGet = new PostGetImpl();
-        List<bar_> barList = postGet.getPost(user);
-        if (barList == null)
+        ReplyGet replyGet = new ReplyGetImpl();
+        UserManage userManage = new UserManageImpl();
+        List<post_> postList = replyGet.getReplies(hostid,barid);
+        JSONArray posts = new JSONArray();
+        if (postList == null)
             tag = -1;
         else {
-            UserManage userManage = new UserManageImpl();
-            for (int i = 0; i < barList.size(); i++) {
+            tag = 1;
+            for (int i = 0;i<postList.size();i++){
+                user_tb temp = userManage.getUserById(postList.get(i).getUserid());
                 JSONObject object = new JSONObject();
-                user_tb temp = userManage.getUserById(barList.get(i).getUserid());
                 try {
-                    object.put("hostid",barList.get(i).getHostid());
-                    object.put("barid",barList.get(i).getBarid());
-                    object.put("title", barList.get(i).getTitle());
-                    object.put("username", temp.getNickname());
-                    object.put("posttime", barList.get(i).getPosttime());
-                    object.put("content", barList.get(i).getContent());
-                    object.put("pic", barList.get(i).getPic());
-                    object.put("replynum", barList.get(i).getReplynum());
-                    object.put("latesttime", barList.get(i).getLastreplytime());
+                    object.put("username",temp.getNickname());
+                    object.put("hostid",postList.get(i).getHostid());
+                    object.put("barid",postList.get(i).getBarid());
+                    object.put("postid",postList.get(i).getPostid());
+                    object.put("posttime",postList.get(i).getPosttime());
+                    object.put("content",postList.get(i).getContent());
+                    object.put("pic",postList.get(i).getPic());
+                    posts.put(object);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                posts.put(object);
-                tag = 1;
             }
         }
 
-        token = JwtUtils.createToken(user.getUserid());
-
         try {
             msg.put("tag",tag);
+            msg.put("reply",posts);
             msg.put("token",token);
-            msg.put("post",posts);
         } catch (JSONException e) {
             e.printStackTrace();
         }

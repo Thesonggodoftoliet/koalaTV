@@ -11,7 +11,6 @@ import com.koala.entity.bar_tb;
 import com.koala.service.PostPost;
 import com.koala.utils.TimeUtils;
 
-import java.util.Calendar;
 
 /**
  * 发帖，因为是主要功能，访问频繁，故单独做一个服务.
@@ -42,7 +41,8 @@ public class PostPostImpl implements PostPost {
         else
             bar.setBarid(sqlbar.getBarid()+1);
         
-        post_dao.createTable(bar.getBarid());
+        post_dao.createTable(bar.getBarid(),bar.getHostid());
+
         if (bar_dao.addPost(bar) == null)
             return 0;
         else

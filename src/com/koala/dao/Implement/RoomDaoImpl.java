@@ -58,7 +58,7 @@ public class RoomDaoImpl implements RoomDao {
 
 	/**
 	  *获取所有正在直播的直播间.
-	  * @return java.util.List<com.koala.entity.room_tb>
+	  * @return java.util.List(com.koala.entity.room_tb)
 	  **/
 	@Override
 	public List<room_tb> getAllLivingRoom() {

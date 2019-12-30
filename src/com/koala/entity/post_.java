@@ -1,11 +1,12 @@
 package com.koala.entity;
 
 /**
-  *模型本身代表一条回复，post_(barid)代表这个帖子.
+  *模型本身代表一条回复，post_(hostid barid)代表这个帖子.
   *@author Marting.Lee
   *date 2019/12/26
   **/
 public class post_ {
+    private int hostid;//属于哪个话圈
     private int barid;//属于哪个帖子
     private int postid;//该回复的ID
     private int userid;
@@ -59,5 +60,13 @@ public class post_ {
 
     public void setBarid(int barid) {
         this.barid = barid;
+    }
+
+    public int getHostid() {
+        return hostid;
+    }
+
+    public void setHostid(int hostid) {
+        this.hostid = hostid;
     }
 }

@@ -1,5 +1,6 @@
 package com.koala.servlet.auth;
 
+import com.google.gson.Gson;
 import com.koala.entity.user_tb;
 import com.koala.service.UserManage;
 import com.koala.service.impl.UserManageImpl;

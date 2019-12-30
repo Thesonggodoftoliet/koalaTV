@@ -26,7 +26,7 @@ public class Bar_DaoImpl implements Bar_Dao {
     /**
       *根据时间降序获取帖子.
       * @param hostid int
-      * @return java.util.List<com.koala.entity.bar_>
+      * @return java.util.List(com.koala.entity.bar_)
       **/
     @Override
     public List<bar_> getLatestPosts(int hostid,int index) {
