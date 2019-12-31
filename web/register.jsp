@@ -298,6 +298,7 @@
 
       function updateBasic(){
           var gender;
+          var flag=0;
           if($('#gender').val()=="女"){
               gender=2;
           }else{
@@ -315,6 +316,7 @@
                   var tag = msg.tag;
                   if (tag == 1){
                       setCookie(msg.token);
+                      flag=1;
                       swal({
                           title:"欢迎进入考拉直播～",
                           icon:"success",
@@ -380,6 +382,17 @@
                   alert(XMLHttpRequest.status);
                   alert(XMLHttpRequest.readyState);
                   alert(textStatus);
+              }
+          });
+
+          $.ajax({
+              type: "post",
+              url: "/api/auth/register",
+              data: JSON.stringify(data1),
+              dataType: "json",
+              success: function x() {
+
+
               }
           });
       }
