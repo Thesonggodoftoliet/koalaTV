@@ -18,8 +18,8 @@ public class Post_DaoImpl implements Post_Dao {
       * @return java.util.List(com.koala.entity.post_)
       **/
     @Override
-    public List<post_> getAllReply(int barid) {
-        String sql = "select * from post_"+barid;
+    public List<post_> getAllReply(int hostid,int barid) {
+        String sql = "select * from post_"+hostid+barid+" order by posttime desc";
         return JdbcUtils.getList(post_.class,sql);
     }
 
@@ -30,7 +30,7 @@ public class Post_DaoImpl implements Post_Dao {
       **/
     @Override
     public post_ getReplyById(post_ post) {
-        String sql = "select * from post_"+post.getBarid()+" where postid = ?";
+        String sql = "select * from post_"+post.getHostid()+post.getBarid()+" where postid = ?";
         return (post_)JdbcUtils.getObjectById(post_.class,sql,post.getPostid());
     }
 
@@ -40,8 +40,8 @@ public class Post_DaoImpl implements Post_Dao {
       * @return com.koala.entity.post_
       **/
     @Override
-    public post_ getLastReply(int barid) {
-        String sql = "select * from post_"+barid+" oder by postid desc limit 0,1";
+    public post_ getLastReply(int hostid,int barid) {
+        String sql = "select * from post_"+hostid+barid+" order by postid desc limit 0,1";
         return (post_)JdbcUtils.getObject(post_.class,sql);
     }
 
@@ -52,8 +52,8 @@ public class Post_DaoImpl implements Post_Dao {
       **/
     @Override
     public post_ addReply(post_ post) {
-        String sql = "insert into post_? values(?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,post.getBarid(),post.getPostid(),post.getUserid(),post.getPosttime(),post.getContent(),post.getPic());
+        String sql = "insert into post_"+post.getHostid()+post.getBarid()+" values(?,?,?,?,?,?,?)";
+        int tag = JdbcUtils.executeSQL(sql,post.getHostid(),post.getBarid(),post.getPostid(),post.getUserid(),post.getPosttime(),post.getContent(),post.getPic());
         if (tag == 0)return null;
         else return post;
     }
@@ -64,9 +64,30 @@ public class Post_DaoImpl implements Post_Dao {
       * @return int
       **/
     @Override
-    public int numOfReply(int barid) {
-        String sql = "select * from post_"+barid;
+    public int numOfReply(int hostid,int barid) {
+        String sql = "select * from post_"+hostid+barid;
         return JdbcUtils.getListCount(sql);
+    }
+
+    /**
+      *添加回复表.
+      * @param barid int
+      * @return boolean 
+      **/
+    @Override
+    public boolean createTable(int barid,int hostid) {
+        String sql = "create table if not exists post_" + hostid + barid +
+                "(hostid int unsigned,"+
+                "barid int unsigned," +
+                "postid int unsigned," +
+                "userid int unsigned," +
+                "posttime varchar(60)," +
+                "content varchar(255)," +
+                "pic varchar(255)," +
+                "primary key(postid)" +
+                ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        JdbcUtils.executeSQL(sql);
+        return true;
     }
 
     /**
@@ -76,8 +97,8 @@ public class Post_DaoImpl implements Post_Dao {
       **/
     @Override
     public boolean updateReply(post_ post) {
-        String sql = "update post_? set posttime=?,content=?,pic=? where postid=?";
-        int tag = JdbcUtils.executeSQL(sql,post.getBarid(),post.getPosttime(),post.getContent(),post.getPic(),post.getPostid());
+        String sql = "update post_"+post.getHostid()+post.getBarid()+ " set posttime=?,content=?,pic=? where postid=?";
+        int tag = JdbcUtils.executeSQL(sql,post.getPosttime(),post.getContent(),post.getPic(),post.getPostid());
         if (tag == 0)return false;
         else return true;
     }
@@ -89,8 +110,8 @@ public class Post_DaoImpl implements Post_Dao {
       **/
     @Override
     public boolean deleteReply(post_ post) {
-        String sql = "delete from post_? where postid = ?";
-        int tag = JdbcUtils.executeSQL(sql,post.getBarid(),post.getPostid());
+        String sql = "delete from post_"+post.getHostid()+post.getBarid()+" where postid = ?";
+        int tag = JdbcUtils.executeSQL(sql,post.getPostid());
         if (tag == 0)return false;
         else return true;
     }
@@ -101,8 +122,8 @@ public class Post_DaoImpl implements Post_Dao {
       * @return boolean
       **/
     @Override
-    public boolean deletePost(int barid) {
-        String sql = "drop table post_"+barid;
+    public boolean deletePost(int hostid,int barid) {
+        String sql = "drop table post_"+hostid+barid;
         int tag = JdbcUtils.executeSQL(sql);
         if (tag == 0)return false;
         else return true;

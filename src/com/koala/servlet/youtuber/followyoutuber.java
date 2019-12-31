@@ -1,4 +1,4 @@
-package com.koala.servlet.manage;
+package com.koala.servlet.youtuber;
 
 import com.koala.entity.user_tb;
 import com.koala.service.UserManage;
@@ -16,48 +16,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/manage/changephone")
-public class changephone extends HttpServlet {
-    public changephone() {
+@WebServlet("/api/youtuber/followyoutuber")
+public class followyoutuber extends HttpServlet {
+    public followyoutuber() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("changephone");
+        System.out.println("followyoutuber");
+        PrintWriter out = response.getWriter();
+        int tag = 0;
         JSONObject jsonObject = ReciveUtils.getObject(request);
         JSONObject msg = new JSONObject();
-        int tag = 0;
+        user_tb user = new user_tb();
         String token = null;
-        String oldcode = null;
-        String newcode = null;
-        String phone = null;
-        PrintWriter out =response.getWriter();
 
         try {
             token = jsonObject.getString("token");
-            phone =jsonObject.getString("phone");
-            newcode = jsonObject.getString("newcode");
-            oldcode = jsonObject.getString("oldcode");
-
+            user.setUserid(JwtUtils.decodeToken(token));
+            int follow = jsonObject.getInt("follow");
+            user.setFollow(String.valueOf(follow));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        if (JwtUtils.verifyToken(oldcode) == 0)
-            tag = -2;
-        else if (!newcode.equals(JwtUtils.decodeTokenToS(oldcode)))
-            tag = -3;
-        else {
-            user_tb user = new user_tb();
-            user.setUserid(JwtUtils.decodeToken(token));
-            user.setPhone(phone);
-            UserManage userManage = new UserManageImpl();
-            if (userManage.getUser(phone) != null)
-                tag = -1;
-            if (userManage.modifyKeyInfo(user,1) != 0)
-                tag = 1;
-            token = JwtUtils.createToken(user.getUserid());
-        }
+        UserManage userManage = new UserManageImpl();
+        tag = userManage.followYoutuber(user);
+        token = JwtUtils.createToken(user.getUserid());
 
         try {
             msg.put("tag",tag);
@@ -69,6 +53,7 @@ public class changephone extends HttpServlet {
         out.print(msg);
         out.flush();
         out.close();
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

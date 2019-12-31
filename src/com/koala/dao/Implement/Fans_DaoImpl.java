@@ -36,6 +36,17 @@ public class Fans_DaoImpl implements Fans_Dao {
         else return fans;
     }
 
+    @Override
+    public boolean createTable(int hostid) {
+        String sql = "create table if not exists fans_"+hostid+
+                "(userid int unsigned," +
+                "hostid int unsigned," +
+                "primary key(userid)" +
+                ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        JdbcUtils.executeSQL(sql);
+        return true;
+    }
+
     /**
       *取消关注.
       * @param fans com.koala.entity.fans_

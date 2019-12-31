@@ -9,7 +9,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 对Token的管理.
@@ -24,15 +24,32 @@ public class JwtUtils {
       **/
     public static String createToken(int userid){
         try{
-            Calendar calendar = Calendar.getInstance();
             Algorithm algorithm = Algorithm.HMAC256("secret");
-            String token = JWT.create().withIssuer("LYF").withClaim("userid",userid).withClaim("time",calendar.getTimeInMillis()).sign(algorithm);
+            String token = JWT.create().withIssuer("LYF").withClaim("userid",userid).sign(algorithm);
             System.out.println("token"+token);
             return token;
         }catch (JWTCreationException e){
 
         }
         return null;
+    }
+
+    /**
+      *隐藏验证码.
+      * @param code String
+      * @return java.lang.String
+      **/
+    public static String createToken(String code){
+        try {
+            Date date =new Date();
+            Algorithm algorithm = Algorithm.HMAC256("secret");
+            String token = JWT.create().withIssuer("LYF").withClaim("code",code).withExpiresAt(date).sign(algorithm);
+            return token;
+        }catch (JWTCreationException e){
+
+        }
+        return null;
+
     }
 
     /**
@@ -43,13 +60,12 @@ public class JwtUtils {
     public static int verifyToken(String token){
         try{
             Algorithm algorithm = Algorithm.HMAC256("secret");
-            JWTVerifier verifier = JWT.require(algorithm).withIssuer("LYF").build();
+            JWTVerifier verifier = JWT.require(algorithm).withIssuer("LYF").acceptExpiresAt(300).build();//五分钟失效
             DecodedJWT jwt = verifier.verify(token);
             return 1;
         }catch (JWTVerificationException e){
-
+            return 0;
         }
-        return 0;
     }
 
     /**
@@ -66,5 +82,21 @@ public class JwtUtils {
 
         }
         return -1;
+    }
+
+    /**
+      *Token反解码为code.
+      * @param token String
+      * @return java.lang.String
+      **/
+    public static String decodeTokenToS(String token){
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            Claim claim =jwt.getClaim("code");
+            return claim.asString();
+        }catch (JWTDecodeException e){
+
+        }
+        return null;
     }
 }

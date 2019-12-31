@@ -1,10 +1,9 @@
-package com.koala.servlet.bar;
+package com.koala.servlet.auth;
 
-import com.koala.entity.bar_;
-import com.koala.service.PostPost;
-import com.koala.service.impl.PostPostImpl;
 import com.koala.utils.JwtUtils;
+import com.koala.utils.MessageUtils;
 import com.koala.utils.ReciveUtils;
+import com.mysql.cj.protocol.Message;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,41 +15,37 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/bar/deploypost")
-public class deploypost extends HttpServlet {
-    public deploypost() {
+@WebServlet("/api/auth/identify")
+public class identify extends HttpServlet {
+    public identify() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("deploypost");
-        PrintWriter out = response.getWriter();
-        int tag = 0;
+        System.out.println("identify");
         JSONObject jsonObject = ReciveUtils.getObject(request);
         JSONObject msg = new JSONObject();
-        int userid = 0;
-        bar_ bar = new bar_();
+        PrintWriter out = response.getWriter();
+        String phone= null;
+        int tag = 0;
+        String token = null;
         try {
-            String token = jsonObject.getString("token");
-            userid = JwtUtils.decodeToken(token);
-            bar.setHostid(jsonObject.getInt("hostid"));
-            bar.setUserid(userid);
-            bar.setContent(jsonObject.getString("content"));
-            bar.setPic(jsonObject.getString("pic"));
+            phone = jsonObject.getString("phone");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        String token = JwtUtils.createToken(userid);
-        PostPost postPost = new PostPostImpl();
-        if (postPost.postMessage(bar) == 0)
+        if (phone == null)
             tag = -1;
-        else
+        else {
             tag = 1;
+            String code = MessageUtils.generateCode();
+            MessageUtils.Send(code,phone);
+            token = JwtUtils.createToken(code);
+        }
 
         try {
-            msg.put("token",token);
             msg.put("tag",tag);
+            msg.put("token",token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
