@@ -54,9 +54,6 @@ public class applyyoutuber extends HttpServlet {
         BarManage barManage = new BarManageImpl();
         RoomManage roomManage = new RoomManageImpl();
         UserManage userManage = new UserManageImpl();
-        user = userManage.getUserById(user.getUserid());
-        bar.setBarname(user.getNickname());
-
         if (barManage.addBar(bar) == 0 ||userManage.applyForBar(user) == 0 ||roomManage.addRoom(room) == 0)
             tag = -1;//话圈申请失败
         else
