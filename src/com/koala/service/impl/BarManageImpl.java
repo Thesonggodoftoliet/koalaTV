@@ -1,5 +1,6 @@
 package com.koala.service.impl;
 
+import com.jieba.JiebaSegmenter;
 import com.koala.dao.BarDao;
 import com.koala.dao.Bar_Dao;
 import com.koala.dao.Implement.BarDaoImpl;
@@ -14,6 +15,7 @@ import com.koala.entity.post_;
 import com.koala.entity.user_tb;
 import com.koala.service.BarManage;
 import com.koala.utils.PraseUtils;
+import com.koala.utils.SearchUtils;
 import com.koala.utils.TimeUtils;
 
 import java.util.ArrayList;
@@ -59,6 +61,31 @@ public class BarManageImpl implements BarManage {
                 temp.add(userDao.getUserById(idlist.get(i)));
             return temp;
         }
+    }
+
+    /**
+      *根据关键词，获取相关的微博.
+      * @param userid int
+     * @param keyword String
+      * @return java.util.List(com.koala.entity.bar_)
+      **/
+    @Override
+    public List<bar_> barlist(int userid,String keyword) {
+        UserDao userDao = new UserDaoImpl();
+        List<Integer> hostid = PraseUtils.sToi(userDao.getUserById(userid).getFollow());
+        List<bar_> postList = new ArrayList<>();
+
+        //获取所有的帖子，现在数量较少可以使用这种办法
+        for (int i=0;i<hostid.size();i++){
+            List<bar_> temp = bar_dao.getAllPost(hostid.get(i));
+            if (temp!=null)
+                postList.addAll(temp);
+        }
+
+        if (postList.isEmpty())
+            return null;
+        else
+            return SearchUtils.getList(keyword,postList);
     }
 
     /**
