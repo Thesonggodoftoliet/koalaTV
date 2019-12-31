@@ -236,7 +236,7 @@
                 <ul>
 
                     <li class="submenu">
-                        <a class="active" href="index.html"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+                        <a class="active" href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
                     </li>
 
                     <li class="submenu">
@@ -257,8 +257,8 @@
                     <li class="submenu">
                         <a><i class="fa fa-fw fa-th"></i> <span> 个人中心 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="personcenter_basic.html">基本信息</a></li>
-                            <li><a href="personcenter_live.html">直播管理</a></li>
+                            <li><a href="personcenter_basic.jsp">基本信息</a></li>
+                            <li><a href="personcenter_live.jsp">直播管理</a></li>
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>

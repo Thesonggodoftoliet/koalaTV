@@ -40,7 +40,7 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-        <a href="index.html" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Admin</span></a>
+        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>koalaTV</span></a>
       </div>
 
       <nav class="navbar-custom">
@@ -54,128 +54,8 @@
             <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
               <!-- item-->
               <div class="dropdown-item noti-title">
-                <h5><small>Help and Support</small></h5>
+                <h5><small>搜索</small></h5>
               </div>
-
-              <!-- item-->
-              <a target="_blank" href="#" class="dropdown-item notify-item">
-                <p class="notify-details ml-0">
-                  <b>Do you want custom development to integrate this theme?</b>
-                  <span>Contact Us</span>
-                </p>
-              </a>
-
-              <!-- item-->
-              <a target="_blank" href="#" class="dropdown-item notify-item">
-                <p class="notify-details ml-0">
-                  <b>Do you want PHP version of the theme that save dozens of hours of work?</b>
-                  <span>Try Pike Admin PRO</span>
-                </p>
-              </a>
-
-              <!-- All-->
-              <a title="Clcik to visit Pike Admin Website" target="_blank" href="#" class="dropdown-item notify-item notify-all">
-                <i class="fa fa-link"></i> Visit Pike Admin Website
-              </a>
-
-            </div>
-          </li>
-
-          <li class="list-inline-item dropdown notif">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-              <i class="fa fa-fw fa-envelope-o"></i><span class="notif-bullet"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-              <!-- item-->
-              <div class="dropdown-item noti-title">
-                <h5><small><span class="label label-danger pull-xs-right">12</span>Contact Messages</small></h5>
-              </div>
-
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <p class="notify-details ml-0">
-                  <b>Jokn Doe</b>
-                  <span>New message received</span>
-                  <small class="text-muted">2 minutes ago</small>
-                </p>
-              </a>
-
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <p class="notify-details ml-0">
-                  <b>Michael Jackson</b>
-                  <span>New message received</span>
-                  <small class="text-muted">15 minutes ago</small>
-                </p>
-              </a>
-
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <p class="notify-details ml-0">
-                  <b>Foxy Johnes</b>
-                  <span>New message received</span>
-                  <small class="text-muted">Yesterday, 13:30</small>
-                </p>
-              </a>
-
-              <!-- All-->
-              <a href="#" class="dropdown-item notify-item notify-all">
-                View All
-              </a>
-
-            </div>
-          </li>
-
-          <li class="list-inline-item dropdown notif">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-              <i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg">
-              <!-- item-->
-              <div class="dropdown-item noti-title">
-                <h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
-              </div>
-
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <div class="notify-icon bg-faded">
-                  <img src="assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
-                </div>
-                <p class="notify-details">
-                  <b>John Doe</b>
-                  <span>User registration</span>
-                  <small class="text-muted">3 minutes ago</small>
-                </p>
-              </a>
-
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <div class="notify-icon bg-faded">
-                  <img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
-                </div>
-                <p class="notify-details">
-                  <b>Michael Cox</b>
-                  <span>Task 2 completed</span>
-                  <small class="text-muted">12 minutes ago</small>
-                </p>
-              </a>
-
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <div class="notify-icon bg-faded">
-                  <img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
-                </div>
-                <p class="notify-details">
-                  <b>Michelle Dolores</b>
-                  <span>New job completed</span>
-                  <small class="text-muted">35 minutes ago</small>
-                </p>
-              </a>
-
-              <!-- All-->
-              <a href="#" class="dropdown-item notify-item notify-all">
-                View All Allerts
-              </a>
 
             </div>
           </li>
@@ -187,23 +67,14 @@
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
               <!-- item-->
               <div class="dropdown-item noti-title">
-                <h5 class="text-overflow"><small>Hello, admin</small> </h5>
+                <h5 class="text-overflow"><small>Hello, koalaer</small> </h5>
               </div>
 
               <!-- item-->
-              <a href="pro-profile.html" class="dropdown-item notify-item">
+              <a href="personcenter_basic.jsp" class="dropdown-item notify-item">
                 <i class="fa fa-user"></i> <span>Profile</span>
               </a>
 
-              <!-- item-->
-              <a href="#" class="dropdown-item notify-item">
-                <i class="fa fa-power-off"></i> <span>Logout</span>
-              </a>
-
-              <!-- item-->
-              <a target="_blank" href="#" class="dropdown-item notify-item">
-                <i class="fa fa-external-link"></i> <span>Pike Admin</span>
-              </a>
             </div>
           </li>
 
@@ -233,7 +104,7 @@
           <ul>
 
             <li class="submenu">
-              <a class="active" href="index.html"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+              <a class="active" href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
             </li>
 
             <li class="submenu">
@@ -248,7 +119,7 @@
             </li>
 
             <li class="submenu">
-              <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+              <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
@@ -262,11 +133,7 @@
 
           </ul>
 
-          <div class="clearfix"></div>
-
         </div>
-
-        <div class="clearfix"></div>
 
       </div>
 
@@ -286,28 +153,38 @@
 
             <div class="card-body">
 
-              <form class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9" action="#" data-parsley-validate="" novalidate="">
+              <form class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9" method="post"  onsubmit="return false;">
                 <div class="form-group">
-                  <label for="userName">账号<span class="text-danger">*</span></label>
-                  <input type="text" name="nick" data-parsley-trigger="change" required="" placeholder="请输入11位手机号" class="form-control" id="userName">
+                  <label for="phone">账号（手机号）<span class="text-danger">*</span></label>
+                  <input type="text" data-parsley-trigger="change" required="" placeholder="请输入11位手机号" class="form-control" id="phone">
                 </div>
                 <div class="form-group">
-                  <label for="emailAddress">用户密码<span class="text-danger">*</span></label>
-                  <input type="email" name="email" data-parsley-trigger="change" required="" placeholder="请输入10到19位密码" class="form-control" id="emailAddress">
+                  <label for="userpassword">用户密码<span class="text-danger">*</span></label>
+                  <input type="password" name="email" data-parsley-trigger="change" required="" placeholder="请输入10到19位密码" class="form-control" id="userpassword">
                 </div>
                 <div class="form-group">
-                  <label for="pass1">确认密码<span class="text-danger">*</span></label>
-                  <input id="pass1" type="password" placeholder="请再次输入你的密码" required="" class="form-control">
+                  <label for="userpasswordagain">确认密码<span class="text-danger">*</span></label>
+                  <input id="userpasswordagain" type="password" placeholder="请再次输入你的密码" required="" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="passWord2">昵称 <span class="text-danger">*</span></label>
-                  <input data-parsley-equalto="#pass1" type="password" required="" placeholder="昵称" class="form-control" id="passWord2">
+                  <label for="nickname">昵称 <span class="text-danger">*</span></label>
+                  <input data-parsley-equalto="#pass1" type="text" required="" placeholder="昵称" class="form-control" id="nickname">
                 </div>
                 <div class="form-group">
-                  <label>性别</label>
+                  <label>性别(男/女)</label>
                   <div>
-                    <input data-parsley-type="url" type="url" class="form-control" required="" placeholder="性别">
+                    <input type="text" class="form-control" id="gender" placeholder="性别">
                   </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputLike">喜欢的游戏类型</label>
+                  <select id="inputLike" class="form-control">
+                    <option selected>英雄联盟</option>
+                    <option>守望先锋</option>
+                    <option>qq三国</option>
+                    <option>斗地主</option>
+                    <option>和平精英</option>
+                  </select>
                 </div>
                 <div class="form-row col-md-12">
                   <div class="form-group col-md-4">
@@ -316,8 +193,7 @@
 
                   </div>
                   <div class="form-group col-md-4">
-                    <label for="inputphoneNum"> </label>
-                    <button type="submit" class="btn btn-primary">获取验证码</button>
+                    <button type="button" class="btn btn-primary">获取验证码</button>
                   </div>
 
                 </div>
@@ -325,8 +201,8 @@
                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div class="card mb-3">
                       <div class="card-header">
-                        <h3><i class="fa fa-file"></i> 头像</h3>
-                        文件大小必须小于1MB，且格式为jpg
+                        <h3><i class="fa fa-file"></i>头像</h3>
+                        文件大小必须小于1MB，且格式为jpg/jpeg
                       </div>
 
                       <div class="card-body">
@@ -347,9 +223,8 @@
                 </div>
 
                 <div class="form-group text-right m-b-6">
-                  <button class="btn btn-primary" type="submit">
-                    提交
-                  </button>
+                  <input class="btn btn-primary" type="submit"  onclick="applyButton()">
+                    <a href="login.jsp"><i>已经注册了～ 快去登陆叭</i></a>
                 </div>
 
               </form>
@@ -392,6 +267,8 @@
   <!-- Counter-Up-->
   <script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
   <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
+  <!-- BEGIN Java Script for this page -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script>
       $(document).ready(function() {
@@ -406,101 +283,129 @@
       } );
   </script>
 
-  <script>
-      var ctx1 = document.getElementById("lineChart").getContext('2d');
-      var lineChart = new Chart(ctx1, {
-          type: 'bar',
-          data: {
-              labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-              datasets: [{
-                  label: 'Dataset 1',
-                  backgroundColor: '#3EB9DC',
-                  data: [10, 14, 6, 7, 13, 9, 13, 16, 11, 8, 12, 9]
-              }, {
-                  label: 'Dataset 2',
-                  backgroundColor: '#EBEFF3',
-                  data: [12, 14, 6, 7, 13, 6, 13, 16, 10, 8, 11, 12]
-              }]
+  <!-- 注册请求 -->
+  <!-- 这个注册还差，验证码，还差上传（默认）头像的功能-->
+  <script type="text/javascript">
 
-          },
-          options: {
-              tooltips: {
-                  mode: 'index',
-                  intersect: false
-              },
-              responsive: true,
-              scales: {
-                  xAxes: [{
-                      stacked: true,
-                  }],
-                  yAxes: [{
-                      stacked: true
-                  }]
+      function setCookie(token) {
+          $.cookie("token", token);
+      }
+
+      function getCookie(token) {
+          token = $.cookie("token");
+      }
+
+      function updateBasic(){
+          var gender;
+          if($('#gender').val()=="女"){
+              gender=2;
+          }else{
+              gender=1;
+          }
+          var icon="";
+          data1={phone: $('#phone').val(),userpassword: $('#userpassword').val(),gender:gender,nickname:$('#nickname').val(),icon:icon};
+          alert(JSON.stringify(data1));
+          $.ajax({
+              type:"post",
+              url:"/api/auth/register",
+              data:JSON.stringify(data1),
+              dataType:"json",
+              success:function(msg){
+                  var tag = msg.tag;
+                  if (tag == 1){
+                      setCookie(msg.token);
+                      swal({
+                          title:"欢迎进入考拉直播～",
+                          icon:"success",
+                          button:{
+                              text: "吖咪！",
+                              closeModal: false,
+                          },
+                      }).then(
+                          function (value) {
+                              if(value){
+                                  window.location.href="index.jsp"
+                              }
+                          }
+                      );
+                  }else if(tag == -1){
+                      swal({
+                          title:"再检查一下，看看哪里的信息错了哦！～",
+                          icon:"warning",
+                          button:{
+                              text: "好der～",
+                              closeModal: false,
+                          },
+                      }).then(
+                          function (value) {
+                              if(value){
+                                  swal.close();
+                              }
+                          }
+                      );
+                  }else if(tag == 0){
+                      swal({
+                          title:"疑～服务器开小差了呢，再试一次吧！",
+                          icon:"warning",
+                          button:{
+                              text: "害，好吧",
+                              closeModal: false,
+                          },
+                      }).then(
+                          function (value) {
+                              if(value){
+                                  swal.close();
+                              }
+                          }
+                      );
+                  }else{
+                      swal({
+                          title:"疑～好像哪里出错了呀！",
+                          icon:"warning",
+                          button:{
+                              text: "害，再试一次",
+                              closeModal: false,
+                          },
+                      }).then(
+                          function (value) {
+                              if(value){
+                                  swal.close();
+                              }
+                          }
+                      );
+                  }
+
+              }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  alert(XMLHttpRequest.status);
+                  alert(XMLHttpRequest.readyState);
+                  alert(textStatus);
               }
+          });
+      }
+
+      function applyButton() {
+          <!-- judge password -->
+          var password1 = $('#userpassword').val();
+          var password2 = $('#userpasswordagain').val();
+          if(password1!==password2){
+              swal({
+                  title:"再检查一下，两次密码不一样哦！～",
+                  icon:"warning",
+                  button:{
+                      text: "好der～",
+                      closeModal: false,
+                  },
+              }).then(
+                  function (value) {
+                      if(value){
+                          swal.close();
+                      }
+                  }
+              );
+          }else{
+              updateBasic();
           }
-      });
-
-
-      var ctx2 = document.getElementById("pieChart").getContext('2d');
-      var pieChart = new Chart(ctx2, {
-          type: 'pie',
-          data: {
-              datasets: [{
-                  data: [12, 19, 3, 5, 2, 3],
-                  backgroundColor: [
-                      'rgba(255,99,132,1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  label: 'Dataset 1'
-              }],
-              labels: [
-                  "Red",
-                  "Orange",
-                  "Yellow",
-                  "Green",
-                  "Blue"
-              ]
-          },
-          options: {
-              responsive: true
-          }
-
-      });
-
-
-      var ctx3 = document.getElementById("doughnutChart").getContext('2d');
-      var doughnutChart = new Chart(ctx3, {
-          type: 'doughnut',
-          data: {
-              datasets: [{
-                  data: [12, 19, 3, 5, 2, 3],
-                  backgroundColor: [
-                      'rgba(255,99,132,1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  label: 'Dataset 1'
-              }],
-              labels: [
-                  "Red",
-                  "Orange",
-                  "Yellow",
-                  "Green",
-                  "Blue"
-              ]
-          },
-          options: {
-              responsive: true
-          }
-
-      });
+      }
   </script>
   <!-- END Java Script for this page -->
 
