@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
 </head>
-<body class="adminbody" background="background.jpeg">
+<body class="adminbody" background="assets/images/background2.png">
 <div id="main">
 
     <!-- top bar navigation -->
@@ -248,7 +248,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -285,7 +285,7 @@
                     <div class="card mb-3">
                         <div class="card-header"  style="text-align:center;">
                             <br/>
-                            <h3> ～注册成为主播～ </h3>
+                            <h3> ～申请成为主播～ </h3>
 
                         </div>
 
@@ -294,21 +294,27 @@
                             <form autocomplete="off" action="#">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <label for="inputEmail3">手 机 号</label>
+                                        <label for="truename">真实姓名</label>
 
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="11位手机号" autocomplete="off">
+                                        <input type="text" class="form-control" id="truename" autocomplete="off">
 
                                     </div>
                                     <div class="form-group col-md-8">
-                                        <label for="inputPassword3" class="col-sm-3 col-form-label">身 份 证</label>
+                                        <label for="identify" class="col-sm-3 col-form-label">身份证件</label>
 
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="10到19位密码" autocomplete="off">
+                                        <input type="text" class="form-control" id="identify" autocomplete="off">
 
                                     </div>
                                     <br/><br/>
                                     <div class="form-group col-md-8">
-                                        <label for="inputLike">直播间的游戏类型</label>
-                                        <select id="inputLike" class="form-control">
+                                        <label for="title" class="col-sm-3 col-form-label">房间标题</label>
+
+                                        <input type="text" class="form-control" id="title" autocomplete="off">
+
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="category">直播间的游戏类型</label>
+                                        <select id="category" class="form-control">
                                             <option selected>英雄联盟</option>
                                             <option>守望先锋</option>
                                             <option>qq三国</option>
@@ -319,7 +325,7 @@
                                     <br/><br/> <br/><br/> <br/><br/>
                                     <div class="form-group col-md-8">
                                         <div class="col-sm-10" style="text-align:center;">
-                                            <button type="submit" class="btn btn-primary" id="apply">提交</button>
+                                            <input type="submit" onclick="applyButton()" class="btn btn-primary" id="apply">
                                         </div>
                                     </div>
                                 </div>
@@ -353,6 +359,7 @@
 <script src="assets/js/fastclick.js"></script>
 <script src="assets/js/jquery.blockUI.js"></script>
 <script src="assets/js/jquery.nicescroll.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
 
 <!-- App js -->
 <script src="assets/js/pikeadmin.js"></script>
@@ -368,35 +375,109 @@
 <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
 
 <script>
+    function applyButton(){
+        var token=$.cookie("token");
+        var options=$("#category option:selected");  //获取选中的option
+        var category=options.text();
+        var title=$('#title').val();
+        var coverpic=" ";
+
+        var data1={token:token,category:category,title:title,coverpic:coverpic};
+        alert(JSON.stringify(data1));
+        $.ajax({
+            type:"post",
+            url:"/api/youtuber/applyyoutuber",
+            data:JSON.stringify(data1),
+            dataType:"json",
+            success:function(msg){
+                var tag = msg.tag;
+                if (tag == 1){
+                    setCookie(msg.token);
+                    swal({
+                        icon : "success",
+                        text:"恭喜你成为主播！拥有自己的直播间啦！",
+                        buttons : {
+                            button1 : {
+                                text : "前往直播中心开播",
+                                value : true,
+                            },
+                            button2 : {
+                                text : "暂不直播",
+                                value : false,
+                            }
+                        },
+                    })
+                        .then(
+                            function (value) {
+                                if(value){
+                                    window.location.href="personcenter_basic.jsp"
+                                }else{
+                                    window.location.href="personcenter_live.jsp"
+                                }
+
+                            }
+                        );
+                }else if(tag == -1){
+                    setCookie(msg.token);
+                    swal({
+                        title:"再检查一下，看看哪里的信息错了哦！～",
+                        icon:"warning",
+                        button:{
+                            text: "好der～",
+                            closeModal: false,
+                        },
+                    }).then(
+                        function (value) {
+                            if(value){
+                                swal.close();
+                            }
+                        }
+                    );
+                }else if(tag == 0){
+                    setCookie(msg.token);
+                    swal({
+                        title:"疑～服务器开小差了呢，再试一次吧！",
+                        icon:"warning",
+                        button:{
+                            text: "害，好吧",
+                            closeModal: false,
+                        },
+                    }).then(
+                        function (value) {
+                            if(value){
+                                swal.close();
+                            }
+                        }
+                    );
+                }else{
+                    setCookie(msg.token);
+                    swal({
+                        title:"疑～好像哪里出错了呀！",
+                        icon:"warning",
+                        button:{
+                            text: "害，再试一次",
+                            closeModal: false,
+                        },
+                    }).then(
+                        function (value) {
+                            if(value){
+                                swal.close();
+                            }
+                        }
+                    );
+                }
+
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+
+    }
+
     $(document).ready(function() {
         // counter-up
-        $('#apply').click(function(){
-            swal({
-                icon : "success",
-                text:"恭喜你成为主播！拥有自己的直播间啦！",
-                buttons : {
-                    button1 : {
-                        text : "前往直播中心开播",
-                        value : true,
-                    },
-                    button2 : {
-                        text : "暂不直播",
-                        value : false,
-                    }
-                },
-            })
-                .then(
-                    function (value) {
-                        if(value){
-                            window.location.href="personcenter_basic.jsp"
-                        }else{
-                            window.location.href="personcenter_live.jsp"
-                        }
-                        
-                    }
-                );
-
-        });
     } );
 
 </script>

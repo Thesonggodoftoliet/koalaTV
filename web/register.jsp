@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
   </head>
-  <body class="adminbody" background="background.jpeg">
+  <body class="adminbody" background="assets/images/background2.png">
 
   <div id="main">
 
@@ -255,6 +255,7 @@
   <script src="assets/js/fastclick.js"></script>
   <script src="assets/js/jquery.blockUI.js"></script>
   <script src="assets/js/jquery.nicescroll.js"></script>
+  <script src="assets/js/jquery.cookie.js"></script>
 
   <!-- App js -->
   <script src="assets/js/pikeadmin.js"></script>

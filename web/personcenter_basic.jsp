@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="adminbody">
+<body class="adminbody" background="assets/images/background2.png">
 
 <div id="main">
 
