@@ -36,6 +36,17 @@ public class Fans_DaoImpl implements Fans_Dao {
         else return fans;
     }
 
+    /**
+      *获取关注主播的人数.
+      * @param hostid int
+      * @return int
+      **/
+    @Override
+    public int getNumOfFan(int hostid) {
+        String sql = "select * from fans_"+hostid;
+        return JdbcUtils.getListCount(sql);
+    }
+
     @Override
     public boolean createTable(int hostid) {
         String sql = "create table if not exists fans_"+hostid+

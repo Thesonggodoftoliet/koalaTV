@@ -23,4 +23,14 @@ public class FanManageImpl implements FanManage {
         fans_dao.createTable(fan.getHostid());
         return 1;
     }
+
+    /**
+      *获取主播总粉丝数.
+      * @param hostid int
+      * @return int
+      **/
+    @Override
+    public int getNumOfFan(int hostid) {
+        return fans_dao.getNumOfFan(hostid);
+    }
 }
