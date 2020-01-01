@@ -1,5 +1,6 @@
 package com.koala.service.impl;
 
+import com.jieba.JiebaSegmenter;
 import com.koala.dao.BarDao;
 import com.koala.dao.Bar_Dao;
 import com.koala.dao.Implement.BarDaoImpl;
@@ -14,12 +15,14 @@ import com.koala.entity.post_;
 import com.koala.entity.user_tb;
 import com.koala.service.BarManage;
 import com.koala.utils.PraseUtils;
+import com.koala.utils.SearchUtils;
 import com.koala.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * 对话圈进行管理
+ * 对话圈进行管理.
  * @author Marting.Lee
  * 2019/12/29
  */
@@ -41,7 +44,7 @@ public class BarManageImpl implements BarManage {
     }
 
     /**
-      *获取关注的主播
+      *获取关注的主播.
       * @param userid int
       * @return java.util.List(com.koala.entity.user_tb)
       **/
@@ -58,6 +61,31 @@ public class BarManageImpl implements BarManage {
                 temp.add(userDao.getUserById(idlist.get(i)));
             return temp;
         }
+    }
+
+    /**
+      *根据关键词，获取相关的微博.
+      * @param userid int
+     * @param keyword String
+      * @return java.util.List(com.koala.entity.bar_)
+      **/
+    @Override
+    public List<bar_> barlist(int userid,String keyword) {
+        UserDao userDao = new UserDaoImpl();
+        List<Integer> hostid = PraseUtils.sToi(userDao.getUserById(userid).getFollow());
+        List<bar_> postList = new ArrayList<>();
+
+        //获取所有的帖子，现在数量较少可以使用这种办法
+        for (int i=0;i<hostid.size();i++){
+            List<bar_> temp = bar_dao.getAllPost(hostid.get(i));
+            if (temp!=null)
+                postList.addAll(temp);
+        }
+
+        if (postList.isEmpty())
+            return null;
+        else
+            return SearchUtils.getList(keyword,postList);
     }
 
     /**
@@ -123,10 +151,10 @@ public class BarManageImpl implements BarManage {
         UserDao userDao = new UserDaoImpl();
         user_tb user = userDao.getUserById(userid);
         bar_ sqlbar = bar_dao.getPostById(bar);
-        if (user.getIsBarhost() == 0 && sqlbar.getUserid()!=userid){//不是话圈主持人也不是发帖人
+        if (user.getIsBarhost() == 0 && sqlbar.getUserid()!=userid){//不是话圈主持人,也不是发帖人
             return -1;//没有权限
         }
-        else if (user.getIsBarhost() == 1 && sqlbar.getUserid()!=userid){//是话圈主持人，但不是发帖�?
+        else if (user.getIsBarhost() == 1 && sqlbar.getUserid()!=userid){//是话圈主持人，但不是发帖人
             bar_tb bar_t = barDao.getBarByHostId(bar.getHostid());
             if (bar_t.getAdminid() == userid) {//是这个话圈的主持
 
@@ -135,16 +163,13 @@ public class BarManageImpl implements BarManage {
                 return -1;//没有权限
         }
         else{
+
         }
+
         Post_Dao post_dao = new Post_DaoImpl();
         if (post_dao.deletePost(bar.getHostid(),bar.getBarid()) && bar_dao.deletePost(bar))
                 return 1;
         return 0;
-    }
-
-    @Override
-    public List<bar_> barlist(int userid, String keyword) {
-        return null;
     }
 
     @Override
@@ -165,6 +190,7 @@ public class BarManageImpl implements BarManage {
         else {
 
         }
+        Post_Dao post_dao1 = new Post_DaoImpl();
         if (post_dao.deleteReply(post))
             return 1;
         return 0;

@@ -10,5 +10,5 @@ import java.util.List;
  * 2019/12/28
  */
 public interface ReplyGet {
-    List<post_> getReplies(int hostid, int barid);
+    List<post_> getReplies(int hostid,int barid);
 }

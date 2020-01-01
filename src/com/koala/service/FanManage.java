@@ -9,4 +9,5 @@ import com.koala.entity.fans_;
  */
 public interface FanManage {
     int addFan(fans_ fan);
+    int getNumOfFan(int hostid);
 }

@@ -13,7 +13,7 @@ public interface UserManage {
     String authUser(user_tb user);
     String addUser(user_tb user);
     int modifyUser(user_tb user);
-    int modifyKeyInfo(user_tb user, int choice);//1 是修改手机号 2是修改密码
+    int modifyKeyInfo(user_tb user,int choice);//1 是修改手机号 2是修改密码
     int applyForBar(user_tb user);
     int followYoutuber(user_tb user);
 }
