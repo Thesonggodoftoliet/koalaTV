@@ -25,7 +25,7 @@ public class MessageUtils {
       * @return void
       **/
     public static void Send(String code,String phone){
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "<accessKeyId>", "<accessSecret>");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4FtoLM8zU2c9SP9MW6Tq", "5dq0TYqxw9OS8OwAyRLbQqfSzh4csx");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();

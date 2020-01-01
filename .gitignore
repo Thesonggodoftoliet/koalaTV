@@ -1,5 +1,6 @@
-
 .DS_Store
 out
 .idea
 koalaTV.iml
+.idea/artifacts/koalaTV_war_exploded.xml
+
