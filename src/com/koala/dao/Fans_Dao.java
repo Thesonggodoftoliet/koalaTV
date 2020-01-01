@@ -12,7 +12,6 @@ import java.util.List;
 public interface Fans_Dao {
     List<fans_> getAllFan(int hostid);
     fans_ addFan(fans_ fans);
-    int getNumOfFan(int hostid);
     boolean createTable(int hostid);
     boolean deleteFan(fans_ fans);
     boolean deleteFans(int hostid);

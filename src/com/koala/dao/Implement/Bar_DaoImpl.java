@@ -19,7 +19,7 @@ public class Bar_DaoImpl implements Bar_Dao {
       **/
     @Override
     public List<bar_> getAllPost(int hostid) {
-        String sql = "select * from bar_"+hostid+" order by lastreplytime desc";
+        String sql = "select * from bar_"+hostid;
         return JdbcUtils.getList(bar_.class,sql);
     }
 

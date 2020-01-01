@@ -142,12 +142,11 @@ public class UserManageImpl implements UserManage {
       **/
     @Override
     public int applyForBar(user_tb user) {
-        user.setIsBarhost(1);
-        user.setIsYoutuber(1);
+        user_tb sqluser = userDao.getUserById(user.getUserid());
+        sqluser.setIsBarhost(1);
         Fans_Dao fans_dao = new Fans_DaoImpl();
         fans_dao.createTable(user.getUserid());
-
-        if (userDao.updateUserById(user))
+        if (userDao.updateUserById(sqluser))
             return 1;
         else
             return 0;
