@@ -64,4 +64,19 @@ public class PraseUtils {
         System.out.println("follow"+oldstr);
         return oldstr;
     }
+
+    /**
+      *分离出rtmp和秘钥.
+      * @param key String
+      * @return java.util.List(java.lang.String)
+      **/
+    public static List<String> getKey(String key){
+        List<String> msg = new ArrayList<>();
+        int tag = key.indexOf(",");
+        String str1 = key.substring(0,tag);
+        msg.add(str1);
+        key = key.substring(tag+1);
+        msg.add(key);
+        return msg;
+    }
 }
