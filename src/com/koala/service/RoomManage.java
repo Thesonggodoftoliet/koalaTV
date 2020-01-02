@@ -13,4 +13,6 @@ public interface RoomManage {
     int addRoom(room_tb room);
     String onLiving(int userid,String title);
     List<room_tb> getRoomsOnlive();
+    List<room_tb> getRoomsFollow(int userid);
+    List<room_tb> getRoomsByCat(String category);
 }

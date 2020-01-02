@@ -57,14 +57,27 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	/**
+	  *根据类别查找.
+	  * @param keyword String
+	  * @return java.util.List(com.koala.entity.room_tb)
+	  **/
+	@Override
+	public List<room_tb> getRoomsByCa(String keyword) {
+		String sql = "select * from room_tb where category="+keyword;
+		return JdbcUtils.getList(room_tb.class,sql);
+	}
+
+
+	/**
 	  *获取所有正在直播的直播间.
 	  * @return java.util.List(com.koala.entity.room_tb)
 	  **/
+	/*
 	@Override
 	public List<room_tb> getAllLivingRoom() {
 		String sql = "select * from room_tb where isLive = 1";
 		return JdbcUtils.getList(room_tb.class,sql);
-	}
+	}*/
 
 	/**
 	  *增加直播间.
