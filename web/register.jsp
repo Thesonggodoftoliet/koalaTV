@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
   </head>
-  <body class="adminbody" background="background.jpeg">
+  <body class="adminbody" background="assets/images/background2.png">
 
   <div id="main">
 
@@ -189,11 +189,11 @@
                 <div class="form-row col-md-12">
                   <div class="form-group col-md-4">
 
-                    <input type="text" class="form-control" id="inputphoneNum" placeholder="会发送短信给您的手机号">
+                    <input type="text" class="form-control" id="newcode" placeholder="会发送短信给您的手机号">
 
                   </div>
                   <div class="form-group col-md-4">
-                    <button type="button" class="btn btn-primary">获取验证码</button>
+                    <button type="button" class="btn btn-primary" onclick="getCode()">获取验证码</button>
                   </div>
 
                 </div>
@@ -206,9 +206,7 @@
                       </div>
 
                       <div class="card-body">
-
-                        <input type="file" name="files[]" id="filer_example2" multiple="multiple">
-
+                        <input type="file" name="icon" id="icon" multiple="multiple">
                       </div>
                     </div><!-- end card-->
                   </div>
@@ -255,6 +253,7 @@
   <script src="assets/js/fastclick.js"></script>
   <script src="assets/js/jquery.blockUI.js"></script>
   <script src="assets/js/jquery.nicescroll.js"></script>
+  <script src="assets/js/jquery.cookie.js"></script>
 
   <!-- App js -->
   <script src="assets/js/pikeadmin.js"></script>
@@ -295,15 +294,36 @@
           token = $.cookie("token");
       }
 
+      function getCode() {
+          data1={phone:$('#phone').val()};
+          $.ajax({
+              type:"post",
+              url:"/api/auth/identify",
+              data:JSON.stringify(data1),
+              dataType:"json",
+              success:function(msg) {
+                  setCookie(msg.token);
+                  if(msg.tag===1){
+                      alert("success");
+                  }else{
+                      alert("fail");
+                  }
+               }
+          });
+
+      }
+
       function updateBasic(){
           var gender;
-          if($('#gender').val()=="女"){
+          if($('#gender').val()==="女"){
               gender=2;
           }else{
               gender=1;
           }
           var icon="";
-          data1={phone: $('#phone').val(),userpassword: $('#userpassword').val(),gender:gender,nickname:$('#nickname').val(),icon:icon};
+          var oldcode=$.cookie("token");
+          var newcode=$('#newcode').val();
+          data1={phone: $('#phone').val(),userpassword: $('#userpassword').val(),gender:gender,nickname:$('#nickname').val(),icon:icon,oldcode:oldcode,newcode:newcode};
           alert(JSON.stringify(data1));
           $.ajax({
               type:"post",
@@ -312,8 +332,9 @@
               dataType:"json",
               success:function(msg){
                   var tag = msg.tag;
-                  if (tag == 1){
+                  if (tag === 1){
                       setCookie(msg.token);
+                      updatePhoto();
                       swal({
                           title:"欢迎进入考拉直播～",
                           icon:"success",
@@ -328,7 +349,7 @@
                               }
                           }
                       );
-                  }else if(tag == -1){
+                  }else if(tag === -1){
                       swal({
                           title:"再检查一下，看看哪里的信息错了哦！～",
                           icon:"warning",
@@ -343,7 +364,7 @@
                               }
                           }
                       );
-                  }else if(tag == 0){
+                  }else if(tag === 0){
                       swal({
                           title:"疑～服务器开小差了呢，再试一次吧！",
                           icon:"warning",
@@ -381,6 +402,29 @@
                   alert(textStatus);
               }
           });
+      }
+
+      function updatePhoto() {
+          var formData = new FormData();
+          formData.append('imgs', $("#icon")[0].files[0]);
+          alert(JSON.stringify(formData));
+          $.ajax({
+              type: "post",
+              url: "/api/manage/uploadpic",
+              data: JSON.stringify(formData),
+              dataType: "json",
+              contentType: false,
+              processData: false,
+              mimeType: "multipart/form-data",
+              success: function() {
+                  alert(111111);
+              },error:function (XMLHttpRequest, textStatus, errorThrown) {
+                  alert(XMLHttpRequest.status);
+                  alert(XMLHttpRequest.readyState);
+                  alert(textStatus);
+              }
+          });
+
       }
 
       function applyButton() {

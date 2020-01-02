@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
   </head>
-  <body class="adminbody" background="background.jpeg">
+  <body class="adminbody" background="assets/images/background1.png">
 
   <div id="main">
 
@@ -235,7 +235,7 @@
           <ul>
 
             <li class="submenu">
-              <a class="active" href="index.html"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+              <a class="active" href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
             </li>
 
             <li class="submenu">
@@ -280,8 +280,7 @@
       <div>
         <div class="content">
 
-          <br/>   <br/>   <br/>
-
+          <br/> 
 
           <div class="row">
 
@@ -362,14 +361,15 @@
 
               </div><!-- end card-->
             </div>
+              <div class="row" style="bottom: 0px;position: fixed;width: 100%">
+              <img src="assets/images/bottom.png" style="margin: 0 auto;width: 100%;">
           </div>
+          </div>
+        </div>
 
-        </div></div>
+      </div>
     </div>
     <!-- END content-page -->
-
-    <footer class="footer">
-    </footer>
 
   </div>
   <!-- END main -->
