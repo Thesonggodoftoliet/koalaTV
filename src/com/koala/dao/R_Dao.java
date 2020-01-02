@@ -12,6 +12,7 @@ import java.util.List;
 public interface R_Dao {
     List<r_> getAll(int roomid);
     r_ addR(r_ r);
+    boolean createR(int roomid);
     boolean updateR(r_ r);
     boolean deleteR(r_ r);
     boolean deleteR(int roomid);

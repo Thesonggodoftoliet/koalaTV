@@ -13,19 +13,12 @@ class PraseUtilsTest {
 
     @Test
     void addStr() {
-        String oldstr = "1,1";
-        String newstr = "1";
-        if (oldstr == null) {
-            System.out.println("follow " + newstr);
-            exit(0);
-        }
-        if (oldstr.indexOf('[')!=-1 || oldstr.indexOf(']')!=-1) {
-            oldstr.substring(1);
-            oldstr.substring(0, oldstr.length() - 1);
-        }
-
-        oldstr = oldstr+","+newstr;
-        System.out.println("follow "+oldstr);
+        String key = "123"+","+"456";
+        int tag = key.indexOf(",");
+        String str1 = key.substring(0,tag);
+        System.out.println(str1);
+        key = key.substring(tag+1);
+        System.out.println(key);
     }
 
     @Test

@@ -20,4 +20,16 @@ public class TimeUtils {
         String dateString = simpleDateFormat.format(date);
         return dateString;
     }
+
+    /**
+      *生成几分钟前的时间串.
+      * @param minute int
+      * @return java.lang.String
+      **/
+    public static String dateToStr(int minute){
+        Date date = new Date();
+        Date old = new Date(date.getTime()-minute*60*1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return simpleDateFormat.format(old);
+    }
 }

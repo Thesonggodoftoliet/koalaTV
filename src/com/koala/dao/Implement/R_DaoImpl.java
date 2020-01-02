@@ -37,6 +37,23 @@ public class R_DaoImpl implements R_Dao {
     }
 
     /**
+      *创建某个主播的房间封禁信息.
+      * @param roomid int
+      * @return boolean
+      **/
+    @Override
+    public boolean createR(int roomid) {
+        String sql = "create table if not exists r_"+roomid+
+                "（userid int unsigned," +
+                "  roomid int unsigned," +
+                "  limits int unsigned,#(0封号 1禁言 2普通 3管理 4房主)" +
+                "  primary key(userid)" +
+                " )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        JdbcUtils.executeSQL(sql);
+        return true;
+    }
+
+    /**
       *更新封禁信息.
       * @param r com.koala.entity.r_
       * @return boolean

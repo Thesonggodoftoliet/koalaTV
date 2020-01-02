@@ -49,7 +49,7 @@ public class StreamUtils {
         /* streamid*/
 
         this.bizid = "33772";
-        streamid = bizid+"_"+this.liveHomeNumber;
+        streamid = ""+this.liveHomeNumber;
 
         /* txSecret 10.27*/
         String key = "13179ca020260c31035b5db823000740"; //
