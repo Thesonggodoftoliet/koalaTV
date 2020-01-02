@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
   </head>
-  <body class="adminbody" background="assets/images/background1.png">
+  <body class="adminbody" style="background: rgb(255,255,255)">
 
   <div id="main">
 
@@ -254,8 +254,8 @@
             <li class="submenu">
               <a><i class="fa fa-fw fa-th"></i> <span> 个人中心 </span> <span class="menu-arrow"></span></a>
               <ul class="list-unstyled">
-                <li><a href="personcenter_basic.html">基本信息</a></li>
-                <li><a href="personcenter_live.html">直播管理</a></li>
+                <li><a href="personcenter_basic.jsp">基本信息</a></li>
+                <li><a href="personcenter_live.jsp">直播管理</a></li>
                 <li><a>退出登陆</a></li>
               </ul>
             </li>
@@ -285,12 +285,12 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <div class="card mb-3">
                 <div class="card-header">
-                  <h3><i class="fa fa-search"></i> 直播房间 1</h3>
+                  <h3> 直播房间 1</h3>
                 </div>
 
                 <div class="card-body">
 
-                  <div style="display: box"><img class="img-fluid" data-toggle="magnify" src="assets/images/sample-image-1.jpg" alt="Sample Image"></div>
+                  <div><img class="img-fluid" data-toggle="magnify" src="assets/images/sample-image-1.jpg" alt="Sample Image"></div>
 
                 </div>
               </div><!-- end card-->
