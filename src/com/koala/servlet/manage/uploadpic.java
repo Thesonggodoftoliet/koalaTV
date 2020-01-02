@@ -49,6 +49,7 @@ public class uploadpic extends HttpServlet {
                     String filename = value.substring(start + 1);
                     request.setAttribute(name, filename);
                     item.write(new File(path, filename));
+
                     System.out.println("上传成功");
                     out.print(filename);
                 }

@@ -248,7 +248,7 @@
             </li>
 
             <li class="submenu">
-              <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+              <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
