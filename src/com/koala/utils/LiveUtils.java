@@ -7,6 +7,8 @@ import com.tencentcloudapi.common.profile.HttpProfile;
 import com.tencentcloudapi.live.v20180801.LiveClient;
 import com.tencentcloudapi.live.v20180801.models.DescribeLiveStreamOnlineListRequest;
 import com.tencentcloudapi.live.v20180801.models.DescribeLiveStreamOnlineListResponse;
+import com.tencentcloudapi.live.v20180801.models.DescribeStreamPlayInfoListRequest;
+import com.tencentcloudapi.live.v20180801.models.DescribeStreamPlayInfoListResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,5 +54,39 @@ public class LiveUtils {
         }
 
         return roomid;
+    }
+
+    /**
+      *根据房间号返回在线观看人数.
+      * @param roomid int
+      * @return int
+      **/
+    public static int getNum(int roomid){
+        int num = 0;
+        try{
+
+            Credential cred = new Credential("AKID73kDTT2nAIBqHWOEnSwBAvSkmbDZqsgF", "d27yaw73lERVLwIOFsFMGyRfdLp35xe5");
+
+            HttpProfile httpProfile = new HttpProfile();
+            httpProfile.setEndpoint("live.tencentcloudapi.com");
+
+            ClientProfile clientProfile = new ClientProfile();
+            clientProfile.setHttpProfile(httpProfile);
+
+            LiveClient client = new LiveClient(cred, "ap-guangzhou", clientProfile);
+
+            String params = "{\"StreamName\":\""+roomid+"\",\"StartTime\":\""+TimeUtils.dateToStr(5)+"\",\"EndTime\":\""+TimeUtils.dateToStr(5)+"\"}";
+            DescribeStreamPlayInfoListRequest req = DescribeStreamPlayInfoListRequest.fromJsonString(params, DescribeStreamPlayInfoListRequest.class);
+
+            DescribeStreamPlayInfoListResponse resp = client.DescribeStreamPlayInfoList(req);
+
+            System.out.println(DescribeStreamPlayInfoListRequest.toJsonString(resp));
+            JSONObject jsonObject = new JSONObject(DescribeStreamPlayInfoListRequest.toJsonString(resp));
+            num = jsonObject.getJSONArray("DataInfoList").getJSONObject(0).getInt("Online");
+        } catch (TencentCloudSDKException | JSONException e) {
+            System.out.println(e.toString());
+        }
+
+        return num;
     }
 }
