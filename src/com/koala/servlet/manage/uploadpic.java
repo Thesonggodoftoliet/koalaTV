@@ -3,6 +3,8 @@ package com.koala.servlet.manage;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +25,7 @@ public class uploadpic extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("uploadpic");
         PrintWriter out = response.getWriter();
+        JSONObject msg = new JSONObject();
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
         String path = request.getRealPath("/imgs");
@@ -50,14 +53,23 @@ public class uploadpic extends HttpServlet {
                     request.setAttribute(name, filename);
                     item.write(new File(path, filename));
                     System.out.println("上传成功");
-                    out.print(filename);
+                    msg.put("url",filename);
+                    msg.put("tag",1);
                 }
             }
         }catch (Exception e){
             System.out.println("上传失败");
-            out.print(e.getMessage());
             e.printStackTrace();
+            try {
+                msg.put("url",e.getMessage());
+                msg.put("tag",0);
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+
         }
+
+        out.print(msg);
         out.flush();
         out.close();
     }
