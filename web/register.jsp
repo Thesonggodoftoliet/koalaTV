@@ -193,7 +193,7 @@
 
                   </div>
                   <div class="form-group col-md-4">
-                    <button type="button" class="btn btn-primary" onclick="getCode()">获取验证码</button>
+                    <button type="button" id="getcode" class="btn btn-primary" onclick="getCode()">获取验证码</button>
                   </div>
 
                 </div>
@@ -206,7 +206,7 @@
                       </div>
 
                       <div class="card-body">
-                        <input type="file" name="icon" id="icon" multiple="multiple">
+                        <input type="file" name="icon" id="icon" multiple="multiple" onclick="applyButton(this)">
                       </div>
                     </div><!-- end card-->
                   </div>
@@ -294,6 +294,24 @@
           token = $.cookie("token");
       }
 
+      function disabledButton() {
+          $("#getcode").attr({"disabled":"disabled"});     //控制按钮为禁用
+          var second = 20;
+          var intervalObj = setInterval(function () {
+              $("#getcode").text(second+"之后再次发送验证码" );
+              if(second === 0){
+                  $("#getcode").text("获取验证码");
+                  $("#getcode").removeAttr("disabled");//将按钮可用
+                  /* 清除已设置的setInterval对象 */
+                  clearInterval(intervalObj);
+              }
+              second--;
+          }, 2000 );
+
+      }
+
+      // 前端验证码
+      // 绑定了"发送验证码的按钮"
       function getCode() {
           data1={phone:$('#phone').val()};
           $.ajax({
@@ -303,24 +321,89 @@
               dataType:"json",
               success:function(msg) {
                   setCookie(msg.token);
+                  disabledButton();
                   if(msg.tag===1){
-                      alert("success");
+
+                      return 1;
                   }else{
-                      alert("fail");
+                      swal({
+                          title:"验证码错误～",
+                          icon:"warning",
+                          button:{
+                              text: "好der～",
+                              closeModal: false,
+                          },
+                      }).then(
+                          function (value) {
+                              if(value){
+                                  swal.close();
+                              }
+                          }
+                      );
+                      return 0;
                   }
                }
           });
 
       }
 
-      function updateBasic(){
-          var gender;
-          if($('#gender').val()==="女"){
-              gender=2;
-          }else{
-              gender=1;
+      //上传图片
+      //返回了ICON的值 || -1 失败
+      function setImg(obj) {
+          var f = $(obj).val();
+          if (f == null || f === undefined || f === '') {
+              return -1;
           }
-          var icon="";
+          if (!/\.(?:png|jpg|bmp|gif|PNG|JPG|BMP|GIF)$/.test(f)) {
+              alert("类型必须是图片(.png|jpg|bmp|gif|PNG|JPG|BMP|GIF)");
+              $(obj).val('');
+              return -1;
+          }
+          var data = new FormData();
+          console.log(data);
+          $.each($(obj)[0].files, function (i, file) {
+              data.append('file', file);
+          });
+          console.log(data);
+          $.ajax({
+              type: "POST",
+              url: "http://localhost:8080/api/manage/uploadpic",
+              data: data,
+              cache: false,
+              contentType: false,    //不可缺
+              processData: false,    //不可缺
+              dataType: "json",
+              success: function (msg) {
+                  if (msg.tag === 1) {
+                      return msg.url;
+                  } else {
+                      return -1;
+                  }
+              },
+              error: function (XMLHttpRequest, textStatus, errorThrown) {
+              }
+          });
+      }
+
+
+      function updateBasic(obj,gender){
+          var icon=setImg(obj);
+          if(icon === -1){
+              swal({
+                  title:"图片上传失败，检查网络～",
+                  icon:"warning",
+                  button:{
+                      text: "好der～",
+                      closeModal: false,
+                  },
+              }).then(
+                  function (value) {
+                      if(value){
+                          swal.close();
+                      }
+                  }
+              );
+          }
           var oldcode=$.cookie("token");
           var newcode=$('#newcode').val();
           data1={phone: $('#phone').val(),userpassword: $('#userpassword').val(),gender:gender,nickname:$('#nickname').val(),icon:icon,oldcode:oldcode,newcode:newcode};
@@ -334,7 +417,7 @@
                   var tag = msg.tag;
                   if (tag === 1){
                       setCookie(msg.token);
-                      updatePhoto();
+                      setImg(obj);
                       swal({
                           title:"欢迎进入考拉直播～",
                           icon:"success",
@@ -351,7 +434,7 @@
                       );
                   }else if(tag === -1){
                       swal({
-                          title:"再检查一下，看看哪里的信息错了哦！～",
+                          title:"账号已经注册啦，请前往登陆～",
                           icon:"warning",
                           button:{
                               text: "好der～",
@@ -404,33 +487,18 @@
           });
       }
 
-      function updatePhoto() {
-          var formData = new FormData();
-          formData.append('imgs', $("#icon")[0].files[0]);
-          alert(JSON.stringify(formData));
-          $.ajax({
-              type: "post",
-              url: "/api/manage/uploadpic",
-              data: JSON.stringify(formData),
-              dataType: "json",
-              contentType: false,
-              processData: false,
-              mimeType: "multipart/form-data",
-              success: function() {
-                  alert(111111);
-              },error:function (XMLHttpRequest, textStatus, errorThrown) {
-                  alert(XMLHttpRequest.status);
-                  alert(XMLHttpRequest.readyState);
-                  alert(textStatus);
-              }
-          });
 
-      }
-
-      function applyButton() {
+      function applyButton(obj) {
+          var gender;
+          if($('#gender').val()==="女"){
+              gender=2;
+          }else{
+              gender=1;
+          }
           <!-- judge password -->
           var password1 = $('#userpassword').val();
           var password2 = $('#userpasswordagain').val();
+
           if(password1!==password2){
               swal({
                   title:"再检查一下，两次密码不一样哦！～",
@@ -447,7 +515,8 @@
                   }
               );
           }else{
-              updateBasic();
+
+              updateBasic(obj,gender);
           }
       }
   </script>
