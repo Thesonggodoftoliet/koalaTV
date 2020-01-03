@@ -13,6 +13,7 @@ import com.koala.service.BarManage;
 import com.koala.service.RoomManage;
 import com.koala.utils.LiveUtils;
 import com.koala.utils.PraseUtils;
+import com.koala.utils.SearchUtils;
 import com.koala.utils.StreamUtils;
 
 import java.util.ArrayList;
@@ -131,6 +132,43 @@ public class RoomManageImpl implements RoomManage {
                 all.remove(i);
         }
         return all;
+    }
+
+    /**
+      *获取所有被封禁的直播间.
+      * @return java.util.List(com.koala.entity.room_tb)
+      **/
+    @Override
+    public List<room_tb> getRoomForbidden() {
+        List<room_tb> rooms = roomDao.getAllRoom();
+        for (int i=0;i<rooms.size();i++)
+            if (rooms.get(i).getIsForbidden() != 1)
+                rooms.remove(i);
+        return rooms;
+    }
+
+    /**
+      *获取没有封禁的直播间.
+      * @return java.util.List(com.koala.entity.room_tb)
+      **/
+    @Override
+    public List<room_tb> getRoomNotForbidden() {
+        List<room_tb> rooms = roomDao.getAllRoom();
+        for (int i=0;i<rooms.size();i++)
+            if (rooms.get(i).getIsForbidden() == 1)
+                rooms.remove(i);
+        return rooms;
+    }
+
+    /**
+      *根据关键词搜索房间.
+      * @param keyword String
+      * @return java.util.List(com.koala.entity.room_tb)
+      **/
+    @Override
+    public List<room_tb> searchRoomByWord(String keyword) {
+        List<room_tb> rooms = roomDao.getAllRoom();
+        return SearchUtils.searchRoom(keyword,rooms);
     }
 
     /**

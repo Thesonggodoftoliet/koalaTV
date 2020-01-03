@@ -182,4 +182,39 @@ public class UserManageImpl implements UserManage {
         else
             return 0;
     }
+
+    /**
+      *取消关注.
+      * @param userid int
+     * @param follow int
+      * @return boolean
+      **/
+    @Override
+    public boolean concelFollow(int userid, int follow) {
+        user_tb sqluser = userDao.getUserById(userid);
+        String f = sqluser.getFollow();
+        int tag = f.indexOf(""+follow);
+        Fans_Dao fans_dao = new Fans_DaoImpl();
+
+        //从个人信息表删除
+        if (tag == 0)
+            f=f.substring(2);
+        else if (tag == f.length()-2)
+            f=f.substring(0,f.length()-2);
+        else {
+            String begin = f.substring(0,tag);
+            String end = f.substring(tag+2);
+            f= begin+end;
+        }
+        sqluser.setFollow(f);
+
+        //从粉丝表删除
+        fans_ fans = new fans_();
+        fans.setUserid(sqluser.getUserid());
+        fans.setHostid(follow);
+
+        if (userDao.updateUserById(sqluser) && fans_dao.deleteFan(fans))
+            return true;
+        return false;
+    }
 }

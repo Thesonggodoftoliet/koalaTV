@@ -15,9 +15,18 @@ class PraseUtilsTest {
 
     @Test
     void addStr() {
-        Date now  = new Date();
-        Date set = new Date(now.getTime()+24*60*1000*60);
-        System.out.println(set);
+        String oldstr = "1,2,3,4,5,6,";
+        int tag = oldstr.indexOf(""+5);
+        if (tag == 0)
+            oldstr=oldstr.substring(2);
+        else if (tag == oldstr.length()-2)
+            oldstr=oldstr.substring(0,oldstr.length()-2);
+        else {
+            String begin = oldstr.substring(0,tag);
+            String end = oldstr.substring(tag+2);
+            oldstr = begin+end;
+        }
+        System.out.println("follow "+oldstr);
     }
 
     @Test

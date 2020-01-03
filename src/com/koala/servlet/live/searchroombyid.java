@@ -1,0 +1,63 @@
+package com.koala.servlet.live;
+
+import com.koala.entity.room_tb;
+import com.koala.service.RoomManage;
+import com.koala.service.UserManage;
+import com.koala.service.impl.RoomManageImpl;
+import com.koala.service.impl.UserManageImpl;
+import com.koala.utils.ReciveUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+@WebServlet("/api/live/searchroombyid")
+public class searchroombyid extends HttpServlet {
+    public searchroombyid() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("searchroombyid");
+        JSONObject msg = new JSONObject();
+        JSONObject jsonObject = ReciveUtils.getObject(request);
+        PrintWriter out = response.getWriter();
+        int roomid = 0;
+        int tag = 0;
+
+        try {
+            roomid = jsonObject.getInt("roomid");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RoomManage roomManage =new RoomManageImpl();
+        room_tb room = roomManage.getRoom(roomid);
+        UserManage userManage = new UserManageImpl();
+        try {
+            msg.put("roomid",room.getRoomid());
+            msg.put("username",userManage.getUserById(room.getHostid()).getNickname());
+            msg.put("title",room.getTitle());
+            msg.put("coverpic",room.getCoverpic());
+            msg.put("category",room.getCategory());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        out.print(msg);
+        out.flush();
+        out.close();
+
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
+}
