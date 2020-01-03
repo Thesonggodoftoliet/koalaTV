@@ -36,6 +36,10 @@ public class getposts extends HttpServlet {
         int tag = 0;
         user_tb user = new user_tb();
         String token = null;
+
+       // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://localhost:8080/koalaTV/imags/";
+
         try {
             token = jsonObject.getString("token");
             user.setUserid(JwtUtils.decodeToken(token));
@@ -59,7 +63,7 @@ public class getposts extends HttpServlet {
                     object.put("username", temp.getNickname());
                     object.put("posttime", barList.get(i).getPosttime());
                     object.put("content", barList.get(i).getContent());
-                    object.put("pic", barList.get(i).getPic());
+                    object.put("pic", url+barList.get(i).getPic());
                     object.put("replynum", barList.get(i).getReplynum());
                     object.put("latesttime", barList.get(i).getLastreplytime());
                 } catch (JSONException e) {

@@ -35,6 +35,8 @@ public class getliveroom extends HttpServlet {
         String category =null;
         int tag = 0;
         PrintWriter out = response.getWriter();
+        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://localhost:8080/koalaTV/imags/";
 
         try {
             token = jsonObject.getString("token");
@@ -68,7 +70,7 @@ public class getliveroom extends HttpServlet {
                     object.put("username",userManage.getUserById(temp.getHostid()).getNickname());
                     object.put("roomid",roomid);
                     object.put("category",temp.getCategory());
-                    object.put("coverpic",temp.getCoverpic());
+                    object.put("coverpic",url+temp.getCoverpic());
                     object.put("title",temp.getTitle());
                     object.put("num", LiveUtils.getNum(roomid));
                     rooms.put(object);

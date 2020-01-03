@@ -12,6 +12,8 @@ public class room_tb {
     private String category;//直播分类
     private String coverpic;//直播封面
     private int isLive;
+    private int isForbidden;
+    private long forbidend;
 
     public int getIsLive() {
         return isLive;
@@ -59,5 +61,21 @@ public class room_tb {
 
     public void setCoverpic(String coverpic) {
         this.coverpic = coverpic;
+    }
+
+    public int getIsForbidden() {
+        return isForbidden;
+    }
+
+    public void setIsForbidden(int isForbidden) {
+        this.isForbidden = isForbidden;
+    }
+
+    public long getForbidend() {
+        return forbidend;
+    }
+
+    public void setForbidend(long forbidend) {
+        this.forbidend = forbidend;
     }
 }

@@ -10,9 +10,11 @@ import java.util.List;
  * 2019/12/29
  */
 public interface RoomManage {
+    room_tb getRoom(int roomid);
     int addRoom(room_tb room);
     String onLiving(int userid,String title);
     List<room_tb> getRoomsOnlive();
     List<room_tb> getRoomsFollow(int userid);
     List<room_tb> getRoomsByCat(String category);
+    boolean shutdownRoom(int roomid,long time);
 }
