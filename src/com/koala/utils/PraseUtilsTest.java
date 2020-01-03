@@ -3,6 +3,8 @@ package com.koala.utils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.System.exit;
@@ -13,12 +15,9 @@ class PraseUtilsTest {
 
     @Test
     void addStr() {
-        String key = "123"+","+"456";
-        int tag = key.indexOf(",");
-        String str1 = key.substring(0,tag);
-        System.out.println(str1);
-        key = key.substring(tag+1);
-        System.out.println(key);
+        Date now  = new Date();
+        Date set = new Date(now.getTime()+24*60*1000*60);
+        System.out.println(set);
     }
 
     @Test

@@ -62,7 +62,7 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public List<room_tb> getRoomsByCa(String keyword) {
-		String sql = "select * from room_tb where category="+keyword;
+		String sql = "select * from room_tb where category= '"+keyword+"'";
 		return JdbcUtils.getList(room_tb.class,sql);
 	}
 
