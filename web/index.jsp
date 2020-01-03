@@ -8,15 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>考拉直播---一个快乐的游戏直播平台</title>
-    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-
-
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -42,7 +37,7 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-        <a href="index.html" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Admin</span></a>
+        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Admin</span></a>
       </div>
 
       <nav class="navbar-custom">
@@ -226,7 +221,7 @@
 
 
     <!-- Left Sidebar -->
-    <div class="left main-sidebar">
+    <div class="left main-sidebar mydiv" style="background: snow">
 
       <div class="sidebar-inner leftscroll">
 
@@ -250,7 +245,7 @@
             </li>
 
             <li class="submenu">
-              <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+              <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
@@ -382,6 +377,29 @@
       $(document).ready(function() {
       } );
   </script>
+
+  <style type="text/css">
+    .mydiv{
+      width:250px;
+
+      height:auto;
+
+      border:#909090 1px solid;
+
+      background:#fff;
+
+      color:#333;
+
+      filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);
+
+      -moz-box-shadow: 2px 2px 10px #909090;
+
+      -webkit-box-shadow: 2px 2px 10px #909090;
+
+      box-shadow:2px 2px 10px #909090;
+    }
+  </style>
+
 
 
   <!-- END Java Script for this page -->
