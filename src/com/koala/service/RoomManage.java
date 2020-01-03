@@ -16,5 +16,8 @@ public interface RoomManage {
     List<room_tb> getRoomsOnlive();
     List<room_tb> getRoomsFollow(int userid);
     List<room_tb> getRoomsByCat(String category);
+    List<room_tb> getRoomForbidden();
+    List<room_tb> getRoomNotForbidden();
+    List<room_tb> searchRoomByWord(String keyword);
     boolean shutdownRoom(int roomid,long time);
 }
