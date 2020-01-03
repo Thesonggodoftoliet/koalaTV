@@ -22,6 +22,7 @@ public interface RoomDao {
     //List<room_tb> getAllLivingRoom();
     room_tb addRoom(room_tb room);
     boolean updateRoom(room_tb room);
+    boolean shutRoom(room_tb room);
     int getNumOfRoom();
     boolean deleteRoom(int userid);
 }

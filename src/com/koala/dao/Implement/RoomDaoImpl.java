@@ -32,7 +32,6 @@ public class RoomDaoImpl implements RoomDao {
 	public room_tb getRoomByUserId(int hostid) {
 		String sql = "select * from room_tb where hostid = ?";
         return (room_tb) JdbcUtils.getObjectById(room_tb.class,sql,hostid);
-
 	}
 
 	/**
@@ -86,8 +85,8 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public room_tb addRoom(room_tb room) {
-		String sql = "insert into room_tb values(?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(), room.getTitle(), room.getCategory(), room.getCoverpic(),room.getIsLive());
+		String sql = "insert into room_tb values(?,?,?,?,?,?,?,?)";
+        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(), room.getTitle(), room.getCategory(), room.getCoverpic(),room.getIsLive(),room.getIsForbidden(),room.getForbidend());
         if (tag == 0)return null;
         else
             return room;
@@ -104,6 +103,19 @@ public class RoomDaoImpl implements RoomDao {
         int tag = JdbcUtils.executeSQL(sql, room.getTitle(), room.getCategory(), room.getCoverpic(),room.getRoomid());
         if (tag == 0)return false;
         else return true;
+	}
+
+	/**
+	  *封禁直播间.
+	  * @param room com.koala.entity.room_tb
+	  * @return boolean
+	  **/
+	@Override
+	public boolean shutRoom(room_tb room) {
+		String sql = "update room_tb set isforbidden = ?,fobidend = ? where roomid=?";
+		int tag = JdbcUtils.executeSQL(sql,room.getIsForbidden(),room.getForbidend(),room.getRoomid());
+		if (tag == 1) return true;
+		else return false;
 	}
 
 	/**
