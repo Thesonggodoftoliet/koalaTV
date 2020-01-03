@@ -16,6 +16,7 @@ import com.koala.utils.PraseUtils;
 import com.koala.utils.StreamUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -25,6 +26,16 @@ import java.util.List;
  */
 public class RoomManageImpl implements RoomManage {
     private RoomDao roomDao= new RoomDaoImpl();
+
+    /**
+      * 根据房间号获取房间.
+      * @param roomid int
+      * @return com.koala.entity.room_tb
+      **/
+    @Override
+    public room_tb getRoom(int roomid) {
+        return roomDao.getRoomByRoomId(roomid);
+    }
 
     /**
       *添加直播间.
@@ -120,5 +131,32 @@ public class RoomManageImpl implements RoomManage {
                 all.remove(i);
         }
         return all;
+    }
+
+    /**
+      *查询修改直播间封禁信息.
+      * @param roomid int
+     * @param time long
+      * @return boolean
+      **/
+    @Override
+    public boolean shutdownRoom(int roomid, long time) {
+        Calendar now = Calendar.getInstance();
+        room_tb room = roomDao.getRoomByRoomId(roomid);
+        if (time == 0){//查询封禁信息
+            if (now.after(room.getForbidend())){
+                room.setIsForbidden(0);//解除封禁
+                roomDao.shutRoom(room);
+                return false;//解除封禁
+            }
+            else
+                return true;
+        }
+        else {//进行封禁处理
+            room.setIsForbidden(1);
+            room.setForbidend(time);
+            return roomDao.shutRoom(room);
+        }
+
     }
 }
