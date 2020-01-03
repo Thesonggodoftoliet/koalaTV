@@ -2,6 +2,8 @@ package com.koala.service;
 
 import com.koala.entity.user_tb;
 
+import java.util.List;
+
 /**
  * 有关用户的服务.
  * @author Marting.Lee
