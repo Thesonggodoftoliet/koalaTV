@@ -40,182 +40,23 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Admin</span></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
         </div>
 
         <nav class="navbar-custom">
 
             <ul class="list-inline float-right mb-0">
 
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-question-circle"></i>
+
+
+                <li class="list-inline-item dropdown notif" >
+                    <a class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small>Help and Support</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a target="_blank" href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Do you want custom development to integrate this theme?</b>
-                                <span>Contact Us</span>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a target="_blank" href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Do you want PHP version of the theme that save dozens of hours of work?</b>
-                                <span>Try Pike Admin PRO</span>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a title="Clcik to visit Pike Admin Website" target="_blank" href="#" class="dropdown-item notify-item notify-all">
-                            <i class="fa fa-link"></i> Visit Pike Admin Website
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-envelope-o"></i><span class="notif-bullet"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small><span class="label label-danger pull-xs-right">12</span>Contact Messages</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Jokn Doe</b>
-                                <span>New message received</span>
-                                <small class="text-muted">2 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Michael Jackson</b>
-                                <span>New message received</span>
-                                <small class="text-muted">15 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Foxy Johnes</b>
-                                <span>New message received</span>
-                                <small class="text-muted">Yesterday, 13:30</small>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a href="#" class="dropdown-item notify-item notify-all">
-                            View All
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>John Doe</b>
-                                <span>User registration</span>
-                                <small class="text-muted">3 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>Michael Cox</b>
-                                <span>Task 2 completed</span>
-                                <small class="text-muted">12 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>Michelle Dolores</b>
-                                <span>New job completed</span>
-                                <small class="text-muted">35 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a href="#" class="dropdown-item notify-item notify-all">
-                            View All Allerts
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5 class="text-overflow"><small>Hello, admin</small> </h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="pro-profile.html" class="dropdown-item notify-item">
-                            <i class="fa fa-user"></i> <span>Profile</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <i class="fa fa-power-off"></i> <span>Logout</span>
-                        </a>
-
-                        <!-- item-->
-                        <a target="_blank" href="#" class="dropdown-item notify-item">
-                            <i class="fa fa-external-link"></i> <span>Pike Admin</span>
-                        </a>
-                    </div>
                 </li>
 
             </ul>
 
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                </li>
-            </ul>
 
         </nav>
 
@@ -224,31 +65,32 @@
 
 
     <!-- Left Sidebar -->
-    <div class="left main-sidebar">
 
-        <div class="sidebar-inner leftscroll">
+    <div class="left main-sidebar" id="sdb" style="background:rgba(255,255,255,1)">
 
-            <div id="sidebar-menu">
+        <div class="sidebar-inner leftscroll mydiv" >
+            <div id="sidebar-menu" >
 
                 <ul>
 
                     <li class="submenu">
-                        <a class="active" href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+                        <a   href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
                     </li>
 
                     <li class="submenu">
                         <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="">守望先锋</a></li>
-                            <li><a href="">英雄联盟</a></li>
-                            <li><a href="">斗地主</a></li>
-                            <li><a href="">qq三国</a></li>
-                            <li><a href="">和平精英</a></li>
+                            <li><a href="showlivebycategory.jsp?category=csgo">CS:GO</a></li>
+                            <li><a href="showlivebycategory.jsp?category=overwatch">守望先锋</a></li>
+                            <li><a href="showlivebycategory.jsp?category=lol">英雄联盟</a></li>
+                            <li><a href="showlivebycategory.jsp?category=dota2">DOTA2</a></li>
+                            <li><a href="showlivebycategory.jsp?category=hs">炉石传说</a></li>
+                            <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu">
-                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
                     </li>
 
                     <li class="submenu">
@@ -259,14 +101,12 @@
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>
+                    <li class="submenu" style="position:bottom left;">
+                        <img src="assets/images/bgp2.png" height="500" width="255">
+                    </li>
 
                 </ul>
-
-                <div class="clearfix"></div>
-
             </div>
-
-            <div class="clearfix"></div>
 
         </div>
 
@@ -276,9 +116,9 @@
 
     <div class="content-page">
         <!-- Start content -->
-        <div class="content">
+        <div class="content" style="padding: 5%;">
 
-            <div class="container-fluid"  style="width: 90%;height: 90%;padding: 10%;">
+            <div class="container-fluid">
 
                 <br/>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
@@ -289,9 +129,9 @@
 
                         </div>
 
-                        <div class="card-body" style="width: 90%;height: 90%;padding: 10%;">
+                        <div class="card-body" >
 
-                            <form autocomplete="off" action="#">
+                            <form  class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9"  method="post"  onsubmit="return false;" >
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
                                         <label for="truename">真实姓名</label>
@@ -305,7 +145,6 @@
                                         <input type="text" class="form-control" id="identify" autocomplete="off">
 
                                     </div>
-                                    <br/><br/>
                                     <div class="form-group col-md-8">
                                         <label for="title" class="col-sm-3 col-form-label">房间标题</label>
 
@@ -316,13 +155,25 @@
                                         <label for="category">直播间的游戏类型</label>
                                         <select id="category" class="form-control">
                                             <option selected>英雄联盟</option>
-                                            <option>守望先锋</option>
-                                            <option>qq三国</option>
-                                            <option>斗地主</option>
-                                            <option>和平精英</option>
+                                            <option>DOTA2</option>
+                                            <option>炉石传说</option>
+                                            <option>CS:GO</option>
+                                            <option>麻将</option>
                                         </select>
                                     </div>
-                                    <br/><br/> <br/><br/> <br/><br/>
+                                    <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                <h3><i class="fa fa-file"></i>直播封面</h3>
+                                                文件大小需小于1MB
+                                            </div>
+
+                                            <div class="card-body">
+                                                <input type="file" name="icon" id="icon" multiple="multiple">
+                                            </div>
+                                        </div>
+                                    </div></div>
                                     <div class="form-group col-md-8">
                                         <div class="col-sm-10" style="text-align:center;">
                                             <input type="submit" onclick="applyButton()" class="btn btn-primary" id="apply">
@@ -374,13 +225,88 @@
 <script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
 <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
 
-<script>
-    function applyButton(){
-        var token=$.cookie("token");
-        var options=$("#category option:selected");  //获取选中的option
-        var category=options.text();
-        var title=$('#title').val();
-        var coverpic=" ";
+<script type="text/javascript">
+
+    function setCookie(token) {
+        $.cookie("token", token);
+    }
+
+    //读取cookies
+    function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return false;
+    }
+
+
+
+    //上传图片
+    //返回了ICON的值 || -1 失败
+    function setImg(obj) {
+        var f = $(obj).val();
+        if (f == null || f === undefined || f === '') {
+            return null;
+        }
+        if (!/\.(?:png|jpg|bmp|gif|PNG|JPG|BMP|GIF)$/.test(f)) {
+            alert("类型必须是图片(.png|jpg|bmp|gif|PNG|JPG|BMP|GIF)");
+            $(obj).val('');
+            return null;
+        }
+        var data = new FormData();
+        console.log(data);
+        $.each($(obj)[0].files, function (i, file) {
+            data.append('file', file);
+        });
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/manage/uploadpic",
+            data: data,
+            cache: false,
+            contentType: false,    //不可缺
+            processData: false,    //不可缺
+            dataType: "json",
+            success: function (msg) {
+                if (msg.tag === 1) {
+                    apply(obj.files[0].name);
+                    return obj.files[0].name;
+                } else {
+                    swal({
+
+                        title:"图片上传失败，检查网络～",
+                        icon:"warning",
+                        button:{
+                            text: "好der～",
+                            closeModal: false,
+                        },
+                    }).then(
+                        function (value) {
+                            if(value){
+                                swal.close();
+                            }
+                        }
+                    );
+                    return null;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function applyButton() {
+        setImg(document.getElementById("icon"));
+
+    }
+
+    function apply(coverpic){
+        var token = $.cookie("token");
+        var options = $("#category option:selected");  //获取选中的option
+        var category = options.text();
+        var title = $('#title').val();
 
         var data1={token:token,category:category,title:title,coverpic:coverpic};
         alert(JSON.stringify(data1));
@@ -391,7 +317,7 @@
             dataType:"json",
             success:function(msg){
                 var tag = msg.tag;
-                if (tag == 1){
+                if (tag === 1){
                     setCookie(msg.token);
                     swal({
                         icon : "success",
@@ -417,10 +343,10 @@
 
                             }
                         );
-                }else if(tag == -1){
+                }else if(tag === -1){
                     setCookie(msg.token);
                     swal({
-                        title:"再检查一下，看看哪里的信息错了哦！～",
+                        title:"已经是主播了哦！～",
                         icon:"warning",
                         button:{
                             text: "好der～",
@@ -433,7 +359,7 @@
                             }
                         }
                     );
-                }else if(tag == 0){
+                }else if(tag === 0){
                     setCookie(msg.token);
                     swal({
                         title:"疑～服务器开小差了呢，再试一次吧！",
@@ -476,9 +402,6 @@
 
     }
 
-    $(document).ready(function() {
-        // counter-up
-    } );
 
 </script>
 </html>
