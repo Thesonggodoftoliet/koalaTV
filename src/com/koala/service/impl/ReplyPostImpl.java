@@ -33,7 +33,7 @@ public class ReplyPostImpl implements ReplyPost {
         post.setPosttime(TimeUtils.dateToStr());
         sqlbar.setLastreplytime(post.getPosttime());
 
-        if (post_dao.addReply(post) == null || !bar_dao.updatePost(sqlbar))
+        if (post_dao.addReply(post,sqlbar.getReplynum()+1) == null)
             return 0;
         else
             return 1;

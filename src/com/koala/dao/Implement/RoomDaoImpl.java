@@ -1,6 +1,7 @@
 package com.koala.dao.Implement;
 
 import com.koala.dao.RoomDao;
+import com.koala.entity.current_live;
 import com.koala.entity.room_tb;
 import com.koala.utils.JdbcUtils;
 
@@ -85,8 +86,8 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public room_tb addRoom(room_tb room) {
-		String sql = "insert into room_tb values(?,?,?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(), room.getTitle(), room.getCategory(), room.getCoverpic(),room.getIsLive(),room.getIsForbidden(),room.getForbidend());
+		String sql = "insert into room_tb values(?,?,'"+room.getTitle()+"','"+room.getCategory()+"','"+room.getCoverpic()+"',?,?,?)";
+        int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(),room.getIsLive(),room.getIsForbidden(),room.getForbidend());
         if (tag == 0)return null;
         else
             return room;
@@ -98,11 +99,10 @@ public class RoomDaoImpl implements RoomDao {
 	  * @return boolean
 	  **/
 	@Override
-	public boolean updateRoom(room_tb room) {
-		String sql = "update room_tb set title = ?, category = ?, coverpic = ? where roomid=?";
-        int tag = JdbcUtils.executeSQL(sql, room.getTitle(), room.getCategory(), room.getCoverpic(),room.getRoomid());
-        if (tag == 0)return false;
-        else return true;
+	public boolean updateRoom(room_tb room, current_live live) {
+		String sql = "update room_tb set title ='"+room.getTitle()+"', category ='"+room.getCategory()+"', coverpic ='"+room.getCoverpic()+"',isLive ="+room.getIsLive()+"  where roomid="+room.getRoomid();
+        String sql1 = "insert into current_live values("+live.getRoomid()+",'"+live.getRtmp()+"','"+live.getTitle()+"','"+live.getSecretkey()+"',"+live.getStreamId()+")";
+		return JdbcUtils.executeTran(sql,sql1);
 	}
 
 	/**

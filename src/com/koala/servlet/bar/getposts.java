@@ -38,7 +38,7 @@ public class getposts extends HttpServlet {
         String token = null;
 
        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://localhost:8080/koalaTV/imags/";
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
 
         try {
             token = jsonObject.getString("token");
@@ -61,6 +61,7 @@ public class getposts extends HttpServlet {
                     object.put("barid",barList.get(i).getBarid());
                     object.put("title", barList.get(i).getTitle());
                     object.put("username", temp.getNickname());
+                    object.put("userpic",url+temp.getIcon());
                     object.put("posttime", barList.get(i).getPosttime());
                     object.put("content", barList.get(i).getContent());
                     object.put("pic", url+barList.get(i).getPic());

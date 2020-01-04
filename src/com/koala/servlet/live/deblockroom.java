@@ -1,10 +1,7 @@
 package com.koala.servlet.live;
 
-import com.koala.entity.room_tb;
 import com.koala.service.RoomManage;
-import com.koala.service.UserManage;
 import com.koala.service.impl.RoomManageImpl;
-import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,24 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet("/api/live/searchroombyid")
-public class searchroombyid extends HttpServlet {
-    public searchroombyid() {
+@WebServlet("/api/live/deblockroom")
+public class deblockroom extends HttpServlet {
+    public deblockroom() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("searchroombyid");
-        JSONObject msg = new JSONObject();
+        System.out.println("deblockroom");
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        PrintWriter out = response.getWriter();
+        JSONObject msg = new JSONObject();
         int roomid = 0;
-        int tag = 0;
-        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
-
+        int tag =0;
 
         try {
             roomid = jsonObject.getInt("roomid");
@@ -41,24 +33,21 @@ public class searchroombyid extends HttpServlet {
             e.printStackTrace();
         }
 
-        RoomManage roomManage =new RoomManageImpl();
-        room_tb room = roomManage.getRoom(roomid);
-        UserManage userManage = new UserManageImpl();
+        RoomManage roomManage = new RoomManageImpl();
+        if (roomManage.deblockRoom(roomid))
+            tag = 1;
+
         try {
-            msg.put("roomid",room.getRoomid());
-            msg.put("username",userManage.getUserById(room.getHostid()).getNickname());
-            msg.put("title",room.getTitle());
-            msg.put("coverpic",url+room.getCoverpic());
-            msg.put("category",room.getCategory());
-            msg.put("isForbidden",room.getIsForbidden());
+            msg.put("tag",tag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        out.print(msg);
+        PrintWriter out = response.getWriter();
+
+        out.print(tag);
         out.flush();
         out.close();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

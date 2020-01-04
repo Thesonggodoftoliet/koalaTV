@@ -33,17 +33,28 @@ public class BarDaoImpl implements BarDao {
 	}
 
 	/**
-	  *添加一个话圈.
+	  *添加一个话圈，并为话圈创建帖子表.
 	  * @param bar com.koala.entity.bar_tb
 	  * @return com.koala.entity.bar_tb
 	  **/
 	@Override
 	public bar_tb addBar(bar_tb bar) {
-		String sql = "insert into bar_tb values(?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,bar.getHostid(),bar.getAdminid(),bar.getBarname(),bar.getCoverpic());
-        if (tag == 0)return null;
-        else
-            return bar;
+		String sql1 = "insert into bar_tb values("+bar.getHostid()+","+bar.getAdminid()+",'"+bar.getBarname()+"','"+bar.getCoverpic()+"');";
+		String sql2 ="create table bar_"+bar.getHostid()+"(hostid int unsigned,"+
+				"barid int unsigned," +
+				"title varchar(20)," +
+				"replynum int," +
+				"lastreplytime varchar(60)," +
+				"userid int unsigned," +
+				"posttime varchar(60)," +
+				"content varchar(255)," +
+				"pic varchar(255)," +
+				"primary key(barid)" +
+				")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		if (JdbcUtils.executeTran(sql1,sql2))
+			return bar;
+		else
+			return null;
 	}
 
 	/**
@@ -53,8 +64,8 @@ public class BarDaoImpl implements BarDao {
 	  **/
 	@Override
 	public boolean updateBarByHostId(bar_tb bar) {
-		String sql = "update bar_tb set  admin = ?, barname = ?, coverpic = ? where hostid=?";
-        int tag = JdbcUtils.executeSQL(sql, bar.getAdminid(), bar.getBarname(), bar.getCoverpic(),bar.getHostid());
+		String sql = "update bar_tb set  admin = ?, barname = '"+ bar.getBarname()+"', coverpic ='"+ bar.getCoverpic()+"' where hostid=?";
+        int tag = JdbcUtils.executeSQL(sql, bar.getAdminid(),bar.getHostid());
         if (tag == 0)return false;
         else return true;
 	}

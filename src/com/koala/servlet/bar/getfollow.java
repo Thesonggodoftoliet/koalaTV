@@ -35,6 +35,9 @@ public class getfollow extends HttpServlet {
         int tag = 0;
         String token =null;
         List<user_tb> hostList;
+        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
+
         try {
             token = jsonObject.getString("token");
         } catch (JSONException e) {
@@ -54,6 +57,7 @@ public class getfollow extends HttpServlet {
                 try {
                     object.put("hostid",hostList.get(i).getUserid());
                     object.put("username",hostList.get(i).getNickname());
+                    object.put("hostpic",url+hostList.get(i).getIcon());
                     object.put("numoffan",fanManage.getNumOfFan(hostList.get(i).getUserid()));
                     hosts.put(object);
                 } catch (JSONException e) {

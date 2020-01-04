@@ -26,29 +26,18 @@ public class shutdownroom extends HttpServlet {
         System.out.println("shutdownroom");
         JSONObject msg = new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        String token = null;
         PrintWriter out = response.getWriter();
-        long time = 0;
-        int roomid = 0;
+        long time = Long.parseLong(request.getParameter("time"));
+        int roomid = Integer.parseInt(request.getParameter("roomid"));
         int tag = 0;
-
-        try {
-            token = jsonObject.getString("token");
-            time = jsonObject.getInt("time");
-            roomid = jsonObject.getInt("roomid");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         Date now = new Date();
         RoomManage roomManage = new RoomManageImpl();
         if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000))
             tag = 1;
-        token = JwtUtils.createToken(JwtUtils.decodeToken(token));
 
         try {
             msg.put("tag",tag);
-            msg.put("token",token);
         } catch (JSONException e) {
             e.printStackTrace();
         }

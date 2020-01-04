@@ -221,6 +221,42 @@ public class JdbcUtils {
         return executeUpdate;
     }
 
+    /**
+      *建立事务.
+      * @param sqlArray String
+      * @return boolean
+      **/
+    public static boolean executeTran(String... sqlArray) {
+        int tag = 1;
+        Connection conn = getCon();
+        PreparedStatement prepareStatement = null;
+        try {
+            conn.setAutoCommit(false);// 关闭自动提交
+            if (sqlArray.length > 0) {
+                for (String sql : sqlArray) {
+                    prepareStatement = conn.prepareStatement(sql);
+                    prepareStatement.execute();
+                }
+            }
+            conn.commit();// 提交
+            conn.setAutoCommit(true);// 开启自动提交
+        } catch (SQLException e) {
+            tag = 0;
+            try {
+                conn.rollback();// 回滚
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            close(null, prepareStatement, conn);
+        }
+
+        if (tag == 0)
+            return false;
+        else
+            return true;
+    }
 
     /**
       *关闭连接.

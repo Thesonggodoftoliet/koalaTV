@@ -12,7 +12,6 @@ public class post_ {
     private int userid;
     private String posttime;
     private String content;
-    private String pic;
 
     public int getPostid() {
         return postid;
@@ -44,14 +43,6 @@ public class post_ {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
     }
 
     public int getBarid() {
