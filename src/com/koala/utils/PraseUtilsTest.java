@@ -3,6 +3,8 @@ package com.koala.utils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.System.exit;
@@ -13,12 +15,18 @@ class PraseUtilsTest {
 
     @Test
     void addStr() {
-        String key = "123"+","+"456";
-        int tag = key.indexOf(",");
-        String str1 = key.substring(0,tag);
-        System.out.println(str1);
-        key = key.substring(tag+1);
-        System.out.println(key);
+        String oldstr = "1,2,3,4,5,6,";
+        int tag = oldstr.indexOf(""+5);
+        if (tag == 0)
+            oldstr=oldstr.substring(2);
+        else if (tag == oldstr.length()-2)
+            oldstr=oldstr.substring(0,oldstr.length()-2);
+        else {
+            String begin = oldstr.substring(0,tag);
+            String end = oldstr.substring(tag+2);
+            oldstr = begin+end;
+        }
+        System.out.println("follow "+oldstr);
     }
 
     @Test

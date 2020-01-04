@@ -53,14 +53,14 @@ public class PraseUtils {
     public static String addStr(String oldstr,String newstr){
 
         if (oldstr == null)
-            return newstr;
+            return newstr+",";
 
         if (oldstr.indexOf('[')!=-1 || oldstr.indexOf(']')!=-1) {
             oldstr.substring(1);
             oldstr.substring(0, oldstr.length() - 1);
         }
 
-        oldstr = oldstr+","+newstr;
+        oldstr = oldstr+newstr+",";
         System.out.println("follow"+oldstr);
         return oldstr;
     }

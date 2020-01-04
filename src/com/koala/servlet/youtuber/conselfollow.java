@@ -1,7 +1,8 @@
-package com.koala.servlet.live;
+package com.koala.servlet.youtuber;
 
-import com.koala.service.RoomManage;
-import com.koala.service.impl.RoomManageImpl;
+import com.auth0.jwt.JWT;
+import com.koala.service.UserManage;
+import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
@@ -14,41 +15,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
-@WebServlet("/api/live/shutdownroom")
-public class shutdownroom extends HttpServlet {
-    public shutdownroom() {
+@WebServlet("/api/youtuber/conselfollow")
+public class conselfollow extends HttpServlet {
+    public conselfollow() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("shutdownroom");
-        JSONObject msg = new JSONObject();
+        System.out.println("conselfollow");
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        String token = null;
+        JSONObject msg = new JSONObject();
         PrintWriter out = response.getWriter();
-        long time = 0;
-        int roomid = 0;
+        int userid= 0;
+        String token = null;
+        int follow = 0;
         int tag = 0;
 
         try {
             token = jsonObject.getString("token");
-            time = jsonObject.getInt("time");
-            roomid = jsonObject.getInt("roomid");
+            follow = jsonObject.getInt("hostid");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Date now = new Date();
-        RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000))
+        userid = JwtUtils.decodeToken(token);
+        UserManage userManage = new UserManageImpl();
+        if (userManage.concelFollow(userid,follow))
             tag = 1;
-        token = JwtUtils.createToken(JwtUtils.decodeToken(token));
 
+        token = JwtUtils.createToken(userid);
         try {
-            msg.put("tag",tag);
             msg.put("token",token);
+            msg.put("tag",tag);
         } catch (JSONException e) {
             e.printStackTrace();
         }

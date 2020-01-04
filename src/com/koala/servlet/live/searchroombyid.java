@@ -1,8 +1,10 @@
 package com.koala.servlet.live;
 
+import com.koala.entity.room_tb;
 import com.koala.service.RoomManage;
+import com.koala.service.UserManage;
 import com.koala.service.impl.RoomManageImpl;
-import com.koala.utils.JwtUtils;
+import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,41 +16,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
+import java.util.List;
 
-@WebServlet("/api/live/shutdownroom")
-public class shutdownroom extends HttpServlet {
-    public shutdownroom() {
+@WebServlet("/api/live/searchroombyid")
+public class searchroombyid extends HttpServlet {
+    public searchroombyid() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("shutdownroom");
+        System.out.println("searchroombyid");
         JSONObject msg = new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        String token = null;
         PrintWriter out = response.getWriter();
-        long time = 0;
         int roomid = 0;
         int tag = 0;
 
         try {
-            token = jsonObject.getString("token");
-            time = jsonObject.getInt("time");
             roomid = jsonObject.getInt("roomid");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Date now = new Date();
-        RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000))
-            tag = 1;
-        token = JwtUtils.createToken(JwtUtils.decodeToken(token));
-
+        RoomManage roomManage =new RoomManageImpl();
+        room_tb room = roomManage.getRoom(roomid);
+        UserManage userManage = new UserManageImpl();
         try {
-            msg.put("tag",tag);
-            msg.put("token",token);
+            msg.put("roomid",room.getRoomid());
+            msg.put("username",userManage.getUserById(room.getHostid()).getNickname());
+            msg.put("title",room.getTitle());
+            msg.put("coverpic",room.getCoverpic());
+            msg.put("category",room.getCategory());
         } catch (JSONException e) {
             e.printStackTrace();
         }
