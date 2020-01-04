@@ -43,182 +43,23 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.html" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>Admin</span></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
         </div>
 
         <nav class="navbar-custom">
 
             <ul class="list-inline float-right mb-0">
 
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-question-circle"></i>
+
+
+                <li class="list-inline-item dropdown notif" >
+                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small>Help and Support</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a target="_blank" href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Do you want custom development to integrate this theme?</b>
-                                <span>Contact Us</span>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a target="_blank" href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Do you want PHP version of the theme that save dozens of hours of work?</b>
-                                <span>Try Pike Admin PRO</span>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a title="Clcik to visit Pike Admin Website" target="_blank" href="#" class="dropdown-item notify-item notify-all">
-                            <i class="fa fa-link"></i> Visit Pike Admin Website
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-envelope-o"></i><span class="notif-bullet"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small><span class="label label-danger pull-xs-right">12</span>Contact Messages</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Jokn Doe</b>
-                                <span>New message received</span>
-                                <small class="text-muted">2 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Michael Jackson</b>
-                                <span>New message received</span>
-                                <small class="text-muted">15 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Foxy Johnes</b>
-                                <span>New message received</span>
-                                <small class="text-muted">Yesterday, 13:30</small>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a href="#" class="dropdown-item notify-item notify-all">
-                            View All
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>John Doe</b>
-                                <span>User registration</span>
-                                <small class="text-muted">3 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>Michael Cox</b>
-                                <span>Task 2 completed</span>
-                                <small class="text-muted">12 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>Michelle Dolores</b>
-                                <span>New job completed</span>
-                                <small class="text-muted">35 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a href="#" class="dropdown-item notify-item notify-all">
-                            View All Allerts
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5 class="text-overflow"><small>Hello, admin</small> </h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="pro-profile.html" class="dropdown-item notify-item">
-                            <i class="fa fa-user"></i> <span>Profile</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <i class="fa fa-power-off"></i> <span>Logout</span>
-                        </a>
-
-                        <!-- item-->
-                        <a target="_blank" href="#" class="dropdown-item notify-item">
-                            <i class="fa fa-external-link"></i> <span>Pike Admin</span>
-                        </a>
-                    </div>
                 </li>
 
             </ul>
 
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                </li>
-            </ul>
 
         </nav>
 
@@ -227,31 +68,33 @@
 
 
     <!-- Left Sidebar -->
-    <div class="left main-sidebar">
 
-        <div class="sidebar-inner leftscroll">
+    <div class="left main-sidebar" id="sdb" style="background:rgba(255,255,255,1)">
 
-            <div id="sidebar-menu">
+        <div class="sidebar-inner leftscroll mydiv" >
+            <div id="sidebar-menu" >
 
                 <ul>
 
                     <li class="submenu">
-                        <a class="active" href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+                        <a   href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
                     </li>
 
                     <li class="submenu">
                         <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="">守望先锋</a></li>
-                            <li><a href="">英雄联盟</a></li>
-                            <li><a href="">斗地主</a></li>
-                            <li><a href="">qq三国</a></li>
-                            <li><a href="">和平精英</a></li>
+                            <li><a href="showlivecategory.jsp?category=csgo">CS:GO</a></li>
+                            <li><a href="showlivecategory.jsp?category=overwatch">守望先锋</a></li>
+                            <li><a href="showlivecategory.jsp?category=lol">英雄联盟</a></li>
+                            <li><a href="showlivecategory.jsp?category=dota2">DOTA2</a></li>
+                            <li><a href="showlivecategory.jsp?category=hs">炉石传说</a></li>
+                            <li><a href="showlivecategory.jsp?category=majiang">麻将</a></li>
+                            <li><a href="showlivecategory?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu">
-                        <a class="active" href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
                     </li>
 
                     <li class="submenu">
@@ -262,14 +105,15 @@
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li class="submenu" style="position:bottom left;">
+                        <img src="assets/images/bgp2.png" height="500" width="255">
+                    </li>
 
                 </ul>
-
-                <div class="clearfix"></div>
-
             </div>
-
-            <div class="clearfix"></div>
 
         </div>
 
@@ -297,32 +141,32 @@
                                     <tbody>
                                     <tr>
                                         <th scope="row">昵称</th>
-                                        <td>巴拉拉小毒奶</td>
+                                        <td id="nickname"> </td>
 
                                     </tr>
                                     <tr>
                                         <th scope="row">性别</th>
-                                        <td>Jacob</td>
+                                        <td id="gender"> </td>
 
                                     </tr>
                                     <tr>
                                         <th scope="row">手机号</th>
-                                        <td>15071091360</td>
+                                        <td id="phone"> </td>
 
                                     </tr>
                                     <tr>
                                         <th scope="row">身份</th>
-                                        <td>普通用户</td>
+                                        <td id="identify"> </td>
 
                                     </tr>
                                     </tbody>
                                 </table>
 
 
-                                <a role="button" class="btn btn-primary" style="float: right;" href="#">修改个人信息</a>
-                                <a role="button" class="btn btn-link" style="float: right;">  </a>
+                                <a role="button" class="btn btn-primary" style="float: right;">修改个人信息</a>
+                                <a role="button" class="btn btn-link" style="float: right;"></a>
 
-                                <a role="button" class="btn btn-warning" style="float: right;" id="liveuper">申请成为主播</a>
+                                <a role="button" class="btn btn-warning" style="float: right;" id="liveuper"> </a>
 
                             </div>
                         </div><!-- end card-->
@@ -339,7 +183,6 @@
                                 <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
                                     <img alt="image" src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
                                 </a>
-
 
 
                             </div>
@@ -388,129 +231,99 @@
 
 
 <script>
-    $(document).ready(function() {
-        // data-tables
-        $('#example1').DataTable();
+    function setCookie(token) {
+        $.cookie("token", token);
+    }
 
-        // counter-up
-        $('.counter').counterUp({
-            delay: 10,
-            time: 600
-        });
+    //读取cookies
+    function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
 
-        $('#updatehp').click(function(){
-            swal("Hello world!");
-        });
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return false;
+    }
 
-        $('#liveuper').click(function(){
-            if(1){
+    // 判断cookie是否为空
+    function checkCookie(name){
+        if(getCookie(name) == null || getCookie(name)=="" || getCookie(name)=="null" || typeof(getCookie(name))=="undefined" || getCookie(name)==false || getCookie(name) == undefined){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
-            }
-            else{
 
-            }
+    <!-- 判断当前用户是否已经登陆了 -->
+    $(document).ready(function(){
+        if(checkCookie("token") === false){
+            swal({
+                title:"你还没有登陆哦～",
+                icon:"warning",
+                button:{
+                    text: "我要登上我的考拉～",
+                    closeModal: false,
+                },
+            }).then(
+                function (value) {
+                    if(value){
+                        window.location.href="login.jsp";
+                    }
+                }
+            );
 
-        });
+        }
+        else{
+           <!-- 获取当前用户的信息并载入到页面中 -->
+            var data1={token:getCookie("token")};
+            $.ajax({
+                type: "POST",
+                url: "http://api/manage/personalinfo",
+                data: JSON.stringify(data1),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    var tnn = document.getElementById("nickname");
+                    var nickname = msg.nickname;
+                    tnn.value = nickname;
+
+                    var tg = document.getElementById("gender");
+                    var gender = msg.gender;
+                    tg.value = gender;
+
+                    var tp = document.getElementById("phone");
+                    var phone = msg.phone;
+                    tp.value = phone;
+
+                    var ti = document.getElementById("identfy");
+                    if(msg.isYoutuber === 1){
+                        ti.value = "考拉主播";
+                        ("#liveuper").attr("href","personcenter_live.jsp");
+                        ("#liveuper").attr("value","主播管理");
+                    }else if(msg.isBarhost === 1){
+                        ti.value = "普通用户（话圈主持人）";
+                        ("#liveuper").attr("href","applylivehome.jsp");
+                        ("#liveuper").attr("value","成为主播");
+                    }else if(msg.isAdmin === 1){
+                        ti.value = "管理员";
+                    }else{
+                        ti.value = "普通用户";
+                        ("#liveuper").attr("href","applylivehome.jsp");
+                        ("#liveuper").attr("value","成为主播");
+                    }
 
 
-    } );
+                },
+            });
+        }
+    });
 </script>
 
 <script>
-    var ctx1 = document.getElementById("lineChart").getContext('2d');
-    var lineChart = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [{
-                label: 'Dataset 1',
-                backgroundColor: '#3EB9DC',
-                data: [10, 14, 6, 7, 13, 9, 13, 16, 11, 8, 12, 9]
-            }, {
-                label: 'Dataset 2',
-                backgroundColor: '#EBEFF3',
-                data: [12, 14, 6, 7, 13, 6, 13, 16, 10, 8, 11, 12]
-            }]
 
-        },
-        options: {
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            }
-        }
-    });
-
-
-    var ctx2 = document.getElementById("pieChart").getContext('2d');
-    var pieChart = new Chart(ctx2, {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                label: 'Dataset 1'
-            }],
-            labels: [
-                "Red",
-                "Orange",
-                "Yellow",
-                "Green",
-                "Blue"
-            ]
-        },
-        options: {
-            responsive: true
-        }
-
-    });
-
-
-    var ctx3 = document.getElementById("doughnutChart").getContext('2d');
-    var doughnutChart = new Chart(ctx3, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                label: 'Dataset 1'
-            }],
-            labels: [
-                "Red",
-                "Orange",
-                "Yellow",
-                "Green",
-                "Blue"
-            ]
-        },
-        options: {
-            responsive: true
-        }
-
-    });
 </script>
 <!-- END Java Script for this page -->
 
