@@ -74,10 +74,20 @@ public class Bar_DaoImpl implements Bar_Dao {
       **/
     @Override
     public bar_ addPost(bar_ bar) {
-        String sql = "insert into bar_"+bar.getHostid()+" values(?,?,?,?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,bar.getHostid(),bar.getBarid(),bar.getTitle(),bar.getReplynum(),bar.getLastreplytime(),bar.getUserid(),bar.getPosttime(),bar.getContent(),bar.getPic());
-        if (tag ==0)return null;
-        else return bar;
+        String sql = "insert into bar_"+bar.getHostid()+" values("+bar.getHostid()+","+bar.getBarid()+",'"+bar.getTitle()+"',"+bar.getReplynum()+",'"+bar.getLastreplytime()+"',"+bar.getUserid()+",'"+bar.getPosttime()+"','"+bar.getContent()+"','"+bar.getPic()+"')";
+        System.out.println(sql);
+        String sql1 = "create table if not exists post_" + bar.getHostid() + bar.getBarid() +
+                "(hostid int unsigned,"+
+                "barid int unsigned," +
+                "postid int unsigned," +
+                "userid int unsigned," +
+                "posttime varchar(60)," +
+                "content varchar(255)," +
+                "primary key(postid)" +
+                ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        if (JdbcUtils.executeTran(sql,sql1))return bar;
+        else
+            return null;
     }
 
     /**
@@ -91,7 +101,12 @@ public class Bar_DaoImpl implements Bar_Dao {
         return JdbcUtils.getListCount(sql);
     }
 
-    @Override
+    /**
+      *创建一个新的微博表.
+      * @param hostid int
+      * @return boolean
+      **/
+    /*@Override
     public boolean createTable(int hostid) {
         String sql = "create table bar_"+hostid+"(hostid int unsigned,"+
                 "barid int unsigned," +
@@ -107,17 +122,18 @@ public class Bar_DaoImpl implements Bar_Dao {
         JdbcUtils.executeSQL(sql);
 
         return true;
-    }
+    }*/
 
     /**
       *修改帖子.
       * @param bar com.koala.entity.bar_
       * @return boolean
       **/
+
     @Override
     public boolean updatePost(bar_ bar) {
-        String sql = "update bar_"+bar.getHostid()+" set title=?,replynum = ?,lastreplytime=?,content=?,pic=? where barid=?";
-        int tag = JdbcUtils.executeSQL(sql,bar.getTitle(),bar.getReplynum(),bar.getLastreplytime(),bar.getContent(),bar.getPic(),bar.getBarid());
+        String sql = "update bar_"+bar.getHostid()+" set title='"+bar.getTitle()+"',replynum = ?,lastreplytime='"+bar.getLastreplytime()+"',content='"+bar.getContent()+"',pic='"+bar.getPic()+"' where barid=?";
+        int tag = JdbcUtils.executeSQL(sql,bar.getReplynum(),bar.getBarid());
         if (tag == 0)return false;
         else return true;
     }

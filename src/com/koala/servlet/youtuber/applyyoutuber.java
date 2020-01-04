@@ -51,16 +51,13 @@ public class applyyoutuber extends HttpServlet {
             e.printStackTrace();
         }
 
-        BarManage barManage = new BarManageImpl();
-        RoomManage roomManage = new RoomManageImpl();
         UserManage userManage = new UserManageImpl();
         user = userManage.getUserById(user.getUserid());
         bar.setBarname(user.getNickname());
+        bar.setCoverpic(user.getIcon());
 
-        if (barManage.addBar(bar) == 0 ||userManage.applyForBar(user) == 0 ||roomManage.addRoom(room) == 0)
-            tag = -1;//话圈申请失败
-        else
-            tag = 1;
+
+        tag =userManage.applyForBar(user,bar,room);
 
         token = JwtUtils.createToken(user.getUserid());
 

@@ -34,6 +34,9 @@ public class searchpost extends HttpServlet {
         String token = null;
         PrintWriter out = response.getWriter();
         String keyword = null;
+        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
+
         try {
             keyword = jsonObject.getString("keyword");
             token = jsonObject.getString("token");
@@ -60,7 +63,7 @@ public class searchpost extends HttpServlet {
                     object.put("replynum",barList.get(i).getReplynum());
                     object.put("lastreplytime",barList.get(i).getLastreplytime());
                     object.put("posttime",barList.get(i).getPosttime());
-                    object.put("pic",barList.get(i).getPic());
+                    object.put("pic",url+barList.get(i).getPic());
                     object.put("content",barList.get(i).getContent());
                     object.put("username",userManage.getUserById(barList.get(i).getUserid()).getNickname());
                     bars.put(object);

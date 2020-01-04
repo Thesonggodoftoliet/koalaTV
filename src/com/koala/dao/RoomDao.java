@@ -5,6 +5,7 @@ package com.koala.dao;
  * @Description_RoomDao
  */
 
+import com.koala.entity.current_live;
 import com.koala.entity.room_tb;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface RoomDao {
     List<room_tb> getRoomsByCa(String keyword);
     //List<room_tb> getAllLivingRoom();
     room_tb addRoom(room_tb room);
-    boolean updateRoom(room_tb room);
+    boolean updateRoom(room_tb room, current_live live);
     boolean shutRoom(room_tb room);
     int getNumOfRoom();
     boolean deleteRoom(int userid);

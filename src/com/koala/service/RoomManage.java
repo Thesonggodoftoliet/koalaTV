@@ -20,4 +20,5 @@ public interface RoomManage {
     List<room_tb> getRoomNotForbidden();
     List<room_tb> searchRoomByWord(String keyword);
     boolean shutdownRoom(int roomid,long time);
+    boolean deblockRoom(int roomid);
 }

@@ -33,6 +33,9 @@ public class getreplies extends HttpServlet {
         JSONObject msg= new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
         String token = null;
+        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
+
         int tag = 0;
         int hostid= 0;
         int barid = 0;
@@ -62,7 +65,7 @@ public class getreplies extends HttpServlet {
                     object.put("postid",postList.get(i).getPostid());
                     object.put("posttime",postList.get(i).getPosttime());
                     object.put("content",postList.get(i).getContent());
-                    object.put("pic",postList.get(i).getPic());
+                    object.put("userpic",url+temp.getIcon());
                     posts.put(object);
                 } catch (JSONException e) {
                     e.printStackTrace();

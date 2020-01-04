@@ -34,6 +34,9 @@ public class searchroom extends HttpServlet {
         String token = null;
         String keyword = null;
         int tag = 1;
+        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
+
 
         try {
             token = jsonObject.getString("token");
@@ -57,7 +60,7 @@ public class searchroom extends HttpServlet {
             try {
                 object.put("roomid",temp.getRoomid());
                 object.put("title",temp.getTitle());
-                object.put("coverpic",temp.getCoverpic());
+                object.put("coverpic",url+temp.getCoverpic());
                 object.put("category",temp.getCategory());
                 object.put("username",userManage.getUserById(temp.getHostid()).getNickname());
                 rooms.put(object);

@@ -38,7 +38,7 @@ public class getroom extends HttpServlet {
         int roomid = 0;
         String token = null;
         // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://localhost:8080/koalaTV/imags/";
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
 
         try {
             token = jsonObject.getString("token");

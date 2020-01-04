@@ -1,8 +1,7 @@
 package com.koala.servlet.bar;
 
-import com.koala.entity.post_;
-import com.koala.service.ReplyPost;
-import com.koala.service.impl.ReplyPostImpl;
+import com.koala.service.BarManage;
+import com.koala.service.impl.BarManageImpl;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
@@ -16,34 +15,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/bar/deployreply")
-public class deployreply extends HttpServlet {
-    public deployreply() {
+@WebServlet("/api/bar/changadmin")
+public class changadmin extends HttpServlet {
+    public changadmin() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("deployreply");
-        PrintWriter out = response.getWriter();
-        String token = null;
+        System.out.println("changadmin");
         JSONObject msg = new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        int tag = 0;
-        post_ post = new post_();
-
+        String token = null;
+        int admin = 0;
         try {
-            token = jsonObject.getString("token");
-            post.setContent(jsonObject.getString("content"));
-            post.setBarid(jsonObject.getInt("barid"));
-            post.setHostid(jsonObject.getInt("hostid"));
-            post.setUserid(JwtUtils.decodeToken(token));
+            token = jsonObject.getString(token);
+            admin = jsonObject.getInt("admin");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ReplyPost replyPost = new ReplyPostImpl();
-        if (replyPost.postReply(post) == 1)
-            tag = 1;
-        token = JwtUtils.createToken(post.getUserid());
+
+        int userid = JwtUtils.decodeToken(token);
+        BarManage barManage = new BarManageImpl();
+        int tag = barManage.changeAdmin(userid,admin);
+        token = JwtUtils.createToken(userid);
 
         try {
             msg.put("tag",tag);
@@ -51,10 +45,11 @@ public class deployreply extends HttpServlet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        PrintWriter out = response.getWriter();
         out.print(msg);
         out.flush();
         out.close();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

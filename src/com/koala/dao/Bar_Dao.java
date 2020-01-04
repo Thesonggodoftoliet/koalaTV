@@ -17,7 +17,7 @@ public interface Bar_Dao {
     bar_ getLastPost(int hostid);
     bar_ addPost(bar_ bar);
     int getNumOfPost(int hostid);
-    boolean createTable(int hostid);
+    //boolean createTable(int hostid);
     boolean updatePost(bar_ bar);
     boolean deletePost(bar_  bar);
     boolean deleteBar(int hostid);

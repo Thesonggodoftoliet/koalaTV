@@ -37,7 +37,7 @@ public class BarManageImpl implements BarManage {
     @Override
     public int addBar(bar_tb bar) {
         bar.setAdminid(bar.getHostid());
-        if (barDao.addBar(bar) != null && bar_dao.createTable(bar.getHostid()))
+        if (barDao.addBar(bar) != null)
             return 1;
         else
             return 0;
@@ -106,7 +106,7 @@ public class BarManageImpl implements BarManage {
                 sqlbar.setPic(bar.getPic());
             sqlbar.setLastreplytime(TimeUtils.dateToStr());
 
-            if (bar_dao.updatePost(bar))
+            if (bar_dao.updatePost(sqlbar))
                 return 1;
         }
         return 0;
@@ -124,7 +124,7 @@ public class BarManageImpl implements BarManage {
         bar_ tmep = new bar_();
         tmep.setBarid(post.getBarid());
         tmep.setHostid(post.getHostid());
-        bar_ sqlbar = bar_dao.getPostById(tmep);
+        //bar_ sqlbar = bar_dao.getPostById(tmep);
         post_ sqlpost = post_dao.getReplyById(post);
         if (sqlpost.getUserid()!=userid)
             return -1;
@@ -132,9 +132,9 @@ public class BarManageImpl implements BarManage {
             if (post.getContent() != null && !sqlpost.getContent().equals(post.getContent()))
                 sqlpost.setContent(post.getContent());
             sqlpost.setPosttime(TimeUtils.dateToStr());
-            sqlbar.setLastreplytime(sqlpost.getPosttime());
+            //sqlbar.setLastreplytime(sqlpost.getPosttime());
 
-            if (post_dao.updateReply(sqlpost) && bar_dao.updatePost(sqlbar))
+            if (post_dao.updateReply(sqlpost))
                 return 1;
         }
         return 0;
@@ -167,11 +167,17 @@ public class BarManageImpl implements BarManage {
         }
 
         Post_Dao post_dao = new Post_DaoImpl();
-        if (post_dao.deletePost(bar.getHostid(),bar.getBarid()) && bar_dao.deletePost(bar))
+        if (post_dao.deletePost(sqlbar))
                 return 1;
         return 0;
     }
 
+    /**
+      *删除某一个回复.
+      * @param userid int
+     * @param post com.koala.entity.post_
+      * @return int
+      **/
     @Override
     public int deleteReply(int userid, post_ post) {
         UserDao userDao = new UserDaoImpl();
@@ -190,9 +196,27 @@ public class BarManageImpl implements BarManage {
         else {
 
         }
-        Post_Dao post_dao1 = new Post_DaoImpl();
-        if (post_dao.deleteReply(post))
+        if (post_dao.deleteReply(sqlpost))
             return 1;
+        return 0;
+    }
+
+    /**
+      *更换话圈主持人.
+      * @param userid int
+     * @param admin int
+      * @return int
+      **/
+    @Override
+    public int changeAdmin(int userid, int admin) {
+        bar_tb sqlbar = barDao.getBarByHostId(userid);
+        if (sqlbar == null)
+            return -1;
+        else {
+            sqlbar.setAdminid(admin);
+            if (barDao.updateBarByHostId(sqlbar))
+                return 1;
+        }
         return 0;
     }
 }
