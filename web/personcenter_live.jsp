@@ -51,53 +51,23 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/logo.png" /> <span>koalaTV</span></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
         </div>
 
         <nav class="navbar-custom">
 
             <ul class="list-inline float-right mb-0">
 
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-question-circle"></i>
+
+
+                <li class="list-inline-item dropdown notif" >
+                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small>搜索</small></h5>
-                        </div>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5 class="text-overflow"><small>Hello, koalaer</small> </h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="personcenter_basic.jsp" class="dropdown-item notify-item">
-                            <i class="fa fa-user"></i> <span>Profile</span>
-                        </a>
-
-                    </div>
                 </li>
 
             </ul>
 
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                </li>
-            </ul>
 
         </nav>
 
@@ -106,31 +76,32 @@
 
 
     <!-- Left Sidebar -->
-    <div class="left main-sidebar">
 
-        <div class="sidebar-inner leftscroll">
+    <div class="left main-sidebar" id="sdb" style="background:rgba(255,255,255,1)">
 
-            <div id="sidebar-menu">
+        <div class="sidebar-inner leftscroll mydiv" >
+            <div id="sidebar-menu" >
 
                 <ul>
 
                     <li class="submenu">
-                        <a class="active" href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+                        <a   href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
                     </li>
 
                     <li class="submenu">
                         <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="">守望先锋</a></li>
-                            <li><a href="">英雄联盟</a></li>
-                            <li><a href="">斗地主</a></li>
-                            <li><a href="">qq三国</a></li>
-                            <li><a href="">和平精英</a></li>
+                            <li><a href="showlivecategory.jsp?category=csgo">CS:GO</a></li>
+                            <li><a href="showlivecategory.jsp?category=overwatch">守望先锋</a></li>
+                            <li><a href="showlivecategory.jsp?category=lol">英雄联盟</a></li>
+                            <li><a href="showlivecategory.jsp?category=dota2">DOTA2</a></li>
+                            <li><a href="showlivecategory.jsp?category=hs">炉石传说</a></li>
+                            <li><a href="showlivecategory.jsp?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
                     </li>
 
                     <li class="submenu">
@@ -141,9 +112,14 @@
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li class="submenu" style="position:bottom left;">
+                        <img src="assets/images/bgp2.png" height="500" width="255">
+                    </li>
 
                 </ul>
-
             </div>
 
         </div>
@@ -276,142 +252,60 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        // data-tables
-        $('#example1').DataTable();
-
-        // counter-up
-        $('.counter').counterUp({
-            delay: 10,
-            time: 600
-        });
-    } );
-</script>
-
-<!-- 注册请求 -->
-<!-- 这个注册还差，验证码，还差上传（默认）头像的功能-->
-<script type="text/javascript">
-
     function setCookie(token) {
         $.cookie("token", token);
     }
 
-    function getCookie(token) {
-        token = $.cookie("token");
+    //读取cookies
+    function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return false;
     }
 
-    function updateBasic(){
-        var gender;
-        if($('#gender').val()=="女"){
-            gender=2;
+    // 判断cookie是否为空
+    function checkCookie(name){
+        if(getCookie(name) == null || getCookie(name)=="" || getCookie(name)=="null" || typeof(getCookie(name))=="undefined" || getCookie(name)==false || getCookie(name) == undefined){
+            return false;
         }else{
-            gender=1;
+            return true;
         }
-        var icon="";
-        data1={phone: $('#phone').val(),userpassword: $('#userpassword').val(),gender:gender,nickname:$('#nickname').val(),icon:icon};
-        alert(JSON.stringify(data1));
-        $.ajax({
-            type:"post",
-            url:"/api/auth/register",
-            data:JSON.stringify(data1),
-            dataType:"json",
-            success:function(msg){
-                var tag = msg.tag;
-                if (tag == 1){
-                    setCookie(msg.token);
-                    swal({
-                        title:"欢迎进入考拉直播～",
-                        icon:"success",
-                        button:{
-                            text: "吖咪！",
-                            closeModal: false,
-                        },
-                    }).then(
-                        function (value) {
-                            if(value){
-                                window.location.href="index.jsp"
-                            }
-                        }
-                    );
-                }else if(tag == -1){
-                    swal({
-                        title:"再检查一下，看看哪里的信息错了哦！～",
-                        icon:"warning",
-                        button:{
-                            text: "好der～",
-                            closeModal: false,
-                        },
-                    }).then(
-                        function (value) {
-                            if(value){
-                                swal.close();
-                            }
-                        }
-                    );
-                }else if(tag == 0){
-                    swal({
-                        title:"疑～服务器开小差了呢，再试一次吧！",
-                        icon:"warning",
-                        button:{
-                            text: "害，好吧",
-                            closeModal: false,
-                        },
-                    }).then(
-                        function (value) {
-                            if(value){
-                                swal.close();
-                            }
-                        }
-                    );
-                }else{
-                    swal({
-                        title:"疑～好像哪里出错了呀！",
-                        icon:"warning",
-                        button:{
-                            text: "害，再试一次",
-                            closeModal: false,
-                        },
-                    }).then(
-                        function (value) {
-                            if(value){
-                                swal.close();
-                            }
-                        }
-                    );
-                }
-
-            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
-            }
-        });
     }
 
-    function applyButton() {
-        <!-- judge password -->
-        var password1 = $('#userpassword').val();
-        var password2 = $('#userpasswordagain').val();
-        if(password1!==password2){
+
+    <!-- 判断当前用户是否已经登陆了 -->
+    $(document).ready(function(){
+        if(checkCookie("token") === false){
             swal({
-                title:"再检查一下，两次密码不一样哦！～",
+                title:"你还没有登陆哦～",
                 icon:"warning",
                 button:{
-                    text: "好der～",
+                    text: "我要登上我的考拉～",
                     closeModal: false,
                 },
             }).then(
                 function (value) {
                     if(value){
-                        swal.close();
+                        window.location.href="login.jsp";
                     }
                 }
             );
-        }else{
-            updateBasic();
+
         }
-    }
+        else{
+            swal({
+                title: "okkk",
+
+            });
+        }
+    });
 </script>
+
+<!-- 注册请求 -->
+<!-- 这个注册还差，验证码，还差上传（默认）头像的功能-->
 <!-- END Java Script for this page -->
 
 </body>

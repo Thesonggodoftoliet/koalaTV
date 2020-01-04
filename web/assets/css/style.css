@@ -3,7 +3,7 @@
 
 html {
   position: relative;
-  min-height: 100%; 
+  min-height: 100%;
   }
 
 body {
@@ -29,7 +29,7 @@ a {
 
 .radius-circle {
 	border-radius: 50px; }
-	
+
 label {
   font-weight: 500; }
 
@@ -48,7 +48,7 @@ label {
   display: none; }
 
 img {
-    vertical-align: middle; 
+    vertical-align: middle;
 	border: 0; }
 
 .bg-primary {
@@ -74,11 +74,11 @@ img {
 
 .bg-dark {
   background-color: #2b3d51 !important; }
-  
+
 .bg-default {
   background-color: #64b0f2 !important; }
 
-  
+
 .text-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -144,7 +144,7 @@ img {
 {
   background: rgba(0, 0, 0, 0.6);
 }
-  
+
 .breadcrumb-holder {
   background-color: #ffffff;
   margin: 0px -20px 20px -20px;
@@ -154,7 +154,7 @@ img {
 .breadcrumb-holder .main-title {
     margin-bottom: 0;
     font-size: 1.4rem; }
-	
+
 .breadcrumb-holder .breadcrumb {
     padding: 0;
     background-color: transparent !important; }
@@ -167,11 +167,11 @@ img {
   border: 1px solid rgba(183,183,183,.125);  }
 
 .card-box i {
-	font-size: 80px; 
+	font-size: 80px;
 	margin-top: 20px;}
-	
+
 .card-header {
-	color: #6b6b6b;    
+	color: #6b6b6b;
     background-color: rgba(0,0,0,.03);
     border-bottom: 1px solid rgba(111,111,111,.13);
 }
@@ -182,7 +182,7 @@ img {
 	font-size: 1.2rem;
 	margin-bottom: 0;
 }
-  
+
 .header-title {
   font-size: 1rem;
   text-transform: uppercase; }
@@ -251,29 +251,29 @@ a {
   z-index: 999; }
 
 .headerbar .headerbar-left {
-    background: #4980b5;
+    background: #F7CB66;
     float: left;
     text-align: center;
     height: 50px;
     position: relative;
     width: 250px;
     z-index: 1; }
-   
+
 .headerbar .headerbar-left .logo img {
     max-width: 100px;
     max-height: 30px;
     width: auto;
     height: auto;
 }
-	  
+
 .navbar-custom {
-  background-color: #4980b5 ;
+  background-color: #F7CB66 ;
   border-radius: 0;
   margin-bottom: 0;
   padding: 0 10px;
   margin-left: 250px;
   min-height: 50px;}
-  
+
 .navbar-custom .nav-link {
     padding: 0 8px;
     line-height: 50px;
@@ -291,9 +291,9 @@ a {
   font-size: 20px;
   font-weight: 200;
   text-transform: uppercase;
-  letter-spacing: 1px; 
+  letter-spacing: 1px;
   line-height: 48px; }
-  
+
 .logo span span {
     color: #fff; }
 
@@ -311,8 +311,11 @@ a {
 .content-page {
   margin-left: 250px;
   overflow: hidden; }
-  
-.content-page .content {
+
+  .bg {
+  background-image: url(halloween.png);
+  }
+.content-page .content.bg {
     padding: 0 5px;
     margin-top: 50px; }
 
@@ -336,7 +339,7 @@ body.adminbody .main-sidebar.left {
 	position: relative;
 	cursor: pointer;
 	display: inline-block;
-	overflow: hidden; 
+	overflow: hidden;
 	vertical-align: middle;
 	z-index: 1;  }
   .button-menu-mobile:hover {
@@ -401,7 +404,7 @@ body.adminbody .main-sidebar.left {
       display: block;
       padding: 10px 20px 10px 60px; }
       #sidebar-menu ul ul a:hover {
-        color: #efefef; }
+        color: #F7C334; }
       #sidebar-menu ul ul a i {
         margin-right: 5px; }
     #sidebar-menu ul ul ul a {
@@ -409,10 +412,10 @@ body.adminbody .main-sidebar.left {
   #sidebar-menu .label {
     margin-top: 2px; }
   #sidebar-menu .subdrop {
-    color: #fff !important; 
-	background-color: #414d58; 
+    color: #fff !important;
+	background-color: #FCC224;
 	border-left: 2px solid #608ab3; }
-	
+
   #sidebar-menu .submenu ul .submenu .menu-arrow {
     top: 10px !important; }
 
@@ -426,8 +429,8 @@ body.adminbody .main-sidebar.left {
 
 #sidebar-menu > ul > li > a:hover {
     color: #FFF;
-	background-color: #414d58;
-    text-decoration: none; 
+	background-color: #F2AF1D;
+    text-decoration: none;
 	border-left: 2px solid #608ab3; }
 
 #sidebar-menu > ul > li > a > span {
@@ -690,7 +693,7 @@ body.adminbody .main-sidebar.left {
 
 .nav-user img {
     height: 36px;
-    width: 36px; 
+    width: 36px;
 	margin-bottom: 7px;
 }
 
@@ -706,11 +709,11 @@ body.adminbody .main-sidebar.left {
 	.headerbar-left {
 		width: 70px !important;
 	}
-    
+
 	.headerbar-left span {
 		display: none !important;
 	}
-    
+
 	.headerbar-left i {
 		display: block !important;
 		line-height: 75px !important;
@@ -776,7 +779,7 @@ body.adminbody .main-sidebar.left {
 		float: none;
 	}
 }
-	
+
 @media (max-width: 480px) {
 	.notif .noti-icon {
 		font-size: 18px;
@@ -1120,11 +1123,11 @@ a.btn:focus {
 	background-color: #0f9df7;
 }
 
-#sidebar-menu > ul > li > a.pro {    
+#sidebar-menu > ul > li > a.pro {
 	background-color: #f16854;
 	color: #fff;
 	bottom: 0;
-}	
+}
 
 .avatar-circle {
     border-radius: 50%;
@@ -1137,8 +1140,8 @@ a.btn:focus {
 .widget-messages .message-item {
     position: relative;
 	overflow: hidden;
-	border-bottom: 1px solid #e8e8e8;    
-    padding: 12px 0;  
+	border-bottom: 1px solid #e8e8e8;
+    padding: 12px 0;
 }
 
 .widget-messages .message-item img {
@@ -1175,18 +1178,18 @@ a.btn:focus {
 }
 
 
-.custom-modal .modal-header {    
+.custom-modal .modal-header {
     padding: 10px !important;
     border-radius: 0;
     background-color: #5ba2e6;
 	color: #fff;
 }
 
-.custom-modal .modal-content {    
+.custom-modal .modal-content {
     background-color: #f7f7f7;
 }
 
-.custom-modal .modal-footer {    
+.custom-modal .modal-footer {
     padding: 10px !important;
     border-radius: 0;
     background-color: #f3f3f3;
