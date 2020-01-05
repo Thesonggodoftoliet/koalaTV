@@ -74,7 +74,7 @@
                 <ul>
 
                     <li class="submenu">
-                        <a   href="index.html"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+                        <a   href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
                     </li>
 
                     <li class="submenu">
@@ -90,7 +90,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
                     </li>
 
                     <li class="submenu">
@@ -182,9 +182,6 @@
 
     </div>
     <!-- END content-page -->
-
-    <footer class="footer">
-    </footer>
 
 </div>
 <!-- END main -->
@@ -327,4 +324,16 @@
 </script>
 <!-- END Java Script for this page -->
 </body>
+<style type="text/css">
+    .mydiv{
+        width:250px;
+
+        height:auto;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
+
 </html>

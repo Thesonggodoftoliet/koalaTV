@@ -91,17 +91,17 @@
                     <li class="submenu">
                         <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="showlivecategory.jsp?category=csgo">CS:GO</a></li>
-                            <li><a href="showlivecategory.jsp?category=overwatch">守望先锋</a></li>
-                            <li><a href="showlivecategory.jsp?category=lol">英雄联盟</a></li>
-                            <li><a href="showlivecategory.jsp?category=dota2">DOTA2</a></li>
-                            <li><a href="showlivecategory.jsp?category=hs">炉石传说</a></li>
-                            <li><a href="showlivecategory.jsp?category=majiang">麻将</a></li>
+                            <li><a href="showlivebycategory.jsp?category=csgo">CS:GO</a></li>
+                            <li><a href="showlivebycategory.jsp?category=overwatch">守望先锋</a></li>
+                            <li><a href="showlivebycategory.jsp?category=lol">英雄联盟</a></li>
+                            <li><a href="showlivebycategory.jsp?category=dota2">DOTA2</a></li>
+                            <li><a href="showlivebycategory.jsp?category=hs">炉石传说</a></li>
+                            <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
                     </li>
 
                     <li class="submenu">
@@ -112,9 +112,6 @@
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
                     <li class="submenu" style="position:bottom left;">
                         <img src="assets/images/bgp2.png" height="500" width="255">
                     </li>
@@ -143,11 +140,11 @@
                             <form>
                                 <div class="form-group">
                                     <label>直播间ID</label>
-                                    <p>00001</p>
+                                    <p id="liveid">00001</p>
                                 </div>
                                 <div class="form-group">
                                     <label>直播间的分类</label>
-                                    <P>QQ三国</P>
+                                    <P id="category">英雄联盟</P>
                                 </div>
                             </form>
 
@@ -165,15 +162,15 @@
                         <form>
                             <div class="form-group">
                                 <label>话圈ID</label>
-                                <p>00001</p>
+                                <p id="quanid">00001</p>
                             </div>
                             <div class="form-group">
                                 <label>话圈主持人ID</label>
-                                <P>000001</P>
+                                <P> id="quanuser">00001</P>
                             </div>
                             <div class="form-group">
                                 <label>话圈主持人昵称</label>
-                                <P>XXXXX</P>
+                                <P id="quanname">考拉考拉</P>
                             </div>
 
                         </form>
@@ -299,9 +296,9 @@
 
         }
         else{
-            swal({
-                title: "okkk",
-
+            $.ajax({
+                type:"POST",
+                url:"",
             });
         }
     });
@@ -322,8 +319,8 @@
                 if (msg.tag === 1) {
                      var rtmp = document.getElementById("rtmp");
                      var secretkey = document.getElementById("secretkey");
-                     rtmp.innerText(msg.rtmp);
-                     secretkey.innerText(msg.secretkey);
+                     rtmp.innerText=msg.rtmp;
+                     secretkey.innerText=msg.secretkey;
                 } else if(msg.tag === -1){
                     swal({
                         title:"你的直播间被封禁了呢！联系人工客服"

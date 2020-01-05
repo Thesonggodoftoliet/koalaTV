@@ -98,15 +98,14 @@
                 <li><a>退出登陆</a></li>
               </ul>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
             <li class="submenu" style="position:bottom left;">
               <img src="assets/images/bgp2.png" height="500" width="255">
             </li>
 
           </ul>
+          <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
 
       </div>
 
@@ -139,23 +138,13 @@
 
   <style type="text/css">
     .mydiv{
-      width:250px;
+          width:250px;
 
-      height:auto;
+          height:auto;
 
-      border:#909090 1px solid;
+          background:#fff;
 
-      background:#fff;
-
-      color:#333;
-
-      filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);
-
-      -moz-box-shadow: 2px 2px 10px #909090;
-
-      -webkit-box-shadow: 2px 2px 10px #909090;
-
-      box-shadow:2px 2px 10px #909090;
+          box-shadow: 4px 0 2px #909090;
     }
   </style>
 

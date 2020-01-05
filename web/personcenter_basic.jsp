@@ -92,7 +92,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span> </a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span> </a>
                     </li>
 
                     <li class="submenu">
@@ -319,7 +319,7 @@
                         for(var i = 0 ; i < msg.follows.length ; i++){
                             tem +="<tr>"+
                                  "<td><img src="+msg.follows[i].userpic+
-                                 "style=\"width:30px; height:30px; border-radius:50%;\"></td>"+
+                                 " style='width:30px;height:30px;border-radius:50%;'></td>"+
                                  "<td>"+msg.follows[i].nickname+"</td>"+
                                  "<td>"+numofans+"</td></tr>";
                         }
@@ -342,21 +342,12 @@
 
         height:auto;
 
-        border:#909090 1px solid;
-
         background:#fff;
 
-        color:#333;
-
-        filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);
-
-        -moz-box-shadow: 2px 2px 10px #909090;
-
-        -webkit-box-shadow: 2px 2px 10px #909090;
-
-        box-shadow:2px 2px 10px #909090;
+        box-shadow: 4px 0 2px #909090;
     }
 </style>
+
 <!-- END Java Script for this page -->
 
 </body>

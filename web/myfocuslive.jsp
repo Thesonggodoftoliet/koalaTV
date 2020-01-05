@@ -103,7 +103,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -226,45 +226,51 @@
 
          }
          else{
-             swal({
-                title: "okkk",
-
+             data1={token: $.cookie("token"),category: "follow"};
+             $.ajax({
+                 type:"post",
+                 url:"/api/live/getliveroom",
+                 data:JSON.stringify(data1),
+                 cache: false,
+                 dataType:"json",
+                 success:function(json){
+                     var tem = " ";
+                     alert(json.tag);
+                     if(json.tag === -1){
+                         tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:95%;height:auto;' /></div><div class='clearfix'></div>";
+                     }
+                     else{
+                         for(var i=0;i<json.rooms.length;i++){
+                             tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>\n";
+                             tem+="<h3>"+json.rooms[i].title+"</h3>";
+                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                             tem+="</div></div></a></div></div>";
+                         }
+                     }
+                     $("#home").html(tem);
+                 },error: function (XMLHttpRequest, textStatus, errorThrown) {
+                     alert(XMLHttpRequest.status);
+                     alert(XMLHttpRequest.readyState);
+                     alert(textStatus);
+                 }
              });
-         }
-    });
 
-    $(function addlivediv(){
-        data1={token: token,category: "follow"};
-        $.ajax({
-            type:"post",
-            url:"/api/live/getliveroom",
-            data:JSON.stringify(data1),
-            cache: false,
-            dataType:"json",
-            success:function(json){
-                var tem = " ";
-                alert(json.tag);
-                if(json.tag === -1){
-                    tem+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'><h2>啊哦，当前主播们都休息了呢</h2></div>";
-                }
-                else{
-                    for(var i=0,l=json.rooms.length;i<l;i++){
-                        tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>\n";
-                        tem+="<h3>"+json.rooms[i].title+"</h3>";
-                        tem+="</div><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
-                        tem+="</div></div></div></div>";
-                    }
-                }
-                $("#home").html(tem);
-            },error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
-            }
-        });
+         }
     });
 </script>
 <!-- END Java Script for this page -->
 
 </body>
+<style type="text/css">
+    .mydiv{
+        width:250px;
+
+        height:auto;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
+
 </html>

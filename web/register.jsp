@@ -88,7 +88,7 @@
             </li>
 
             <li class="submenu">
-              <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+              <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
@@ -491,4 +491,16 @@
   <!-- END Java Script for this page -->
 
   </body>
+  <style type="text/css">
+    .mydiv{
+      width:250px;
+
+      height:auto;
+
+      background:#fff;
+
+      box-shadow: 4px 0 2px #909090;
+    }
+  </style>
+
 </html>

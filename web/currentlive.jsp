@@ -81,17 +81,17 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="showlivecategory.jsp?category=csgo">CS:GO</a></li>
-                        <li><a href="showlivecategory.jsp?category=overwatch">守望先锋</a></li>
-                        <li><a href="showlivecategory.jsp?category=lol">英雄联盟</a></li>
-                        <li><a href="showlivecategory.jsp?category=dota2">DOTA2</a></li>
-                        <li><a href="showlivecategory.jsp?category=hs">炉石传说</a></li>
-                        <li><a href="showlivecategory.jsp?category=majiang">麻将</a></li>
+                        <li><a href="showlivebycategory.jsp?category=csgo">CS:GO</a></li>
+                        <li><a href="showlivebycategory.jsp?category=overwatch">守望先锋</a></li>
+                        <li><a href="showlivebycategory.jsp?category=lol">英雄联盟</a></li>
+                        <li><a href="showlivebycategory.jsp?category=dota2">DOTA2</a></li>
+                        <li><a href="showlivebycategory.jsp?category=hs">炉石传说</a></li>
+                        <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
                     </ul>
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                    <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                 </li>
 
                 <li class="submenu">
@@ -121,27 +121,34 @@
 <div class="content-page">
 
     <!-- Start content -->
-    <div class="content">
-
+    <div class="content" style="height: 90%;width: 90%;padding: 5%;">
         <div class="container-fluid">
-
-
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb-holder">
-                        <h1 class="main-title float-left">当前直播间的名字</h1>
+                        <h1 class="float-left" id="livetitle"></h1>
                         <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item">返回上层</li>
+                            <a href="index.jsp"><li class="breadcrumb-item">回到主页</li></a>
                         </ol>
                         <div class="clearfix"></div>
+                        <div class="row">
+                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-user-circle-o bigfonts" aria-hidden="true"></i><p id="username"></p></div>
+
+                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-tags bigfonts" aria-hidden="true"></i><p id="category"></p></div>
+
+                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"> <i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
+                        <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
             <!-- end row -->
-
+        </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                     <div class="card-box tilebox-one noradius">
                         <div id='external-events'>
                             <h4>聊天室嘿嘿嘿</h4>
@@ -158,7 +165,6 @@
 
 
 
-        </div>
         <!-- END container-fluid -->
 
     </div>
@@ -168,18 +174,33 @@
 
 
 </body>
-<script type="text/javascript">
-    var option = {
-        "live_url" : "rtmp://play.ccnubt.club/live/1",
-        "live_url2" : "http://play.ccnubt.club/live/1.flv",
-        "live_url3": "http://play.ccnubt.club/live/1.m3u8",
-        "width" : 540,
-        "height" : 360
-    };
-    (function(){
-        var player = new qcVideo.Player("id_video_container", option)
-    })()
-</script>
+
+<script src="assets/js/modernizr.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/js/detect.js"></script>
+<script src="assets/js/fastclick.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
+
+<!-- App js -->
+<script src="assets/js/pikeadmin.js"></script>
+
+<!-- BEGIN Java Script for this page -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Counter-Up-->
+<script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
+<!-- BEGIN Java Script for this page -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     function setCookie(token) {
         $.cookie("token", token);
@@ -204,6 +225,15 @@
         }
     }
 
+    function getQueryString(name) {
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        let r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+
 
     <!-- 判断当前用户是否已经登陆了 -->
     $(document).ready(function(){
@@ -225,11 +255,53 @@
 
         }
         else{
-            swal({
-                title: "okkk",
+        //显示信息
+            roomid=getQueryString("roomid");
+            alert(roomid);
+            data1={token:$.cookie("token"),roomid:roomid};
+            $.ajax({
+                type: "POST",
+                url: "/api/live/getroom",
+                data: JSON.stringify(data1),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    document.getElementById("livetitle").innerText = msg.title;
+                    document.getElementById("category").innerText = msg.category;
+                    document.getElementById("username").innerText = msg.username;
+                    document.getElementById("watch").innerText = msg.watch;
+                    var option = {
+                        "live_url" : msg.rtmpurl,
+                        "live_url2" : msg.flvurl,
+                        "live_url3": msg.hlsurl,
+                        "width" : 600,
+                        "height" : 400
+                    };
+                    (function(){
+                        var player = new qcVideo.Player("id_video_container", option)
+                    })()
 
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
             });
+
         }
     });
 </script>
+<style type="text/css">
+    .mydiv{
+        width:250px;
+
+        height:auto;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
+
 </html>

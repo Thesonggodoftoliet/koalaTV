@@ -41,17 +41,13 @@
         <nav class="navbar-custom">
 
             <ul class="list-inline float-right mb-0">
-
-
-
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="personcenter_basic.jsp" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
                 </li>
 
             </ul>
-
 
         </nav>
 
@@ -73,7 +69,7 @@
                     </li>
 
                     <li class="submenu">
-                        <i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span>
+                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="showlivebycategory.jsp?category=csgo">CS:GO</a></li>
                             <li><a href="showlivebycategory.jsp?category=overwatch">守望先锋</a></li>
@@ -85,7 +81,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -96,15 +92,14 @@
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
                     <li class="submenu" style="position:bottom left;">
                         <img src="assets/images/bgp2.png" height="500" width="255">
                     </li>
 
                 </ul>
+                <div class="clearfix"></div>
             </div>
+                <div class="clearfix"></div>
 
         </div>
 
@@ -113,17 +108,17 @@
 
 
     <div class="content-page">
-        <div>
             <div class="content">
-                <br/>
-                <div class="row" id="home">
+                <div class="container-fluid">
+                <div class="row">
+                    <div id="home">
+                    </div>
                    <!-- end card-->
                 </div>
                 </div>
+            </div>
                 <!-- END content -->
             </div>
-
-        </div>
     </div>
     <!-- END content-page -->
 
@@ -170,7 +165,7 @@
         let r = window.location.search.substr(1).match(reg);
         if (r != null) {
             return unescape(r[2]);
-        };
+        }
         return null;
     }
 
@@ -189,39 +184,70 @@
 
     var token = getCookie();
 
-
-    $(function addlivediv(){
-        data1={token: token,category: cate};
-        $.ajax({
-            type:"post",
-            url:"/api/live/getliveroom",
-            data:JSON.stringify(data1),
-            cache: false,
-            dataType:"json",
-            success:function(json){
-                var tem = " ";
-                alert(json.tag);
-                if(json.tag === -1){
-                     tem+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'><h2>啊哦，当前主播们都休息了呢</h2></div>";
-                }
-                else{
-                    alert("hhhhhhhhhhhh");
-                    for(var i=0,l=json.rooms.length;i<l;i++){
-                        tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>\n";
-                        tem+="<h3>"+json.rooms[i].title+"</h3>";
-                        tem+="</div><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
-                        tem+="</div></div></div></div>";
+    <!-- 判断当前用户是否已经登陆了 -->
+    $(document).ready(function(){
+        if(checkCookie("token") === false){
+            swal({
+                title:"你还没有登陆哦～",
+                icon:"warning",
+                button:{
+                    text: "我要登上我的考拉～",
+                    closeModal: false,
+                },
+            }).then(
+                function (value) {
+                    if(value){
+                        window.location.href="login.jsp";
                     }
                 }
-                $("#home").html(tem);
-            },error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
-            }
-        });
+            );
+
+        }
+        else{
+            data1={token: token,category: cate};
+            $.ajax({
+                type:"post",
+                url:"/api/live/getliveroom",
+                data:JSON.stringify(data1),
+                cache: false,
+                dataType:"json",
+                success:function(json){
+                    var tem = " ";
+                    alert(json.tag);
+                    if(json.tag === -1){
+                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:95%;height:auto;' /></div><div class='clearfix'></div>";
+                    }
+                    else{
+                        alert("hhhhhhhhhhhh");
+                        for(var i=0,l=json.rooms.length;i<l;i++){
+                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>\n";
+                            tem+="<h3>"+json.rooms[i].title+"</h3>";
+                            tem+="</div><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                            tem+="</div></div></div></div>";
+                        }
+                    }
+                    $("#home").html(tem);
+                },error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
+
+        }
     });
 </script>
 
 </body>
+<style type="text/css">
+    .mydiv{
+        width:250px;
+
+        height:auto;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
 </html>
