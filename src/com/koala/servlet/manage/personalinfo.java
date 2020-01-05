@@ -37,7 +37,7 @@ public class personalinfo extends HttpServlet {
         int userid = 0;
         int tag = 0;
         // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://localhost:8080/koalaTV/imags/";
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
 
 
         try {
@@ -71,11 +71,11 @@ public class personalinfo extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (follows.isEmpty()) {
+        if (follows == null) {
             tag = -1;
             try {
                 msg.put("follows"," ");
-                msg.put("numoffollow",follows.size());
+                msg.put("numoffollow",0);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

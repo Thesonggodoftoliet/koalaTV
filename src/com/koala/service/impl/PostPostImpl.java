@@ -40,8 +40,6 @@ public class PostPostImpl implements PostPost {
             bar.setBarid(1);
         else
             bar.setBarid(sqlbar.getBarid()+1);
-        
-        post_dao.createTable(bar.getBarid(),bar.getHostid());
 
         if (bar_dao.addPost(bar) == null)
             return 0;

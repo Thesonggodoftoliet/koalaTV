@@ -20,4 +20,5 @@ public interface BarManage {
     int modifyReply(int userid,post_ post);
     int deletePost(int userid,bar_ bar);
     int deleteReply(int userid, post_ post);
+    int changeAdmin(int userid,int admin);
 }

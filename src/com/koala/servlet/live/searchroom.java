@@ -34,6 +34,9 @@ public class searchroom extends HttpServlet {
         String token = null;
         String keyword = null;
         int tag = 1;
+        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
+        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
+
 
         try {
             token = jsonObject.getString("token");
@@ -49,20 +52,22 @@ public class searchroom extends HttpServlet {
         UserManage userManage = new UserManageImpl();
         JSONArray rooms = new JSONArray();
         room_tb temp;
-        if (roomlist.isEmpty())
+        if (roomlist == null)
             tag = -1;
-        for (int i=0;i<roomlist.size();i++){
-            temp = roomlist.get(i);
-            JSONObject object = new JSONObject();
-            try {
-                object.put("roomid",temp.getRoomid());
-                object.put("title",temp.getTitle());
-                object.put("coverpic",temp.getCoverpic());
-                object.put("category",temp.getCategory());
-                object.put("username",userManage.getUserById(temp.getHostid()).getNickname());
-                rooms.put(object);
-            } catch (JSONException e) {
-                e.printStackTrace();
+        else {
+            for (int i = 0; i < roomlist.size(); i++) {
+                temp = roomlist.get(i);
+                JSONObject object = new JSONObject();
+                try {
+                    object.put("roomid", temp.getRoomid());
+                    object.put("title", temp.getTitle());
+                    object.put("coverpic", url + temp.getCoverpic());
+                    object.put("category", temp.getCategory());
+                    object.put("username", userManage.getUserById(temp.getHostid()).getNickname());
+                    rooms.put(object);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

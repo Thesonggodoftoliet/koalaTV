@@ -1,6 +1,7 @@
 package com.koala.dao.Implement;
 
 import com.koala.dao.Post_Dao;
+import com.koala.entity.bar_;
 import com.koala.entity.post_;
 import com.koala.utils.JdbcUtils;
 
@@ -51,11 +52,13 @@ public class Post_DaoImpl implements Post_Dao {
       * @return com.koala.entity.post_
       **/
     @Override
-    public post_ addReply(post_ post) {
-        String sql = "insert into post_"+post.getHostid()+post.getBarid()+" values(?,?,?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,post.getHostid(),post.getBarid(),post.getPostid(),post.getUserid(),post.getPosttime(),post.getContent(),post.getPic());
-        if (tag == 0)return null;
-        else return post;
+    public post_ addReply(post_ post,int num) {
+        String sql = "insert into post_"+post.getHostid()+post.getBarid()+" values("+post.getHostid()+","+post.getBarid()+","+post.getPostid()+","+post.getUserid()+",'"+post.getPosttime()+"','"+post.getContent()+"')";
+        String sql1 = "update bar_"+post.getHostid()+" set lastreplytime='"+post.getPosttime()+"',replynum="+num+" where barid="+post.getBarid();
+        if (JdbcUtils.executeTran(sql,sql1))
+            return post;
+        else
+            return null;
     }
 
     /**
@@ -97,10 +100,13 @@ public class Post_DaoImpl implements Post_Dao {
       **/
     @Override
     public boolean updateReply(post_ post) {
-        String sql = "update post_"+post.getHostid()+post.getBarid()+ " set posttime=?,content=?,pic=? where postid=?";
-        int tag = JdbcUtils.executeSQL(sql,post.getPosttime(),post.getContent(),post.getPic(),post.getPostid());
-        if (tag == 0)return false;
-        else return true;
+        String sql = "update post_"+post.getHostid()+post.getBarid()+ " set posttime='"+post.getPosttime()+"','"+post.getContent()+"' where postid="+post.getPostid();
+        String sql1 = "update bar_"+post.getHostid()+" set lastreplytime='"+post.getPosttime()+"' where barid="+post.getBarid();
+
+        if (JdbcUtils.executeTran(sql,sql1))
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -118,14 +124,13 @@ public class Post_DaoImpl implements Post_Dao {
 
     /**
       *删除整个帖子.
-      * @param barid int
+      * @param bar com.koala.entity.bar_
       * @return boolean
       **/
     @Override
-    public boolean deletePost(int hostid,int barid) {
-        String sql = "drop table post_"+hostid+barid;
-        int tag = JdbcUtils.executeSQL(sql);
-        if (tag == 0)return false;
-        else return true;
+    public boolean deletePost(bar_ bar) {
+        String sql = "drop table post_"+bar.getHostid()+bar.getBarid();
+        String sql1 = "delete from bar_"+bar.getHostid()+" where barid="+bar.getBarid();
+        return JdbcUtils.executeTran(sql,sql1);
     }
 }

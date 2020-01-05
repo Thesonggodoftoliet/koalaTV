@@ -2,7 +2,6 @@ package com.koala.servlet.live;
 
 import com.koala.service.RoomManage;
 import com.koala.service.impl.RoomManageImpl;
-import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,25 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
-@WebServlet("/api/live/shutdownroom")
-public class shutdownroom extends HttpServlet {
-    public shutdownroom() {
+@WebServlet("/api/live/deblockroom")
+public class deblockroom extends HttpServlet {
+    public deblockroom() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("shutdownroom");
+        System.out.println("deblockroom");
         JSONObject msg = new JSONObject();
-        PrintWriter out = response.getWriter();
-        long time = Long.parseLong(request.getParameter("time"));
         int roomid = Integer.parseInt(request.getParameter("roomid"));
-        int tag = 0;
+        int tag =0;
 
-        Date now = new Date();
+
         RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000))
+        if (roomManage.deblockRoom(roomid))
             tag = 1;
 
         try {
@@ -41,10 +37,11 @@ public class shutdownroom extends HttpServlet {
             e.printStackTrace();
         }
 
-        out.print(msg);
+        PrintWriter out = response.getWriter();
+
+        out.print(tag);
         out.flush();
         out.close();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

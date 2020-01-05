@@ -34,7 +34,6 @@ public class deployreply extends HttpServlet {
         try {
             token = jsonObject.getString("token");
             post.setContent(jsonObject.getString("content"));
-            post.setPic(jsonObject.getString("pic"));
             post.setBarid(jsonObject.getInt("barid"));
             post.setHostid(jsonObject.getInt("hostid"));
             post.setUserid(JwtUtils.decodeToken(token));

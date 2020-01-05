@@ -4,8 +4,7 @@ import com.koala.dao.Fans_Dao;
 import com.koala.dao.Implement.Fans_DaoImpl;
 import com.koala.dao.Implement.UserDaoImpl;
 import com.koala.dao.UserDao;
-import com.koala.entity.fans_;
-import com.koala.entity.user_tb;
+import com.koala.entity.*;
 import com.koala.service.UserManage;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.PraseUtils;
@@ -71,8 +70,8 @@ public class UserManageImpl implements UserManage {
         if (userDao.getUserByPhone(user.getPhone()) !=null)
             return null;//手机号已被注册
         else{
-            if (user.getIcon() == null)
-                user.setIcon("默认路径");//默认头像
+            if (user.getIcon().isEmpty())
+                user.setIcon("默认头像.jpg");//默认头像
             user_tb sqluser = userDao.getLastUser();
             if (sqluser == null)
                 user.setUserid(1);
@@ -141,16 +140,23 @@ public class UserManageImpl implements UserManage {
       * @return int
       **/
     @Override
-    public int applyForBar(user_tb user) {
-        user.setIsBarhost(1);
-        user.setIsYoutuber(1);
-        Fans_Dao fans_dao = new Fans_DaoImpl();
-        fans_dao.createTable(user.getUserid());
+    public int applyForBar(user_tb user, bar_tb bar, room_tb room) {
+        room.setRoomid(user.getUserid());
+        bar.setAdminid(user.getUserid());
+        user_tb sqluser = userDao.getUserById(user.getUserid());
+        if (room.getCoverpic().isEmpty())
+            room.setCoverpic("默认封面.jpg");
+        if (sqluser.getIsYoutuber() == 1)
+            return -1;
+        else {
+            user.setIsBarhost(1);
+            user.setIsYoutuber(1);
 
-        if (userDao.updateUserById(user))
-            return 1;
-        else
-            return 0;
+            if (userDao.applyYoutuber(user, bar, room))
+                return 1;
+            else
+                return 0;
+        }
     }
 
     /**
@@ -164,7 +170,7 @@ public class UserManageImpl implements UserManage {
         Fans_Dao fans_dao = new Fans_DaoImpl();
         List<Integer> id = PraseUtils.sToi(sqluser.getFollow());
 
-        if (id !=null && id.contains(Integer.parseInt(user.getFollow())))
+        if (id !=null && id.contains(Integer.parseInt(user.getFollow())))//已经关注了这个主播
             return -1;
 
         //注入粉丝表
@@ -177,7 +183,7 @@ public class UserManageImpl implements UserManage {
         String str = user.getFollow();
         sqluser.setFollow(PraseUtils.addStr(follow,str));
 
-        if (userDao.updateUserById(sqluser) && fans_dao.addFan(fans)!=null)
+        if (userDao.followYoutuber(sqluser,fans))
             return 1;
         else
             return 0;
@@ -213,8 +219,6 @@ public class UserManageImpl implements UserManage {
         fans.setUserid(sqluser.getUserid());
         fans.setHostid(follow);
 
-        if (userDao.updateUserById(sqluser) && fans_dao.deleteFan(fans))
-            return true;
-        return false;
+        return userDao.concelFollow(sqluser,fans);
     }
 }

@@ -46,6 +46,8 @@ public class RoomManageImpl implements RoomManage {
     @Override
     public int addRoom(room_tb room) {
         room.setRoomid(room.getHostid());
+        if (room.getCoverpic() == null)
+            room.setCoverpic("默认封面.jpg");
         if (roomDao.addRoom(room)!=null)
             return 1;
         else
@@ -63,7 +65,7 @@ public class RoomManageImpl implements RoomManage {
         room_tb roomTb;
         current_live currentLive = new current_live();
         roomTb = roomDao.getRoomByUserId(userid);
-        if (title == null){
+        if (title.isEmpty()){
             currentLive.setTitle(roomTb.getTitle());
         }
         else {
@@ -71,6 +73,7 @@ public class RoomManageImpl implements RoomManage {
             currentLive.setTitle(title);
         }
         StreamUtils streamUtils = new StreamUtils(userid);
+        currentLive.setRoomid(userid);
         currentLive.setRtmp(streamUtils.getRtmp());
         currentLive.setSecretkey(streamUtils.getSecretKey());
         currentLive.setStreamId(streamUtils.getStreamId());
@@ -82,7 +85,7 @@ public class RoomManageImpl implements RoomManage {
         }
         else {//萌新一枚
             roomTb.setIsLive(1);
-            if (roomDao.updateRoom(roomTb) && current_liveDao.addLive(currentLive)!=null)
+            if (roomDao.updateRoom(roomTb,currentLive))
                 return msg;
         }
 
@@ -113,6 +116,8 @@ public class RoomManageImpl implements RoomManage {
         user_tb userTb = userDao.getUserById(userid);
         List<Integer> hostid = PraseUtils.sToi(userTb.getFollow());
         List<room_tb> room_tbs = new ArrayList<>();
+        if (hostid == null || hostid.isEmpty())//没有关注的主播
+            return room_tbs;
         for (int i=0;i<hostid.size();i++)
             room_tbs.add(roomDao.getRoomByUserId(hostid.get(i)));
         return room_tbs;
@@ -127,9 +132,15 @@ public class RoomManageImpl implements RoomManage {
     public List<room_tb> getRoomsByCat(String category){
         List<room_tb> all = getRoomsOnlive();
         List<room_tb> part = roomDao.getRoomsByCa(category);
+        if (part == null){
+            all.clear();
+            return all;
+        }
         for (int i=0;i<all.size();i++){
-            if (!part.contains(all.get(i)))
+            if (!part.contains(all.get(i))) {
                 all.remove(i);
+                i--;
+            }
         }
         return all;
     }
@@ -142,8 +153,10 @@ public class RoomManageImpl implements RoomManage {
     public List<room_tb> getRoomForbidden() {
         List<room_tb> rooms = roomDao.getAllRoom();
         for (int i=0;i<rooms.size();i++)
-            if (rooms.get(i).getIsForbidden() != 1)
+            if (rooms.get(i).getIsForbidden() != 1) {
                 rooms.remove(i);
+                i--;
+            }
         return rooms;
     }
 
@@ -155,8 +168,10 @@ public class RoomManageImpl implements RoomManage {
     public List<room_tb> getRoomNotForbidden() {
         List<room_tb> rooms = roomDao.getAllRoom();
         for (int i=0;i<rooms.size();i++)
-            if (rooms.get(i).getIsForbidden() == 1)
+            if (rooms.get(i).getIsForbidden() == 1) {
                 rooms.remove(i);
+                i--;
+            }
         return rooms;
     }
 
@@ -168,7 +183,7 @@ public class RoomManageImpl implements RoomManage {
     @Override
     public List<room_tb> searchRoomByWord(String keyword) {
         List<room_tb> rooms = roomDao.getAllRoom();
-        return SearchUtils.searchRoom(keyword,rooms);
+        return SearchUtils.getRoomList(keyword,rooms);
     }
 
     /**
@@ -196,5 +211,17 @@ public class RoomManageImpl implements RoomManage {
             return roomDao.shutRoom(room);
         }
 
+    }
+
+    /**
+      *对封锁的直播间解除封禁.
+      * @param roomid
+      * @return boolean
+      **/
+    @Override
+    public boolean deblockRoom(int roomid) {
+        room_tb room = roomDao.getRoomByRoomId(roomid);
+        room.setIsForbidden(0);
+        return roomDao.shutRoom(room);
     }
 }

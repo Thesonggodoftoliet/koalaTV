@@ -30,8 +30,8 @@ public class Current_liveDaoImpl implements Current_liveDao {
       **/
     @Override
     public current_live addLive(current_live live) {
-        String sql = "insert into current_live values(?,?,?,?,?)";
-        int tag = JdbcUtils.executeSQL(sql,live.getRoomid(),live.getRtmp(),live.getTitle(),live.getSecretkey(),live.getStreamId());
+        String sql = "insert into current_live values(?,'"+live.getRtmp()+"','"+live.getTitle()+"','"+live.getSecretkey()+"',?)";
+        int tag = JdbcUtils.executeSQL(sql,live.getRoomid(),live.getStreamId());
         if (tag == 0)return null;
         else return live;
     }
@@ -43,8 +43,8 @@ public class Current_liveDaoImpl implements Current_liveDao {
       **/
     @Override
     public boolean updateLive(current_live live) {
-        String sql = "update current_live set rtmp = ?,title =? ,secretkey=?,streamId=? where roomid = ?";
-        int tag = JdbcUtils.executeSQL(sql,live.getRtmp(),live.getTitle(),live.getSecretkey(),live.getStreamId(),live.getRoomid());
+        String sql = "update current_live set rtmp ='"+live.getRtmp()+"',title ='"+live.getTitle()+"' ,secretkey='"+live.getSecretkey()+"',streamId=? where roomid = ?";
+        int tag = JdbcUtils.executeSQL(sql,live.getStreamId(),live.getRoomid());
         if (tag == 0)return false;
         else return true;
     }

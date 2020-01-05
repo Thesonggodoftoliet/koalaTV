@@ -25,7 +25,7 @@ public class PostGetImpl implements PostGet {
         user_tb sqluser = userDao.getUserById(user.getUserid());
         List<Integer> hostid = PraseUtils.sToi(sqluser.getFollow());
         List<bar_> totbar = new ArrayList<>();
-        if (hostid == null)
+        if (hostid == null || hostid.isEmpty())//没有关注的人
             return null;
         int size = hostid.size();//关注的主播数量
         int count = 0;

@@ -1,7 +1,7 @@
-package com.koala.servlet.live;
+package com.koala.servlet.bar;
 
-import com.koala.service.RoomManage;
-import com.koala.service.impl.RoomManageImpl;
+import com.koala.service.BarManage;
+import com.koala.service.impl.BarManageImpl;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
@@ -14,37 +14,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
-@WebServlet("/api/live/shutdownroom")
-public class shutdownroom extends HttpServlet {
-    public shutdownroom() {
+@WebServlet("/api/bar/changadmin")
+public class changadmin extends HttpServlet {
+    public changadmin() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("shutdownroom");
+        System.out.println("changadmin");
         JSONObject msg = new JSONObject();
-        PrintWriter out = response.getWriter();
-        long time = Long.parseLong(request.getParameter("time"));
-        int roomid = Integer.parseInt(request.getParameter("roomid"));
-        int tag = 0;
-
-        Date now = new Date();
-        RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000))
-            tag = 1;
-
+        JSONObject jsonObject = ReciveUtils.getObject(request);
+        String token = null;
+        int admin = 0;
         try {
-            msg.put("tag",tag);
+            token = jsonObject.getString(token);
+            admin = jsonObject.getInt("admin");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        int userid = JwtUtils.decodeToken(token);
+        BarManage barManage = new BarManageImpl();
+        int tag = barManage.changeAdmin(userid,admin);
+        token = JwtUtils.createToken(userid);
+
+        try {
+            msg.put("tag",tag);
+            msg.put("token",token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        PrintWriter out = response.getWriter();
         out.print(msg);
         out.flush();
         out.close();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -28,11 +28,12 @@ public class SearchUtils {
         words = jiebaSegmenter.sentenceProcess(keyword);
         int i = 0;
         if (search(keyword,list).isEmpty()){
-            while (search(words.get(i),list).isEmpty())
+            while (search(words.get(i),list).isEmpty()) {
                 i++;
-            System.out.println("分词大小 "+words.size()+" i= "+i);
-            if (i>=words.size())
-                return null;
+                System.out.println("分词大小 " + words.size() + " i= " + i);
+                if (i >= words.size())
+                    return null;
+            }
             return search(words.get(i),list);
         }else {
             return search(keyword,list);
@@ -66,10 +67,11 @@ public class SearchUtils {
         words = jiebaSegmenter.sentenceProcess(keyword);
         int i=0;
         if (searchRoom(keyword,list).isEmpty()){
-            while (searchRoom(words.get(i),list).isEmpty())
+            while (searchRoom(words.get(i),list).isEmpty()) {
                 i++;
-            if (i>=words.size())
-                return null;
+                if (i >= words.size())
+                    return null;
+            }
             return searchRoom(words.get(i),list);
         }else
             return searchRoom(keyword,list);
