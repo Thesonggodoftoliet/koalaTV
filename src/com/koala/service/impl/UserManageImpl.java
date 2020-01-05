@@ -170,7 +170,7 @@ public class UserManageImpl implements UserManage {
         Fans_Dao fans_dao = new Fans_DaoImpl();
         List<Integer> id = PraseUtils.sToi(sqluser.getFollow());
 
-        if (id !=null && id.contains(Integer.parseInt(user.getFollow())))
+        if (id !=null && id.contains(Integer.parseInt(user.getFollow())))//已经关注了这个主播
             return -1;
 
         //注入粉丝表

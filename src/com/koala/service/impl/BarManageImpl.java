@@ -54,7 +54,7 @@ public class BarManageImpl implements BarManage {
         user_tb user = userDao.getUserById(userid);
         List<Integer> idlist = PraseUtils.sToi(user.getFollow());
         List<user_tb> temp = new ArrayList<>();
-        if (idlist == null)
+        if (idlist == null || idlist.isEmpty())
             return null;//没有关注
         else {
             for (int i = 0;i<idlist.size();i++)
@@ -74,6 +74,9 @@ public class BarManageImpl implements BarManage {
         UserDao userDao = new UserDaoImpl();
         List<Integer> hostid = PraseUtils.sToi(userDao.getUserById(userid).getFollow());
         List<bar_> postList = new ArrayList<>();
+
+        if (hostid == null || hostid.isEmpty())//没有关注的人
+            return null;
 
         //获取所有的帖子，现在数量较少可以使用这种办法
         for (int i=0;i<hostid.size();i++){

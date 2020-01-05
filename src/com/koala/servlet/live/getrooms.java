@@ -33,6 +33,7 @@ public class getrooms extends HttpServlet {
         List<room_tb> forbidden = roomManage.getRoomForbidden();
         List<room_tb> notforbidden = roomManage.getRoomNotForbidden();
         UserManage userManage = new UserManageImpl();
+
         int tag = 1;
         if (forbidden.size() == 0)
             tag = -1;

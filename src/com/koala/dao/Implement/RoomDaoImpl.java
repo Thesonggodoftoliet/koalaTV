@@ -112,7 +112,7 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public boolean shutRoom(room_tb room) {
-		String sql = "update room_tb set isforbidden = ?,fobidend = ? where roomid=?";
+		String sql = "update room_tb set isforbidden = ?,forbidend = ? where roomid=?";
 		int tag = JdbcUtils.executeSQL(sql,room.getIsForbidden(),room.getForbidend(),room.getRoomid());
 		if (tag == 1) return true;
 		else return false;
