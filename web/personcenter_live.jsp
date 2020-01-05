@@ -154,41 +154,8 @@
                         </div>
                     </div>
                 </div> <!-- end 直播间显示-->
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h3><i class="fa fa-check-square-o"></i> 申请直播 </h3>
-                            </div>
-                            <div class="card-body">
-                                <form method="post">
-                                    <div class="form-group">
-                                        <label>直播间标题</label>
-                                        <input data-parsley-equalto="#pass1" type="text" required="" class="form-control" id="title">
-                                    </div>
-
-                                    <div class="form-group text-right m-b-6">
-                                        <input class="btn btn-primary" type="submit"  onclick="applyButton()">
-                                    </div>
-                                </form>
-
-                                <div>
-                                    <div class="card border-info col-sm-12 col-lg-12 col-xl-12">
-                                        <div class="card-body text-info">
-                                            <h4 class="card-title">链接</h4>
-                                            <p class="card-text">SDFSDFSD</p>
-                                        </div>
-                                    </div>
-                                    <div class="card border-info col-sm-12 col-lg-12 col-xl-12">
-                                        <div class="card-body text-info">
-                                            <h4 class="card-title">密匙</h4>
-                                            <p class="card-text">SDFSDFDS</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div><!-- 申请本次直播结束 -->
             </div><!-- END ROW -->
+            <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="card mb-3">
                     <div class="card-header">
@@ -213,7 +180,43 @@
 
                     </div>
                 </div>
-            </div> <!-- end 直播间显示-->
+
+            </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3><i class="fa fa-check-square-o"></i> 申请直播 </h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-group">
+                                    <label>直播间标题</label>
+                                    <input data-parsley-equalto="#pass1" type="text" required="" class="form-control" id="title">
+                                </div>
+
+                                <div class="form-group text-right m-b-6">
+                                    <input class="btn btn-primary" type="button"  onclick="applyButton()">
+                                </div>
+                            </form>
+
+                            <div>
+                                <div class="card border-info col-sm-12 col-lg-12 col-xl-12">
+                                    <div class="card-body text-info">
+                                        <h4 class="card-title">rtmp链接</h4>
+                                        <p class="card-text" id="rtmp"></p>
+                                    </div>
+                                </div>
+                                <div class="card border-info col-sm-12 col-lg-12 col-xl-12">
+                                    <div class="card-body text-info">
+                                        <h4 class="card-title">密匙</h4>
+                                        <p class="card-text" id="secretkey"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 申请本次直播结束 -->
+            </div><!-- end 直播间显示-->
 
         </div>
         <!-- END content -->
@@ -302,11 +305,42 @@
             });
         }
     });
-</script>
 
-<!-- 注册请求 -->
-<!-- 这个注册还差，验证码，还差上传（默认）头像的功能-->
-<!-- END Java Script for this page -->
+    function applyButton(){
+        var title = document.getElementById("title").value;
+        data1={token:$.cookie("token"),title:title};
+        $.ajax({
+            type: "POST",
+            url: "/api/live/onlive",
+            data: JSON.stringify(data1),
+            cache: false,
+            contentType: false,    //不可缺
+            processData: false,    //不可缺
+            dataType: "json",
+            success: function (msg) {
+                setCookie(msg.token);
+                if (msg.tag === 1) {
+                     var rtmp = document.getElementById("rtmp");
+                     var secretkey = document.getElementById("secretkey");
+                     rtmp.innerText(msg.rtmp);
+                     secretkey.innerText(msg.secretkey);
+                } else if(msg.tag === -1){
+                    swal({
+                        title:"你的直播间被封禁了呢！联系人工客服"
+                    }).then(
+                        function (){
+                           swal.close();
+                        }
+                    );
+
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+
+    }
+</script>
 
 </body>
 </html>

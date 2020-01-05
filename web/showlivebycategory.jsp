@@ -73,14 +73,14 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
+                        <i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span>
                         <ul class="list-unstyled">
-                            <li><a href="showlivecategory.jsp?category=csgo">CS:GO</a></li>
-                            <li><a href="showlivecategory.jsp?category=overwatch">守望先锋</a></li>
-                            <li><a href="showlivecategory.jsp?category=lol">英雄联盟</a></li>
-                            <li><a href="showlivecategory.jsp?category=dota2">DOTA2</a></li>
-                            <li><a href="showlivecategory.jsp?category=hs">炉石传说</a></li>
-                            <li><a href="showlivecategory.jsp?category=majiang">麻将</a></li>
+                            <li><a href="showlivebycategory.jsp?category=csgo">CS:GO</a></li>
+                            <li><a href="showlivebycategory.jsp?category=overwatch">守望先锋</a></li>
+                            <li><a href="showlivebycategory.jsp?category=lol">英雄联盟</a></li>
+                            <li><a href="showlivebycategory.jsp?category=dota2">DOTA2</a></li>
+                            <li><a href="showlivebycategory.jsp?category=hs">炉石传说</a></li>
+                            <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
