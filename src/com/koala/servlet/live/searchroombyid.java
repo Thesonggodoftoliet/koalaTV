@@ -44,15 +44,25 @@ public class searchroombyid extends HttpServlet {
         RoomManage roomManage =new RoomManageImpl();
         room_tb room = roomManage.getRoom(roomid);
         UserManage userManage = new UserManageImpl();
-        try {
-            msg.put("roomid",room.getRoomid());
-            msg.put("username",userManage.getUserById(room.getHostid()).getNickname());
-            msg.put("title",room.getTitle());
-            msg.put("coverpic",url+room.getCoverpic());
-            msg.put("category",room.getCategory());
-            msg.put("isForbidden",room.getIsForbidden());
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (room !=null) {
+            try {
+                msg.put("tag", 1);
+                msg.put("roomid", room.getRoomid());
+                msg.put("username", userManage.getUserById(room.getHostid()).getNickname());
+                msg.put("title", room.getTitle());
+                msg.put("coverpic", url + room.getCoverpic());
+                msg.put("category", room.getCategory());
+                msg.put("isForbidden", room.getIsForbidden());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            try {
+                msg.put("tag",-1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         out.print(msg);

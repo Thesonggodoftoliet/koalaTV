@@ -22,16 +22,10 @@ public class deblockroom extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("deblockroom");
-        JSONObject jsonObject = ReciveUtils.getObject(request);
         JSONObject msg = new JSONObject();
-        int roomid = 0;
+        int roomid = Integer.parseInt(request.getParameter("roomid"));
         int tag =0;
 
-        try {
-            roomid = jsonObject.getInt("roomid");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         RoomManage roomManage = new RoomManageImpl();
         if (roomManage.deblockRoom(roomid))

@@ -25,7 +25,6 @@ public class shutdownroom extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("shutdownroom");
         JSONObject msg = new JSONObject();
-        JSONObject jsonObject = ReciveUtils.getObject(request);
         PrintWriter out = response.getWriter();
         long time = Long.parseLong(request.getParameter("time"));
         int roomid = Integer.parseInt(request.getParameter("roomid"));
