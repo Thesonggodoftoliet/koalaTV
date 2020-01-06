@@ -64,4 +64,15 @@ public class PostGetImpl implements PostGet {
         }
         return totbar;
     }
+
+    /**
+      *获取这个话圈的所有帖子.
+      * @param hostid int
+      * @return java.util.List(com.koala.entity.bar_)
+      **/
+    @Override
+    public List<bar_> getPostByHost(int hostid) {
+        List<bar_> all = bar_dao.getAllPost(hostid);
+        return all;
+    }
 }
