@@ -1,7 +1,8 @@
-package com.koala.servlet.live;
+package com.koala.servlet.bar;
 
-import com.koala.service.RoomManage;
-import com.koala.service.impl.RoomManageImpl;
+import com.koala.service.BarManage;
+import com.koala.service.impl.BarManageImpl;
+import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,38 +15,41 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/live/deblockroom")
-public class deblockroom extends HttpServlet {
-    public deblockroom() {
+@WebServlet("/api/bar/changeadmin")
+public class changeadmin extends HttpServlet {
+    public changeadmin() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("deblockroom");
+        System.out.println("changeadmin");
         JSONObject msg = new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
-        int roomid = 0;
+        PrintWriter out = response.getWriter();
+        String token = null;
         int tag =0;
+        int userid = 0;
+        int adminid = 0;
 
         try {
-            roomid = jsonObject.getInt("roomid");
+            token = jsonObject.getString("token");
+            adminid = jsonObject.getInt("adminid");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.deblockRoom(roomid))
-            tag = 1;
+        userid = JwtUtils.decodeToken(token);
+        BarManage barManage = new BarManageImpl();
+        tag = barManage.changeAdmin(userid,adminid);
+        token = JwtUtils.createToken(userid);
 
         try {
             msg.put("tag",tag);
+            msg.put("token",token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        PrintWriter out = response.getWriter();
-
-        out.print(tag);
+        out.print(msg);
         out.flush();
         out.close();
     }

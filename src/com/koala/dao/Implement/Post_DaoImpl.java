@@ -62,6 +62,17 @@ public class Post_DaoImpl implements Post_Dao {
     }
 
     /**
+      *获取发帖数.
+      * @param hostid int
+      * @return int
+      **/
+    @Override
+    public int numOfPost(int hostid) {
+        String sql = "select * from post_"+hostid;
+        return JdbcUtils.getListCount(sql);
+    }
+
+    /**
       *获取回复的总数.
       * @param barid int
       * @return int
