@@ -12,9 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pike Admin - Free Bootstrap 4 Admin Template</title>
-    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-
+    <title>考拉直播---个人中心</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -34,7 +32,7 @@
 
 </head>
 
-<body class="adminbody" background="assets/images/background2.png">
+<body class="adminbody" style="background: rgb(255,255,255)">
 
 <div id="main">
 
@@ -43,7 +41,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
         </div>
 
         <nav class="navbar-custom">
@@ -53,7 +51,7 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
                 </li>
@@ -83,18 +81,18 @@
                     <li class="submenu">
                         <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 直播分类 </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="showlivecategory.jsp?category=csgo">CS:GO</a></li>
-                            <li><a href="showlivecategory.jsp?category=overwatch">守望先锋</a></li>
-                            <li><a href="showlivecategory.jsp?category=lol">英雄联盟</a></li>
-                            <li><a href="showlivecategory.jsp?category=dota2">DOTA2</a></li>
-                            <li><a href="showlivecategory.jsp?category=hs">炉石传说</a></li>
-                            <li><a href="showlivecategory.jsp?category=majiang">麻将</a></li>
-                            <li><a href="showlivecategory?category=majiang">麻将</a></li>
+                            <li><a href="showlivebycategory.jsp?category=csgo">CS:GO</a></li>
+                            <li><a href="showlivebycategory.jsp?category=overwatch">守望先锋</a></li>
+                            <li><a href="showlivebycategory.jsp?category=lol">英雄联盟</a></li>
+                            <li><a href="showlivebycategory.jsp?category=dota2">DOTA2</a></li>
+                            <li><a href="showlivebycategory.jsp?category=hs">炉石传说</a></li>
+                            <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
+                            <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span> </a>
                     </li>
 
                     <li class="submenu">
@@ -125,9 +123,22 @@
         <div>
             <div class="content">
 
-                <br/>   <br/>   <br/>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="row"  style="width: 95%;padding: 5%;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border: 1px solid transparent;background:url(0);">
+                        <div class="card mb-3" style="border: 1px solid transparent;background:url(0);">
+                            <div class="card-header" style="border: 1px solid transparent;background:url(0);">
+                                <h3><i class="fa fa-image"></i> 头 像 </h3>
+                            </div>
+
+                            <div class="card-body" style="border: 1px solid transparent;background:url(0);">
+                                <a data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
+                                    <img alt="image" id="showphoto" class="img-fluid" style="width:50px; height:50px;">
+                                </a>
+                            </div>
+                        </div><!-- end card-->
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <div class="card mb-3">
                             <div class="card-header">
                                 <h3><i class="fa fa-table"></i> 个 人 信 息</h3>
@@ -161,41 +172,18 @@
                                     </tr>
                                     </tbody>
                                 </table>
-
-
                                 <a role="button" class="btn btn-primary" style="float: right;">修改个人信息</a>
                                 <a role="button" class="btn btn-link" style="float: right;"></a>
-
-                                <a role="button" class="btn btn-warning" style="float: right;" id="liveuper"> </a>
+                                <a role="button" class="btn btn-warning" style="float: right;" id="liveuper"></a>
 
                             </div>
                         </div><!-- end card-->
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h3><i class="fa fa-image"></i> 头 像 </h3>
-                            </div>
-
-                            <div class="card-body">
 
 
-                                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                                    <img alt="image" src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
-                                </a>
-
-
-                            </div>
-                            <div class="card-body">
-
-                                <a class="btn btn-primary" href="#" role="button" id="updatehp">上传照片</a>
-                            </div>
-                        </div><!-- end card-->
-                    </div>
                 </div>
 
             </div></div>
-    </div>
+    </body>
     <!-- END content-page -->
 
     <footer class="footer">
@@ -215,6 +203,7 @@
 <script src="assets/js/fastclick.js"></script>
 <script src="assets/js/jquery.blockUI.js"></script>
 <script src="assets/js/jquery.nicescroll.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
 
 <!-- App js -->
 <script src="assets/js/pikeadmin.js"></script>
@@ -276,46 +265,68 @@
         }
         else{
            <!-- 获取当前用户的信息并载入到页面中 -->
-            var data1={token:getCookie("token")};
+            var data1={token:$.cookie("token")};
             $.ajax({
-                type: "POST",
-                url: "http://api/manage/personalinfo",
+                type: "post",
+                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data1),
-                cache: false,
-                contentType: false,    //不可缺
-                processData: false,    //不可缺
                 dataType: "json",
                 success: function (msg) {
                     var tnn = document.getElementById("nickname");
                     var nickname = msg.nickname;
-                    tnn.value = nickname;
+                    tnn.innerText = nickname;
 
                     var tg = document.getElementById("gender");
                     var gender = msg.gender;
-                    tg.value = gender;
+                    tg.innerText = gender;
 
                     var tp = document.getElementById("phone");
                     var phone = msg.phone;
-                    tp.value = phone;
+                    tp.innerText = phone;
 
-                    var ti = document.getElementById("identfy");
+                    alert(msg.icon);
+                    $("#showphoto").attr("href",msg.icon);
+
+                    var ti = document.getElementById("identify");
+                    var tlu = document.getElementById("liveuper");
                     if(msg.isYoutuber === 1){
-                        ti.value = "考拉主播";
-                        ("#liveuper").attr("href","personcenter_live.jsp");
-                        ("#liveuper").attr("value","主播管理");
+                        ti.innerText = "考拉主播";
+                        $("#liveuper").attr("href","personcenter_live.jsp");
+                        tlu.innerText = "主播管理";
+                        $("#liveuper").attr("value","主播管理");
                     }else if(msg.isBarhost === 1){
-                        ti.value = "普通用户（话圈主持人）";
-                        ("#liveuper").attr("href","applylivehome.jsp");
-                        ("#liveuper").attr("value","成为主播");
+                        ti.innerText = "普通用户（话圈主持人）";
+                        $("#liveuper").attr("href","applylivehome.jsp");
+                        tlu.innerText = "成为主播";
                     }else if(msg.isAdmin === 1){
-                        ti.value = "管理员";
+                        ti.innerText = "管理员";
                     }else{
-                        ti.value = "普通用户";
-                        ("#liveuper").attr("href","applylivehome.jsp");
-                        ("#liveuper").attr("value","成为主播");
+                        ti.innerText = "普通用户";
+                        $("#liveuper").attr("href","applylivehome.jsp");
+                        tlu.innerText = "成为主播";
                     }
 
+                    if(msg.tag!==-1){
+                        var tem ="<div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6\">" +
+                            "<div class=\"card mb-3\">" +
+                            "<div class=\"card-header\">" +
+                            "<h3><i class=\"fa fa-table\"></i> 我 的 考 拉 关 注</h3>" +
+                            "</div>" +
+                            "<div class=\"card-body\">" +
+                            "<div class=\"table-responsive\">" +
+                            "<table id=\"example3\" class=\"table table-bordered table-hover display\">" +
+                            "<tbody>";
+                        for(var i = 0 ; i < msg.follows.length ; i++){
+                            tem +="<tr>"+
+                                 "<td><img src="+msg.follows[i].userpic+
+                                 " style='width:30px;height:30px;border-radius:50%;'></td>"+
+                                 "<td>"+msg.follows[i].nickname+"</td>"+
+                                 "<td>"+numofans+"</td></tr>";
+                        }
+                        tem += "</tbody></table></div> </div> </div> </div>";
+                        $("#follow").html(tem);
 
+                    }
                 },
             });
         }
@@ -325,6 +336,18 @@
 <script>
 
 </script>
+<style type="text/css">
+    .mydiv{
+        width:250px;
+
+        height:auto;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
+
 <!-- END Java Script for this page -->
 
 </body>

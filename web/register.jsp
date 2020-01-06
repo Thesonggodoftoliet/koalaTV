@@ -88,7 +88,7 @@
             </li>
 
             <li class="submenu">
-              <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
+              <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
@@ -289,7 +289,7 @@
           data1={phone:$('#phone').val()};
           $.ajax({
               type:"post",
-              url:"/api/auth/identify",
+              url:"http://47.106.186.164:8080/koalaTV/api/auth/identify",
               data:JSON.stringify(data1),
               dataType:"json",
               success:function(msg) {
@@ -338,7 +338,7 @@
           });
           $.ajax({
               type: "POST",
-              url: "http://localhost:8080/api/manage/uploadpic",
+              url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
               data: data,
               cache: false,
               contentType: false,    //不可缺
@@ -380,7 +380,7 @@
               alert(JSON.stringify(data1));
               $.ajax({
                   type:"post",
-                  url:"/api/auth/register",
+                  url:"http://47.106.186.164:8080/koalaTV/api/auth/register",
                   data:JSON.stringify(data1),
                   dataType:"json",
                   success:function(msg){
@@ -491,4 +491,16 @@
   <!-- END Java Script for this page -->
 
   </body>
+  <style type="text/css">
+    .mydiv{
+      width:250px;
+
+      height:auto;
+
+      background:#fff;
+
+      box-shadow: 4px 0 2px #909090;
+    }
+  </style>
+
 </html>
