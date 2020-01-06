@@ -189,6 +189,7 @@ public class UserManageImpl implements UserManage {
             return 0;
     }
 
+
     /**
       *取消关注.
       * @param userid int

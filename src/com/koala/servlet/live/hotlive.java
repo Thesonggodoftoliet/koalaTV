@@ -1,11 +1,15 @@
 package com.koala.servlet.live;
 
+import com.koala.entity.current_live;
 import com.koala.entity.room_tb;
+import com.koala.service.FanManage;
 import com.koala.service.RoomManage;
 import com.koala.service.UserManage;
+import com.koala.service.impl.FanManageImpl;
 import com.koala.service.impl.RoomManageImpl;
 import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.JwtUtils;
+import com.koala.utils.LiveUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,50 +24,52 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/api/live/searchroom")
-public class searchroom extends HttpServlet {
-    public searchroom() {
+@WebServlet("/api/live/hotlive")
+public class hotlive extends HttpServlet {
+    public hotlive() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("searchroom");
-        JSONObject jsonObject = ReciveUtils.getObject(request);
+        System.out.println("hotlive");
         JSONObject msg = new JSONObject();
-        PrintWriter out = response.getWriter();
+        JSONObject jsonObject = ReciveUtils.getObject(request);
+        PrintWriter out  = response.getWriter();
         String token = null;
-        String keyword = null;
-        int tag = 1;
-        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://47.106.186.164:8080/imgs/";
-
+        int tag = 0;
 
         try {
             token = jsonObject.getString("token");
-            keyword = jsonObject.getString("keyword");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         int userid = JwtUtils.decodeToken(token);
-        token = JwtUtils.createToken(userid);
         RoomManage roomManage = new RoomManageImpl();
-        List<room_tb> roomlist = roomManage.searchRoomByWord(keyword);
         UserManage userManage = new UserManageImpl();
+        List<room_tb> all = roomManage.getRoomsOnlive();
+        FanManage fanManage = new FanManageImpl();
         JSONArray rooms = new JSONArray();
         room_tb temp;
-        if (roomlist == null)
+        if (all.isEmpty())
             tag = -1;
         else {
-            for (int i = 0; i < roomlist.size(); i++) {
-                temp = roomlist.get(i);
+            tag = 1;
+            for (int i=0;i<all.size();i++){
+                temp = all.get(i);
                 JSONObject object = new JSONObject();
                 try {
-                    object.put("roomid", temp.getRoomid());
-                    object.put("title", temp.getTitle());
-                    object.put("coverpic", url + temp.getCoverpic());
-                    object.put("category", temp.getCategory());
-                    object.put("username", userManage.getUserById(temp.getHostid()).getNickname());
+                    object.put("category",temp.getCategory());
+                    object.put("title",temp.getTitle());
+                    object.put("roomid",temp.getRoomid());
+                    object.put("watch", LiveUtils.getNum(temp.getRoomid()));
+                    object.put("homeid",temp.getHostid());
+                    object.put("rtmpurl","rtmp://play.ccnubt.club/live/"+temp.getRoomid());
+                    object.put("flvurl","rtmp://play.ccnubt.club/live/"+temp.getRoomid()+".flv");
+                    object.put("hlsurl","rtmp://play.ccnubt.club/live/"+temp.getRoomid()+".m3u8");
+                    object.put("username",userManage.getUserById(temp.getHostid()).getNickname());
+                    object.put("userpic",userManage.getUserById(temp.getHostid()).getIcon());
+                    object.put("fans",fanManage.getNumOfFan(temp.getHostid()));
                     rooms.put(object);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -71,10 +77,12 @@ public class searchroom extends HttpServlet {
             }
         }
 
+        token = JwtUtils.createToken(userid);
+
         try {
             msg.put("tag",tag);
-            msg.put("rooms",rooms);
             msg.put("token",token);
+            msg.put("rooms",rooms);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -82,7 +90,6 @@ public class searchroom extends HttpServlet {
         out.print(msg);
         out.flush();
         out.close();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
