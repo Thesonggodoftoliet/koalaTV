@@ -28,7 +28,7 @@ public class uploadpic extends HttpServlet {
         JSONObject msg = new JSONObject();
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
-        String path = request.getRealPath("/imgs");
+        String path = "/root/imgs";
         System.out.println("path "+path);
         File file = new File(path);
         if (!file.exists())

@@ -103,6 +103,26 @@ public class BarManageImpl implements BarManage {
     }
 
     /**
+      *获取用户所管理的话圈.
+      * @param userid int
+      * @return java.util.List(com.koala.entity.bar_tb)
+      **/
+    @Override
+    public List<bar_tb> managelist(int userid) {
+        List<bar_tb> all = barDao.getAllBar();
+        List<bar_tb> temp = new ArrayList<>();
+        if (all == null)
+            return null;
+        else {
+            for (int i=0;i<all.size();i++)
+                if (all.get(i).getAdminid() == userid)
+                    temp.add(all.get(i));
+
+                return temp;
+        }
+    }
+
+    /**
       *修改bar信息.
       * @param bar com.koala.entity.bar_tb
       * @return int

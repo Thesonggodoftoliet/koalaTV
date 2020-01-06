@@ -5,6 +5,7 @@ import com.koala.dao.Implement.Bar_DaoImpl;
 import com.koala.dao.Implement.UserDaoImpl;
 import com.koala.dao.UserDao;
 import com.koala.entity.bar_;
+import com.koala.entity.post_;
 import com.koala.entity.user_tb;
 import com.koala.service.PostGet;
 import com.koala.utils.PraseUtils;
@@ -40,8 +41,26 @@ public class PostGetImpl implements PostGet {
             }
         }
         else {
-            for (int i = 0; i < 10; i++)
-                totbar.add(bar_dao.getLatestPost(hostid.get(i % size), i / size));
+            List<Integer> counts = new ArrayList<>();
+            for (int j=0;j<size;j++)
+                counts.add(0);
+            for (int i = 0; i < 10; i++) {
+                System.out.println(counts.get(i%size)+","+i);
+                bar_ bar = bar_dao.getLatestPost(hostid.get(i % size), counts.get(i % size));
+                if (bar == null) {
+                    hostid.remove(i);
+                    counts.remove(i);
+                    size -- ;
+                    i--;
+                }
+                else {
+                    System.out.println("barid "+bar.getBarid());
+                    totbar.add(bar);
+                    int num = counts.get(i % size);
+                    System.out.println("修正"+counts.get(i%size)+","+i);
+                    counts.set(i%size,num+1);
+                }
+            }
         }
         return totbar;
     }

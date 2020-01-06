@@ -17,6 +17,7 @@ public interface BarManage {
     int addBar(bar_tb bar);
     List<user_tb> hostlist(int userid);
     List<bar_> barlist(int userid,String keyword);
+    List<bar_tb> managelist(int userid);
     int modifyBar(bar_tb bar,int userid);
     int getNumofPost(int hostid);
     int modifyPost(int userid,bar_ bar);

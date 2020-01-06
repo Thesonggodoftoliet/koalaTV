@@ -1,17 +1,15 @@
 package com.koala.servlet.live;
 
+import com.koala.entity.bar_tb;
 import com.koala.entity.room_tb;
-import com.koala.entity.user_tb;
-import com.koala.service.FanManage;
+import com.koala.service.BarManage;
 import com.koala.service.RoomManage;
 import com.koala.service.UserManage;
-import com.koala.service.impl.FanManageImpl;
+import com.koala.service.impl.BarManageImpl;
 import com.koala.service.impl.RoomManageImpl;
 import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.JwtUtils;
-import com.koala.utils.LiveUtils;
 import com.koala.utils.ReciveUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,57 +21,42 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/live/getroom")
-public class getroom extends HttpServlet {
-    public getroom() {
+@WebServlet("/api/live/showhostmanage")
+public class showhostmanage extends HttpServlet {
+    public showhostmanage() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("getroom");
-        JSONObject jsonObject = ReciveUtils.getObject(request);
+        System.out.println("showhostmanage");
         JSONObject msg = new JSONObject();
+        JSONObject jsonObject = ReciveUtils.getObject(request);
         PrintWriter out = response.getWriter();
-        int tag = 0;
-        int roomid = 0;
+        int userid = 0;
         String token = null;
-        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://47.106.186.164:8080/imgs/";
-
         try {
             token = jsonObject.getString("token");
-            roomid = jsonObject.getInt("roomid");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        int userid= JwtUtils.decodeToken(token);
-        RoomManage roomManage = new RoomManageImpl();
-        UserManage userManage = new UserManageImpl();
-        FanManage fanManage = new FanManageImpl();
-        room_tb room = roomManage.getRoom(roomid);
-        user_tb user = userManage.getUserById(room.getHostid());
-        token = JwtUtils.createToken(userid);
 
+        userid  = JwtUtils.decodeToken(token);
+        RoomManage roomManage = new RoomManageImpl();
+        room_tb room = roomManage.getRoom(userid);
+        BarManage barManage = new BarManageImpl();
+        bar_tb bar = barManage.getBar(userid);
+        token = JwtUtils.createToken(userid);
+        UserManage userManage = new UserManageImpl();
         try {
-            msg.put("roomid",roomid);
-            msg.put("hostid",room.getHostid());
+            msg.put("roomid",room.getRoomid());
             msg.put("title",room.getTitle());
             msg.put("category",room.getCategory());
-            msg.put("watch", LiveUtils.getNum(roomid));
-            msg.put("rtmpurl","rtmp://play.ccnubt.club/live/"+roomid);
-            msg.put("flvurl","rtmp://play.ccnubt.club/live/"+roomid+".flv");
-            msg.put("hlsurl","rtmp://play.ccnubt.club/live/"+roomid+".m3u8");
-            msg.put("username",user.getNickname());
-            msg.put("userpic",url+user.getIcon());
-            msg.put("fans",fanManage.getNumOfFan(room.getHostid()));
+            msg.put("adminid",bar.getAdminid());
+            msg.put("adminname",userManage.getUserById(bar.getAdminid()).getNickname());
             msg.put("token",token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        out.print(msg);
-        out.flush();
-        out.close();
 
     }
 
