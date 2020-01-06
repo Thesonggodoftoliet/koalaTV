@@ -229,7 +229,7 @@
              data1={token: $.cookie("token"),category: "follow"};
              $.ajax({
                  type:"post",
-                 url:"/api/live/getliveroom",
+                 url:"http://47.106.186.164:8080/koalaTV/api/live/getliveroom",
                  data:JSON.stringify(data1),
                  cache: false,
                  dataType:"json",

@@ -228,7 +228,7 @@
             alert(JSON.stringify(data1));
             $.ajax({
                 type:"post",
-                url:"/api/auth/login",
+                url:"http://47.106.186.164:8080/koalaTV/api/auth/login",
                 data:JSON.stringify(data1),
                 dataType:"json",
                 success:function(msg){

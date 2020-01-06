@@ -102,9 +102,6 @@
                         <li><a>退出登陆</a></li>
                     </ul>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
                 <li class="submenu" style="position:bottom left;">
                     <img src="assets/images/bgp2.png" height="500" width="255">
                 </li>
@@ -136,7 +133,9 @@
 
                         <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-tags bigfonts" aria-hidden="true"></i><p id="category"></p></div>
 
-                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"> <i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
+                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
+
+                            <div class="fa-hover col-md-4 col-lg-4 col-xl-4"></div>
                         <div class="clearfix"></div>
                         </div>
                     </div>
@@ -257,11 +256,10 @@
         else{
         //显示信息
             roomid=getQueryString("roomid");
-            alert(roomid);
             data1={token:$.cookie("token"),roomid:roomid};
             $.ajax({
                 type: "POST",
-                url: "/api/live/getroom",
+                url: "http://47.106.186.164:8080/koalaTV/api/live/getroom",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺

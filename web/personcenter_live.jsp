@@ -33,25 +33,12 @@
 </head>
 <body class="adminbody" background="assets/images/background2.png">
 <div id="main">
-    2. 主播管理页面
-    一个表单：直播房间id，直播房间的类型
-
-    一个表单：
-    申请直播的页面：
-    输入：标题，上传封面，
-    返回：rtmp，密匙。
-
-    一个表单：
-    话圈名字，
-    话圈主持人id，
-    话圈的照片
-
     <!-- top bar navigation -->
     <div class="headerbar">
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png"/></a>
         </div>
 
         <nav class="navbar-custom">
@@ -127,93 +114,22 @@
 
     <div class="content-page">
         <!-- Start content -->
-        <div class="content" style="width: 90%;padding: 5%;">
+        <div class="content" style="width: 100%;padding: 5%;">
+            <nav class="navbar-custom">
+                <ul class="list-inline float-left mb-0">
+                    <li class="list-inline-item dropdown notif" id="livem" onclick="flivem()">
+                        <p>直播间管理</p>
+                    </li>
+                    <li class="list-inline-item dropdown notif" id="barm" onclick="fbarm()">
+                        <p>话圈管理</p>
+                    </li>
+                    <li class="list-inline-item dropdown notif" id="applym" onclick="fapplym()">
+                        <p>申请本次直播</p>
+                    </li>
 
-            <div class="row">
-
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h3><i class="fa fa-check-square-o"></i> 直播间管理 </h3>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label>直播间ID</label>
-                                    <p id="liveid">00001</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>直播间的分类</label>
-                                    <P id="category">英雄联盟</P>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div> <!-- end 直播间显示-->
-            </div><!-- END ROW -->
-            <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <h3><i class="fa fa-check-square-o"></i> 话圈管理 </h3>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label>话圈ID</label>
-                                <p id="quanid">00001</p>
-                            </div>
-                            <div class="form-group">
-                                <label>话圈主持人ID</label>
-                                <P> id="quanuser">00001</P>
-                            </div>
-                            <div class="form-group">
-                                <label>话圈主持人昵称</label>
-                                <P id="quanname">考拉考拉</P>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-
-            </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h3><i class="fa fa-check-square-o"></i> 申请直播 </h3>
-                        </div>
-                        <div class="card-body">
-                            <form method="post">
-                                <div class="form-group">
-                                    <label>直播间标题</label>
-                                    <input data-parsley-equalto="#pass1" type="text" required="" class="form-control" id="title">
-                                </div>
-
-                                <div class="form-group text-right m-b-6">
-                                    <input class="btn btn-primary" type="button"  onclick="applyButton()">
-                                </div>
-                            </form>
-
-                            <div>
-                                <div class="card border-info col-sm-12 col-lg-12 col-xl-12">
-                                    <div class="card-body text-info">
-                                        <h4 class="card-title">rtmp链接</h4>
-                                        <p class="card-text" id="rtmp"></p>
-                                    </div>
-                                </div>
-                                <div class="card border-info col-sm-12 col-lg-12 col-xl-12">
-                                    <div class="card-body text-info">
-                                        <h4 class="card-title">密匙</h4>
-                                        <p class="card-text" id="secretkey"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- 申请本次直播结束 -->
-            </div><!-- end 直播间显示-->
+                </ul>
+            </nav>
+            <div id="senthtml"></div>
 
         </div>
         <!-- END content -->
@@ -296,19 +212,67 @@
 
         }
         else{
-            $.ajax({
-                type:"POST",
-                url:"",
-            });
+            flivem();
         }
     });
+
+    function flivem() {
+        var tem = "<div class=\"row\">";
+        tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+        tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
+        tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
+        tem += "<label>直播间ID</label>";
+        tem += "<p id=\"liveid\">00001</p>";
+        tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
+        tem += "<P id=\"category\">英雄联盟</P>";
+        tem += "</div></form></div></div></div></div>";
+        document.getElementById("senthtml").innerHTML = tem;
+
+    }
+
+    function fbarm() {
+        var tem = "<div class=\"row\">" +
+                "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">" +
+                "<div class=\"card mb-3\">" +
+                "<div class=\"card-header\">" +
+                "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
+                "</div><div class=\"card-body\"><form><div class=\"form-group\">" +
+                "<label>话圈ID</label>";
+        tem += "<p id=\"quanid\">00001</p>";
+        tem += " </div><div class=\"form-group\"> <label>话圈主持人ID</label>";
+        tem += " <P> id=\"quanuser\">00001</P>";
+        tem += " </div><div class=\"form-group\"><label>话圈主持人昵称</label>";
+        tem += "<P id=\"quanname\">考拉考拉</P></div> </form></div></div>";
+        document.getElementById("senthtml").innerHTML = tem;
+
+    }
+
+    function fapplym() {
+        var tem = "<div class='row'> <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+        tem += "<div class=\"card mb-3\"><div class=\"card-header\">";
+        tem += "<h3><i class=\"fa fa-check-square-o\"></i> 申请直播 </h3></div>";
+        tem += "<div class=\"card-body\"><form method=\"post\"><div class=\"form-group\">";
+        tem += "<label>直播间标题</label><input data-parsley-equalto=\"#pass1\" type=\"text\" required=\"\" class=\"form-control\" id=\"title\">";
+        tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\"  onclick=\"applyButton()\">";
+        tem += "</div></form>";
+        tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+        tem += "<div class=\"card-body text-info\">";
+        tem += " <h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
+        tem += "</div></div>";
+        tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+        tem += " <div class=\"card-body text-info\">";
+        tem += " <h4 class=\"card-title\">密匙</h4>";
+        tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
+        tem += "</div></div></div></div></div>";
+        document.getElementById("senthtml").innerHTML = tem;
+    }
 
     function applyButton(){
         var title = document.getElementById("title").value;
         data1={token:$.cookie("token"),title:title};
         $.ajax({
             type: "POST",
-            url: "/api/live/onlive",
+            url: "http://47.106.186.164:8080/koalaTV/api/live/onlive",
             data: JSON.stringify(data1),
             cache: false,
             contentType: false,    //不可缺
@@ -335,7 +299,6 @@
             error: function (XMLHttpRequest, textStatus, errorThrown) {
             }
         });
-
     }
 </script>
 
