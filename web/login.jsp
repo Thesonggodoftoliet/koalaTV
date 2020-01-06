@@ -12,8 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>考拉直播---一个快乐的游戏直播平台</title>
-    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -74,7 +72,7 @@
                 <ul>
 
                     <li class="submenu">
-                        <a   href="index.html"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
+                        <a   href="index.jsp"><i class="fa fa-fw fa-bars"></i><span> 主页 </span> </a>
                     </li>
 
                     <li class="submenu">
@@ -90,7 +88,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
                     </li>
 
                     <li class="submenu">
@@ -183,9 +181,6 @@
     </div>
     <!-- END content-page -->
 
-    <footer class="footer">
-    </footer>
-
 </div>
 <!-- END main -->
 
@@ -233,7 +228,7 @@
             alert(JSON.stringify(data1));
             $.ajax({
                 type:"post",
-                url:"/api/auth/login",
+                url:"http://47.106.186.164:8080/koalaTV/api/auth/login",
                 data:JSON.stringify(data1),
                 dataType:"json",
                 success:function(msg){
@@ -327,4 +322,16 @@
 </script>
 <!-- END Java Script for this page -->
 </body>
+<style type="text/css">
+    .mydiv{
+        width:250px;
+
+        height:auto;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
+
 </html>

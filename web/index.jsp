@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>考拉直播---一个快乐的游戏直播平台</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-
+      <script src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js" charset="utf-8"></script>
+      <script src="assets/js/jquery.min.js"></script>
+      <!-- Favicon -->
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
@@ -87,7 +87,7 @@
             </li>
 
             <li class="submenu">
-              <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+              <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
@@ -98,20 +98,94 @@
                 <li><a>退出登陆</a></li>
               </ul>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
             <li class="submenu" style="position:bottom left;">
               <img src="assets/images/bgp2.png" height="500" width="255">
             </li>
 
           </ul>
+          <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
 
       </div>
 
     </div>
     <!-- END content-page -->
+      <div class="content-page">
+
+          <!-- Start content -->
+          <div class="content"  style="background-image: url(assets/images/background2.png);background-size: 100% 65%;background-repeat:no-repeat;">
+
+              <div class="container-fluid" style="padding: 10%;">
+
+                  <!-- end row -->
+
+                <div>
+                  <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                          <div  id="id_video_container" style="width:100%; height:400px;">
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="background-color: rgba(0,0,0,0)">
+                              <div id='external-events' class="breadcrumb-holder" style="height: 400px;background-color: rgba(247,203,102,0.2)">
+                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><h2 id="livetitle" style="color: rgb(255,255,255)"></h2></div>
+                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
+                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
+                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
+                                  <div style="text-align:center">
+                                      <button class="btn btn-warning" href="currentlive.jsp?roomid=1" align="">前往直播间</button>
+                                  </div>
+
+
+                              </div>
+
+                      </div>
+                  </div>
+
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                          <div class="card mb-3" style="border:1px solid transparent;margin-top: 7%;">
+                              <div class="card-body" style="border:1px solid transparent">
+
+                                  <div class="row">
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=csgo" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/csgo.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=dota2" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/dota2.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=hs" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/hs.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=lol" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/lol.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=majiang" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/majiang.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=overwatch" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/overwatch.png" class="img-fluid">
+                                      </a>
+                                  </div>
+
+                              </div>
+                          </div><!-- end card-->
+                      </div>
+
+                  </div>
+
+              </div>
+              <!-- END container-fluid -->
+
+          </div>
+          <!-- END content -->
+
+      </div>
 
   </div>
   <!-- END main -->
@@ -120,10 +194,14 @@
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/moment.min.js"></script>
 
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
   <script src="assets/js/detect.js"></script>
   <script src="assets/js/fastclick.js"></script>
   <script src="assets/js/jquery.blockUI.js"></script>
   <script src="assets/js/jquery.nicescroll.js"></script>
+  <script src="assets/js/jquery.cookie.js"></script>
 
   <!-- App js -->
   <script src="assets/js/pikeadmin.js"></script>
@@ -136,26 +214,18 @@
   <!-- Counter-Up-->
   <script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
   <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
+  <!-- BEGIN Java Script for this page -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <style type="text/css">
     .mydiv{
-      width:250px;
+          width:250px;
 
-      height:auto;
+          height:auto;
 
-      border:#909090 1px solid;
+          background:#fff;
 
-      background:#fff;
-
-      color:#333;
-
-      filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);
-
-      -moz-box-shadow: 2px 2px 10px #909090;
-
-      -webkit-box-shadow: 2px 2px 10px #909090;
-
-      box-shadow:2px 2px 10px #909090;
+          box-shadow: 4px 0 2px #909090;
     }
   </style>
 
@@ -182,6 +252,41 @@
               return true;
           }
       }
+  </script>
+  <script>
+      $(document).ready(function(){
+         // roomid=getQueryString("roomid");
+          data1={token:$.cookie("token"),roomid:1};
+          $.ajax({
+              type: "POST",
+              url: "http://47.106.186.164:8080/koalaTV/api/live/getroom",
+              data: JSON.stringify(data1),
+              cache: false,
+              contentType: false,    //不可缺
+              processData: false,    //不可缺
+              dataType: "json",
+              success: function (msg) {
+                  setCookie(msg.token);
+                  document.getElementById("livetitle").innerText = msg.title;
+                  document.getElementById("category").innerText = msg.category;
+                  document.getElementById("username").innerText = msg.username;
+                  document.getElementById("watch").innerText = msg.watch;
+                  var option = {
+                      "live_url" : msg.rtmpurl,
+                      "live_url2" : msg.flvurl,
+                      "width" : 600,
+                      "height" : 400
+                  };
+                  (function(){
+                      var player = new qcVideo.Player("id_video_container", option)
+                  })()
+
+              },
+              error: function (XMLHttpRequest, textStatus, errorThrown) {
+              }
+          });
+
+      });
   </script>
 
   <!-- END Java Script for this page -->
