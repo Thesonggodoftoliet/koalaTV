@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface PostGet {
     List<bar_> getPost(user_tb user);
+    List<bar_> getPostByHost(int hostid);
 }
