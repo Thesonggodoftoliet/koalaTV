@@ -114,7 +114,7 @@
       <div class="content-page">
 
           <!-- Start content -->
-          <div class="content"  style="background-image: url(assets/images/background2.png);background-size: 100% 65%;background-repeat:no-repeat;">
+          <div class="content"  style="background-image: url(assets/images/onebk.png);background-size: 100% 65%;background-repeat:no-repeat;">
 
               <div class="container-fluid" style="padding: 10%;">
 
@@ -127,13 +127,13 @@
                           </div>
                       </div>
                       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="background-color: rgba(0,0,0,0)">
-                              <div id='external-events' class="breadcrumb-holder" style="height: 400px;background-color: rgba(247,203,102,0.2)">
-                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><h2 id="livetitle" style="color: rgb(255,255,255)"></h2></div>
-                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
-                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
-                                  <div  class="fa-hover" style="background-color: rgba(0,0,0,0)"><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
-                                  <div style="text-align:center">
-                                      <button class="btn btn-warning" href="currentlive.jsp?roomid=1" align="">前往直播间</button>
+                              <div id='external-events' class="breadcrumb-holder" style="height: 400px;background-color: rgba(247,203,102,0.8)">
+                                  <div  class="fa-hover" ><h2 id="livetitle" style="color: rgb(255,255,255)"></h2></div>
+                                  <div  class="fa-hover" ><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
+                                  <div  class="fa-hover" ><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
+                                  <div  class="fa-hover" ><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
+                                  <div style="text-align:center;">
+                                      <button class="btn btn-warning" href="currentlive.jsp?roomid=1" align="center" style="background-color: rgba(255,255,255,1.0);color: rgb(247,203,102)">前往直播间</button>
                                   </div>
 
 
@@ -255,37 +255,55 @@
   </script>
   <script>
       $(document).ready(function(){
-         // roomid=getQueryString("roomid");
-          data1={token:$.cookie("token"),roomid:1};
-          $.ajax({
-              type: "POST",
-              url: "http://47.106.186.164:8080/koalaTV/api/live/getroom",
-              data: JSON.stringify(data1),
-              cache: false,
-              contentType: false,    //不可缺
-              processData: false,    //不可缺
-              dataType: "json",
-              success: function (msg) {
-                  setCookie(msg.token);
-                  document.getElementById("livetitle").innerText = msg.title;
-                  document.getElementById("category").innerText = msg.category;
-                  document.getElementById("username").innerText = msg.username;
-                  document.getElementById("watch").innerText = msg.watch;
-                  var option = {
-                      "live_url" : msg.rtmpurl,
-                      "live_url2" : msg.flvurl,
-                      "width" : 600,
-                      "height" : 400
-                  };
-                  (function(){
-                      var player = new qcVideo.Player("id_video_container", option)
-                  })()
+          if(checkCookie("token") === false){
+              swal({
+                  title:"你还没有登陆哦～",
+                  icon:"warning",
+                  button:{
+                      text: "我要登上我的考拉～",
+                      closeModal: false,
+                  },
+              }).then(
+                  function (value) {
+                      if(value){
+                          window.location.href="login.jsp";
+                      }
+                  }
+              );
+          }else{
+              data1={token:$.cookie("token")};
+              $.ajax({
+                  type: "POST",
+                  url: "http://47.106.186.164:8080/koalaTV/api/live/hotlive",
+                  data: JSON.stringify(data1),
+                  cache: false,
+                  contentType: false,    //不可缺
+                  processData: false,    //不可缺
+                  dataType: "json",
+                  success: function (msg) {
+                      setCookie(msg.token);
+                      for(var i = 0;i<msg.rooms.length;i++){
+                          document.getElementById("livetitle").innerText = msg.rooms[i].title;
+                          document.getElementById("category").innerText = msg.rooms[i].category;
+                          document.getElementById("username").innerText = msg.rooms[i].username;
+                          document.getElementById("watch").innerText = msg.rooms[i].watch;
+                      }
+                      var option = {
+                          "live_url" : msg.rtmpurl,
+                          "live_url2" : msg.flvurl,
+                          "width" : 600,
+                          "height" : 400
+                      };
+                      (function(){
+                          var player = new qcVideo.Player("id_video_container", option)
+                      })()
 
-              },
-              error: function (XMLHttpRequest, textStatus, errorThrown) {
-              }
-          });
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  }
+              });
 
+          }
       });
   </script>
 
