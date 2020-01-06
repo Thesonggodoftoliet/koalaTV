@@ -182,6 +182,16 @@
         return token;
     }
 
+    // 判断cookie是否为空
+    function checkCookie(name){
+        if(getCookie(name) == null || getCookie(name)=="" || getCookie(name)=="null" || typeof(getCookie(name))=="undefined" || getCookie(name)==false || getCookie(name) == undefined){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
     var token = getCookie();
 
     <!-- 判断当前用户是否已经登陆了 -->

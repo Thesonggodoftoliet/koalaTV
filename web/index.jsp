@@ -87,7 +87,7 @@
             </li>
 
             <li class="submenu">
-              <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+              <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
             </li>
 
             <li class="submenu">
@@ -111,6 +111,62 @@
 
     </div>
     <!-- END content-page -->
+      <div class="content-page">
+
+          <!-- Start content -->
+          <div class="content">
+
+              <div class="container-fluid" style="width: 90%;height: 90%;padding: 10%;">
+
+                  <!-- end row -->
+
+
+                  <div class="row">
+
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                          <div class="card mb-3" style="border:1px solid transparent">
+                              <div class="card-body" style="border:1px solid transparent">
+
+                                  <div class="row">
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=csgo" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/csgo.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=dota2" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/dota2.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=hs" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/hs.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=lol" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/lol.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=majiang" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/majiang.png" class="img-fluid">
+                                      </a>
+
+                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=overwatch" class="col-sm-2">
+                                          <img alt="image" src="assets/images/gamelogo/overwatch.png" class="img-fluid">
+                                      </a>
+                                  </div>
+
+                              </div>
+                          </div><!-- end card-->
+                      </div>
+
+                  </div>
+
+              </div>
+              <!-- END container-fluid -->
+
+          </div>
+          <!-- END content -->
+
+      </div>
 
   </div>
   <!-- END main -->

@@ -12,8 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>考拉直播---一个快乐的游戏直播平台</title>
-    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
