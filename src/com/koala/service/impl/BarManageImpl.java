@@ -29,6 +29,17 @@ import java.util.List;
 public class BarManageImpl implements BarManage {
     private BarDao barDao = new BarDaoImpl();
     private Bar_Dao bar_dao = new Bar_DaoImpl();
+
+    /**
+      *获取话圈的具体消息.
+      * @param hostid int
+      * @return com.koala.entity.bar_tb
+      **/
+    @Override
+    public bar_tb getBar(int hostid) {
+        return barDao.getBarByHostId(hostid);
+    }
+
     /**
       *增加话圈.
       * @param bar com.koala.entity.bar_tb
@@ -89,6 +100,39 @@ public class BarManageImpl implements BarManage {
             return null;
         else
             return SearchUtils.getList(keyword,postList);
+    }
+
+    /**
+      *修改bar信息.
+      * @param bar com.koala.entity.bar_tb
+      * @return int
+      **/
+    @Override
+    public int modifyBar(bar_tb bar,int userid) {
+        bar_tb sqlbar = barDao.getBarByHostId(bar.getHostid());
+        if (sqlbar.getHostid() != userid && sqlbar.getAdminid()!= userid)
+            return -1;
+
+        if (!bar.getCoverpic().isEmpty() && !bar.getCoverpic().equals(sqlbar.getCoverpic()))
+            sqlbar.setCoverpic(bar.getCoverpic());
+
+        if (!bar.getBarname().isEmpty() && !bar.getBarname().equals(sqlbar.getBarname()))
+            sqlbar.setBarname(bar.getBarname());
+        if (barDao.updateBarByHostId(sqlbar))
+            return 1;
+        else
+            return 0;
+    }
+
+    /**
+      *获取发帖总数.
+      * @param hostid int
+      * @return int
+      **/
+    @Override
+    public int getNumofPost(int hostid) {
+        Post_Dao post_dao = new Post_DaoImpl();
+        return post_dao.numOfPost(hostid);
     }
 
     /**
@@ -213,13 +257,13 @@ public class BarManageImpl implements BarManage {
     @Override
     public int changeAdmin(int userid, int admin) {
         bar_tb sqlbar = barDao.getBarByHostId(userid);
-        if (sqlbar == null)
+        if (sqlbar.getAdminid() == userid)
             return -1;
-        else {
-            sqlbar.setAdminid(admin);
-            if (barDao.updateBarByHostId(sqlbar))
+
+        sqlbar.setAdminid(admin);
+
+        if (barDao.updateBarByHostId(sqlbar))
                 return 1;
-        }
         return 0;
     }
 }

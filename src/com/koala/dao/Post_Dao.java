@@ -15,6 +15,7 @@ public interface Post_Dao {
     post_ getReplyById(post_ post);
     post_ getLastReply(int hostid,int barid);
     post_ addReply(post_ post,int num);
+    int numOfPost(int hostid);
     int numOfReply(int hostid,int barid);
     boolean createTable(int barid,int hostid);
     boolean updateReply(post_ post);
