@@ -148,9 +148,16 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                    <div class="card-box tilebox-one noradius">
-                        <div id='external-events'>
-                            <h4>聊天室嘿嘿嘿</h4>
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                            <div id="focusbutton"></div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                            <div class="card-box tilebox-one noradius">
+                                <div id='charts'>
+                                    <h4>聊天室嘿嘿嘿</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
