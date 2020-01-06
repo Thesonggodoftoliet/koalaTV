@@ -13,9 +13,12 @@ import java.util.List;
  * 2019/12/29
  */
 public interface BarManage {
+    bar_tb getBar(int hostid);
     int addBar(bar_tb bar);
     List<user_tb> hostlist(int userid);
     List<bar_> barlist(int userid,String keyword);
+    int modifyBar(bar_tb bar,int userid);
+    int getNumofPost(int hostid);
     int modifyPost(int userid,bar_ bar);
     int modifyReply(int userid,post_ post);
     int deletePost(int userid,bar_ bar);
