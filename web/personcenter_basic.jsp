@@ -33,7 +33,6 @@
 </head>
 
 <body class="adminbody" style="background: rgb(255,255,255)">
-
 <div id="main">
 
     <!-- top bar navigation -->
@@ -124,7 +123,7 @@
             <div class="content">
 
                 <div class="row"  style="width: 95%;padding: 5%;">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border: 1px solid transparent;background:url(0);">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border: 1px solid transparent;">
                         <div class="card mb-3" style="border: 1px solid transparent;background:url(0);">
                             <div class="card-header" style="border: 1px solid transparent;background:url(0);">
                                 <h3><i class="fa fa-image"></i> 头 像 </h3>
@@ -180,14 +179,14 @@
                         </div><!-- end card-->
 
 
-                </div>
 
-            </div></div>
-    </body>
+                </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="follow">
+                    </div>
+
+                </div></div></div></div>
     <!-- END content-page -->
 
-    <footer class="footer">
-    </footer>
 
 </div>
 <!-- END main -->
@@ -266,12 +265,14 @@
         else{
            <!-- 获取当前用户的信息并载入到页面中 -->
             var data1={token:$.cookie("token")};
+            alert($.cookie("token"));
             $.ajax({
                 type: "post",
                 url: "/api/manage/personalinfo",
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {
+                    setCookie(msg.token);
                     var tnn = document.getElementById("nickname");
                     var nickname = msg.nickname;
                     tnn.innerText = nickname;
@@ -305,10 +306,9 @@
                         $("#liveuper").attr("href","applylivehome.jsp");
                         tlu.innerText = "成为主播";
                     }
-
                     if(msg.tag!==-1){
-                        var tem ="<div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6\">" +
-                            "<div class=\"card mb-3\">" +
+                        alert(msg.tag+"hhh");
+                        var tem = "<div class=\"card mb-3\">" +
                             "<div class=\"card-header\">" +
                             "<h3><i class=\"fa fa-table\"></i> 我 的 考 拉 关 注</h3>" +
                             "</div>" +
@@ -318,13 +318,13 @@
                             "<tbody>";
                         for(var i = 0 ; i < msg.follows.length ; i++){
                             tem +="<tr>"+
-                                 "<td><img src="+msg.follows[i].userpic+
-                                 " style='width:30px;height:30px;border-radius:50%;'></td>"+
-                                 "<td>"+msg.follows[i].nickname+"</td>"+
-                                 "<td>"+numofans+"</td></tr>";
+                                 "<td><img src='"+msg.follows[i].userpic+
+                                 "' style='width:30px;height:30px;border-radius:50%;'></td>"+
+                                 "<td>"+msg.follows[i].username+"</td>"+
+                                 "<td>"+msg.follows[i].numoffans+"</td></tr>";
                         }
                         tem += "</tbody></table></div> </div> </div> </div>";
-                        $("#follow").html(tem);
+                        document.getElementById("follow").innerHTML = tem;
 
                     }
                 },

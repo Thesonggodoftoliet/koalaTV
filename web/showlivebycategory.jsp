@@ -110,9 +110,7 @@
     <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                <div class="row">
-                    <div id="home">
-                    </div>
+                <div class="row" id="home">
                    <!-- end card-->
                 </div>
                 </div>
@@ -155,10 +153,7 @@
     <!-- BEGIN Java Script for this page -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-        } );
-    </script>
+
 <script>
     function getQueryString(name) {
         let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -222,10 +217,11 @@
                 cache: false,
                 dataType:"json",
                 success:function(json){
+                    setCookie(msg.token);
                     var tem = " ";
                     alert(json.tag);
                     if(json.tag === -1){
-                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:95%;height:auto;' /></div><div class='clearfix'></div>";
+                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
                     }
                     else{
                         alert("hhhhhhhhhhhh");

@@ -99,11 +99,8 @@
                             <li><a>退出登陆</a></li>
                         </ul>
                     </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
                     <li class="submenu" style="position:bottom left;">
-                        <img src="assets/images/bgp2.png" height="500" width="255">
+                        <img src="assets/images/bgp2.png" height="500" width="255"/>
                     </li>
 
                 </ul>
@@ -119,7 +116,7 @@
         <!-- Start content -->
         <div class="content">
 
-            <div class="container-fluid"  style="width: 90%;height: 90%;padding: 10%;">
+            <div class="container-fluid"  style="width: 90%;padding: 10%;">
 
                 <br/>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
@@ -130,17 +127,17 @@
 
                         </div>
 
-                        <div class="card-body" style="width: 90%;height: 90%;padding: 10%;">
+                        <div class="card-body" style="padding: 15%;">
 
                             <form method="post"  onsubmit="return false;">
                                 <div class="form-row">
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-10">
                                     <h3 class="col-sm-3 col-form-label">账 号</h3>
 
                                         <input type="text" class="form-control" id="phone" placeholder="11位手机号" autocomplete="off">
 
                                 </div>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-10">
                                     <h3 class="col-sm-3 col-form-label">密码</h3>
 
                                         <input type="password" class="form-control" id="userpassword" autocomplete="off">
@@ -148,7 +145,7 @@
                                 </div>
                                     <br/><br/>
                                     <br/><br/>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-10">
                                     <div class="col-sm-10" style="text-align:center;">
                                         <div class="form-check">
                                             <label class="form-check-label">
@@ -159,10 +156,10 @@
                                     </div>
                                 </div>
                                     <br/><br/>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-10">
                                     <div class="col-sm-10" style="text-align:center;">
                                         <input type="submit" onclick="applyButton()" class="btn btn-primary">
-                                        <a href="register.jsp"><i>还没有账号？赶快来注册吧～</i></a>
+                                        <a href="register.jsp"><i>还没有账号？赶快来注册</i></a>
                                     </div>
                                 </div>
                                 </div>
@@ -233,8 +230,8 @@
                 dataType:"json",
                 success:function(msg){
                     var tag = msg.tag;
+                    setCookie(msg.token);
                     if (tag==1){
-                        setCookie(msg.token);
                         swal({
                             title:"欢迎进入考拉直播～",
                             icon:"success",
@@ -326,7 +323,7 @@
     .mydiv{
         width:250px;
 
-        height:auto;
+        height:100%;
 
         background:#fff;
 

@@ -11,22 +11,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>考拉直播---一个快乐的游戏直播平台</title>
+      <title>考拉直播---一个快乐的游戏直播平台</title>
       <script src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js" charset="utf-8"></script>
       <script src="assets/js/jquery.min.js"></script>
       <!-- Favicon -->
-    <!-- Bootstrap CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+      <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!-- Font Awesome CSS -->
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+      <!-- Bootstrap CSS -->
+      <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Custom CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+      <!-- Font Awesome CSS -->
+      <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- BEGIN CSS for this page -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
-    <!-- END CSS for this page -->
+      <!-- Custom CSS -->
+      <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+      <!-- Modernizr -->
+      <script src="assets/js/modernizr.min.js"></script>
+
+      <!-- jQuery -->
+      <script src="assets/js/jquery.min.js"></script>
+
+      <!-- Moment -->
+      <script src="assets/js/moment.min.js"></script>
+
+      <!-- BEGIN CSS for this page -->
+      <link href="assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
   </head>
   <body class="adminbody" style="background: rgb(255,255,255)">
 
@@ -37,7 +47,7 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+          <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
       </div>
 
       <nav class="navbar-custom">
@@ -121,10 +131,9 @@
                   <!-- end row -->
 
                 <div>
-                  <div class="row">
+                  <div class="row" id="rowdiv">
                       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                          <div  id="id_video_container" style="width:100%; height:400px;">
-                          </div>
+                          <div  id="id_video_container" style="width:100%; height:auto;"></div>
                       </div>
                       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="background-color: rgba(0,0,0,0)">
                               <div id='external-events' class="breadcrumb-holder" style="height: 400px;background-color: rgba(247,203,102,0.8)">
@@ -282,21 +291,28 @@
                   dataType: "json",
                   success: function (msg) {
                       setCookie(msg.token);
-                      for(var i = 0;i<msg.rooms.length;i++){
-                          document.getElementById("livetitle").innerText = msg.rooms[i].title;
-                          document.getElementById("category").innerText = msg.rooms[i].category;
-                          document.getElementById("username").innerText = msg.rooms[i].username;
-                          document.getElementById("watch").innerText = msg.rooms[i].watch;
-                      }
+                      if( msg.tag === 1){
+                      document.getElementById("livetitle").innerText = msg.title;
+                      document.getElementById("category").innerText = msg.category;
+                      document.getElementById("username").innerText = msg.username;
+                      document.getElementById("watch").innerText = msg.watch;
                       var option = {
                           "live_url" : msg.rtmpurl,
                           "live_url2" : msg.flvurl,
+                          "live_url3": msg.hlsurl,
                           "width" : 600,
                           "height" : 400
                       };
                       (function(){
                           var player = new qcVideo.Player("id_video_container", option)
                       })()
+                      }else {
+                          var tem = "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\" style=\"background-color: rgba(247,203,102,0.8);height: 500px;text-align: center;\">";
+                          tem += "<img src='assets/images/sleep.png' style='width:auto;height:95%;' />"
+                          tem += "</div>";
+                          document.getElementById("rowdiv").innerHTML = tem;
+
+                      }
 
                   },
                   error: function (XMLHttpRequest, textStatus, errorThrown) {

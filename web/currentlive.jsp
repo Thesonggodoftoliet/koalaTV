@@ -240,11 +240,11 @@
         return null;
     }
 
-    function cancelone(hostid) {
+    function canselone(hostid) {
         var data4 = {hostid:hostid,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "api/youtuber/applyyoutuber",
+            url: "/api/youtuber/conselfollow",
             data: JSON.stringify(data4),
             cache: false,
             contentType: false,    //不可缺
@@ -253,9 +253,13 @@
             success:function (msg) {
                 setCookie(msg.token);
                 if(msg.tag === 1){
+                    var tem = "";
                     swal({
                         title:"嘤嘤嘤，你不要我了",
                     });
+                    tem += "<button onclick='followone("+roomid+")'>"
+                    tem += "未关注";
+                    document.getElementById("focusbutton").innerHTML = tem;
                 }else if(msg.tag === -1){
                     swal({
                         title:"害，你就没关注过我好叭",
@@ -271,7 +275,7 @@
         var data3 = {follow:follow,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "http://localhost:8080/koalaTV/api/youtuber/followyoutuber",
+            url: "/api/youtuber/followyoutuber",
             data: JSON.stringify(data3),
             cache: false,
             contentType: false,    //不可缺
@@ -280,9 +284,13 @@
             success:function (msg) {
                 setCookie(msg.token);
                 if(msg.tag === 1){
+                    var tem = "";
                     swal({
-                        title:"成功关注",
+                        title:"成功关注了！",
                     });
+                    tem += "<button onclick='canselone("+roomid+")'>"
+                    tem += "已关注";
+                    document.getElementById("focusbutton").innerHTML = tem;
                 }else if(msg.tag === -1){
                     swal({
                         title:"之前关注过了",
@@ -298,7 +306,7 @@
         var data2 = {roomid:roomid,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "http://localhost:8080/koalaTV/api/live/showfocus",
+            url: "/api/live/showfocus",
             data: JSON.stringify(data2),
             cache: false,
             contentType: false,    //不可缺
@@ -307,8 +315,9 @@
             success:function (msg) {
                 setCookie(msg.token);
                 var tem = "";
+                alert("msg.tag = "+msg.tag);
                 if(msg.tag === 1){
-                    tem += "<button onclick='cancelone("+roomid+")'>"
+                    tem += "<button onclick='canselone("+roomid+")'>"
                     tem += "已关注";
                 }else if(msg.tag === -1){
                     tem += "<button onclick='followone("+roomid+")'>"
@@ -347,7 +356,7 @@
             data1={token:$.cookie("token"),roomid:roomid};
             $.ajax({
                 type: "POST",
-                url: "http://47.106.186.164:8080/koalaTV/api/live/getroom",
+                url: "/api/live/getroom",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺

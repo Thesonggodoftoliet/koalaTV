@@ -49,13 +49,21 @@ public class FanManageImpl implements FanManage {
         fans_ fans = new fans_();
         fans.setHostid(hostid);
         fans.setUserid(userid);
+        System.out.println("fansuserid"+fans.getUserid());
+        for(int i=0;i<all.size();i++){
+            System.out.println("all["+i+"].hostid="+all.get(i).getHostid()+"   userid="+all.get(i).getUserid());
+        }
         if (all == null)
             return -1;//没有关注
         else {
-            if (all.contains(fans))
-                return 1;
-            else
-                return -1;
+            int flag = -1;
+            for(int i=0;i<all.size();i++){
+                if(all.get(i).getHostid()==fans.getHostid() && all.get(i).getUserid()==fans.getUserid()){
+                    flag = 1;
+                    break;
+                }
+            }
+            return  flag;
         }
     }
 }

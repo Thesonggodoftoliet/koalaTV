@@ -212,59 +212,95 @@
 
         }
         else{
-            flivem();
+            var data1={token:$.cookie("token")};
+            $.ajax({
+                type: "POST",
+                url: "/api/manage/personalinfo",
+                data: JSON.stringify(data1),
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    $.cookie("isYT", msg.isYoutuber);
+                    $.cookie("isBH", msg.isBarhost);
+                    $.cookie("isAD", msg.isAdmin);
+                    flivem();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
         }
     });
 
     function flivem() {
-        var tem = "<div class=\"row\">";
-        tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
-        tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
-        tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
-        tem += "<label>直播间ID</label>";
-        tem += "<p id=\"liveid\">00001</p>";
-        tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
-        tem += "<P id=\"category\">英雄联盟</P>";
-        tem += "</div></form></div></div></div></div>";
-        document.getElementById("senthtml").innerHTML = tem;
+        alert($.cookie("isYT"));
+        if($.cookie("isYT") === "1"){
+            var tem = "<div class=\"row\">";
+            tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
+            tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
+            tem += "<label>直播间ID</label>";
+            tem += "<p id=\"liveid\">00001</p>";
+            tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
+            tem += "<P id=\"category\">英雄联盟</P>";
+            tem += "</div></form></div></div></div></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }else{
+            var tem = "";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            document.getElementById("senthtml").innerHTML = tem;
 
+        }
     }
 
     function fbarm() {
-        var tem = "<div class=\"row\">" +
+        alert($.cookie("isBH"));
+        if($.cookie("isBH") === "1") {
+            var tem = "<div class=\"row\">" +
                 "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">" +
                 "<div class=\"card mb-3\">" +
                 "<div class=\"card-header\">" +
                 "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
                 "</div><div class=\"card-body\"><form><div class=\"form-group\">" +
                 "<label>话圈ID</label>";
-        tem += "<p id=\"quanid\">00001</p>";
-        tem += " </div><div class=\"form-group\"> <label>话圈主持人ID</label>";
-        tem += " <P> id=\"quanuser\">00001</P>";
-        tem += " </div><div class=\"form-group\"><label>话圈主持人昵称</label>";
-        tem += "<P id=\"quanname\">考拉考拉</P></div> </form></div></div>";
-        document.getElementById("senthtml").innerHTML = tem;
+            tem += "<p id=\"quanid\">00001</p>";
+            tem += " </div><div class=\"form-group\"> <label>话圈主持人ID</label>";
+            tem += " <P> id=\"quanuser\">00001</P>";
+            tem += " </div><div class=\"form-group\"><label>话圈主持人昵称</label>";
+            tem += "<P id=\"quanname\">考拉考拉</P></div> </form></div></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }else{
+            var tem = "";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nobar.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }
 
     }
 
     function fapplym() {
-        var tem = "<div class='row'> <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
-        tem += "<div class=\"card mb-3\"><div class=\"card-header\">";
-        tem += "<h3><i class=\"fa fa-check-square-o\"></i> 申请直播 </h3></div>";
-        tem += "<div class=\"card-body\"><form method=\"post\"><div class=\"form-group\">";
-        tem += "<label>直播间标题</label><input data-parsley-equalto=\"#pass1\" type=\"text\" required=\"\" class=\"form-control\" id=\"title\">";
-        tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\"  onclick=\"applyButton()\">";
-        tem += "</div></form>";
-        tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
-        tem += "<div class=\"card-body text-info\">";
-        tem += " <h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
-        tem += "</div></div>";
-        tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
-        tem += " <div class=\"card-body text-info\">";
-        tem += " <h4 class=\"card-title\">密匙</h4>";
-        tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
-        tem += "</div></div></div></div></div>";
-        document.getElementById("senthtml").innerHTML = tem;
+        alert($.cookie("isYT"));
+        if($.cookie("isYT") === "1") {
+            var tem = "<div class='row'> <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card mb-3\"><div class=\"card-header\">";
+            tem += "<h3><i class=\"fa fa-check-square-o\"></i> 申请直播 </h3></div>";
+            tem += "<div class=\"card-body\"><form method=\"post\"><div class=\"form-group\">";
+            tem += "<label>直播间标题</label><input data-parsley-equalto=\"#pass1\" type=\"text\" required=\"\" class=\"form-control\" id=\"title\">";
+            tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\"  onclick=\"applyButton()\">";
+            tem += "</div></form>";
+            tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card-body text-info\">";
+            tem += " <h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
+            tem += "</div></div>";
+            tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+            tem += " <div class=\"card-body text-info\">";
+            tem += " <h4 class=\"card-title\">密匙</h4>";
+            tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
+            tem += "</div></div></div></div></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }else{
+            var tem = "";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }
     }
 
     function applyButton(){
