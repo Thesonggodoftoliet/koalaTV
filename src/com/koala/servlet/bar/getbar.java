@@ -7,6 +7,7 @@ import com.koala.service.impl.BarManageImpl;
 import com.koala.service.impl.UserManageImpl;
 import com.koala.utils.JwtUtils;
 import com.koala.utils.ReciveUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/api/bar/getbar")
 public class getbar extends HttpServlet {
@@ -30,11 +32,9 @@ public class getbar extends HttpServlet {
         JSONObject jsonObject = ReciveUtils.getObject(request);
         PrintWriter out = response.getWriter();
         String token = null;
-        int hostid = 0;
 
         try {
-            token = jsonObject.getString("tokne");
-            hostid = jsonObject.getInt("hostid");
+            token = jsonObject.getString("token");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -43,20 +43,26 @@ public class getbar extends HttpServlet {
         token = JwtUtils.createToken(userid);
         BarManage barManage = new BarManageImpl();
         UserManage userManage = new UserManageImpl();
-        bar_tb bar =  barManage.getBar(hostid);
+        List<bar_tb> barlist = barManage.managelist(userid);
         int tag = 0;
-        if (bar == null)
+        if (barlist == null)
             tag =-1;
         else {
             tag = 1;
+            JSONArray bars = new JSONArray();
             try {
-                msg.put("barname",bar.getBarname());
-                msg.put("hostid",bar.getHostid());
-                msg.put("hostname",userManage.getUserById(bar.getHostid()).getNickname());
-                msg.put("adminid",bar.getAdminid());
-                msg.put("adminname",userManage.getUserById(bar.getAdminid()).getNickname());
-                msg.put("coverpic",bar.getCoverpic());
-                msg.put("numofpost",barManage.getNumofPost(bar.getHostid()));
+                for (int i=0;i<barlist.size();i++) {
+                    JSONObject object = new JSONObject();
+                    object.put("barname", barlist.get(i).getBarname());
+                    object.put("hostid", barlist.get(i).getHostid());
+                    object.put("hostname", userManage.getUserById(barlist.get(i).getHostid()).getNickname());
+                    object.put("adminid", barlist.get(i).getAdminid());
+                    object.put("adminname", userManage.getUserById(barlist.get(i).getAdminid()).getNickname());
+                    object.put("coverpic", barlist.get(i).getCoverpic());
+                    object.put("numofpost", barManage.getNumofPost(barlist.get(i).getHostid()));
+                    bars.put(object);
+                }
+                msg.put("bars",bars);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

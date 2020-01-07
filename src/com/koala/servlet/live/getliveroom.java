@@ -36,7 +36,7 @@ public class getliveroom extends HttpServlet {
         int tag = 0;
         PrintWriter out = response.getWriter();
         // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://47.106.186.164:8080/koalaTV/imgs/";
+        String url = "http://47.106.186.164:8080/imgs/";
 
         try {
             token = jsonObject.getString("token");

@@ -52,7 +52,8 @@ public class Bar_DaoImpl implements Bar_Dao {
       **/
     @Override
     public bar_ getLatestPost(int hostid,int index) {
-        String sql = "select * from bar_"+hostid+" order by lastreplytime desc limit "+index+","+(index+1);
+        String sql = "select * from bar_"+hostid+" order by lastreplytime desc,barid desc limit "+index+","+1;
+        System.out.println("sql "+sql);
         return (bar_)JdbcUtils.getObject(bar_.class,sql);
     }
 
