@@ -243,11 +243,6 @@
   <!-- BEGIN Java Script for this page -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <script>
-      $(document).ready(function() {
-
-      } );
-  </script>
 
   <!-- 注册请求 -->
   <!-- 这个注册还差，验证码，还差上传（默认）头像的功能-->
@@ -289,7 +284,7 @@
           data1={phone:$('#phone').val()};
           $.ajax({
               type:"post",
-              url:"http://47.106.186.164:8080/koalaTV/api/auth/identify",
+              url:"/api/auth/identify",
               data:JSON.stringify(data1),
               dataType:"json",
               success:function(msg) {
@@ -338,7 +333,7 @@
           });
           $.ajax({
               type: "POST",
-              url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
+              url: "/api/manage/uploadpic",
               data: data,
               cache: false,
               contentType: false,    //不可缺

@@ -268,7 +268,7 @@
             var data1={token:$.cookie("token")};
             $.ajax({
                 type: "post",
-                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
+                url: "/api/manage/personalinfo",
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {

@@ -263,7 +263,7 @@
         console.log(data);
         $.ajax({
             type: "POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
+            url: "/api/manage/uploadpic",
             data: data,
             cache: false,
             contentType: false,    //不可缺
@@ -312,7 +312,7 @@
         alert(JSON.stringify(data1));
         $.ajax({
             type:"post",
-            url:"http://47.106.186.164:8080/koalaTV/api/youtuber/applyyoutuber",
+            url:"/api/youtuber/applyyoutuber",
             data:JSON.stringify(data1),
             dataType:"json",
             success:function(msg){

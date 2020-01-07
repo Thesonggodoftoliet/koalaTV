@@ -240,6 +240,87 @@
         return null;
     }
 
+    function cancelone(hostid) {
+        var data4 = {hostid:hostid,token:$.cookie("token")};
+        $.ajax({
+            type:"POST",
+            url: "api/youtuber/applyyoutuber",
+            data: JSON.stringify(data4),
+            cache: false,
+            contentType: false,    //不可缺
+            processData: false,    //不可缺
+            dataType: "json",
+            success:function (msg) {
+                setCookie(msg.token);
+                if(msg.tag === 1){
+                    swal({
+                        title:"嘤嘤嘤，你不要我了",
+                    });
+                }else if(msg.tag === -1){
+                    swal({
+                        title:"害，你就没关注过我好叭",
+                    });
+                }
+
+            }
+        });
+
+    }
+
+    function followone(follow) {
+        var data3 = {follow:follow,token:$.cookie("token")};
+        $.ajax({
+            type:"POST",
+            url: "http://localhost:8080/koalaTV/api/youtuber/followyoutuber",
+            data: JSON.stringify(data3),
+            cache: false,
+            contentType: false,    //不可缺
+            processData: false,    //不可缺
+            dataType: "json",
+            success:function (msg) {
+                setCookie(msg.token);
+                if(msg.tag === 1){
+                    swal({
+                        title:"成功关注",
+                    });
+                }else if(msg.tag === -1){
+                    swal({
+                        title:"之前关注过了",
+                    });
+                }
+
+            }
+        });
+
+    }
+
+    function getfocus(roomid){
+        var data2 = {roomid:roomid,token:$.cookie("token")};
+        $.ajax({
+            type:"POST",
+            url: "http://localhost:8080/koalaTV/api/live/showfocus",
+            data: JSON.stringify(data2),
+            cache: false,
+            contentType: false,    //不可缺
+            processData: false,    //不可缺
+            dataType: "json",
+            success:function (msg) {
+                setCookie(msg.token);
+                var tem = "";
+                if(msg.tag === 1){
+                    tem += "<button onclick='cancelone("+roomid+")'>"
+                    tem += "已关注";
+                }else if(msg.tag === -1){
+                    tem += "<button onclick='followone("+roomid+")'>"
+                    tem += "未关注";
+                }
+                tem +="</button>";
+                document.getElementById("focusbutton").innerHTML = tem;
+
+            }
+        });
+    }
+
 
     <!-- 判断当前用户是否已经登陆了 -->
     $(document).ready(function(){
@@ -288,6 +369,8 @@
                     (function(){
                         var player = new qcVideo.Player("id_video_container", option)
                     })()
+
+                    getfocus(roomid);
 
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -217,7 +217,7 @@
             data1={token: token,category: cate};
             $.ajax({
                 type:"post",
-                url:"http://47.106.186.164:8080/koalaTV/api/live/getliveroom",
+                url:"/api/live/getliveroom",
                 data:JSON.stringify(data1),
                 cache: false,
                 dataType:"json",
