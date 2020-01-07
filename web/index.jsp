@@ -142,8 +142,7 @@
                                   <div  class="fa-hover" ><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
                                   <div  class="fa-hover" ><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
                                   <div  class="fa-hover" ><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
-                                  <div style="text-align:center;">
-                                      <button class="btn btn-warning" href="currentlive.jsp?roomid=1" align="center" style="background-color: rgba(255,255,255,1.0);color: rgb(247,203,102)">前往直播间</button>
+                                  <div style="text-align:center;" id="cometobutton">
                                   </div>
 
 
@@ -285,7 +284,7 @@
           }else{
               var id = document.getElementById('xiaoren');
               id.href="personcenter_basic.jsp";
-              data1={token:$.cookie("token")};
+              var data1={token:$.cookie("token")};
               $.ajax({
                   type: "POST",
                   url: "/api/live/hotlive",
@@ -297,20 +296,21 @@
                   success: function (msg) {
                       setCookie(msg.token);
                       if( msg.tag === 1){
-                      document.getElementById("livetitle").innerText = msg.title;
-                      document.getElementById("category").innerText = msg.category;
-                      document.getElementById("username").innerText = msg.username;
-                      document.getElementById("watch").innerText = msg.watch;
-                      var option = {
-                          "live_url" : msg.rtmpurl,
-                          "live_url2" : msg.flvurl,
-                          "live_url3": msg.hlsurl,
-                          "width" : 600,
-                          "height" : 400
-                      };
-                      (function(){
-                          var player = new qcVideo.Player("id_video_container", option)
-                      })()
+                          document.getElementById("livetitle").innerText = msg.rooms[0].title;
+                          document.getElementById("category").innerText = msg.rooms[0].category;
+                          document.getElementById("username").innerText = msg.rooms[0].username;
+                          document.getElementById("watch").innerText = msg.rooms[0].watch;
+                          document.getElementById("cometobutton").innerHTML = "<a href='currentlive.jsp?roomid="+msg.rooms[0].roomid+"'><button class='btn btn-warning' align='center' style='background-color: rgba(255,255,255,1.0);color: rgb(247,203,102)'>前往直播间</button></a>";
+                          var option = {
+                              "live_url" : msg.rooms[0].rtmpurl,
+                              "live_url2" : msg.rooms[0].flvurl,
+                              "live_url3": msg.rooms[0].hlsurl,
+                              "width" : 600,
+                              "height" : 400
+                          };
+                          (function(){
+                              var player = new qcVideo.Player("id_video_container", option)
+                          })()
                       }else {
                           var tem = "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\" style=\"background-color: rgba(247,203,102,0.8);height: 500px;text-align: center;\">";
                           tem += "<img src='assets/images/sleep.png' style='width:auto;height:95%;' />"
@@ -318,7 +318,6 @@
                           document.getElementById("rowdiv").innerHTML = tem;
 
                       }
-
                   },
                   error: function (XMLHttpRequest, textStatus, errorThrown) {
                   }

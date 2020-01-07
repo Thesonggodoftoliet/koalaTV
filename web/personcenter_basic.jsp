@@ -131,7 +131,7 @@
 
                             <div class="card-body" style="border: 1px solid transparent;background:url(0);">
                                 <a data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                                    <img alt="image" id="showphoto" class="img-fluid" style="width:50px; height:50px;">
+                                    <img alt="image" id="showphoto" class="img-fluid" style="width:60px; height:60px;">
                                 </a>
                             </div>
                         </div><!-- end card-->
@@ -278,9 +278,10 @@
                             data: JSON.stringify(data1),
                             contentType: "appication/json",
                             success: function(msg) {
+                                setCookie(msg.token);
                                 if (msg.tag == 1) {
                                     swal("修改成功");
-                                } else{
+                                }else{
                                     swal("修改失败");
                                 }
                                 javascipt:location.reload();
@@ -335,15 +336,15 @@
                     setCookie(msg.token);
                     var tnn = document.getElementById("nickname");
                     var nickname = msg.nickname;
-                    tnn.innerText = nickname;
-                    var genders=new Array("","男","女")
+                    tnn.innerText = ""+nickname;
+                    var genders=new Array("","男","女");
                     var tg = document.getElementById("gender");
                     var gender = msg.gender;
-                    tg.innerText = genders[gender];
+                    tg.innerText = ""+genders[gender];
 
                     var tp = document.getElementById("phone");
                     var phone = msg.phone;
-                    tp.innerText = phone;
+                    tp.innerText = ""+phone;
 
                     alert(msg.icon);
                     $("#showphoto").attr("href",msg.icon);
@@ -366,27 +367,42 @@
                         $("#liveuper").attr("href","applylivehome.jsp");
                         tlu.innerText = "成为主播";
                     }
-                    if(msg.tag!==-1){
                         alert(msg.tag+"hhh");
                         var tem = "<div class=\"card mb-3\">" +
-                            "<div class=\"card-header\">" +
-                            "<h3><i class=\"fa fa-table\"></i> 我 的 考 拉 关 注</h3>" +
-                            "</div>" +
+                            "<div class=\"card-header\">" + "<h3><i class=\"fa fa-table\"></i>";
+                        if(msg.tag !== -1) {
+                            tem += "我 的 考 拉 关 注</h3>";
+                        }else{
+                            tem += "推 荐 关 注</h3>";
+                        }
+                        tem += "</div>" +
                             "<div class=\"card-body\">" +
                             "<div class=\"table-responsive\">" +
                             "<table id=\"example3\" class=\"table table-bordered table-hover display\">" +
                             "<tbody>";
-                        for(var i = 0 ; i < msg.follows.length ; i++){
-                            tem +="<tr>"+
-                                 "<td><img src='"+msg.follows[i].userpic+
-                                 "' style='width:30px;height:30px;border-radius:50%;'></td>"+
-                                 "<td>"+msg.follows[i].username+"</td>"+
-                                 "<td>"+msg.follows[i].numoffans+"</td></tr>";
+                        if(msg.tag !== -1) {
+                            for (var i = 0; i < msg.follows.length; i++) {
+                                tem += "<tr>" +
+                                    "<td><img src='" + msg.follows[i].userpic +
+                                    "' style='width:30px;height:30px;border-radius:50%;'></td>" +
+                                    "<td>" + msg.follows[i].username + "</td>" +
+                                    "<td>" + msg.follows[i].numoffans + "</td></tr>";
+                            }
+                        }else{
+                            tem += "<tr><td><img src='assets/images/icon1.jpg'"+
+                                "' style='width:30px;height:30px;border-radius:50%;'></td>" +
+                                "<td>会打游戏的小可爱1号</td>" +
+                                "<td>2</td></tr>";
+                            tem += "<tr><td><img src='assets/images/icon2.jpg'"+
+                                "' style='width:30px;height:30px;border-radius:50%;'></td>" +
+                                "<td>LOL小智</td>" +
+                                "<td>3</td></tr>";
+
                         }
                         tem += "</tbody></table></div> </div> </div> </div>";
                         document.getElementById("follow").innerHTML = tem;
 
-                    }
+
                 },
             });
         }

@@ -53,7 +53,7 @@ public class hotlive extends HttpServlet {
         room_tb temp;
         if (all.isEmpty()){
             tag = -1;
-        }else {
+        }else{
             tag = 1;
             for (int i=0;i<all.size();i++){
                 temp = all.get(i);

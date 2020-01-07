@@ -58,6 +58,10 @@ public class showhostmanage extends HttpServlet {
             e.printStackTrace();
         }
 
+        out.print(msg);
+        out.flush();
+        out.close();
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

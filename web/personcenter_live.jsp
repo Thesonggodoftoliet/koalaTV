@@ -234,17 +234,43 @@
 
     function flivem() {
         alert($.cookie("isYT"));
+        var data1 = {
+          token : $.cookie("token")
+        };
         if($.cookie("isYT") === "1"){
-            var tem = "<div class=\"row\">";
-            tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
-            tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
-            tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
-            tem += "<label>直播间ID</label>";
-            tem += "<p id=\"liveid\">00001</p>";
-            tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
-            tem += "<P id=\"category\">英雄联盟</P>";
-            tem += "</div></form></div></div></div></div>";
-            document.getElementById("senthtml").innerHTML = tem;
+            var title;
+            var category;
+            alert("他是主播");
+            $.ajax({
+                type: "POST",
+                url: "/api/live/showhostmanage",
+                data: JSON.stringify(data1),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    title = msg.title;
+                    category = msg.category;
+                    alert(title+" "+category);
+                    var tem = "<div class=\"row\">";
+                    tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+                    tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
+                    tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
+                    tem += "<label>直播间名字</label>";
+                    tem += "<p id=\"liveid\">"+title+"</p>";
+                    tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
+                    tem += "<P id=\"category\">"+category+"</P>";
+                    tem += "</div></form></div></div></div></div>";
+                    document.getElementById("senthtml").innerHTML = tem;
+                    console.log(msg);
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
         }else{
             var tem = "";
             tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
@@ -255,21 +281,67 @@
 
     function fbarm() {
         alert($.cookie("isBH"));
-        if($.cookie("isBH") === "1") {
-            var tem = "<div class=\"row\">" +
-                "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">" +
-                "<div class=\"card mb-3\">" +
-                "<div class=\"card-header\">" +
-                "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
-                "</div><div class=\"card-body\"><form><div class=\"form-group\">" +
-                "<label>话圈ID</label>";
-            tem += "<p id=\"quanid\">00001</p>";
-            tem += " </div><div class=\"form-group\"> <label>话圈主持人ID</label>";
-            tem += " <P> id=\"quanuser\">00001</P>";
-            tem += " </div><div class=\"form-group\"><label>话圈主持人昵称</label>";
-            tem += "<P id=\"quanname\">考拉考拉</P></div> </form></div></div>";
-            document.getElementById("senthtml").innerHTML = tem;
-        }else{
+        if($.cookie("isBH") === "1"){
+            var hostid = -1;
+            var data1={token:$.cookie("token")};
+            if($.cookie("isYT") === "1") {
+                // 这个人是话圈主持人也是主播
+                //进一步判断他是不是这个话圈的主播，如果是，他可以加一个BUTTON 按钮，修改主持人的ID
+                $.ajax({
+                    type: "POST",
+                    url: "/api/live/showhostmanage",
+                    data: JSON.stringify(data1),
+                    cache: false,
+                    contentType: false,    //不可缺
+                    processData: false,    //不可缺
+                    dataType: "json",
+                    async: false,
+                    success: function (msg) {
+                        setCookie(msg.token);
+                        hostid = msg.roomid;
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    }
+                });
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/bar/getbar",
+                data: JSON.stringify(data1),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                async:false,
+                success: function (msg) {
+                    setCookie(msg.token);
+                    var tem = "<div class=\"row\">";
+                    for(var i = 0; i<msg.bars.length;i++){
+                        tem += "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4\">" +
+                            "<div class=\"card mb-3\">" +
+                            "<div class=\"card-header\">" +
+                            "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
+                            "</div><div class=\"card-body\"><form><div class=\"form-group\">" +
+                            "<label>圈名</label>" +
+                            "<p id=\"quanid\">" + msg.bars[i].barname + "</p>" +
+                            "</div><div class=\"form-group\"> <label>话圈主持人ID</label>"+
+                            "<P id=\"quanuser\">" + msg.bars[i].adminid + "</P>" +
+                            "</div><div class=\"form-group\"><label>话圈主持人昵称</label>" +
+                            "<P id=\"quanname\">" + msg.bars[i].adminname + "</P>"+
+                            "</div><div class=\"form-group\"><label>话圈关注度</label>" +
+                            "<P id=\"quanname\">" + msg.bars[i].numofpost + "</P>";
+                        if(hostid === msg.bars[i].adminid){
+                            tem += "<a role='button' class='btn btn-link' style='float: right;'>修改话圈信息</a>";
+                        }
+                        tem +="</div> </form></div>";
+                    }
+                    tem+= "</div>";
+                    document.getElementById("senthtml").innerHTML = tem;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }else{ //不是主持人
             var tem = "";
             tem+="<div class='col-xl-12' align='center'><img src='assets/images/nobar.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
             document.getElementById("senthtml").innerHTML = tem;
@@ -289,11 +361,11 @@
             tem += "</div></form>";
             tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
             tem += "<div class=\"card-body text-info\">";
-            tem += " <h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
+            tem += "<h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
             tem += "</div></div>";
             tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
-            tem += " <div class=\"card-body text-info\">";
-            tem += " <h4 class=\"card-title\">密匙</h4>";
+            tem += "<div class=\"card-body text-info\">";
+            tem += "<h4 class=\"card-title\">密匙</h4>";
             tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
             tem += "</div></div></div></div></div>";
             document.getElementById("senthtml").innerHTML = tem;
