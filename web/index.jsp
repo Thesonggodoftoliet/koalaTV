@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -57,7 +58,7 @@
 
 
           <li class="list-inline-item dropdown notif" >
-            <a class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+            <a class="nav-link dropdown-toggle nav-user" id="xiaoren" href="">
               <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
             </a>
           </li>
@@ -265,6 +266,8 @@
   <script>
       $(document).ready(function(){
           if(checkCookie("token") === false){
+              var id=document.getElementById("xiaoren");
+              id.href="login.jsp";
               swal({
                   title:"你还没有登陆哦～",
                   icon:"warning",
@@ -280,6 +283,8 @@
                   }
               );
           }else{
+              var id = document.getElementById('xiaoren');
+              id.href="personcenter_basic.jsp";
               data1={token:$.cookie("token")};
               $.ajax({
                   type: "POST",

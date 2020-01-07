@@ -171,7 +171,7 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <a role="button" class="btn btn-primary" style="float: right;">修改个人信息</a>
+                                <a role="button" class="btn btn-primary" style="float: right;" onclick=changeinfo()>修改个人信息</a>
                                 <a role="button" class="btn btn-link" style="float: right;"></a>
                                 <a role="button" class="btn btn-warning" style="float: right;" id="liveuper"></a>
 
@@ -242,6 +242,66 @@
         }
     }
 
+    // 修改个人信息
+    function changeinfo(){
+        swal({
+            text: '请输入修改后昵称（如果不进行修改单击下一步）',
+            content: "input",
+            button: {
+                text: "下一步",
+                closeModal: false,
+            },
+        }).then(nickname1 => {
+                swal({
+                    text:'请输入修改后的性别(如果不进行修改点击提交)',
+                    content: "input",
+                    botton:{
+                        text:"提交",
+                        closeModal:false,
+                    },
+                }).then(gender1 => {
+                    if(gender1=="男"){
+                        gender1=1;
+                    } else {
+                        gender1=2;
+                    }
+                    var data1 = {
+                        nickname:nickname1,
+                        gender:gender1,
+                        icon:"",
+                        token: $.cookie("token")
+                    };
+                    $.ajax({
+                            type: "POST",
+                            url: "/api/manage/vimpersonalinfo",
+                            dataType: "json",
+                            data: JSON.stringify(data1),
+                            contentType: "appication/json",
+                            success: function(msg) {
+                                if (msg.tag == 1) {
+                                    swal("修改成功");
+                                } else{
+                                    swal("修改失败");
+                                }
+                                javascipt:location.reload();
+                            },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+                });
+                });
+        }).catch(err => {
+                if (err) {
+                    swal("失败", "AJAX请求失败!", "error");
+                } else {
+                    swal.stopLoading();
+                    swal.close();
+                }
+            });
+    }
+
 
     <!-- 判断当前用户是否已经登陆了 -->
     $(document).ready(function(){
@@ -276,10 +336,10 @@
                     var tnn = document.getElementById("nickname");
                     var nickname = msg.nickname;
                     tnn.innerText = nickname;
-
+                    var genders=new Array("","男","女")
                     var tg = document.getElementById("gender");
                     var gender = msg.gender;
-                    tg.innerText = gender;
+                    tg.innerText = genders[gender];
 
                     var tp = document.getElementById("phone");
                     var phone = msg.phone;
@@ -297,7 +357,7 @@
                         $("#liveuper").attr("value","主播管理");
                     }else if(msg.isBarhost === 1){
                         ti.innerText = "普通用户（话圈主持人）";
-                        $("#liveuper").attr("href","applylivehome.jsp");
+
                         tlu.innerText = "成为主播";
                     }else if(msg.isAdmin === 1){
                         ti.innerText = "管理员";

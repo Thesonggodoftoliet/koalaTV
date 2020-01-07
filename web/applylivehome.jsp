@@ -50,7 +50,7 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user" id="xiaoren" href="personcenter_basic.jsp">
                         <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
                 </li>

@@ -48,7 +48,7 @@
         <ul class="list-inline float-right mb-0">
 
           <li class="list-inline-item dropdown notif" >
-            <a id="userjudge" class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+            <a id="userjudge" class="nav-link dropdown-toggle nav-user"  data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
               <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
             </a>
           </li>
@@ -333,7 +333,7 @@
           });
           $.ajax({
               type: "POST",
-              url: "/api/manage/uploadpic",
+              url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
               data: data,
               cache: false,
               contentType: false,    //不可缺
@@ -375,7 +375,7 @@
               alert(JSON.stringify(data1));
               $.ajax({
                   type:"post",
-                  url:"http://47.106.186.164:8080/koalaTV/api/auth/register",
+                  url:"/api/auth/register",
                   data:JSON.stringify(data1),
                   dataType:"json",
                   success:function(msg){

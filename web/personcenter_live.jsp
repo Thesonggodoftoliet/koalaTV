@@ -219,6 +219,7 @@
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {
+                    console.log(msg);
                     setCookie(msg.token);
                     $.cookie("isYT", msg.isYoutuber);
                     $.cookie("isBH", msg.isBarhost);
