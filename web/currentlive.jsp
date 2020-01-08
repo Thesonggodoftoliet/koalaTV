@@ -140,7 +140,7 @@
                         <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-tags bigfonts" aria-hidden="true"></i><p id="category"></p></div>
 
                         <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
-                            <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><div style="text-align:center;margin: auto" id="focusbutton"></div></div>
+                            <div class="fa-hover col-md-3 col-lg-3 col-xl-3" id="focusbutton"></div>
 
                             <div class="clearfix"></div>
                         </div>
