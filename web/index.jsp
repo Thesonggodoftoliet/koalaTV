@@ -128,10 +128,6 @@
           <div class="content"  style="background-image: url(assets/images/onebk.png);background-size: 100% 65%;background-repeat:no-repeat;">
 
               <div class="container-fluid" style="padding: 10%;">
-
-                  <!-- end row -->
-
-                <div>
                   <div class="row" id="rowdiv">
                       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                           <div  id="id_video_container" style="width:100%; height:auto;"></div>
@@ -145,13 +141,12 @@
                                   <div style="text-align:center;padding: 40%;margin: auto" id="cometobutton">
                                   </div>
 
-
                               </div>
 
                       </div>
                   </div>
 
-                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                           <div class="card mb-3" style="border:1px solid transparent;margin-top: 7%;">
                               <div class="card-body" style="border:1px solid transparent">
 
@@ -191,7 +186,6 @@
               </div>
               <!-- END container-fluid -->
 
-          </div>
           <!-- END content -->
 
       </div>
