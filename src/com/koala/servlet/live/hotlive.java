@@ -24,6 +24,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+  *获取最火的直播间.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/hotlive")
 public class hotlive extends HttpServlet {
     public hotlive() {

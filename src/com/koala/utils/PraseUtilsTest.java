@@ -1,7 +1,9 @@
 package com.koala.utils;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,19 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class PraseUtilsTest {
 
     @Test
-    void addStr() {
-        String oldstr = "1,2,3,4,5,6,";
-        int tag = oldstr.indexOf(""+5);
-        if (tag == 0)
-            oldstr=oldstr.substring(2);
-        else if (tag == oldstr.length()-2)
-            oldstr=oldstr.substring(0,oldstr.length()-2);
-        else {
-            String begin = oldstr.substring(0,tag);
-            String end = oldstr.substring(tag+2);
-            oldstr = begin+end;
-        }
-        System.out.println("follow "+oldstr);
+    void addStr() throws JSONException, IOException {
+
     }
 
     @Test

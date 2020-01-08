@@ -19,7 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *获取所有关注的话圈信息.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/bar/getbar")
 public class getbar extends HttpServlet {
     public getbar() {

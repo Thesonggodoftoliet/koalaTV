@@ -19,7 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *获取某个话圈的全部帖子.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/bar/getallbar")
 public class getallbar extends HttpServlet {
     public getallbar() {
@@ -62,7 +66,7 @@ public class getallbar extends HttpServlet {
                     object.put("userpic","http://47.106.186.164:8080/imgs/"+userManage.getUserById(bar.getUserid()).getIcon());
                     object.put("posttime",bar.getPosttime());
                     object.put("content",bar.getContent());
-                    object.put("pic",bar.getPic());
+                    object.put("pic","http://47.106.186.164:8080/imgs/"+bar.getPic());
                     object.put("replynum",bar.getReplynum());
                     object.put("latesttime",bar.getLastreplytime());
                     post.put(object);

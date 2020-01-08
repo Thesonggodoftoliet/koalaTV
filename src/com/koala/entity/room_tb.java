@@ -1,5 +1,7 @@
 package com.koala.entity;
 
+import java.util.Objects;
+
 /**
   *一个直播间的信息.
   *@author Marting.Lee
@@ -77,5 +79,19 @@ public class room_tb {
 
     public void setForbidend(long forbidend) {
         this.forbidend = forbidend;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        room_tb roomTb = (room_tb) o;
+        return roomid == roomTb.roomid &&
+                hostid == roomTb.hostid;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roomid, hostid);
     }
 }

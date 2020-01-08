@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *修改个人信息.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/manage/vimpersonalinfo")
 public class vimpersonalinfo extends HttpServlet {
     public vimpersonalinfo() {

@@ -19,7 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *搜索帖子.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/bar/searchpost")
 public class searchpost extends HttpServlet {
     public searchpost() {
@@ -66,6 +70,7 @@ public class searchpost extends HttpServlet {
                     object.put("pic",url+barList.get(i).getPic());
                     object.put("content",barList.get(i).getContent());
                     object.put("username",userManage.getUserById(barList.get(i).getUserid()).getNickname());
+                    object.put("userpic",url+userManage.getUserById(barList.get(i).getUserid()).getIcon());
                     bars.put(object);
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *更换话圈主持人.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/bar/changeadmin")
 public class changeadmin extends HttpServlet {
     public changeadmin() {

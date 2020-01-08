@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *注册.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/auth/register")
 public class register extends HttpServlet {
     public register() {
@@ -42,6 +46,7 @@ public class register extends HttpServlet {
             user.setGender(jsonObject.getInt("gender"));
             user.setNickname(jsonObject.getString("nickname"));
             user.setIcon(jsonObject.getString("icon"));
+            user.setFollow("");
         } catch (JSONException e) {
             e.printStackTrace();
         }

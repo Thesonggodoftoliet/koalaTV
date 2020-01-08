@@ -21,7 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *个人信息获取.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/manage/personalinfo")
 public class personalinfo extends HttpServlet {
     public personalinfo() {

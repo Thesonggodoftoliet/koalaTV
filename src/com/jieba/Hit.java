@@ -53,7 +53,8 @@ public class Hit {
 	
 	
 	/**
-	 * 判断是否完全匹配
+	 * 判断是否完全匹配.
+	 * @return boolean
 	 */
 	public boolean isMatch() {
 		return (this.hitState & MATCH) > 0;
@@ -66,7 +67,8 @@ public class Hit {
 	}
 
 	/**
-	 * 判断是否是词的前缀
+	 * 判断是否是词的前缀.
+	 * @return boolean
 	 */
 	public boolean isPrefix() {
 		return (this.hitState & PREFIX) > 0;
@@ -78,7 +80,8 @@ public class Hit {
 		this.hitState = this.hitState | PREFIX;
 	}
 	/**
-	 * 判断是否是不匹配
+	 * 判断是否是不匹配.
+	 * @return boolean
 	 */
 	public boolean isUnmatch() {
 		return this.hitState == UNMATCH ;

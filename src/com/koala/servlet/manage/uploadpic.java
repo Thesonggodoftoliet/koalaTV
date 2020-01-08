@@ -15,7 +15,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *图片上传.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/manage/uploadpic")
 public class uploadpic extends HttpServlet {
     public uploadpic() {

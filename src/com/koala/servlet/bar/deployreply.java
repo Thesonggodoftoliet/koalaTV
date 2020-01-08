@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *发表回复.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/bar/deployreply")
 public class deployreply extends HttpServlet {
     public deployreply() {

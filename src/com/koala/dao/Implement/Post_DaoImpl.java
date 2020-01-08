@@ -111,7 +111,7 @@ public class Post_DaoImpl implements Post_Dao {
       **/
     @Override
     public boolean updateReply(post_ post) {
-        String sql = "update post_"+post.getHostid()+post.getBarid()+ " set posttime='"+post.getPosttime()+"','"+post.getContent()+"' where postid="+post.getPostid();
+        String sql = "update post_"+post.getHostid()+post.getBarid()+ " set posttime='"+post.getPosttime()+"',content='"+post.getContent()+"' where postid="+post.getPostid();
         String sql1 = "update bar_"+post.getHostid()+" set lastreplytime='"+post.getPosttime()+"' where barid="+post.getBarid();
 
         if (JdbcUtils.executeTran(sql,sql1))
@@ -126,11 +126,10 @@ public class Post_DaoImpl implements Post_Dao {
       * @return boolean
       **/
     @Override
-    public boolean deleteReply(post_ post) {
-        String sql = "delete from post_"+post.getHostid()+post.getBarid()+" where postid = ?";
-        int tag = JdbcUtils.executeSQL(sql,post.getPostid());
-        if (tag == 0)return false;
-        else return true;
+    public boolean deleteReply(post_ post,int num) {
+        String sql = "delete from post_"+post.getHostid()+post.getBarid()+" where postid ="+post.getPostid();
+        String sql1 = "update bar_"+post.getHostid()+" set replynum ="+num+" where barid="+post.getBarid();
+        return JdbcUtils.executeTran(sql,sql1);
     }
 
     /**

@@ -215,7 +215,7 @@ public class RoomManageImpl implements RoomManage {
 
     /**
       *对封锁的直播间解除封禁.
-      * @param roomid
+      * @param roomid int
       * @return boolean
       **/
     @Override
