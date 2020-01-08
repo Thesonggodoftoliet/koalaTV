@@ -106,7 +106,7 @@
               <ul class="list-unstyled">
                 <li><a href="personcenter_basic.jsp">基本信息</a></li>
                 <li><a href="personcenter_live.jsp">直播管理</a></li>
-                <li><a>退出登陆</a></li>
+                <li><a href="login.jsp">切换账号</a></li>
               </ul>
             </li>
             <li class="submenu" style="position:bottom left;">
@@ -142,7 +142,7 @@
                                   <div  class="fa-hover" ><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
                                   <div  class="fa-hover" ><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
                                   <div  class="fa-hover" ><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
-                                  <div style="text-align:center;" id="cometobutton">
+                                  <div style="text-align:center;padding: 40%;margin: auto" id="cometobutton">
                                   </div>
 
 
@@ -300,7 +300,7 @@
                           document.getElementById("category").innerText = msg.rooms[0].category;
                           document.getElementById("username").innerText = msg.rooms[0].username;
                           document.getElementById("watch").innerText = msg.rooms[0].watch;
-                          document.getElementById("cometobutton").innerHTML = "<a href='currentlive.jsp?roomid="+msg.rooms[0].roomid+"'><button class='btn btn-warning' align='center' style='background-color: rgba(255,255,255,1.0);color: rgb(247,203,102)'>前往直播间</button></a>";
+                          document.getElementById("cometobutton").innerHTML = "<a href='currentlive.jsp?roomid="+msg.rooms[0].roomid+"'><button class='btn btn-warning' align='center' style='display：block; background-color: rgba(255,255,255,1.0);color: rgb(247,203,102);margin:0 auto'>前往直播间</button></a>";
                           var option = {
                               "live_url" : msg.rooms[0].rtmpurl,
                               "live_url2" : msg.rooms[0].flvurl,

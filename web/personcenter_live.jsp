@@ -96,7 +96,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">
@@ -114,17 +114,17 @@
 
     <div class="content-page">
         <!-- Start content -->
-        <div class="content" style="width: 100%;padding: 5%;">
+        <div class="content" style="width: 100%;padding: 5%;" >
             <nav class="navbar-custom">
                 <ul class="list-inline float-left mb-0">
-                    <li class="list-inline-item dropdown notif" id="livem" onclick="flivem()">
-                        <p>直播间管理</p>
+                    <li class="list-inline-item dropdown notif" id="livem" style="color: #ffffff;"  onclick="flivem()">
+                        <font size="5">直播间管理</font>
                     </li>
-                    <li class="list-inline-item dropdown notif" id="barm" onclick="fbarm()">
-                        <p>话圈管理</p>
+                    <li class="list-inline-item dropdown notif" id="barm" style="color: #ffffff;" onclick="fbarm()">
+                        <font size="5">话圈管理</font>
                     </li>
-                    <li class="list-inline-item dropdown notif" id="applym" onclick="fapplym()">
-                        <p>申请本次直播</p>
+                    <li class="list-inline-item dropdown notif" id="applym" style="color: #ffffff;" onclick="fapplym()">
+                        <font size="5">申请本次直播</font>
                     </li>
 
                 </ul>
@@ -331,7 +331,7 @@
                             "</div><div class=\"form-group\"><label>话圈关注度</label>" +
                             "<P id=\"quanname\">" + msg.bars[i].numofpost + "</P>";
                         if(hostid === msg.bars[i].adminid){
-                            tem += "<a role='button' class='btn btn-link' style='float: right;'>修改话圈信息</a>";
+                            tem += "<a role='button' class='btn btn-warning' style='float: right;' onclick=setbarhost()>修改话圈信息</a>";
                         }
                         tem +="</div> </form></div>";
                     }
@@ -374,6 +374,52 @@
             tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
             document.getElementById("senthtml").innerHTML = tem;
         }
+    }
+
+    // 任命主持人
+    function setbarhost() {
+        swal({
+            text: '请输入待任命主持人的id',
+            content: "input",
+            button: {
+                text: "确定",
+                closeModal: false,
+            },
+        }).then(applyid=>{
+            var data1={
+                adminid:applyid,
+                token: $.cookie("token")
+            };
+            $.ajax({
+                type: "POST",
+                url: "/api/bar/changeadmin",
+                dataType: "json",
+                data: JSON.stringify(data1),
+                contentType: "appication/json",
+                success: function(msg) {
+                    setCookie(msg.token);
+                    if (msg.tag == 1) {
+                        swal("修改成功");
+                    }else{
+                        swal("修改失败");
+                    }
+                    javascipt:location.reload();
+                },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
+
+        }).catch(err => {
+            if (err) {
+                swal("失败", "AJAX请求失败!", "error");
+            } else {
+                swal.stopLoading();
+                swal.close();
+            }
+        });
     }
 
     function applyButton(){

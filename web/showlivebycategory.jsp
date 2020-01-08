@@ -89,7 +89,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">
@@ -110,7 +110,7 @@
     <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                <div class="row" id="home">
+                <div class="row" id="home" style="padding: 8%">
                    <!-- end card-->
                 </div>
                 </div>
@@ -227,10 +227,10 @@
                     else{
                         alert("hhhhhhhhhhhh");
                         for(var i=0,l=json.rooms.length;i<l;i++){
-                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>";
+                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>";
                             tem+="<h3>"+json.rooms[i].title+"</h3>";
-                            tem+="</div><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
-                            tem+="</div></div></div></div>";
+                            tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 100px;width:160px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                            tem+="</div></div></a></div></div>";
                         }
                     }
                     $("#home").html(tem);

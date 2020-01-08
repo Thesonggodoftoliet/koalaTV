@@ -96,7 +96,7 @@
               <ul class="list-unstyled">
                 <li><a href="personcenter_basic.jsp">基本信息</a></li>
                 <li><a href="personcenter_live.jsp">直播管理</a></li>
-                <li><a>退出登陆</a></li>
+                <li><a href="login.jsp">切换账号</a></li>
               </ul>
             </li>
             <li></li>
