@@ -1,0 +1,47 @@
+<view class="content0">
+  <view class="bg">
+    <view class="name">考拉话圈</view>
+    <form bindsubmit="formSubmit">
+      <view class="search">
+        <input type="text" name="find" class="find_input" placeholder="帖子名称" form-type="submit" />
+      </view>
+      <button class='btn' form-type="submit">
+        <icon type="search" size="50"></icon>
+      </button>
+    </form>
+  </view>
+</view>
+
+<view class="blank"></view>
+<view wx:for="{{list}}" wx:key="PostList">
+  <navigator url="../review/review" bindtap="savebar" data-list="{{item}}" open-type="navigate">
+    <view class="content">
+      <image class="photo" src="{{item.userpic}}"></image>
+      <view class="company">
+        <view>#{{item.title}}#</view>
+        <view class="attr">
+          <text class="time">圈主:{{item.username}}</text>
+        </view>
+      </view>
+      <view class="article">
+        {{that.data.imgerrs[item.hostid]}} {{item.content}}
+      </view>
+      <view class="img {{imgerrs[index]?'show':'hide'}}">
+        <image style="height：100%" mode="aspectFit" src="{{item.pic}}" bindload="imgsuccess" binderror="imgerr" data-index="{{index}}">
+        </image>
+      </view>
+    </view>
+    <view class="info">
+      <view class="huifu">
+        <text>{{item.replynum}}</text>
+        <text style='color:rgb(105,105,105)'> 回复</text>
+      </view>
+      <view class="company">
+        <view class="attr">
+          <text class="time">发圈时间:{{item.posttime}}\n</text>
+          <text class="time">最新评论:{{item.latesttime}}</text>
+        </view>
+      </view>
+    </view>
+  </navigator>
+</view>
