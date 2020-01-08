@@ -191,7 +191,7 @@
         <!-- END container-fluid -->
     </div>
     <!-- END content -->
-
+    </div>
 </div>
 
 
