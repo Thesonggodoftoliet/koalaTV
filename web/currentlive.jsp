@@ -322,7 +322,7 @@
         var data2 = {roomid:roomid,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "/api/live/showfocus",
+            url: "http://47.106.186.164:8080/koalaTV/api/live/showfocus",
             data: JSON.stringify(data2),
             cache: false,
             contentType: false,    //不可缺
