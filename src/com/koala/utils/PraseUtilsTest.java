@@ -17,7 +17,12 @@ class PraseUtilsTest {
 
     @Test
     void addStr() throws JSONException, IOException {
-
+        String str = ",";
+        int tag = str.indexOf(",");
+        System.out.println("tag"+tag);
+        str = str.substring(0,tag);
+        if (!str.isEmpty())
+            System.out.println("str"+str);
     }
 
     @Test

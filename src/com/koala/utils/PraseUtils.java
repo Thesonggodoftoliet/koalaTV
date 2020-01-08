@@ -17,7 +17,7 @@ public class PraseUtils {
     public static List<Integer> sToi(String str){
         System.out.println("调用sToi"+str);
         List list = new ArrayList();
-        if (str == null)
+        if (str.equals(","))
             return null;
         if (str.indexOf("[")!=-1 || str.indexOf("]")!=-1)
         {
@@ -52,7 +52,7 @@ public class PraseUtils {
       **/
     public static String addStr(String oldstr,String newstr){
 
-        if (oldstr == null)
+        if (oldstr.equals(","))
             return newstr+",";
 
         if (oldstr.indexOf('[')!=-1 || oldstr.indexOf(']')!=-1) {

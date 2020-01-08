@@ -46,7 +46,7 @@ public class register extends HttpServlet {
             user.setGender(jsonObject.getInt("gender"));
             user.setNickname(jsonObject.getString("nickname"));
             user.setIcon(jsonObject.getString("icon"));
-            user.setFollow("");
+            user.setFollow(",");
         } catch (JSONException e) {
             e.printStackTrace();
         }
