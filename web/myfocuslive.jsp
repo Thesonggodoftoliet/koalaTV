@@ -11,10 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pike Admin - Free Bootstrap 4 Admin Template</title>
-    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-
-
+    <title>考拉直播---我的关注</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -45,7 +42,7 @@
 
 </head>
 
-<body class="adminbody" background="assets/images/background2.png">
+<body class="adminbody">
 
 <div id="main">
     <!-- top bar navigation -->
@@ -53,7 +50,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
         </div>
 
         <nav class="navbar-custom">
@@ -111,7 +108,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li></li>
@@ -136,7 +133,7 @@
         <div class="content">
 
             <div class="container-fluid">
-                <div class="row" id="home">
+                <div class="row" id="home" style="padding:8%;">
 
 
                 </div>
@@ -235,15 +232,15 @@
                  dataType:"json",
                  success:function(json){
                      var tem = " ";
-                     alert(json.tag);
+                     setCookie(json.token);
                      if(json.tag === -1){
-                         tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:95%;height:auto;' /></div><div class='clearfix'></div>";
+                         tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
                      }
                      else{
                          for(var i=0;i<json.rooms.length;i++){
-                             tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>\n";
+                             tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>";
                              tem+="<h3>"+json.rooms[i].title+"</h3>";
-                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 100px;width:160px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
                              tem+="</div></div></a></div></div>";
                          }
                      }

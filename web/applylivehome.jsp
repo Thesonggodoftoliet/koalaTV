@@ -50,7 +50,7 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user" id="xiaoren" href="personcenter_basic.jsp">
                         <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
                     </a>
                 </li>
@@ -98,7 +98,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">

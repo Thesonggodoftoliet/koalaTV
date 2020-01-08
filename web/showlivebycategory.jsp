@@ -35,7 +35,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
         </div>
 
         <nav class="navbar-custom">
@@ -89,7 +89,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">
@@ -110,9 +110,7 @@
     <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                <div class="row">
-                    <div id="home">
-                    </div>
+                <div class="row" id="home" style="padding: 8%">
                    <!-- end card-->
                 </div>
                 </div>
@@ -155,10 +153,7 @@
     <!-- BEGIN Java Script for this page -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-        } );
-    </script>
+
 <script>
     function getQueryString(name) {
         let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -214,6 +209,7 @@
 
         }
         else{
+            if(cate === "csgo") {cate = "CS:GO";}
             data1={token: token,category: cate};
             $.ajax({
                 type:"post",
@@ -222,18 +218,19 @@
                 cache: false,
                 dataType:"json",
                 success:function(json){
+                    setCookie(json.token);
                     var tem = " ";
                     alert(json.tag);
                     if(json.tag === -1){
-                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:95%;height:auto;' /></div><div class='clearfix'></div>";
+                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
                     }
                     else{
                         alert("hhhhhhhhhhhh");
                         for(var i=0,l=json.rooms.length;i<l;i++){
-                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card mb-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>\n";
+                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>";
                             tem+="<h3>"+json.rooms[i].title+"</h3>";
-                            tem+="</div><div class='card-body'><div><img class='img-fluid' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
-                            tem+="</div></div></div></div>";
+                            tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 100px;width:160px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                            tem+="</div></div></a></div></div>";
                         }
                     }
                     $("#home").html(tem);

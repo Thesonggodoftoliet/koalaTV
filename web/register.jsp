@@ -40,7 +40,7 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
       </div>
 
       <nav class="navbar-custom">
@@ -48,7 +48,7 @@
         <ul class="list-inline float-right mb-0">
 
           <li class="list-inline-item dropdown notif" >
-            <a id="userjudge" class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+            <a id="userjudge" class="nav-link dropdown-toggle nav-user"  data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
               <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
             </a>
           </li>
@@ -96,7 +96,7 @@
               <ul class="list-unstyled">
                 <li><a href="personcenter_basic.jsp">基本信息</a></li>
                 <li><a href="personcenter_live.jsp">直播管理</a></li>
-                <li><a>退出登陆</a></li>
+                <li><a href="login.jsp">切换账号</a></li>
               </ul>
             </li>
             <li></li>
@@ -243,11 +243,6 @@
   <!-- BEGIN Java Script for this page -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <script>
-      $(document).ready(function() {
-
-      } );
-  </script>
 
   <!-- 注册请求 -->
   <!-- 这个注册还差，验证码，还差上传（默认）头像的功能-->
@@ -289,7 +284,7 @@
           data1={phone:$('#phone').val()};
           $.ajax({
               type:"post",
-              url:"http://47.106.186.164:8080/koalaTV/api/auth/identify",
+              url:"/api/auth/identify",
               data:JSON.stringify(data1),
               dataType:"json",
               success:function(msg) {

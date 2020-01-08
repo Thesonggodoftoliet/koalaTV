@@ -88,7 +88,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -96,7 +96,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">
@@ -114,17 +114,17 @@
 
     <div class="content-page">
         <!-- Start content -->
-        <div class="content" style="width: 100%;padding: 5%;">
+        <div class="content" style="width: 100%;padding: 5%;" >
             <nav class="navbar-custom">
                 <ul class="list-inline float-left mb-0">
-                    <li class="list-inline-item dropdown notif" id="livem" onclick="flivem()">
-                        <p>直播间管理</p>
+                    <li class="list-inline-item dropdown notif" id="livem" style="color: #ffffff;"  onclick="flivem()">
+                        <font size="5">直播间管理</font>
                     </li>
-                    <li class="list-inline-item dropdown notif" id="barm" onclick="fbarm()">
-                        <p>话圈管理</p>
+                    <li class="list-inline-item dropdown notif" id="barm" style="color: #ffffff;" onclick="fbarm()">
+                        <font size="5">话圈管理</font>
                     </li>
-                    <li class="list-inline-item dropdown notif" id="applym" onclick="fapplym()">
-                        <p>申请本次直播</p>
+                    <li class="list-inline-item dropdown notif" id="applym" style="color: #ffffff;" onclick="fapplym()">
+                        <font size="5">申请本次直播</font>
                     </li>
 
                 </ul>
@@ -212,59 +212,214 @@
 
         }
         else{
-            flivem();
+            var data1={token:$.cookie("token")};
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
+                data: JSON.stringify(data1),
+                dataType: "json",
+                success: function (msg) {
+                    console.log(msg);
+                    setCookie(msg.token);
+                    $.cookie("isYT", msg.isYoutuber);
+                    $.cookie("isBH", msg.isBarhost);
+                    $.cookie("isAD", msg.isAdmin);
+                    flivem();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
         }
     });
 
     function flivem() {
-        var tem = "<div class=\"row\">";
-        tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
-        tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
-        tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
-        tem += "<label>直播间ID</label>";
-        tem += "<p id=\"liveid\">00001</p>";
-        tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
-        tem += "<P id=\"category\">英雄联盟</P>";
-        tem += "</div></form></div></div></div></div>";
-        document.getElementById("senthtml").innerHTML = tem;
+        alert($.cookie("isYT"));
+        var data1 = {
+          token : $.cookie("token")
+        };
+        if($.cookie("isYT") === "1"){
+            var title;
+            var category;
+            alert("他是主播");
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
+                data: JSON.stringify(data1),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    title = msg.title;
+                    category = msg.category;
+                    alert(title+" "+category);
+                    var tem = "<div class=\"row\">";
+                    tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+                    tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
+                    tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
+                    tem += "<label>直播间名字</label>";
+                    tem += "<p id=\"liveid\">"+title+"</p>";
+                    tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
+                    tem += "<P id=\"category\">"+category+"</P>";
+                    tem += "</div></form></div></div></div></div>";
+                    document.getElementById("senthtml").innerHTML = tem;
+                    console.log(msg);
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
+        }else{
+            var tem = "";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            document.getElementById("senthtml").innerHTML = tem;
 
+        }
     }
 
     function fbarm() {
-        var tem = "<div class=\"row\">" +
-                "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">" +
-                "<div class=\"card mb-3\">" +
-                "<div class=\"card-header\">" +
-                "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
-                "</div><div class=\"card-body\"><form><div class=\"form-group\">" +
-                "<label>话圈ID</label>";
-        tem += "<p id=\"quanid\">00001</p>";
-        tem += " </div><div class=\"form-group\"> <label>话圈主持人ID</label>";
-        tem += " <P> id=\"quanuser\">00001</P>";
-        tem += " </div><div class=\"form-group\"><label>话圈主持人昵称</label>";
-        tem += "<P id=\"quanname\">考拉考拉</P></div> </form></div></div>";
-        document.getElementById("senthtml").innerHTML = tem;
+        alert($.cookie("isBH"));
+        if($.cookie("isBH") === "1"){
+            var hostid = -1;
+            var data1={token:$.cookie("token")};
+            if($.cookie("isYT") === "1") {
+                // 这个人是话圈主持人也是主播
+                //进一步判断他是不是这个话圈的主播，如果是，他可以加一个BUTTON 按钮，修改主持人的ID
+                $.ajax({
+                    type: "POST",
+                    url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
+                    data: JSON.stringify(data1),
+                    cache: false,
+                    contentType: false,    //不可缺
+                    processData: false,    //不可缺
+                    dataType: "json",
+                    async: false,
+                    success: function (msg) {
+                        setCookie(msg.token);
+                        hostid = msg.roomid;
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    }
+                });
+            }
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.186.164:8080/koalaTV/api/bar/getbar",
+                data: JSON.stringify(data1),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                async:false,
+                success: function (msg) {
+                    setCookie(msg.token);
+                    var tem = "<div class=\"row\">";
+                    for(var i = 0; i<msg.bars.length;i++){
+                        tem += "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4\">" +
+                            "<div class=\"card mb-3\">" +
+                            "<div class=\"card-header\">" +
+                            "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
+                            "</div><div class=\"card-body\"><form><div class=\"form-group\">" +
+                            "<label>圈名</label>" +
+                            "<p id=\"quanid\">" + msg.bars[i].barname + "</p>" +
+                            "</div><div class=\"form-group\"> <label>话圈主持人ID</label>"+
+                            "<P id=\"quanuser\">" + msg.bars[i].adminid + "</P>" +
+                            "</div><div class=\"form-group\"><label>话圈主持人昵称</label>" +
+                            "<P id=\"quanname\">" + msg.bars[i].adminname + "</P>"+
+                            "</div><div class=\"form-group\"><label>话圈关注度</label>" +
+                            "<P id=\"quanname\">" + msg.bars[i].numofpost + "</P>";
+                        if(hostid === msg.bars[i].adminid){
+                            tem += "<a role='button' class='btn btn-warning' style='float: right;' onclick=setbarhost()>修改话圈信息</a>";
+                        }
+                        tem +="</div> </form></div>";
+                    }
+                    tem+= "</div>";
+                    document.getElementById("senthtml").innerHTML = tem;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }else{ //不是主持人
+            var tem = "";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nobar.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }
 
     }
 
     function fapplym() {
-        var tem = "<div class='row'> <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
-        tem += "<div class=\"card mb-3\"><div class=\"card-header\">";
-        tem += "<h3><i class=\"fa fa-check-square-o\"></i> 申请直播 </h3></div>";
-        tem += "<div class=\"card-body\"><form method=\"post\"><div class=\"form-group\">";
-        tem += "<label>直播间标题</label><input data-parsley-equalto=\"#pass1\" type=\"text\" required=\"\" class=\"form-control\" id=\"title\">";
-        tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\"  onclick=\"applyButton()\">";
-        tem += "</div></form>";
-        tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
-        tem += "<div class=\"card-body text-info\">";
-        tem += " <h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
-        tem += "</div></div>";
-        tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
-        tem += " <div class=\"card-body text-info\">";
-        tem += " <h4 class=\"card-title\">密匙</h4>";
-        tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
-        tem += "</div></div></div></div></div>";
-        document.getElementById("senthtml").innerHTML = tem;
+        alert($.cookie("isYT"));
+        if($.cookie("isYT") === "1") {
+            var tem = "<div class='row'> <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card mb-3\"><div class=\"card-header\">";
+            tem += "<h3><i class=\"fa fa-check-square-o\"></i> 申请直播 </h3></div>";
+            tem += "<div class=\"card-body\"><form method=\"post\"><div class=\"form-group\">";
+            tem += "<label>直播间标题</label><input data-parsley-equalto=\"#pass1\" type=\"text\" required=\"\" class=\"form-control\" id=\"title\">";
+            tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\"  onclick=\"applyButton()\">";
+            tem += "</div></form>";
+            tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card-body text-info\">";
+            tem += "<h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
+            tem += "</div></div>";
+            tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card-body text-info\">";
+            tem += "<h4 class=\"card-title\">密匙</h4>";
+            tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
+            tem += "</div></div></div></div></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }else{
+            var tem = "";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            document.getElementById("senthtml").innerHTML = tem;
+        }
+    }
+
+    // 任命主持人
+    function setbarhost() {
+        swal({
+            text: '请输入待任命主持人的id',
+            content: "input",
+            button: {
+                text: "确定",
+                closeModal: false,
+            },
+        }).then(applyid=>{
+            var data1={
+                adminid:applyid,
+                token: $.cookie("token")
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.186.164:8080/koalaTV/api/bar/changeadmin",
+                dataType: "json",
+                data: JSON.stringify(data1),
+                contentType: "appication/json",
+                success: function(msg) {
+                    setCookie(msg.token);
+                    if (msg.tag == 1) {
+                        swal("修改成功");
+                    }else{
+                        swal("修改失败");
+                    }
+                    javascipt:location.reload();
+                },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
+
+        }).catch(err => {
+            if (err) {
+                swal("失败", "AJAX请求失败!", "error");
+            } else {
+                swal.stopLoading();
+                swal.close();
+            }
+        });
     }
 
     function applyButton(){

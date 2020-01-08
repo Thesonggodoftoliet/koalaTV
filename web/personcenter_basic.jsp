@@ -33,7 +33,6 @@
 </head>
 
 <body class="adminbody" style="background: rgb(255,255,255)">
-
 <div id="main">
 
     <!-- top bar navigation -->
@@ -100,7 +99,7 @@
                         <ul class="list-unstyled">
                             <li><a href="personcenter_basic.jsp">基本信息</a></li>
                             <li><a href="personcenter_live.jsp">直播管理</a></li>
-                            <li><a>退出登陆</a></li>
+                            <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
                     <li></li>
@@ -124,7 +123,7 @@
             <div class="content">
 
                 <div class="row"  style="width: 95%;padding: 5%;">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border: 1px solid transparent;background:url(0);">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border: 1px solid transparent;">
                         <div class="card mb-3" style="border: 1px solid transparent;background:url(0);">
                             <div class="card-header" style="border: 1px solid transparent;background:url(0);">
                                 <h3><i class="fa fa-image"></i> 头 像 </h3>
@@ -132,7 +131,7 @@
 
                             <div class="card-body" style="border: 1px solid transparent;background:url(0);">
                                 <a data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                                    <img alt="image" id="showphoto" class="img-fluid" style="width:50px; height:50px;">
+                                    <img alt="image" id="showphoto" class="img-fluid" style="width:60px; height:60px;">
                                 </a>
                             </div>
                         </div><!-- end card-->
@@ -172,7 +171,7 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <a role="button" class="btn btn-primary" style="float: right;">修改个人信息</a>
+                                <a role="button" class="btn btn-primary" style="float: right;" onclick=changeinfo()>修改个人信息</a>
                                 <a role="button" class="btn btn-link" style="float: right;"></a>
                                 <a role="button" class="btn btn-warning" style="float: right;" id="liveuper"></a>
 
@@ -180,14 +179,14 @@
                         </div><!-- end card-->
 
 
-                </div>
 
-            </div></div>
-    </body>
+                </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="follow">
+                    </div>
+
+                </div></div></div></div>
     <!-- END content-page -->
 
-    <footer class="footer">
-    </footer>
 
 </div>
 <!-- END main -->
@@ -243,6 +242,67 @@
         }
     }
 
+    // 修改个人信息
+    function changeinfo(){
+        swal({
+            text: '请输入修改后昵称（如果不进行修改单击下一步）',
+            content: "input",
+            button: {
+                text: "下一步",
+                closeModal: false,
+            },
+        }).then(nickname1 => {
+                swal({
+                    text:'请输入修改后的性别(如果不进行修改点击提交)',
+                    content: "input",
+                    botton:{
+                        text:"提交",
+                        closeModal:false,
+                    },
+                }).then(gender1 => {
+                    if(gender1=="男"){
+                        gender1=1;
+                    } else {
+                        gender1=2;
+                    }
+                    var data1 = {
+                        nickname:nickname1,
+                        gender:gender1,
+                        icon:"",
+                        token: $.cookie("token")
+                    };
+                    $.ajax({
+                            type: "POST",
+                            url: "http://47.106.186.164:8080/koalaTV/api/manage/vimpersonalinfo",
+                            dataType: "json",
+                            data: JSON.stringify(data1),
+                            contentType: "appication/json",
+                            success: function(msg) {
+                                setCookie(msg.token);
+                                if (msg.tag == 1) {
+                                    swal("修改成功");
+                                }else{
+                                    swal("修改失败");
+                                }
+                                javascipt:location.reload();
+                            },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+                });
+                });
+        }).catch(err => {
+                if (err) {
+                    swal("失败", "AJAX请求失败!", "error");
+                } else {
+                    swal.stopLoading();
+                    swal.close();
+                }
+            });
+    }
+
 
     <!-- 判断当前用户是否已经登陆了 -->
     $(document).ready(function(){
@@ -266,23 +326,25 @@
         else{
            <!-- 获取当前用户的信息并载入到页面中 -->
             var data1={token:$.cookie("token")};
+            alert($.cookie("token"));
             $.ajax({
                 type: "post",
                 url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {
+                    setCookie(msg.token);
                     var tnn = document.getElementById("nickname");
                     var nickname = msg.nickname;
-                    tnn.innerText = nickname;
-
+                    tnn.innerText = ""+nickname;
+                    var genders=new Array("","男","女");
                     var tg = document.getElementById("gender");
                     var gender = msg.gender;
-                    tg.innerText = gender;
+                    tg.innerText = ""+genders[gender];
 
                     var tp = document.getElementById("phone");
                     var phone = msg.phone;
-                    tp.innerText = phone;
+                    tp.innerText = ""+phone;
 
                     alert(msg.icon);
                     $("#showphoto").attr("href",msg.icon);
@@ -296,7 +358,7 @@
                         $("#liveuper").attr("value","主播管理");
                     }else if(msg.isBarhost === 1){
                         ti.innerText = "普通用户（话圈主持人）";
-                        $("#liveuper").attr("href","applylivehome.jsp");
+
                         tlu.innerText = "成为主播";
                     }else if(msg.isAdmin === 1){
                         ti.innerText = "管理员";
@@ -305,28 +367,42 @@
                         $("#liveuper").attr("href","applylivehome.jsp");
                         tlu.innerText = "成为主播";
                     }
-
-                    if(msg.tag!==-1){
-                        var tem ="<div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6\">" +
-                            "<div class=\"card mb-3\">" +
-                            "<div class=\"card-header\">" +
-                            "<h3><i class=\"fa fa-table\"></i> 我 的 考 拉 关 注</h3>" +
-                            "</div>" +
+                        alert(msg.tag+"hhh");
+                        var tem = "<div class=\"card mb-3\">" +
+                            "<div class=\"card-header\">" + "<h3><i class=\"fa fa-table\"></i>";
+                        if(msg.tag !== -1) {
+                            tem += "我 的 考 拉 关 注</h3>";
+                        }else{
+                            tem += "推 荐 关 注</h3>";
+                        }
+                        tem += "</div>" +
                             "<div class=\"card-body\">" +
                             "<div class=\"table-responsive\">" +
                             "<table id=\"example3\" class=\"table table-bordered table-hover display\">" +
                             "<tbody>";
-                        for(var i = 0 ; i < msg.follows.length ; i++){
-                            tem +="<tr>"+
-                                 "<td><img src="+msg.follows[i].userpic+
-                                 " style='width:30px;height:30px;border-radius:50%;'></td>"+
-                                 "<td>"+msg.follows[i].nickname+"</td>"+
-                                 "<td>"+numofans+"</td></tr>";
+                        if(msg.tag !== -1) {
+                            for (var i = 0; i < msg.follows.length; i++) {
+                                tem += "<tr>" +
+                                    "<td><img src='" + msg.follows[i].userpic +
+                                    "' style='width:30px;height:30px;border-radius:50%;'></td>" +
+                                    "<td>" + msg.follows[i].username + "</td>" +
+                                    "<td>" + msg.follows[i].numoffans + "</td></tr>";
+                            }
+                        }else{
+                            tem += "<tr><td><img src='assets/images/icon1.jpg'"+
+                                "' style='width:30px;height:30px;border-radius:50%;'></td>" +
+                                "<td>会打游戏的小可爱1号</td>" +
+                                "<td>2</td></tr>";
+                            tem += "<tr><td><img src='assets/images/icon2.jpg'"+
+                                "' style='width:30px;height:30px;border-radius:50%;'></td>" +
+                                "<td>LOL小智</td>" +
+                                "<td>3</td></tr>";
+
                         }
                         tem += "</tbody></table></div> </div> </div> </div>";
-                        $("#follow").html(tem);
+                        document.getElementById("follow").innerHTML = tem;
 
-                    }
+
                 },
             });
         }

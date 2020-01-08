@@ -56,9 +56,9 @@ public class hotlive extends HttpServlet {
         FanManage fanManage = new FanManageImpl();
         JSONArray rooms = new JSONArray();
         room_tb temp;
-        if (all.isEmpty())
+        if (all.isEmpty()){
             tag = -1;
-        else {
+        }else{
             tag = 1;
             for (int i=0;i<all.size();i++){
                 temp = all.get(i);

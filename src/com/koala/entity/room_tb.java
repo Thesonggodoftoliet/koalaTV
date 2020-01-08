@@ -85,9 +85,9 @@ public class room_tb {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        room_tb roomTb = (room_tb) o;
-        return roomid == roomTb.roomid &&
-                hostid == roomTb.hostid;
+        room_tb room_tb = (room_tb) o;
+        return roomid == room_tb.roomid &&
+                hostid == room_tb.hostid;
     }
 
     @Override

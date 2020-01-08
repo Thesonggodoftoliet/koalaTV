@@ -6,27 +6,38 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>考拉直播---一个快乐的游戏直播平台</title>
+      <title>考拉直播---一个快乐的游戏直播平台</title>
       <script src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js" charset="utf-8"></script>
       <script src="assets/js/jquery.min.js"></script>
       <!-- Favicon -->
-    <!-- Bootstrap CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+      <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!-- Font Awesome CSS -->
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+      <!-- Bootstrap CSS -->
+      <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Custom CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+      <!-- Font Awesome CSS -->
+      <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- BEGIN CSS for this page -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
-    <!-- END CSS for this page -->
+      <!-- Custom CSS -->
+      <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+      <!-- Modernizr -->
+      <script src="assets/js/modernizr.min.js"></script>
+
+      <!-- jQuery -->
+      <script src="assets/js/jquery.min.js"></script>
+
+      <!-- Moment -->
+      <script src="assets/js/moment.min.js"></script>
+
+      <!-- BEGIN CSS for this page -->
+      <link href="assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
   </head>
   <body class="adminbody" style="background: rgb(255,255,255)">
 
@@ -37,7 +48,7 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+          <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
       </div>
 
       <nav class="navbar-custom">
@@ -47,7 +58,7 @@
 
 
           <li class="list-inline-item dropdown notif" >
-            <a class="nav-link dropdown-toggle nav-user" href="personcenter_basic.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+            <a class="nav-link dropdown-toggle nav-user" id="xiaoren" href="">
               <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
             </a>
           </li>
@@ -95,7 +106,7 @@
               <ul class="list-unstyled">
                 <li><a href="personcenter_basic.jsp">基本信息</a></li>
                 <li><a href="personcenter_live.jsp">直播管理</a></li>
-                <li><a>退出登陆</a></li>
+                <li><a href="login.jsp">切换账号</a></li>
               </ul>
             </li>
             <li class="submenu" style="position:bottom left;">
@@ -117,14 +128,9 @@
           <div class="content"  style="background-image: url(assets/images/onebk.png);background-size: 100% 65%;background-repeat:no-repeat;">
 
               <div class="container-fluid" style="padding: 10%;">
-
-                  <!-- end row -->
-
-                <div>
-                  <div class="row">
+                  <div class="row" id="rowdiv">
                       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                          <div  id="id_video_container" style="width:100%; height:400px;">
-                          </div>
+                          <div  id="id_video_container" style="width:100%; height:auto;"></div>
                       </div>
                       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="background-color: rgba(0,0,0,0)">
                               <div id='external-events' class="breadcrumb-holder" style="height: 400px;background-color: rgba(247,203,102,0.8)">
@@ -132,17 +138,15 @@
                                   <div  class="fa-hover" ><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
                                   <div  class="fa-hover" ><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
                                   <div  class="fa-hover" ><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
-                                  <div style="text-align:center;">
-                                      <button class="btn btn-warning" href="currentlive.jsp?roomid=1" align="center" style="background-color: rgba(255,255,255,1.0);color: rgb(247,203,102)">前往直播间</button>
+                                  <div style="text-align:center;padding: 40%;margin: auto" id="cometobutton">
                                   </div>
-
 
                               </div>
 
                       </div>
                   </div>
 
-                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                           <div class="card mb-3" style="border:1px solid transparent;margin-top: 7%;">
                               <div class="card-body" style="border:1px solid transparent">
 
@@ -182,7 +186,6 @@
               </div>
               <!-- END container-fluid -->
 
-          </div>
           <!-- END content -->
 
       </div>
@@ -256,6 +259,8 @@
   <script>
       $(document).ready(function(){
           if(checkCookie("token") === false){
+              var id=document.getElementById("xiaoren");
+              id.href="login.jsp";
               swal({
                   title:"你还没有登陆哦～",
                   icon:"warning",
@@ -271,7 +276,9 @@
                   }
               );
           }else{
-              data1={token:$.cookie("token")};
+              var id = document.getElementById('xiaoren');
+              id.href="personcenter_basic.jsp";
+              var data1={token:$.cookie("token")};
               $.ajax({
                   type: "POST",
                   url: "http://47.106.186.164:8080/koalaTV/api/live/hotlive",
@@ -282,22 +289,29 @@
                   dataType: "json",
                   success: function (msg) {
                       setCookie(msg.token);
-                      for(var i = 0;i<msg.rooms.length;i++){
-                          document.getElementById("livetitle").innerText = msg.rooms[i].title;
-                          document.getElementById("category").innerText = msg.rooms[i].category;
-                          document.getElementById("username").innerText = msg.rooms[i].username;
-                          document.getElementById("watch").innerText = msg.rooms[i].watch;
-                      }
-                      var option = {
-                          "live_url" : msg.rtmpurl,
-                          "live_url2" : msg.flvurl,
-                          "width" : 600,
-                          "height" : 400
-                      };
-                      (function(){
-                          var player = new qcVideo.Player("id_video_container", option)
-                      })()
+                      if( msg.tag === 1){
+                          document.getElementById("livetitle").innerText = msg.rooms[0].title;
+                          document.getElementById("category").innerText = msg.rooms[0].category;
+                          document.getElementById("username").innerText = msg.rooms[0].username;
+                          document.getElementById("watch").innerText = msg.rooms[0].watch;
+                          document.getElementById("cometobutton").innerHTML = "<a href='currentlive.jsp?roomid="+msg.rooms[0].roomid+"'><button class='btn btn-warning' align='center' style='display：block; background-color: rgba(255,255,255,1.0);color: rgb(247,203,102);margin:0 auto'>前往直播间</button></a>";
+                          var option = {
+                              "live_url" : msg.rooms[0].rtmpurl,
+                              "live_url2" : msg.rooms[0].flvurl,
+                              "live_url3": msg.rooms[0].hlsurl,
+                              "width" : 600,
+                              "height" : 400
+                          };
+                          (function(){
+                              var player = new qcVideo.Player("id_video_container", option)
+                          })()
+                      }else {
+                          var tem = "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\" style=\"background-color: rgba(247,203,102,0.8);height: 500px;text-align: center;\">";
+                          tem += "<img src='assets/images/sleep.png' style='width:auto;height:95%;' />"
+                          tem += "</div>";
+                          document.getElementById("rowdiv").innerHTML = tem;
 
+                      }
                   },
                   error: function (XMLHttpRequest, textStatus, errorThrown) {
                   }
