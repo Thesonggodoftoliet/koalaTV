@@ -1,0 +1,15 @@
+<text>\n</text>
+<form bindsubmit="formSubmit" id='1' bindreset="formReset">
+  <view class="post">
+    <textarea name="title" class="title" disabled>我的评论</textarea>
+    <textarea name="content" placeholder='说点什么吧...' class="content" placeholder-style='font-size:16px' bindinput="check" value="{{textvalue}}"></textarea>
+  </view>
+  <view class="big-logos">
+    <view class='logoinfo'>
+      <image src='{{list.pic}}'></image>
+    </view>
+  </view>
+  <view class="button_view">
+    <button formType="submit" disabled="{{disabled}}">发布</button>
+  </view>
+</form>
