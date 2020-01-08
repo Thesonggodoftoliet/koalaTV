@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *登陆.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/auth/login")
 public class login extends HttpServlet {
     public login() {

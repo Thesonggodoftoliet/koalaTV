@@ -9,10 +9,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @program: koalaTV
- * @description: 推流的RTMP和密匙的生成工具类
- * @author: liu yan
- * @create: 2020-01-02 10:47
+ * 推流的RTMP和密匙的生成工具类.
+ * @author liu yan
+ * 2020-01-02 10:47
  */
 public class StreamUtils {
     private String streamid;

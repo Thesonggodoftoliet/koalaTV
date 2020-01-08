@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *解封房间.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/deblockroom")
 public class deblockroom extends HttpServlet {
     public deblockroom() {

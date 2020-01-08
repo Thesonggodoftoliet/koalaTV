@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-
+/**
+  *封禁直播间.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/shutdownroom")
 public class shutdownroom extends HttpServlet {
     public shutdownroom() {

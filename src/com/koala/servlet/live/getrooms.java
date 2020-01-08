@@ -18,7 +18,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+/**
+  *后台显示封禁信息.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/getrooms")
 public class getrooms extends HttpServlet {
     public getrooms() {

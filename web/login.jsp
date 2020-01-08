@@ -227,6 +227,7 @@
                 type:"post",
                 url:"/api/auth/login",
                 data:JSON.stringify(data1),
+                contentType:"application/json",
                 dataType:"json",
                 success:function(msg){
                     var tag = msg.tag;

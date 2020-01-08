@@ -19,6 +19,6 @@ public interface Post_Dao {
     int numOfReply(int hostid,int barid);
     boolean createTable(int barid,int hostid);
     boolean updateReply(post_ post);
-    boolean deleteReply(post_ post);
+    boolean deleteReply(post_ post,int num);
     boolean deletePost(bar_ bar);
 }

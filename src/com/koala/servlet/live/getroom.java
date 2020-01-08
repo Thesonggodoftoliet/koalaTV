@@ -22,7 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *获取直播间详细信息.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/getroom")
 public class getroom extends HttpServlet {
     public getroom() {

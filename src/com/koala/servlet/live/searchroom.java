@@ -19,7 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *通过关键字搜索房间标题.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/searchroom")
 public class searchroom extends HttpServlet {
     public searchroom() {

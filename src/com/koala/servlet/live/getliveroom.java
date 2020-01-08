@@ -20,7 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+  *根据关键字查询正在直播的房间.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/getliveroom")
 public class getliveroom extends HttpServlet {
     public getliveroom() {

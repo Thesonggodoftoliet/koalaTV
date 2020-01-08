@@ -19,7 +19,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.List;
-
+/**
+  *开启直播.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/onlive")
 public class onlive extends HttpServlet {
     public onlive() {

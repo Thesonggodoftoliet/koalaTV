@@ -18,6 +18,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+  *通过roomid搜索房间.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/live/searchroombyid")
 public class searchroombyid extends HttpServlet {
     public searchroombyid() {

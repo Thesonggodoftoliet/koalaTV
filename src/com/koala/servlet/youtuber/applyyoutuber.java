@@ -21,7 +21,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *申请成为主播.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/youtuber/applyyoutuber")
 public class applyyoutuber extends HttpServlet {
     public applyyoutuber() {

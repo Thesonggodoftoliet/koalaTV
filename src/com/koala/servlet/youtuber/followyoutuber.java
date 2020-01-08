@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *关注主播.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/youtuber/followyoutuber")
 public class followyoutuber extends HttpServlet {
     public followyoutuber() {

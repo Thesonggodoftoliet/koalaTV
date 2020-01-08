@@ -167,10 +167,13 @@ public class BarManageImpl implements BarManage {
         if (sqlbar.getUserid() != userid)
             return -1;//没有权限
         else {
-            if (bar.getContent()!=null && !sqlbar.getContent().equals(bar.getContent()))
+            if (!bar.getContent().isEmpty() && !sqlbar.getContent().equals(bar.getContent())) {
+                System.out.println("修改帖子内容");
                 sqlbar.setContent(bar.getContent());
-            if (bar.getPic()!=null && !sqlbar.getPic().equals(bar.getPic()))
+            }
+            if (!bar.getPic().isEmpty() && !sqlbar.getPic().equals(bar.getPic()))
                 sqlbar.setPic(bar.getPic());
+
             sqlbar.setLastreplytime(TimeUtils.dateToStr());
 
             if (bar_dao.updatePost(sqlbar))
@@ -196,7 +199,7 @@ public class BarManageImpl implements BarManage {
         if (sqlpost.getUserid()!=userid)
             return -1;
         else {
-            if (post.getContent() != null && !sqlpost.getContent().equals(post.getContent()))
+            if (!post.getContent().isEmpty() && !sqlpost.getContent().equals(post.getContent()))
                 sqlpost.setContent(post.getContent());
             sqlpost.setPosttime(TimeUtils.dateToStr());
             //sqlbar.setLastreplytime(sqlpost.getPosttime());
@@ -251,6 +254,10 @@ public class BarManageImpl implements BarManage {
         user_tb user = userDao.getUserById(userid);
         Post_Dao post_dao = new Post_DaoImpl();
         post_ sqlpost = post_dao.getReplyById(post);
+        bar_ temp = new bar_();
+        temp.setHostid(post.getHostid());
+        temp.setBarid(post.getBarid());
+        temp = bar_dao.getPostById(temp);
         if (user.getIsBarhost() == 0 && sqlpost.getUserid()!=userid)
             return -1;
         else if (user.getIsBarhost() == 1 && sqlpost.getUserid()!= userid){
@@ -263,7 +270,7 @@ public class BarManageImpl implements BarManage {
         else {
 
         }
-        if (post_dao.deleteReply(sqlpost))
+        if (post_dao.deleteReply(sqlpost,temp.getReplynum()-1))
             return 1;
         return 0;
     }

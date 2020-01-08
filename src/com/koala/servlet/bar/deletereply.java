@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+  *删除回复.
+  *@author Marting.Lee
+  *date 2020/1/7
+  **/
 @WebServlet("/api/bar/deletereply")
 public class deletereply extends HttpServlet {
     public deletereply() {
@@ -31,7 +35,7 @@ public class deletereply extends HttpServlet {
         post_ post = new post_();
 
         try {
-            token = jsonObject.getString(token);
+            token = jsonObject.getString("token");
             post.setHostid(jsonObject.getInt("hostid"));
             post.setPostid(jsonObject.getInt("postid"));
             post.setBarid(jsonObject.getInt("barid"));
