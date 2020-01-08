@@ -135,12 +135,12 @@
                         <h1 class="float-left" id="livetitle"></h1>
                         <div class="clearfix"></div>
                         <div class="row">
-                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-user-circle-o bigfonts" aria-hidden="true"></i><p id="username"></p></div>
+                        <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-user-circle-o bigfonts" aria-hidden="true"></i><p id="username"></p></div>
 
-                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-tags bigfonts" aria-hidden="true"></i><p id="category"></p></div>
+                        <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-tags bigfonts" aria-hidden="true"></i><p id="category"></p></div>
 
-                        <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
-                            <div class="fa-hover col-md-4 col-lg-4 col-xl-4"><div style="text-align:center;margin: auto" id="focusbutton"></div></div>
+                        <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
+                            <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><div style="text-align:center;margin: auto" id="focusbutton"></div></div>
 
                             <div class="clearfix"></div>
                         </div>
