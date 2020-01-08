@@ -1,0 +1,108 @@
+/* pages/my/my.wxss */
+
+.backg {
+  background-size: 100%;
+  background-image: url('https://www.w3school.com.cn/i/eg_background.jpg');
+}
+
+.blank {
+  height: 20rpx;
+}
+
+.content {
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+  border-bottom: solid 1px rgb(235, 235, 235);
+  background: white;
+}
+
+.content .photo {
+  height: 100rpx;
+  width: 100rpx;
+  margin-left: 20rpx;
+  border-radius: 50rpx;
+  float: left;
+}
+
+.content .menu {
+  float: right;
+  padding-left: 20rpx;
+}
+
+.content .company {
+  padding-top: 12rpx;
+  padding-left: 160rpx;
+  font-size: 100%;
+}
+
+.content .company .attr {
+  color: rgb(195, 195, 195);
+  font-size: 75%;
+  padding-top: 10rpx;
+  padding-left: 0rpx;
+}
+
+.article {
+  width: 540rpx;
+  height: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin-left: 160rpx;
+  padding-top: 40rpx;
+  background-color: white;
+}
+
+.content .img {
+  margin-left: 160rpx;
+  margin-top: 40rpx;
+  width: 540rpx;
+  border-radius: 40rpx;
+  background: white;
+  border: solid 1px rgb(245, 245, 245);
+}
+
+.content .img image {
+  width: 540rpx;
+  overflow: hidden;
+}
+
+.info {
+  height: 80rpx;
+  border-bottom: solid 1px rgb(235, 235, 235);
+  background: white;
+}
+
+.info .huifu {
+  float: left;
+  padding: 20rpx;
+}
+
+.info .company {
+  font-size: 100%;
+  padding-right: 20rpx;
+  float: right;
+  background-color: white;
+}
+
+.info .company .attr {
+  color: rgb(195, 195, 195);
+  font-size: 75%;
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.btn {
+  position: fixed;
+  right: 50rpx;
+  bottom: 50rpx;
+  border: solid 2px rgb(195, 195, 195);
+  border-radius: 100rpx;
+}

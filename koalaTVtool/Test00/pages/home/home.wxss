@@ -1,0 +1,155 @@
+/* pages/home/home.wxss */
+
+.content0 {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 100rpx;
+}
+
+.content0 .bg {
+  height: 100%;
+  background-size: 100%;
+  background-image: url('https://www.w3school.com.cn/i/eg_background.jpg');
+}
+
+.content0 .bg .name {
+  float: left;
+  color: rgb(105, 105, 105);
+  height: 30px;
+  width: 100px;
+  font-size: 150%;
+  font-weight: bold;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+
+.content0 .bg .search {
+  float: left;
+  color: black;
+  height: 42px;
+  width: 400rpx;
+  background: white;
+  margin: 5px;
+  border-radius: 20rpx;
+}
+
+.content0 .bg .btn {
+  position: absolute;
+  right: 0;
+  padding-top: 0px;
+  padding-left: 0;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+}
+
+.content0 .bg .btn .icon {
+  padding: 5px;
+  height: 40px;
+  width: 40px;
+  background-color: none;
+}
+
+.content0 .bg .search .find_input {
+  margin-left: 10px;
+  float: left;
+  height: 40px;
+  width: 80%;
+  background: none;
+  font-size: 120%;
+}
+
+.blank {
+  height: 50px;
+}
+
+.content {
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+  border-bottom: solid 1px rgb(235, 235, 235);
+  background: white;
+}
+
+.content .photo {
+  height: 100rpx;
+  width: 100rpx;
+  margin-left: 20rpx;
+  border-radius: 50rpx;
+  float: left;
+}
+
+.content .menu {
+  float:right;
+  padding-left: 20rpx; 
+}
+
+.content .company {
+  padding-top: 12rpx;
+  padding-left: 160rpx;
+  font-size: 100%;
+}
+
+.content .company .attr {
+  color: rgb(195, 195, 195);
+  font-size: 75%;
+  padding-top: 10rpx;
+  padding-left: 0rpx;
+}
+
+.article {
+  width: 540rpx;
+  height: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin-left: 160rpx;
+  padding-top: 40rpx;
+  background-color: white;
+}
+
+.content .img {
+  margin-left: 160rpx;
+  margin-top: 40rpx;
+  width: 540rpx;
+  border-radius: 40rpx;
+  background: white;
+  border: solid 1px rgb(245, 245, 245);
+}
+
+.content .img image {
+  width: 540rpx;
+  overflow: hidden;
+}
+
+.info {
+  height: 80rpx;
+  border-bottom: solid 1px rgb(235, 235, 235);
+  background: white;
+}
+
+.info .huifu {
+  float: left;
+  padding: 20rpx;
+}
+
+.info .company {
+  font-size: 100%;
+  padding-right: 20rpx; 
+  float:right;
+  background-color: white;
+}
+
+.info .company .attr {
+  color: rgb(195, 195, 195);
+  font-size: 75%;
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+}
+
+.hide{
+ display: none;
+}
+.show{ 
+ display: block;
+}

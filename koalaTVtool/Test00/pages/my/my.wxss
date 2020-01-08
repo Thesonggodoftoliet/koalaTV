@@ -1,0 +1,12 @@
+/* pages/my/my.wxss */
+
+page{
+  height: 100%;
+  background-size:100%;
+  background-image: url('https://www.w3school.com.cn/i/eg_background.jpg');
+}
+
+.blank{
+  height: 20rpx;
+}
+
