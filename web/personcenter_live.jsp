@@ -88,7 +88,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -215,7 +215,7 @@
             var data1={token:$.cookie("token")};
             $.ajax({
                 type: "POST",
-                url: "/api/manage/personalinfo",
+                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {
@@ -243,7 +243,7 @@
             alert("他是主播");
             $.ajax({
                 type: "POST",
-                url: "/api/live/showhostmanage",
+                url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺
@@ -289,7 +289,7 @@
                 //进一步判断他是不是这个话圈的主播，如果是，他可以加一个BUTTON 按钮，修改主持人的ID
                 $.ajax({
                     type: "POST",
-                    url: "/api/live/showhostmanage",
+                    url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
                     data: JSON.stringify(data1),
                     cache: false,
                     contentType: false,    //不可缺
@@ -306,7 +306,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: "/api/bar/getbar",
+                url: "http://47.106.186.164:8080/koalaTV/api/bar/getbar",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺
@@ -392,7 +392,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "/api/bar/changeadmin",
+                url: "http://47.106.186.164:8080/koalaTV/api/bar/changeadmin",
                 dataType: "json",
                 data: JSON.stringify(data1),
                 contentType: "appication/json",
@@ -427,7 +427,7 @@
         data1={token:$.cookie("token"),title:title};
         $.ajax({
             type: "POST",
-            url: "/api/live/onlive",
+            url: "http://47.106.186.164:8080/koalaTV/api/live/onlive",
             data: JSON.stringify(data1),
             cache: false,
             contentType: false,    //不可缺

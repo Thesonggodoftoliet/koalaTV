@@ -38,7 +38,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
         </div>
 
         <nav class="navbar-custom">
@@ -225,7 +225,7 @@
             alert(JSON.stringify(data1));
             $.ajax({
                 type:"post",
-                url:"/api/auth/login",
+                url:"http://47.106.186.164:8080/koalaTV/api/auth/login",
                 data:JSON.stringify(data1),
                 contentType:"application/json",
                 dataType:"json",

@@ -52,7 +52,7 @@
 
     <!-- LOGO -->
     <div class="headerbar-left">
-        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
     </div>
 
     <nav class="navbar-custom">
@@ -262,7 +262,7 @@
         var data4 = {hostid:hostid,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "/api/youtuber/conselfollow",
+            url: "http://47.106.186.164:8080/koalaTV/api/youtuber/conselfollow",
             data: JSON.stringify(data4),
             cache: false,
             contentType: false,    //不可缺
@@ -293,7 +293,7 @@
         var data3 = {follow:follow,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "/api/youtuber/followyoutuber",
+            url: "http://47.106.186.164:8080/koalaTV/api/youtuber/followyoutuber",
             data: JSON.stringify(data3),
             cache: false,
             contentType: false,    //不可缺
@@ -374,7 +374,7 @@
             var data1={token:$.cookie("token"),roomid:roomid};
             $.ajax({
                 type: "POST",
-                url: "/api/live/getroom",
+                url: "http://47.106.186.164:8080/koalaTV/api/live/getroom",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺
@@ -408,7 +408,7 @@
             alert($.cookie("token"));
             $.ajax({
                 type: "post",
-                url: "/api/manage/personalinfo",
+                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data5),
                 dataType: "json",
                 async:false,
@@ -496,6 +496,4 @@
         box-shadow: 4px 0 2px #909090;
     }
 </style>
-
-                            </div></div>
 </html>

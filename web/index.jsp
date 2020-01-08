@@ -281,7 +281,7 @@
               var data1={token:$.cookie("token")};
               $.ajax({
                   type: "POST",
-                  url: "/api/live/hotlive",
+                  url: "http://47.106.186.164:8080/koalaTV/api/live/hotlive",
                   data: JSON.stringify(data1),
                   cache: false,
                   contentType: false,    //不可缺

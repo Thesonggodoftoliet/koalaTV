@@ -35,7 +35,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
         </div>
 
         <nav class="navbar-custom">
@@ -213,7 +213,7 @@
             data1={token: token,category: cate};
             $.ajax({
                 type:"post",
-                url:"/api/live/getliveroom",
+                url:"http://47.106.186.164:8080/koalaTV/api/live/getliveroom",
                 data:JSON.stringify(data1),
                 cache: false,
                 dataType:"json",
