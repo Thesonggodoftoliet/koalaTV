@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/test/test",
+    "components/menu/menu",
+    "pages/huaquan/huaquan",
+    "pages/my/my",
+    "pages/review/review",
+    "pages/post/post",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/search/search",
+    "pages/modify/modify",
+    "pages/modifyreview/modifyreview"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Koala TV",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "i-button": "../../dist/button/index"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "images/key.png",
+        "selectedIconPath": "images/key.png",
+        "text": "话圈大厅"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/name.png",
+        "selectedIconPath": "images/name.png",
+        "text": "我的话圈"
+      }
+    ]
+  }
+}

@@ -1,11 +1,34 @@
 var app = getApp();
 Page({
 
-  onPullDownRefresh() {
-    this.onShow();
-//    console.log("上拉刷新");
-    wx.showNavigationBarLoading() //在标题栏中显示加载
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading(); //在标题栏中显示加载图标
+    var that = this
+    wx.request({
+      url: app.globalData.url + "bar/getposts",
+      data: {
+        token: (wx.getStorageSync('user_token')),
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      success: function (res) {
+        try {
+          wx.setStorageSync('user_token', res.data.token)
+        } catch (e) { }
+        console.log(wx.getStorageSync('user_token'))
 
+        that.setData({
+          list: res.data.post,
+        })
+        //console.log(that.data.list);
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading(); //完成停止加载图标
+        wx.stopPullDownRefresh();
+      }
+    })
   },
 
   img: function() {
@@ -49,6 +72,7 @@ Page({
     number: "",
     picaddress: "",
     imgerrs: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    list:[],
   },
 
   /**
@@ -110,7 +134,7 @@ Page({
         that.setData({
           list: res.data.post,
         })
-        //console.log(that.data.list);
+//        console.log(that.data.list.length);
       },
     })
   },
@@ -159,9 +183,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
 
-  },
 
   /**
    * 页面上拉触底事件的处理函数

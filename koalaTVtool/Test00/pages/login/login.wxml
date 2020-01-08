@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="container">
   <view class="login-icon">
-    <image class="login-img" src="/images/logo.jpg"></image>
+    <image class="login-img" src="/images/loginlogo.png"></image>
   </view>
   <view class="login-from">
     <form bindsubmit="formSubmit" class='form'>

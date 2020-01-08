@@ -1,3 +1,5 @@
+var app = getApp();
+
 const {
   $Toast
 } = require('../../dist/base/index');
@@ -11,7 +13,7 @@ Page({
         console.log(wx.getStorageSync('user_bar').hostid);
     */
     wx.request({
-      url: 'http://47.106.186.164:8080/koalaTV/api/bar/deployreply',
+      url: app.globalData.url + "bar/deployreply",
       data: {
         token: wx.getStorageSync('user_token'),
         content: e.detail.value.pinglun,
@@ -73,7 +75,7 @@ Page({
     var that = this
     wx.request({
 
-      url: "http://47.106.186.164:8080/koalaTV/api/bar/getreplies", //相应帖子页面
+      url: app.globalData.url + "bar/getreplies", //相应帖子页面
       data: {
         hostid: wx.getStorageSync('user_bar').hostid,
         barid: wx.getStorageSync('user_bar').barid,
@@ -143,7 +145,7 @@ Page({
     //    console.log(e.currentTarget.dataset.list)
     var that = this
     wx.request({
-      url: "http://47.106.186.164:8080/koalaTV/api/bar/deletepost", //相应帖子页面
+      url: app.globalData.url + "bar/deletepost", //相应帖子页面
       data: {
         token: wx.getStorageSync('user_token'),
         hostid: e.currentTarget.dataset.list.hostid,
@@ -186,7 +188,7 @@ Page({
     //    console.log(e.currentTarget.dataset.list);
     var that = this
     wx.request({
-      url: "http://47.106.186.164:8080/koalaTV/api/bar/deletereply", //相应帖子页面
+      url: app.globalData.url + "bar/deletereply", //相应帖子页面
       data: {
         token: wx.getStorageSync('user_token'),
         hostid: e.currentTarget.dataset.list.hostid,
@@ -216,7 +218,7 @@ Page({
     //do something
     try {
       wx.setStorageSync('user_list', e.currentTarget.dataset.list)
-    } catch (e) { }
+    } catch (e) {}
     console.log(e.currentTarget.dataset.list)
     wx.navigateTo({
       url: '../modifyreview/modifyreview',
@@ -237,7 +239,7 @@ Page({
     var that = this
     wx.request({
 
-      url: "http://47.106.186.164:8080/koalaTV/api/bar/getreplies", //相应帖子页面
+      url: app.globalData.url + "bar/getreplies", //相应帖子页面
       data: {
         hostid: wx.getStorageSync('user_bar').hostid,
         barid: wx.getStorageSync('user_bar').barid,
@@ -286,9 +288,44 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
+    wx.showNavigationBarLoading(); //在标题栏中显示加载图标
+    var that = this
+    wx.request({
 
+      url: app.globalData.url + "bar/getreplies", //相应帖子页面
+      data: {
+        hostid: wx.getStorageSync('user_bar').hostid,
+        barid: wx.getStorageSync('user_bar').barid,
+        token: wx.getStorageSync('user_token'),
+      },
+      method: 'post',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //        console.log(res.data)
+        //        console.log(wx.getStorageSync('user_bar'));
+        try {
+          wx.setStorageSync('user_token', res.data.token)
+        } catch (e) { }
+        //        console.log(wx.getStorageSync('user_token'))
+
+
+        that.setData({
+          list: wx.getStorageSync('user_bar'), //主贴内容
+          listPL: res.data.reply //评论内容
+        })
+        //        console.log(that.data.listPL);
+      },
+      fail: function (res) {
+        console.log('请求失败');
+      },
+      complete: function(res) {
+        wx.hideNavigationBarLoading(); //完成停止加载图标
+        wx.stopPullDownRefresh();
+      }
+    })
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */

@@ -1,3 +1,7 @@
+<view class="{{list.length?'hide':'nopost'}}">
+  <image src="../../images/sb.png"></image>
+</view>
+
 <view wx:for="{{list}}" wx:key="FollowList">
   <view class="blank"></view>
   <navigator url="../huaquan/huaquan" bindtap="savehost" data-list="{{item}}" open-type="navigate">

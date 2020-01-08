@@ -15,10 +15,12 @@
     "pages/modifyreview/modifyreview"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Koala TV",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
@@ -29,8 +31,8 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "iconPath": "images/key.png",
-        "selectedIconPath": "images/key.png",
+        "iconPath": "images/name.png",
+        "selectedIconPath": "images/name.png",
         "text": "话圈大厅"
       },
       {
