@@ -347,7 +347,7 @@
                     tp.innerText = ""+phone;
 
                     alert(msg.icon);
-                    $("#showphoto").attr("href",msg.icon);
+                    $("#showphoto").attr("src",msg.icon);
 
                     var ti = document.getElementById("identify");
                     var tlu = document.getElementById("liveuper");
