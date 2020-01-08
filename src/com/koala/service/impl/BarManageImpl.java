@@ -151,8 +151,7 @@ public class BarManageImpl implements BarManage {
       **/
     @Override
     public int getNumofPost(int hostid) {
-        Post_Dao post_dao = new Post_DaoImpl();
-        return post_dao.numOfPost(hostid);
+        return bar_dao.getNumOfPost(hostid);
     }
 
     /**

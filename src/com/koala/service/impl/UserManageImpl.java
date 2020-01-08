@@ -213,6 +213,8 @@ public class UserManageImpl implements UserManage {
             String end = f.substring(tag+2);
             f= begin+end;
         }
+        if (f.isEmpty())
+            f = ",";
         sqluser.setFollow(f);
 
         //从粉丝表删除
