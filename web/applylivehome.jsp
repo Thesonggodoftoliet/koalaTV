@@ -158,6 +158,7 @@
                                             <option>炉石传说</option>
                                             <option>CS:GO</option>
                                             <option>麻将</option>
+                                            <option>守望先锋</option>
                                         </select>
                                     </div>
                                     <div class="row">
@@ -269,7 +270,7 @@
         console.log(data);
         $.ajax({
             type: "POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
+            url: "http://ccnubt.club:8080/koalaTV/api/manage/uploadpic",
             data: data,
             cache: false,
             contentType: false,    //不可缺
@@ -314,25 +315,25 @@
         var category = options.text();
         var title = $('#title').val();
 
-        if(tile === "英雄联盟"){
-            title = "lol";
-        }else if(title === "麻将"){
-            title = "majiang";
-        }else if(title === "CS:GO" || title === "csgo"){
-            title = "csgo";
-        }else if(title === "守望先锋"){
-            title = "overwatch";
-        }else if(title === "DOTA2"){
-            title = "dota2";
-        }else if(title === "炉石传说"){
-            title = "hs";
+        if(category === "英雄联盟"){
+            category = "lol";
+        }else if(category === "麻将"){
+            category = "majiang";
+        }else if(category === "CS:GO" || category === "csgo"){
+            category = "csgo";
+        }else if(category === "守望先锋"){
+            category = "overwatch";
+        }else if(category === "DOTA2"){
+            category = "dota2";
+        }else if(category === "炉石传说"){
+            category = "hs";
         }
 
         var data1={token:token,category:category,title:title,coverpic:coverpic};
         //alert(JSON.stringify(data1));
         $.ajax({
             type:"post",
-            url:"http://47.106.186.164:8080/koalaTV/api/youtuber/applyyoutuber",
+            url:"http://ccnubt.club:8080/koalaTV/api/youtuber/applyyoutuber",
             data:JSON.stringify(data1),
             dataType:"json",
             success:function(msg){

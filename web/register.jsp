@@ -156,6 +156,7 @@
                     <option>炉石传说</option>
                     <option>CS:GO</option>
                     <option>麻将</option>
+                    <option>守望先锋</option>
                   </select>
                 </div>
                 <div class="form-row col-md-12">

@@ -230,7 +230,7 @@
             var data1={token:$.cookie("token")};
             $.ajax({
                 type: "POST",
-                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
+                url: "http://ccnubt.club:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {
@@ -258,7 +258,7 @@
          //   alert("他是主播");
             $.ajax({
                 type: "POST",
-                url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
+                url: "http://ccnubt.club:8080/koalaTV/api/live/showhostmanage",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺

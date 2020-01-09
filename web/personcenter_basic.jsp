@@ -258,7 +258,7 @@
                 }).then(gender1 => {
                     if(gender1=="男"){
                         gender1=1;
-                    } else {
+                    } else if (gender1=="女"){
                         gender1=2;
                     }
                     var data1 = {
