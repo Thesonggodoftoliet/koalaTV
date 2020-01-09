@@ -13,6 +13,11 @@
 </view>
 
 <view class="blank"></view>
+
+<view class="{{list.length?'hide':'nopost'}}">
+  <image src="../../images/sb.png"></image>
+</view>
+
 <view wx:for="{{list}}" wx:key="PostList">
   <navigator url="../review/review" bindtap="savebar" data-list="{{item}}" open-type="navigate">
     <view class="content">

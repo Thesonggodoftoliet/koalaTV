@@ -1,0 +1,52 @@
+<view class="content">
+  <image class="photo" src="{{list.userpic}}"></image>
+  <menu hidden class='menu' bind:addEvent="_deletepost" bind:deleteLotsEvent="_editpost" data-list="{{list}}" />
+  <view class="company">
+    <view>#{{list.title}}#{{list.username}}</view>
+    <view class="attr">
+      <text class="time">{{list.posttime}}</text>
+    </view>
+  </view>
+  <!-- <menu id='menu' bind:addEvent="_addEvent" bind:deleteLotsEvent="_deleteLotsEvent" /> -->
+  <view class="article">
+    {{list.content}}
+  </view>
+  <view class="img  {{imgerrs?'show':'hide'}}">
+    <image style="height：100%" mode="aspectFit" src="{{list.pic}}" bindload="imgsuccess">
+    </image>
+  </view>
+  <view class="logo">Koala TV
+    <image src="../../images/logo.png"></image>
+  </view>
+</view>
+
+<view class="info">
+  <text>{{listPL.length}}</text>
+  <text style='color:rgb(105,105,105)'> 回复</text>
+</view>
+
+
+
+<view class="review" wx:for="{{listPL}}" wx:key="listPLkey">
+  <image class="photo" src="{{item.userpic}}"></image>
+  <menu hidden class='menu' bind:addEvent="_deletereply" bind:deleteLotsEvent="_editreply" data-list="{{item}}" />
+  <view class="company">
+    <view>{{item.username}}</view>
+    <view class="attr">
+      <text class="time">{{item.posttime}}</text>
+    </view>
+  </view>
+  <view class="article">
+    {{item.content}}
+  </view>
+</view>
+
+<form bindsubmit="formSubmit">
+  <view class="inputbox">
+    <view class="{{isTapped?'writer':'writer0'}}">
+      <input type="textarea" name="pinglun" placeholder="写评论..." bindinput="reinput" bindtap="serviceSelection" bindblur="serviceSelection0" value="{{inputValue}}" />
+    </view>
+    <button class="sumbit" form-type="submit" style="display:{{isTapped?'normal':'none'}}" disabled="{{disabled}}">评论</button>
+  </view>
+</form>
+<i-toast id="toast" />

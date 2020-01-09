@@ -10,7 +10,7 @@
 .content0 .bg {
   height: 100%;
   background-size: 100%;
-  background-image: url('https://www.w3school.com.cn/i/eg_background.jpg');
+  background-image: url('http://47.106.186.164:8080/imgs/bkimg.jpg');
 }
 
 .content0 .bg .name {
@@ -81,8 +81,8 @@
 }
 
 .content .menu {
-  float:right;
-  padding-left: 20rpx; 
+  float: right;
+  padding-left: 20rpx;
 }
 
 .content .company {
@@ -135,8 +135,8 @@
 
 .info .company {
   font-size: 100%;
-  padding-right: 20rpx; 
-  float:right;
+  padding-right: 20rpx;
+  float: right;
   background-color: white;
 }
 
@@ -147,9 +147,16 @@
   padding-left: 20rpx;
 }
 
-.hide{
- display: none;
+.hide {
+  display: none;
 }
-.show{ 
- display: block;
+
+.show {
+  display: block;
+}
+
+.nopost {
+  padding-top: 200rpx; 
+  display: flex;
+  justify-content: center;
 }
