@@ -59,6 +59,7 @@ public class personalinfo extends HttpServlet {
         token = JwtUtils.createToken(userid);
         try {
             msg.put("token",token);
+            msg.put("userid",user.getUserid());
             msg.put("phone",user.getPhone());
             msg.put("isAudience",user.getIsAudience());
             msg.put("isAdmin",user.getIsAdmin());

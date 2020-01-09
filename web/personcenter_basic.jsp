@@ -34,13 +34,12 @@
 
 <body class="adminbody" style="background: rgb(255,255,255)">
 <div id="main">
-
     <!-- top bar navigation -->
     <div class="headerbar">
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
         </div>
 
         <nav class="navbar-custom">
@@ -50,8 +49,8 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+                    <a class="nav-link dropdown-toggle nav-user"  href="personcenter_basic.jsp.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
                     </a>
                 </li>
 
@@ -62,7 +61,6 @@
 
     </div>
     <!-- End Navigation -->
-
 
     <!-- Left Sidebar -->
 
@@ -86,12 +84,11 @@
                             <li><a href="showlivebycategory.jsp?category=dota2">DOTA2</a></li>
                             <li><a href="showlivebycategory.jsp?category=hs">炉石传说</a></li>
                             <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
-                            <li><a href="showlivebycategory.jsp?category=majiang">麻将</a></li>
                         </ul>
                     </li>
 
                     <li class="submenu">
-                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span> </a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -102,11 +99,8 @@
                             <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
                     <li class="submenu" style="position:bottom left;">
-                        <img src="assets/images/bgp2.png" height="500" width="255">
+                        <img src="assets/images/bgp2.png" height="500" width="255"/>
                     </li>
 
                 </ul>
@@ -117,21 +111,16 @@
     </div>
     <!-- End Sidebar -->
 
-
     <div class="content-page">
         <div>
-            <div class="content">
+            <div class="content" style="width: 100%;margin-top: 80px;padding-left: 5%">
 
-                <div class="row"  style="width: 95%;padding: 5%;">
+                <div class="row"  style="padding-top: 5%;padding-left: 5%">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border: 1px solid transparent;">
-                        <div class="card mb-3" style="border: 1px solid transparent;background:url(0);">
-                            <div class="card-header" style="border: 1px solid transparent;background:url(0);">
-                                <h3><i class="fa fa-image"></i> 头 像 </h3>
-                            </div>
-
-                            <div class="card-body" style="border: 1px solid transparent;background:url(0);">
+                        <div class="card mb-3" style="border: 1px solid transparent;">
+                            <div class="card-body" style="border: 1px solid transparent;">
                                 <a data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                                    <img alt="image" id="showphoto" class="img-fluid" style="width:60px; height:60px;">
+                                    <img alt="image" id="showphoto" class="img-fluid" style="width:80px; height:80px;">
                                 </a>
                             </div>
                         </div><!-- end card-->
@@ -186,7 +175,14 @@
 
                 </div></div></div></div>
     <!-- END content-page -->
-
+    <footer class="footer">
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+        <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
+    </footer>
 
 </div>
 <!-- END main -->
@@ -326,7 +322,7 @@
         else{
            <!-- 获取当前用户的信息并载入到页面中 -->
             var data1={token:$.cookie("token")};
-            alert($.cookie("token"));
+          //  alert($.cookie("token"));
             $.ajax({
                 type: "post",
                 url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
@@ -346,7 +342,7 @@
                     var phone = msg.phone;
                     tp.innerText = ""+phone;
 
-                    alert(msg.icon);
+                  //  alert(msg.icon);
                     $("#showphoto").attr("src",msg.icon);
 
                     var ti = document.getElementById("identify");
@@ -367,7 +363,7 @@
                         $("#liveuper").attr("href","applylivehome.jsp");
                         tlu.innerText = "成为主播";
                     }
-                        alert(msg.tag+"hhh");
+                      //  alert(msg.tag+"hhh");
                         var tem = "<div class=\"card mb-3\">" +
                             "<div class=\"card-header\">" + "<h3><i class=\"fa fa-table\"></i>";
                         if(msg.tag !== -1) {
@@ -414,9 +410,7 @@
 </script>
 <style type="text/css">
     .mydiv{
-        width:250px;
-
-        height:auto;
+        height:100%;
 
         background:#fff;
 

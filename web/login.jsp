@@ -38,7 +38,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
         </div>
 
         <nav class="navbar-custom">
@@ -48,8 +48,8 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+                    <a class="nav-link dropdown-toggle nav-user"  href="login.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
                     </a>
                 </li>
 
@@ -60,7 +60,6 @@
 
     </div>
     <!-- End Navigation -->
-
 
     <!-- Left Sidebar -->
 
@@ -88,7 +87,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -177,6 +176,14 @@
 
     </div>
     <!-- END content-page -->
+    <footer class="footer">
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+        <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
+    </footer>
 
 </div>
 <!-- END main -->
@@ -222,7 +229,7 @@
 
         function applyButton(){
             data1={phone: $('#phone').val(),userpassword: $('#userpassword').val()};
-            alert(JSON.stringify(data1));
+            //alert(JSON.stringify(data1));
             $.ajax({
                 type:"post",
                 url:"http://47.106.186.164:8080/koalaTV/api/auth/login",
@@ -319,11 +326,8 @@
         }
 </script>
 <!-- END Java Script for this page -->
-</body>
 <style type="text/css">
     .mydiv{
-        width:250px;
-
         height:100%;
 
         background:#fff;
@@ -331,5 +335,5 @@
         box-shadow: 4px 0 2px #909090;
     }
 </style>
-
+</body>
 </html>

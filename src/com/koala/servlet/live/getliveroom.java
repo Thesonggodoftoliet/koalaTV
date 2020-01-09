@@ -92,6 +92,8 @@ public class getliveroom extends HttpServlet {
             e.printStackTrace();
         }
 
+        System.out.println(msg);
+
         out.print(msg);
         out.flush();
         out.close();

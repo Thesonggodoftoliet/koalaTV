@@ -40,7 +40,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" />
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
         </div>
 
         <nav class="navbar-custom">
@@ -50,8 +50,8 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" id="xiaoren" href="personcenter_basic.jsp">
-                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+                    <a class="nav-link dropdown-toggle nav-user"  href="personcenter_basic.jsp.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
                     </a>
                 </li>
 
@@ -62,7 +62,6 @@
 
     </div>
     <!-- End Navigation -->
-
 
     <!-- Left Sidebar -->
 
@@ -90,7 +89,7 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></span></a>
+                        <a href="myfocuslive.jsp"><i class="fa fa-fw fa-tv"></i> <span> 我的关注 </span></a>
                     </li>
 
                     <li class="submenu">
@@ -102,7 +101,7 @@
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">
-                        <img src="assets/images/bgp2.png" height="500" width="255">
+                        <img src="assets/images/bgp2.png" height="500" width="255"/>
                     </li>
 
                 </ul>
@@ -195,7 +194,14 @@
     </div>
     <!-- END content-page -->
 
-    <footer class="footer"></footer>
+    <footer class="footer">
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+        <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
+    </footer>
 
 </div>
 </body>
@@ -308,8 +314,22 @@
         var category = options.text();
         var title = $('#title').val();
 
+        if(tile === "英雄联盟"){
+            title = "lol";
+        }else if(title === "麻将"){
+            title = "majiang";
+        }else if(title === "CS:GO" || title === "csgo"){
+            title = "csgo";
+        }else if(title === "守望先锋"){
+            title = "overwatch";
+        }else if(title === "DOTA2"){
+            title = "dota2";
+        }else if(title === "炉石传说"){
+            title = "hs";
+        }
+
         var data1={token:token,category:category,title:title,coverpic:coverpic};
-        alert(JSON.stringify(data1));
+        //alert(JSON.stringify(data1));
         $.ajax({
             type:"post",
             url:"http://47.106.186.164:8080/koalaTV/api/youtuber/applyyoutuber",

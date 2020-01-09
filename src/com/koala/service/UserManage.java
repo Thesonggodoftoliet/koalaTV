@@ -1,9 +1,6 @@
 package com.koala.service;
 
-import com.koala.entity.bar_;
-import com.koala.entity.bar_tb;
-import com.koala.entity.room_tb;
-import com.koala.entity.user_tb;
+import com.koala.entity.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public interface UserManage {
     int modifyKeyInfo(user_tb user,int choice);//1 是修改手机号 2是修改密码
     int applyForBar(user_tb user, bar_tb bar, room_tb room);
     int followYoutuber(user_tb user);
+    int checkIdentity(programmer_tb programmerTb);
 
     boolean concelFollow(int userid,int follow);
 }

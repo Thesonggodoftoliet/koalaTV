@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>开始直播</title>
+    <title>考拉直播</title>
 
     <script src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js" charset="utf-8"></script>
     <script src="assets/js/jquery.min.js"></script>
@@ -44,7 +44,11 @@
     <script type="text/javascript" charset="utf-8" src="assets/umeditor/umeditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="assets/umeditor/umeditor.min.js"></script>
     <script type="text/javascript" src="assets/umeditor/lang/zh-cn/zh-cn.js"></script>
-
+    <style>
+        #id_video_container embed{
+            width: 100%!important;
+        }
+    </style>
 </head>
 <body class="adminbody">
 <!-- top bar navigation -->
@@ -52,16 +56,18 @@
 
     <!-- LOGO -->
     <div class="headerbar-left">
-        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
+        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
     </div>
 
     <nav class="navbar-custom">
 
         <ul class="list-inline float-right mb-0">
 
+
+
             <li class="list-inline-item dropdown notif" >
-                <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+                <a class="nav-link dropdown-toggle nav-user"  href="personcenter_basic.jsp.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
                 </a>
             </li>
 
@@ -72,7 +78,6 @@
 
 </div>
 <!-- End Navigation -->
-
 
 <!-- Left Sidebar -->
 
@@ -112,34 +117,35 @@
                     </ul>
                 </li>
                 <li class="submenu" style="position:bottom left;">
-                    <img src="assets/images/bgp2.png" height="500" width="255">
+                    <img src="assets/images/bgp2.png" height="500" width="255"/>
                 </li>
 
             </ul>
         </div>
+        <div class="clearfix"></div>
 
     </div>
+    <div class="clearfix"></div>
 
 </div>
 <!-- End Sidebar -->
-
 
 <div class="content-page">
 
     <!-- Start content -->
     <div class="content">
-        <div class="container-fluid"  style="width: 90%;padding: 5%;">
+        <div class="container-fluid"  style="width: 100%;margin-top: 80px;padding-left: 5%;padding-right: 5%">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb-holder">
                         <h1 class="float-left" id="livetitle"></h1>
                         <div class="clearfix"></div>
                         <div class="row">
-                        <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-user-circle-o bigfonts" aria-hidden="true"></i><p id="username"></p></div>
+                            <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-user-circle-o bigfonts" aria-hidden="true">&nbsp主播</i><p id="username"></p></div>
 
-                        <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-tags bigfonts" aria-hidden="true"></i><p id="category"></p></div>
+                            <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-tags bigfonts" aria-hidden="true">&nbsp;类别</i><p id="category"></p></div>
 
-                        <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-venus-double bigfonts" aria-hidden="true"></i><p id="watch"></p></div>
+                            <div class="fa-hover col-md-3 col-lg-3 col-xl-3"><i class="fa fa-venus-double bigfonts" aria-hidden="true">&nbsp观看人数</i><p id="watch"></p></div>
                             <div class="fa-hover col-md-3 col-lg-3 col-xl-3" id="focusbutton"></div>
 
                             <div class="clearfix"></div>
@@ -163,7 +169,7 @@
                                      <ul id="chatContent" class="am-comments-list am-comments-list-flip">
                                          <li id="msgtmp" class="am-comment" style="display:none;">
                                              <a href="">
-                                                 <img class="am-comment-avatar" id="sentuserpic" ff="sentuserpic"/>
+                                                 <div id="sentuserpic" ff="sentuserpic"></div>
                                              </a>
                                             <div class="am-comment-main" >
                                                 <header class="am-comment-hd">
@@ -187,14 +193,7 @@
                         </div>
                     </div>
                 </div>
-            <!-- end row -->
-        <!-- END container-fluid -->
-    </div>
-    <!-- END content -->
-    </div>
-</div>
-
-
+                                    </div> </div>
 </body>
 
 <script src="assets/js/modernizr.min.js"></script>
@@ -304,7 +303,7 @@
                     swal({
                         title:"成功关注了！",
                     });
-                    tem += "<button  class='btn btn-primary' style='float: right;' onclick='canselone("+roomid+")'>"
+                    tem += "<button  class='btn btn-primary' style='float:right;' onclick='canselone("+roomid+")'>"
                     tem += "已关注";
                     document.getElementById("focusbutton").innerHTML = tem;
                 }else if(msg.tag === -1){
@@ -331,7 +330,7 @@
             success:function (msg) {
                 setCookie(msg.token);
                 var tem = "";
-                alert("msg.tag = "+msg.tag);
+               // alert("msg.tag = "+msg.tag);
                 if(msg.tag === 1){
                     tem += "<button  class='btn btn-primary' style='float: right;' onclick='canselone("+roomid+")'>"
                     tem += "已关注";
@@ -403,7 +402,7 @@
             var data5={token:$.cookie("token")};
             var sentuserpic;
             var sentusername = "考拉考拉";
-            alert($.cookie("token"));
+          //  alert($.cookie("token"));
             $.ajax({
                 type: "post",
                 url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
@@ -412,7 +411,8 @@
                 async:false,
                 success: function (msg) {
                     setCookie(msg.token);
-                    sentusername = msg.nickname;
+                    sentusername = msg.nickname+msg.userid;
+                    console.log(msg.icon)
                     sentuserpic = msg.icon;
                 },
             });
@@ -430,11 +430,10 @@
             var nickname = sentusername;
             var socket = new WebSocket("ws://${pageContext.request.getServerName()}:${pageContext.request.getServerPort()}${pageContext.request.contextPath}/websocket/"+roomid);
             //接收服务器的消息
-            socket.onmessage=function(ev){
-                var obj = eval(   '('+ev.data+')'   );
+            socket.onmessage=function(ev) {
+                var obj = eval('(' + ev.data + ')');
                 addMessage(obj);
             }
-
             $("#send").click(function(){
                 if (!um.hasContents()) {  // 判断消息输入框是否为空
                     // 消息输入框获取焦点
@@ -472,7 +471,7 @@
         box.find('[ff="nickname"]').html(msg.nickname); //在box中设置昵称
         box.find('[ff="msgdate"]').html(msg.date); 		//在box中设置时间
         box.find('[ff="content"]').html(msg.content); 	//在box中设置内容
-        box.find('[ff="sentuserpic"]').html(msg.sentuserpic); //show pic
+        box.find('[ff="sentuserpic"]').html("<img src='"+msg.sentuserpic+"' class='am-comment-avatar'/>"); //show pic
         box.addClass(msg.isSelf? 'am-comment-flip':'');	//右侧显示
         box.addClass(msg.isSelf? 'am-comment-warning':'am-comment-success');//颜色
         box.css((msg.isSelf? 'margin-left':'margin-right'),"1%");//外边距
@@ -485,9 +484,7 @@
 
 <style type="text/css">
     .mydiv{
-        width:250px;
-
-        height:auto;
+       height: 100%;
 
         background:#fff;
 

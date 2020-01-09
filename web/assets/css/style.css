@@ -301,7 +301,7 @@ a {
   top: 50px;
   width: 250px;
   z-index: 10;
-  background: #262D33;
+  background: #f0ad4e;
   bottom: 70px;
   margin-bottom: -70px;
   margin-top: 0;
@@ -313,7 +313,7 @@ a {
   overflow: hidden; }
 
   .bg {
-  background-image: url(halloween.png);
+  background-image: url(0);
   }
 .content-page .content.bg {
     padding: 0 5px;

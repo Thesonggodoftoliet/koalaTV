@@ -13,5 +13,6 @@ public interface BarDao {
     List<bar_tb> getAllBar();
     bar_tb addBar(bar_tb bar);
     boolean updateBarByHostId(bar_tb bar);
+    boolean changeAdmin(bar_tb bar);
     boolean deleteBarByHostId(int hostid);
 }

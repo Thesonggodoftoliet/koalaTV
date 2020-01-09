@@ -38,6 +38,12 @@
 
       <!-- BEGIN CSS for this page -->
       <link href="assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+
+      <style>
+          #id_video_container embed{
+              width: 100%!important;
+          }
+      </style>
   </head>
   <body class="adminbody" style="background: rgb(255,255,255)">
 
@@ -48,18 +54,16 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-          <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
+          <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
       </div>
 
       <nav class="navbar-custom">
 
         <ul class="list-inline float-right mb-0">
 
-
-
           <li class="list-inline-item dropdown notif" >
             <a class="nav-link dropdown-toggle nav-user" id="xiaoren" href="">
-              <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+              <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
             </a>
           </li>
 
@@ -125,62 +129,69 @@
       <div class="content-page">
 
           <!-- Start content -->
-          <div class="content"  style="background-image: url(assets/images/onebk.png);background-size: 100% 65%;background-repeat:no-repeat;">
+          <div class="content" style="width: 100%;margin-top: 80px;padding-left: 5%;padding-right: 5%">
 
-              <div class="container-fluid" style="padding: 10%;">
-                  <div class="row" id="rowdiv">
-                      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                          <div  id="id_video_container" style="width:100%; height:auto;"></div>
+              <div class="container-fluid">
+                  <div class="row" id="rowdiv" style="height: 60%">
+                      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                          <div class="card md-3" style="height: 100%;width: 100%">
+                              <div class="card-body" style="top:0;bottom:0;width: 100%">
+                                  <div id="id_video_container" style="height:100%;width: 100%"></div>
+                              </div>
+                          </div>
+
                       </div>
-                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="background-color: rgba(0,0,0,0)">
-                              <div id='external-events' class="breadcrumb-holder" style="height: 400px;background-color: rgba(247,203,102,0.8)">
-                                  <div  class="fa-hover" ><h2 id="livetitle" style="color: rgb(255,255,255)"></h2></div>
-                                  <div  class="fa-hover" ><i class="fa fa-tags" aria-hidden="true"></i><h4 id="category" style="color: rgb(255,255,255)"></h4></div>
-                                  <div  class="fa-hover" ><i class="fa fa-user-circle-o" aria-hidden="true"></i><h4 id="username" style="color: rgb(255,255,255)"></h4></div>
-                                  <div  class="fa-hover" ><i class="fa fa-venus-double" aria-hidden="true"></i><h4 id="watch" style="color: rgb(255,255,255)"></h4></div>
-                                  <div style="text-align:center;padding: 40%;margin: auto" id="cometobutton">
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="background-color: rgba(247,203,102,0.8)">
+                              <div id='external-events' class="card md-3" style="background-color: rgba(247,203,102,0.8)">
+                                  <div class="card-body">
+                                  <div  class="fa-hover" ><i class="fa fa-television bigfonts" aria-hidden="true">&nbsp标题</i><h1 id="livetitle" style="color: rgb(255,255,255)"></h1></div>
+                                  <div  class="fa-hover" ><i class="fa fa-tags bigfonts" aria-hidden="true">&nbsp类别</i><h5 id="category" style="color: rgb(255,255,255)"></h5></div>
+                                  <div  class="fa-hover" ><i class="fa fa-user-circle-o bigfonts" aria-hidden="true">&nbsp主播</i><h5 id="username" style="color: rgb(255,255,255)"></h5></div>
+                                  <div  class="fa-hover" ><i class="fa fa-venus-double bigfonts" aria-hidden="true">&nbsp观看人数</i><h5 id="watch" style="color: rgb(255,255,255)"></h5></div>
+                                  <div style="text-align:center;padding-left: 40%;margin: auto" id="cometobutton">
                                   </div>
+                              </div>
 
                               </div>
 
                       </div>
+
+
                   </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top: 7%;">
+                      <div class="card mb-3" style="border:1px solid transparent;">
+                          <div class="card-body" style="border:1px solid transparent">
 
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                          <div class="card mb-3" style="border:1px solid transparent;margin-top: 7%;">
-                              <div class="card-body" style="border:1px solid transparent">
+                              <div class="row">
 
-                                  <div class="row">
+                                  <a data-fancybox="gallery" href="showlivebycategory.jsp?category=csgo" class="col-sm-2">
+                                      <img alt="image" src="assets/images/gamelogo/csgo.png" class="img-fluid">
+                                  </a>
 
-                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=csgo" class="col-sm-2">
-                                          <img alt="image" src="assets/images/gamelogo/csgo.png" class="img-fluid">
-                                      </a>
+                                  <a data-fancybox="gallery" href="showlivebycategory.jsp?category=dota2" class="col-sm-2">
+                                      <img alt="image" src="assets/images/gamelogo/dota2.png" class="img-fluid">
+                                  </a>
 
-                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=dota2" class="col-sm-2">
-                                          <img alt="image" src="assets/images/gamelogo/dota2.png" class="img-fluid">
-                                      </a>
+                                  <a data-fancybox="gallery" href="showlivebycategory.jsp?category=hs" class="col-sm-2">
+                                      <img alt="image" src="assets/images/gamelogo/hs.png" class="img-fluid">
+                                  </a>
 
-                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=hs" class="col-sm-2">
-                                          <img alt="image" src="assets/images/gamelogo/hs.png" class="img-fluid">
-                                      </a>
+                                  <a data-fancybox="gallery" href="showlivebycategory.jsp?category=lol" class="col-sm-2">
+                                      <img alt="image" src="assets/images/gamelogo/lol.png" class="img-fluid">
+                                  </a>
 
-                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=lol" class="col-sm-2">
-                                          <img alt="image" src="assets/images/gamelogo/lol.png" class="img-fluid">
-                                      </a>
+                                  <a data-fancybox="gallery" href="showlivebycategory.jsp?category=majiang" class="col-sm-2">
+                                      <img alt="image" src="assets/images/gamelogo/majiang.png" class="img-fluid">
+                                  </a>
 
-                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=majiang" class="col-sm-2">
-                                          <img alt="image" src="assets/images/gamelogo/majiang.png" class="img-fluid">
-                                      </a>
-
-                                      <a data-fancybox="gallery" href="showlivebycategory.jsp?category=overwatch" class="col-sm-2">
-                                          <img alt="image" src="assets/images/gamelogo/overwatch.png" class="img-fluid">
-                                      </a>
-                                  </div>
-
+                                  <a data-fancybox="gallery" href="showlivebycategory.jsp?category=overwatch" class="col-sm-2">
+                                      <img alt="image" src="assets/images/gamelogo/overwatch.png" class="img-fluid">
+                                  </a>
                               </div>
-                          </div><!-- end card-->
-                      </div>
 
+                          </div>
+                      </div><!-- end card-->
+                  </div>
                   </div>
 
               </div>
@@ -189,6 +200,15 @@
           <!-- END content -->
 
       </div>
+
+      <footer class="footer">
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+          <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
+      </footer>
 
   </div>
   <!-- END main -->
@@ -222,9 +242,7 @@
 
   <style type="text/css">
     .mydiv{
-          width:250px;
-
-          height:auto;
+          height:100%;
 
           background:#fff;
 
@@ -258,31 +276,12 @@
   </script>
   <script>
       $(document).ready(function(){
-          if(checkCookie("token") === false){
-              var id=document.getElementById("xiaoren");
-              id.href="login.jsp";
-              swal({
-                  title:"你还没有登陆哦～",
-                  icon:"warning",
-                  button:{
-                      text: "我要登上我的考拉～",
-                      closeModal: false,
-                  },
-              }).then(
-                  function (value) {
-                      if(value){
-                          window.location.href="login.jsp";
-                      }
-                  }
-              );
-          }else{
               var id = document.getElementById('xiaoren');
               id.href="personcenter_basic.jsp";
-              var data1={token:$.cookie("token")};
+              //var data1={token:$.cookie("token")};
               $.ajax({
                   type: "POST",
                   url: "http://47.106.186.164:8080/koalaTV/api/live/hotlive",
-                  data: JSON.stringify(data1),
                   cache: false,
                   contentType: false,    //不可缺
                   processData: false,    //不可缺
@@ -299,12 +298,11 @@
                               "live_url" : msg.rooms[0].rtmpurl,
                               "live_url2" : msg.rooms[0].flvurl,
                               "live_url3": msg.rooms[0].hlsurl,
-                              "width" : 600,
-                              "height" : 400
                           };
                           (function(){
                               var player = new qcVideo.Player("id_video_container", option)
                           })()
+                           $("")
                       }else {
                           var tem = "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\" style=\"background-color: rgba(247,203,102,0.8);height: 500px;text-align: center;\">";
                           tem += "<img src='assets/images/sleep.png' style='width:auto;height:95%;' />"
@@ -317,7 +315,6 @@
                   }
               });
 
-          }
       });
   </script>
 

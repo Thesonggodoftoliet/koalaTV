@@ -12,8 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>考拉直播-个人管理</title>
-    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -31,14 +29,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
 </head>
-<body class="adminbody" background="assets/images/background2.png">
+<body class="adminbody">
 <div id="main">
     <!-- top bar navigation -->
     <div class="headerbar">
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png"/></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
         </div>
 
         <nav class="navbar-custom">
@@ -48,8 +46,8 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+                    <a class="nav-link dropdown-toggle nav-user"  href="personcenter_basic.jsp.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
                     </a>
                 </li>
 
@@ -60,7 +58,6 @@
 
     </div>
     <!-- End Navigation -->
-
 
     <!-- Left Sidebar -->
 
@@ -100,7 +97,7 @@
                         </ul>
                     </li>
                     <li class="submenu" style="position:bottom left;">
-                        <img src="assets/images/bgp2.png" height="500" width="255">
+                        <img src="assets/images/bgp2.png" height="500" width="255"/>
                     </li>
 
                 </ul>
@@ -114,28 +111,37 @@
 
     <div class="content-page">
         <!-- Start content -->
-        <div class="content" style="width: 100%;padding: 5%;" >
-            <nav class="navbar-custom">
-                <ul class="list-inline float-left mb-0">
-                    <li class="list-inline-item dropdown notif" id="livem" style="color: #ffffff;"  onclick="flivem()">
-                        <font size="5">直播间管理</font>
+        <div class="content" style="width: 100%;margin-top: 80px;padding-left: 5%" >
+            <nav class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <ul class="list-inline float-left mb-0 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <li class="list-inline-item dropdown notif" id="livem" style="color: #f0ad4e;"  onclick="flivem()">
+                        <h2>直播间管理</h2>
                     </li>
-                    <li class="list-inline-item dropdown notif" id="barm" style="color: #ffffff;" onclick="fbarm()">
-                        <font size="5">话圈管理</font>
+                    <li class="list-inline-item dropdown notif" id="barm" style="color: #f0ad4e;" onclick="fbarm()">
+                        <h2>话圈管理</h2>
                     </li>
-                    <li class="list-inline-item dropdown notif" id="applym" style="color: #ffffff;" onclick="fapplym()">
-                        <font size="5">申请本次直播</font>
+                    <li class="list-inline-item dropdown notif" id="applym" style="color: #f0ad4e;" onclick="fapplym()">
+                        <h2>申请本次直播</h2>
                     </li>
 
                 </ul>
             </nav>
-            <div id="senthtml"></div>
+            <div class="row">
+            <div id="senthtml" class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10" style="margin-top: 10px"></div>
+            </div>
 
         </div>
         <!-- END content -->
     </div>
     <!-- END content-page -->
-
+    <footer class="footer">
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+        <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
+    </footer>
 
 </div>
 <!-- END main -->
@@ -166,6 +172,15 @@
 <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
 <!-- BEGIN Java Script for this page -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style type="text/css">
+    .mydiv{
+        height:100%;
+
+        background:#fff;
+
+        box-shadow: 4px 0 2px #909090;
+    }
+</style>
 
 <script>
     function setCookie(token) {
@@ -233,14 +248,14 @@
     });
 
     function flivem() {
-        alert($.cookie("isYT"));
+       // alert($.cookie("isYT"));
         var data1 = {
           token : $.cookie("token")
         };
         if($.cookie("isYT") === "1"){
             var title;
             var category;
-            alert("他是主播");
+         //   alert("他是主播");
             $.ajax({
                 type: "POST",
                 url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
@@ -253,16 +268,16 @@
                     setCookie(msg.token);
                     title = msg.title;
                     category = msg.category;
-                    alert(title+" "+category);
-                    var tem = "<div class=\"row\">";
-                    tem += "<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
+                  //  alert(title+" "+category);
+                    var tem = " ";
+                    tem += "<div class=\"col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10\">";
                     tem += "<div class=\"card mb-3\"><div class=\"card-header\"><h3><i class=\"fa fa-check-square-o\"></i> 直播间管理 </h3>";
                     tem += "</div><div class=\"card-body\"><form><div class=\"form-group\">";
-                    tem += "<label>直播间名字</label>";
-                    tem += "<p id=\"liveid\">"+title+"</p>";
-                    tem += "</div><div class=\"form-group\"><label>直播间的分类</label>";
-                    tem += "<P id=\"category\">"+category+"</P>";
-                    tem += "</div></form></div></div></div></div>";
+                    tem += "<h4 style='color:#f4c63d'>直播间名字</h4>";
+                    tem += "<p id=\"liveid\" style='padding: 10px'>"+title+"</p>";
+                    tem += "</div><div class=\"form-group\" style='padding-top:5%'><h4 style='color:#f4c63d'>直播间的分类</h4>";
+                    tem += "<P id=\"category\" style='padding:10px'>"+category+"</P>";
+                    tem += "</div></form></div></div></div>";
                     document.getElementById("senthtml").innerHTML = tem;
                     console.log(msg);
                 }, error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -280,7 +295,7 @@
     }
 
     function fbarm() {
-        alert($.cookie("isBH"));
+       // alert($.cookie("isBH"));
         if($.cookie("isBH") === "1"){
             var hostid = -1;
             var data1={token:$.cookie("token")};
@@ -315,9 +330,10 @@
                 async:false,
                 success: function (msg) {
                     setCookie(msg.token);
-                    var tem = "<div class=\"row\">";
+                    var tem = " ";
+                    tem += "<div class=\"card mb-3\">";
                     for(var i = 0; i<msg.bars.length;i++){
-                        tem += "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4\">" +
+                        tem += "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4\" style='padding:3%;'>" +
                             "<div class=\"card mb-3\">" +
                             "<div class=\"card-header\">" +
                             "<h3><i class=\"fa fa-check-square-o\"></i> 话圈管理 </h3>" +
@@ -333,9 +349,9 @@
                         if(hostid === msg.bars[i].adminid){
                             tem += "<a role='button' class='btn btn-warning' style='float: right;' onclick=setbarhost()>修改话圈信息</a>";
                         }
-                        tem +="</div> </form></div>";
+                        tem +="</div></form>";
                     }
-                    tem+= "</div>";
+                    tem+= "</div></div>";
                     document.getElementById("senthtml").innerHTML = tem;
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -350,24 +366,24 @@
     }
 
     function fapplym() {
-        alert($.cookie("isYT"));
+       // alert($.cookie("isYT"));
         if($.cookie("isYT") === "1") {
-            var tem = "<div class='row'> <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12\">";
-            tem += "<div class=\"card mb-3\"><div class=\"card-header\">";
+            var tem = "<div class=\"col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10\">";
+            tem += "<div class=\"card mb-3\" style='padding:5%'><div class=\"card-header\">";
             tem += "<h3><i class=\"fa fa-check-square-o\"></i> 申请直播 </h3></div>";
             tem += "<div class=\"card-body\"><form method=\"post\"><div class=\"form-group\">";
             tem += "<label>直播间标题</label><input data-parsley-equalto=\"#pass1\" type=\"text\" required=\"\" class=\"form-control\" id=\"title\">";
-            tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\"  onclick=\"applyButton()\">";
+            tem += "</div><div class=\"form-group text-right m-b-6\"><input class=\"btn btn-primary\" type=\"button\" value='申请直播' onclick=\"applyButton()\">";
             tem += "</div></form>";
             tem += "<div><div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
             tem += "<div class=\"card-body text-info\">";
             tem += "<h4 class=\"card-title\">rtmp链接</h4> <p class=\"card-text\" id=\"rtmp\"></p>";
             tem += "</div></div>";
-            tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\">";
+            tem += "<div class=\"card border-info col-sm-12 col-lg-12 col-xl-12\" style='margin-top: 3%'>";
             tem += "<div class=\"card-body text-info\">";
             tem += "<h4 class=\"card-title\">密匙</h4>";
             tem += "<p class=\"card-text\" id=\"secretkey\"></p>";
-            tem += "</div></div></div></div></div>";
+            tem += "</div></div></div></div>";
             document.getElementById("senthtml").innerHTML = tem;
         }else{
             var tem = "";

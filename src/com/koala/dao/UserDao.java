@@ -1,9 +1,6 @@
 package com.koala.dao;
 
-import com.koala.entity.bar_tb;
-import com.koala.entity.fans_;
-import com.koala.entity.room_tb;
-import com.koala.entity.user_tb;
+import com.koala.entity.*;
 
 import java.util.List;
 
@@ -25,5 +22,6 @@ public interface UserDao {
     boolean applyYoutuber(user_tb user, bar_tb bar, room_tb room);
     boolean followYoutuber(user_tb user, fans_ fans);
     boolean concelFollow(user_tb user, fans_ fans);
+    programmer_tb getProgrammer(programmer_tb programmerTb);
     boolean deleteUserById(int id);
 }

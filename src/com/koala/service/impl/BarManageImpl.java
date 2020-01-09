@@ -283,12 +283,12 @@ public class BarManageImpl implements BarManage {
     @Override
     public int changeAdmin(int userid, int admin) {
         bar_tb sqlbar = barDao.getBarByHostId(userid);
-        if (sqlbar.getAdminid() == userid)
+        if (sqlbar.getAdminid() == admin)//不用修改
             return -1;
 
         sqlbar.setAdminid(admin);
 
-        if (barDao.updateBarByHostId(sqlbar))
+        if (barDao.changeAdmin(sqlbar))
                 return 1;
         return 0;
     }
