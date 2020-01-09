@@ -43,10 +43,9 @@ public class Current_liveDaoImpl implements Current_liveDao {
       **/
     @Override
     public boolean updateLive(current_live live) {
-        String sql = "update current_live set rtmp ='"+live.getRtmp()+"',title ='"+live.getTitle()+"' ,secretkey='"+live.getSecretkey()+"',streamId=? where roomid = ?";
-        int tag = JdbcUtils.executeSQL(sql,live.getStreamId(),live.getRoomid());
-        if (tag == 0)return false;
-        else return true;
+        String sql = "update current_live set rtmp ='"+live.getRtmp()+"',title ='"+live.getTitle()+"' ,secretkey='"+live.getSecretkey()+"',streamId="+live.getStreamId()+" where roomid ="+live.getRoomid();
+        String sql1 = "update room_tb set title='"+live.getTitle()+"' where roomid ="+live.getRoomid();
+        return JdbcUtils.executeTran(sql,sql1);
     }
 
     /**

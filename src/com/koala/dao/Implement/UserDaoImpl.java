@@ -1,10 +1,7 @@
 package com.koala.dao.Implement;
 
 import com.koala.dao.UserDao;
-import com.koala.entity.bar_tb;
-import com.koala.entity.fans_;
-import com.koala.entity.room_tb;
-import com.koala.entity.user_tb;
+import com.koala.entity.*;
 import com.koala.utils.JdbcUtils;
 
 import java.util.List;
@@ -169,6 +166,18 @@ public class UserDaoImpl implements UserDao {
         String sql2 = "delete from fans_"+fans.getHostid()+" where userid ="+fans.getUserid();
         return JdbcUtils.executeTran(sql1,sql2);
     }
+
+    /**
+      *获取管理员账户信息.
+      * @param programmerTb com.koala.entity.programmer_tb
+      * @return com.koala.entity.programmer_tb
+      **/
+    @Override
+    public programmer_tb getProgrammer(programmer_tb programmerTb) {
+        String sql = "select * from programmer_tb where useraccount ="+programmerTb.getUseraccount();
+        return (programmer_tb) JdbcUtils.getObject(programmer_tb.class,sql);
+    }
+
 
     /**
       *删除用户.

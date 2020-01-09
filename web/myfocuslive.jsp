@@ -50,7 +50,7 @@
 
         <!-- LOGO -->
         <div class="headerbar-left">
-            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
+            <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
         </div>
 
         <nav class="navbar-custom">
@@ -60,8 +60,8 @@
 
 
                 <li class="list-inline-item dropdown notif" >
-                    <a class="nav-link dropdown-toggle nav-user" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+                    <a class="nav-link dropdown-toggle nav-user"  href="personcenter_basic.jsp.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
                     </a>
                 </li>
 
@@ -72,7 +72,6 @@
 
     </div>
     <!-- End Navigation -->
-
 
     <!-- Left Sidebar -->
 
@@ -111,11 +110,8 @@
                             <li><a href="login.jsp">切换账号</a></li>
                         </ul>
                     </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
                     <li class="submenu" style="position:bottom left;">
-                        <img src="assets/images/bgp2.png" height="500" width="255">
+                        <img src="assets/images/bgp2.png" height="500" width="255"/>
                     </li>
 
                 </ul>
@@ -126,13 +122,12 @@
     </div>
     <!-- End Sidebar -->
 
-
     <div class="content-page">
 
         <!-- Start content -->
         <div class="content">
 
-            <div class="container-fluid">
+            <div class="container-fluid" >
                 <div class="row" id="home" style="padding:8%;">
 
 
@@ -147,7 +142,12 @@
     <!-- END content-page -->
 
     <footer class="footer">
-
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+        <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
     </footer>
 
 </div>
@@ -238,9 +238,9 @@
                      }
                      else{
                          for(var i=0;i<json.rooms.length;i++){
-                             tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>";
+                             tem+="<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='height:50px;border: 1px solid transparent;'>";
                              tem+="<h3>"+json.rooms[i].title+"</h3>";
-                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 100px;width:160px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 150px;width:150px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
                              tem+="</div></div></a></div></div>";
                          }
                      }
@@ -260,9 +260,7 @@
 </body>
 <style type="text/css">
     .mydiv{
-        width:250px;
-
-        height:auto;
+        height:100%;
 
         background:#fff;
 

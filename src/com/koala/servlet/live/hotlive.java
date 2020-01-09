@@ -38,18 +38,9 @@ public class hotlive extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("hotlive");
         JSONObject msg = new JSONObject();
-        JSONObject jsonObject = ReciveUtils.getObject(request);
         PrintWriter out  = response.getWriter();
-        String token = null;
         int tag = 0;
 
-        try {
-            token = jsonObject.getString("token");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        int userid = JwtUtils.decodeToken(token);
         RoomManage roomManage = new RoomManageImpl();
         UserManage userManage = new UserManageImpl();
         List<room_tb> all = roomManage.getRoomsOnlive();
@@ -82,11 +73,9 @@ public class hotlive extends HttpServlet {
             }
         }
 
-        token = JwtUtils.createToken(userid);
 
         try {
             msg.put("tag",tag);
-            msg.put("token",token);
             msg.put("rooms",rooms);
         } catch (JSONException e) {
             e.printStackTrace();

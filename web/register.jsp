@@ -40,16 +40,18 @@
 
       <!-- LOGO -->
       <div class="headerbar-left">
-        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /></a>
+        <a href="index.jsp" class="logo"><img alt="Logo" src="assets/images/slg.png" /><span>&nbsp</span></a>
       </div>
 
       <nav class="navbar-custom">
 
         <ul class="list-inline float-right mb-0">
 
+
+
           <li class="list-inline-item dropdown notif" >
-            <a id="userjudge" class="nav-link dropdown-toggle nav-user"  data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-              <i class="fa fa-user-o bigfonts" aria-hidden="true"></i>
+            <a class="nav-link dropdown-toggle nav-user"  href="personcenter_basic.jsp.jsp" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+              <i class="fa fa-user-o bigfonts" aria-hidden="true"></i><span>&nbsp</span>
             </a>
           </li>
 
@@ -60,7 +62,6 @@
 
     </div>
     <!-- End Navigation -->
-
 
     <!-- Left Sidebar -->
 
@@ -99,11 +100,8 @@
                 <li><a href="login.jsp">切换账号</a></li>
               </ul>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
             <li class="submenu" style="position:bottom left;">
-              <img src="assets/images/bgp2.png" height="500" width="255">
+              <img src="assets/images/bgp2.png" height="500" width="255"/>
             </li>
 
           </ul>
@@ -195,7 +193,7 @@
                 </div>
 
                 <div class="form-group text-right m-b-6">
-                  <input class="btn btn-primary" type="submit"  onclick="applyButton()">
+                  <input class="btn btn-primary" type="submit" value="注册" onclick="applyButton()">
                     <a href="login.jsp"><i>已经注册了～ 快去登陆叭</i></a>
                 </div>
 
@@ -210,8 +208,14 @@
     </div>
     <!-- END content-page -->
 
-    <footer class="footer">
-    </footer>
+      <footer class="footer">
+		<span class="text-right">
+		Copyright <a target="_blank" href="#">Koala TV</a>
+		</span>
+          <span class="float-right">
+		      用心创造快乐 用爱拉近距离
+		</span>
+      </footer>
 
   </div>
   <!-- END main -->
@@ -341,7 +345,7 @@
               dataType: "json",
               success: function (msg) {
                   if (msg.tag === 1) {
-                      alert("msg.tag==1");
+                    //  alert("msg.tag==1");
                       icon = $(obj)[0].files[0].name;
                       updateBasic(obj,gender,icon);
                       return $(obj)[0].files[0].name;
@@ -372,7 +376,7 @@
               var oldcode=$.cookie("token");
               var newcode=$('#newcode').val();
               data1={phone: $('#phone').val(),userpassword: $('#userpassword').val(),gender:gender,nickname:$('#nickname').val(),icon:icon,oldcode:oldcode,newcode:newcode};
-              alert(JSON.stringify(data1));
+             // alert(JSON.stringify(data1));
               $.ajax({
                   type:"post",
                   url:"http://47.106.186.164:8080/koalaTV/api/auth/register",

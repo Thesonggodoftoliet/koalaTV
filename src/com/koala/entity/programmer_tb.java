@@ -5,22 +5,22 @@ package com.koala.entity;
   *date 2019/12/26
   **/
 public class programmer_tb {
-    private int useraccout;
-    private int userpassword;
+    private int useraccount;
+    private String userpassword;
 
-    public int getUseraccout() {
-        return useraccout;
+    public int getUseraccount() {
+        return useraccount;
     }
 
-    public void setUseraccout(int useraccout) {
-        this.useraccout = useraccout;
+    public void setUseraccount(int useraccout) {
+        this.useraccount = useraccout;
     }
 
-    public int getUserpassword() {
+    public String getUserpassword() {
         return userpassword;
     }
 
-    public void setUserpassword(int userpassword) {
+    public void setUserpassword(String userpassword) {
         this.userpassword = userpassword;
     }
 }

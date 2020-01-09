@@ -96,11 +96,11 @@ public class UserManageImpl implements UserManage {
     @Override
     public int modifyUser(user_tb user) {
         user_tb sqluser = userDao.getUserById(user.getUserid());
-        if (user.getIcon()!= null && !user.getIcon().equals(sqluser.getIcon()))
+        if (!user.getIcon().isEmpty() && !user.getIcon().equals(sqluser.getIcon()))
             sqluser.setIcon(user.getIcon());
         if (user.getGender()!=0 && user.getGender()!=sqluser.getGender())
             sqluser.setGender(user.getGender());
-        if (user.getNickname()!=null && !user.getNickname().equals(sqluser.getNickname()))
+        if (!user.getNickname().isEmpty()&& !user.getNickname().equals(sqluser.getNickname()))
             sqluser.setNickname(user.getNickname());
         if(userDao.updateUserById(sqluser))
             return 1;
@@ -167,7 +167,7 @@ public class UserManageImpl implements UserManage {
     @Override
     public int followYoutuber(user_tb user) {
         user_tb sqluser = userDao.getUserById(user.getUserid());
-        Fans_Dao fans_dao = new Fans_DaoImpl();
+      //  Fans_Dao fans_dao = new Fans_DaoImpl();
         List<Integer> id = PraseUtils.sToi(sqluser.getFollow());
 
         if (id !=null && id.contains(Integer.parseInt(user.getFollow())))//已经关注了这个主播
@@ -187,6 +187,19 @@ public class UserManageImpl implements UserManage {
             return 1;
         else
             return 0;
+    }
+
+    /**
+      *验证管理员账户.
+      * @param programmerTb  com.koala.entity.programmer_tb
+      * @return int
+      **/
+    @Override
+    public int checkIdentity(programmer_tb programmerTb) {
+        programmer_tb sql = userDao.getProgrammer(programmerTb);
+        if (sql.getUserpassword().equals(programmerTb.getUserpassword()))
+            return 1;
+        return 0;
     }
 
 

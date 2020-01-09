@@ -130,19 +130,19 @@ public class RoomManageImpl implements RoomManage {
       **/
     @Override
     public List<room_tb> getRoomsByCat(String category){
-        List<room_tb> all = getRoomsOnlive();
-        List<room_tb> part = roomDao.getRoomsByCa(category);
+        List<room_tb> all = getRoomsOnlive();//所有在直播的房间
+        List<room_tb> part = roomDao.getRoomsByCa(category);//所有此类别的房间
         if (part == null){
             all.clear();
             return all;
         }
+
+        List<room_tb> re = new ArrayList<>();
         for (int i=0;i<all.size();i++){
-            if (!part.contains(all.get(i))) {
-                all.remove(i);
-                i--;
-            }
+            if (part.contains(all.get(i)))
+                re.add(all.get(i));
         }
-        return all;
+        return re;
     }
 
     /**
