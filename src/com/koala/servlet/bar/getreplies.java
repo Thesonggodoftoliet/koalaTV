@@ -37,8 +37,8 @@ public class getreplies extends HttpServlet {
         JSONObject msg= new JSONObject();
         JSONObject jsonObject = ReciveUtils.getObject(request);
         String token = null;
-        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://47.106.186.164:8080/imgs/";
+        String url = "http://ccnubt.club:8080/imgs/";//暂时不用
+       // String url = "http://47.106.186.164:8080/imgs/";
 
         int tag = 0;
         int hostid= 0;

@@ -36,8 +36,8 @@ public class searchroombyid extends HttpServlet {
         PrintWriter out = response.getWriter();
         int roomid = 0;
         int tag = 0;
-        // String url = "http://ccnubt.club:8080/koalaTV/imags/";//暂时不用
-        String url = "http://47.106.186.164:8080/imgs/";
+        String url = "http://ccnubt.club:8080/imas/";//暂时不用
+        //String url = "http://47.106.186.164:8080/imgs/";
 
 
         try {

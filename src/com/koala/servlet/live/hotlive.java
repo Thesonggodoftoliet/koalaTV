@@ -64,7 +64,7 @@ public class hotlive extends HttpServlet {
                     object.put("flvurl","rtmp://play.ccnubt.club/live/"+temp.getRoomid()+".flv");
                     object.put("hlsurl","rtmp://play.ccnubt.club/live/"+temp.getRoomid()+".m3u8");
                     object.put("username",userManage.getUserById(temp.getHostid()).getNickname());
-                    object.put("userpic","http://47.106.186.164:8080/imgs/"+userManage.getUserById(temp.getHostid()).getIcon());
+                    object.put("userpic","http://ccnubt.club:8080/imgs/"+userManage.getUserById(temp.getHostid()).getIcon());
                     object.put("fans",fanManage.getNumOfFan(temp.getHostid()));
                     rooms.put(object);
                 } catch (JSONException e) {

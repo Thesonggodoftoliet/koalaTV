@@ -221,7 +221,7 @@
             data1={token: token,category: cate};
             $.ajax({
                 type:"post",
-                url:"http://47.106.186.164:8080/koalaTV/api/live/getliveroom",
+                url:"http://ccnubt.club:8080/koalaTV/api/live/getliveroom",
                 data:JSON.stringify(data1),
                 cache: false,
                 dataType:"json",
@@ -230,7 +230,7 @@
                     var tem = " ";
                    // alert(json.tag);
                     if(json.tag === -1){
-                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:500px;' /></div><div class='clearfix'></div>";
                     }
                     else{
                       //  alert("hhhhhhhhhhhh");

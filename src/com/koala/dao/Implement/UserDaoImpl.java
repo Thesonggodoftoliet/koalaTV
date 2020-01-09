@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
       **/
     @Override
     public user_tb addUser(user_tb user) {
-        String sql = "insert into user_tb values(?,'"+user.getPhone()+"','"+user.getUserpassword()+"',"+user.getIsAudience()+","+user.getIsYoutuber()+","+user.getIsAdmin()+","+user.getIsBarhost()+","+user.getIsForbidden()+",'"+user.getNickname()+"',"+user.getGender()+",'"+user.getIcon()+"',null)";
+        String sql = "insert into user_tb values(?,'"+user.getPhone()+"','"+user.getUserpassword()+"',"+user.getIsAudience()+","+user.getIsYoutuber()+","+user.getIsAdmin()+","+user.getIsBarhost()+","+user.getIsForbidden()+",'"+user.getNickname()+"',"+user.getGender()+",'"+user.getIcon()+"','"+user.getFollow()+"')";
         System.out.println("addUser "+sql);
         int tag = JdbcUtils.executeSQL(sql,user.getUserid());
         if (tag == 0)return null;

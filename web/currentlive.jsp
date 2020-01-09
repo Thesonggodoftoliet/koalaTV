@@ -259,7 +259,7 @@
         var data4 = {hostid:hostid,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/youtuber/conselfollow",
+            url: "http://ccnubt.club:8080/koalaTV/api/youtuber/conselfollow",
             data: JSON.stringify(data4),
             cache: false,
             contentType: false,    //不可缺
@@ -290,7 +290,7 @@
         var data3 = {follow:follow,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/youtuber/followyoutuber",
+            url: "http://ccnubt.club:8080/koalaTV/api/youtuber/followyoutuber",
             data: JSON.stringify(data3),
             cache: false,
             contentType: false,    //不可缺
@@ -321,7 +321,7 @@
         var data2 = {roomid:roomid,token:$.cookie("token")};
         $.ajax({
             type:"POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/live/showfocus",
+            url: "http://ccnubt.club:8080/koalaTV/api/live/showfocus",
             data: JSON.stringify(data2),
             cache: false,
             contentType: false,    //不可缺
@@ -371,7 +371,7 @@
             var data1={token:$.cookie("token"),roomid:roomid};
             $.ajax({
                 type: "POST",
-                url: "http://47.106.186.164:8080/koalaTV/api/live/getroom",
+                url: "http://ccnubt.club:8080/koalaTV/api/live/getroom",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺
@@ -405,7 +405,7 @@
           //  alert($.cookie("token"));
             $.ajax({
                 type: "post",
-                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
+                url: "http://ccnubt.club:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data5),
                 dataType: "json",
                 async:false,

@@ -228,7 +228,7 @@
           };
           $.ajax({
             type: "POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/live/searchroombyid",
+            url: "http://ccnubt.club:8080/koalaTV/api/live/searchroombyid",
             dataType: "json",
             data: JSON.stringify(data1),
             contentType: "appication/json",
@@ -275,7 +275,7 @@
             };
             $.ajax({
               type: "POST",
-              url: "http://47.106.186.164:8080/koalaTV/api/live/deblockroom",
+              url: "http://ccnubt.club:8080/koalaTV/api/live/deblockroom",
               dataType: "json",
               data: JSON.stringify(data1),
               contentType: "appication/json",
@@ -310,7 +310,7 @@
         })
         .then(time => {
           if (!time) throw null;
-          fetch(`http://47.106.186.164:8080/koalaTV/api/live/shutdownroom?roomid=${id}&time=${time}`)
+          fetch(`http://ccnubt.club:8080/koalaTV/api/live/shutdownroom?roomid=${id}&time=${time}`)
             .then(res => res.text())
             .then(res => {
               console.log(res[7]);
@@ -338,7 +338,7 @@
       javascript:location.reload();
       // $.ajax({
       //   type: "POST",
-      //   url: "http://47.106.186.164:8080/koalaTV/api/live/getrooms ",
+      //   url: "http://ccnubt.club:8080/koalaTV/api/live/getrooms ",
       //   dataType: "json",
       //   contentType: "appication/json",
       //   success: function(msg) {
@@ -377,7 +377,7 @@
     window.onload = function() {
       $.ajax({
         type: "POST",
-        url: "http://47.106.186.164:8080/koalaTV/api/live/getrooms ",
+        url: "http://ccnubt.club:8080/koalaTV/api/live/getrooms ",
         dataType: "json",
         contentType: "appication/json",
         success: function(msg) {

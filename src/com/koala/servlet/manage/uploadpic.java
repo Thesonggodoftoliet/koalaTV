@@ -32,7 +32,7 @@ public class uploadpic extends HttpServlet {
         JSONObject msg = new JSONObject();
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
-        String path = "/root/imgs";
+        String path = "/usr/local/jetty/webapps/imgs";
         System.out.println("path "+path);
         File file = new File(path);
         if (!file.exists())

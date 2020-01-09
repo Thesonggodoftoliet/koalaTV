@@ -232,7 +232,7 @@
             //alert(JSON.stringify(data1));
             $.ajax({
                 type:"post",
-                url:"http://47.106.186.164:8080/koalaTV/api/auth/login",
+                url:"http://ccnubt.club:8080/koalaTV/api/auth/login",
                 data:JSON.stringify(data1),
                 contentType:"application/json",
                 dataType:"json",

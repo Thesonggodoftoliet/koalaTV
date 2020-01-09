@@ -1,9 +1,0 @@
-<view wx:for="{{list}}" wx:key="FollowList">
-  <view class="blank"></view>
-  <navigator url="../huaquan/huaquan" bindtap="savehost" data-list="{{item}}" open-type="navigate">
-    <i-card title="{{item.username}} 的话圈" thumb="{{item.hostpic}}" class="card">
-      <view slot="content">话圈描述: {{item.username}}的粉丝聚集地</view>
-      <view slot="footer">粉丝: {{item.numoffan}}</view>
-    </i-card>
-  </navigator>
-</view>

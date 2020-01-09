@@ -288,7 +288,7 @@
             });
         }else{
             var tem = "";
-            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:500px;' /></div><div class='clearfix'></div>";
             document.getElementById("senthtml").innerHTML = tem;
 
         }
@@ -304,7 +304,7 @@
                 //进一步判断他是不是这个话圈的主播，如果是，他可以加一个BUTTON 按钮，修改主持人的ID
                 $.ajax({
                     type: "POST",
-                    url: "http://47.106.186.164:8080/koalaTV/api/live/showhostmanage",
+                    url: "http://ccnubt.club:8080/koalaTV/api/live/showhostmanage",
                     data: JSON.stringify(data1),
                     cache: false,
                     contentType: false,    //不可缺
@@ -321,7 +321,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: "http://47.106.186.164:8080/koalaTV/api/bar/getbar",
+                url: "http://ccnubt.club:8080/koalaTV/api/bar/getbar",
                 data: JSON.stringify(data1),
                 cache: false,
                 contentType: false,    //不可缺
@@ -359,7 +359,7 @@
             });
         }else{ //不是主持人
             var tem = "";
-            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nobar.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nobar.png' style='width:auto;height:500px;' /></div><div class='clearfix'></div>";
             document.getElementById("senthtml").innerHTML = tem;
         }
 
@@ -387,7 +387,7 @@
             document.getElementById("senthtml").innerHTML = tem;
         }else{
             var tem = "";
-            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+            tem+="<div class='col-xl-12' align='center'><img src='assets/images/nohost.png' style='width:auto;height:500px;' /></div><div class='clearfix'></div>";
             document.getElementById("senthtml").innerHTML = tem;
         }
     }
@@ -408,7 +408,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "http://47.106.186.164:8080/koalaTV/api/bar/changeadmin",
+                url: "http://ccnubt.club:8080/koalaTV/api/bar/changeadmin",
                 dataType: "json",
                 data: JSON.stringify(data1),
                 contentType: "appication/json",
@@ -443,7 +443,7 @@
         data1={token:$.cookie("token"),title:title};
         $.ajax({
             type: "POST",
-            url: "http://47.106.186.164:8080/koalaTV/api/live/onlive",
+            url: "http://ccnubt.club:8080/koalaTV/api/live/onlive",
             data: JSON.stringify(data1),
             cache: false,
             contentType: false,    //不可缺
@@ -458,7 +458,7 @@
                      secretkey.innerText=msg.secretkey;
                 } else if(msg.tag === -1){
                     swal({
-                        title:"你的直播间被封禁了呢！联系人工客服"
+                        title:"你的直播间被封禁了呢！联系人工客服TEL:15071091360"
                     }).then(
                         function (){
                            swal.close();

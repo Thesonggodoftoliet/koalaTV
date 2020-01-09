@@ -288,7 +288,7 @@
           data1={phone:$('#phone').val()};
           $.ajax({
               type:"post",
-              url:"http://47.106.186.164:8080/koalaTV/api/auth/identify",
+              url:"http://ccnubt.club:8080/koalaTV/api/auth/identify",
               data:JSON.stringify(data1),
               dataType:"json",
               success:function(msg) {
@@ -337,7 +337,7 @@
           });
           $.ajax({
               type: "POST",
-              url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
+              url: "http://ccnubt.club:8080/koalaTV/api/manage/uploadpic",
               data: data,
               cache: false,
               contentType: false,    //不可缺
@@ -379,7 +379,7 @@
              // alert(JSON.stringify(data1));
               $.ajax({
                   type:"post",
-                  url:"http://47.106.186.164:8080/koalaTV/api/auth/register",
+                  url:"http://ccnubt.club:8080/koalaTV/api/auth/register",
                   data:JSON.stringify(data1),
                   dataType:"json",
                   success:function(msg){
