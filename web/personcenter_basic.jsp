@@ -258,7 +258,7 @@
                 }).then(gender1 => {
                     if(gender1=="男"){
                         gender1=1;
-                    } else {
+                    } else if (gender1=="女"){
                         gender1=2;
                     }
                     var data1 = {
@@ -269,7 +269,7 @@
                     };
                     $.ajax({
                             type: "POST",
-                            url: "http://47.106.186.164:8080/koalaTV/api/manage/vimpersonalinfo",
+                            url: "http://ccnubt.club:8080/koalaTV/api/manage/vimpersonalinfo",
                             dataType: "json",
                             data: JSON.stringify(data1),
                             contentType: "appication/json",
@@ -325,7 +325,7 @@
           //  alert($.cookie("token"));
             $.ajax({
                 type: "post",
-                url: "http://47.106.186.164:8080/koalaTV/api/manage/personalinfo",
+                url: "http://ccnubt.club:8080/koalaTV/api/manage/personalinfo",
                 data: JSON.stringify(data1),
                 dataType: "json",
                 success: function (msg) {

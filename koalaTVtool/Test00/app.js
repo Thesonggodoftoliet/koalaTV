@@ -38,6 +38,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: "http://47.106.186.164:8080/koalaTV/api/"
+    url: "http://ccnubt.club:8080/koalaTV/api/"
   }
 })

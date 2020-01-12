@@ -115,7 +115,7 @@
 
     <div class="content-page">
       <!-- Start content -->
-      <div class="content" style="width: 95%;padding: 5%;">
+      <div class="content" style="width: 50%;margin-left: 25%;margin-right: 25%;margin-top: 80px">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="card mb-3">
             <div class="card-header"  style="text-align:center;">
@@ -125,8 +125,8 @@
 
             <div class="card-body">
 
-              <form class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9" method="post"  onsubmit="return false;">
-                <div class="form-group">
+              <form class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10" style="margin-left: 10%;margin-right: 10%" method="post"  onsubmit="return false;">
+                <div class="form-group" >
                   <label for="phone">账号（手机号）<span class="text-danger">*</span></label>
                   <input type="text" data-parsley-trigger="change" required="" placeholder="请输入11位手机号" class="form-control" id="phone">
                 </div>
@@ -156,6 +156,7 @@
                     <option>炉石传说</option>
                     <option>CS:GO</option>
                     <option>麻将</option>
+                    <option>守望先锋</option>
                   </select>
                 </div>
                 <div class="form-row col-md-12">
@@ -288,7 +289,7 @@
           data1={phone:$('#phone').val()};
           $.ajax({
               type:"post",
-              url:"http://47.106.186.164:8080/koalaTV/api/auth/identify",
+              url:"http://ccnubt.club:8080/koalaTV/api/auth/identify",
               data:JSON.stringify(data1),
               dataType:"json",
               success:function(msg) {
@@ -337,7 +338,7 @@
           });
           $.ajax({
               type: "POST",
-              url: "http://47.106.186.164:8080/koalaTV/api/manage/uploadpic",
+              url: "http://ccnubt.club:8080/koalaTV/api/manage/uploadpic",
               data: data,
               cache: false,
               contentType: false,    //不可缺
@@ -379,7 +380,7 @@
              // alert(JSON.stringify(data1));
               $.ajax({
                   type:"post",
-                  url:"http://47.106.186.164:8080/koalaTV/api/auth/register",
+                  url:"http://ccnubt.club:8080/koalaTV/api/auth/register",
                   data:JSON.stringify(data1),
                   dataType:"json",
                   success:function(msg){

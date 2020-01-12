@@ -56,10 +56,15 @@ public class applyyoutuber extends HttpServlet {
         }
 
         UserManage userManage = new UserManageImpl();
+
+        //关注自己
+        user.setFollow(String.valueOf(user.getUserid()));
+        userManage.followYoutuber(user);
+
+
         user = userManage.getUserById(user.getUserid());
         bar.setBarname(user.getNickname());
         bar.setCoverpic(user.getIcon());
-
 
         tag =userManage.applyForBar(user,bar,room);
 

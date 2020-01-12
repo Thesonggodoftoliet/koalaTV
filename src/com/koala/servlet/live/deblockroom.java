@@ -2,6 +2,7 @@ package com.koala.servlet.live;
 
 import com.koala.service.RoomManage;
 import com.koala.service.impl.RoomManageImpl;
+import com.koala.utils.LiveUtils;
 import com.koala.utils.ReciveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,8 +39,10 @@ public class deblockroom extends HttpServlet {
         }
 
         RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.deblockRoom(roomid))
+        if (roomManage.deblockRoom(roomid)) {
             tag = 1;
+            LiveUtils.resumeRoom(roomid);
+        }
 
         try {
             msg.put("tag",tag);

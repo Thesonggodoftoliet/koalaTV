@@ -3,7 +3,9 @@ package com.koala.servlet.live;
 import com.koala.service.RoomManage;
 import com.koala.service.impl.RoomManageImpl;
 import com.koala.utils.JwtUtils;
+import com.koala.utils.LiveUtils;
 import com.koala.utils.ReciveUtils;
+import com.koala.utils.TimeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,14 +32,16 @@ public class shutdownroom extends HttpServlet {
         System.out.println("shutdownroom");
         JSONObject msg = new JSONObject();
         PrintWriter out = response.getWriter();
-        long time = Long.parseLong(request.getParameter("time"));
+        int time = Integer.parseInt(request.getParameter("time"));
         int roomid = Integer.parseInt(request.getParameter("roomid"));
         int tag = 0;
 
         Date now = new Date();
         RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000))
+        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000)) {
+            LiveUtils.forbidRoom(roomid, TimeUtils.dateToStrD(time));
             tag = 1;
+        }
 
         try {
             msg.put("tag",tag);

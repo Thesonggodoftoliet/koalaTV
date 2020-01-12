@@ -3,7 +3,7 @@
 page{
   height: 100%;
   background-size:100%;
-  background-image: url('http://47.106.186.164:8080/imgs/bkimg.jpg');
+  background-image: url('http://ccnubt.club:8080/imgs/bkimg.jpg');
 }
 
 .blank{

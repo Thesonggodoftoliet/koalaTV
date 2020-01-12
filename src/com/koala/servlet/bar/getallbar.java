@@ -63,10 +63,10 @@ public class getallbar extends HttpServlet {
                     object.put("barid",bar.getBarid());
                     object.put("title",bar.getTitle());
                     object.put("username",userManage.getUserById(bar.getUserid()).getNickname());
-                    object.put("userpic","http://47.106.186.164:8080/imgs/"+userManage.getUserById(bar.getUserid()).getIcon());
+                    object.put("userpic","http://ccnubt.club:8080/imgs/"+userManage.getUserById(bar.getUserid()).getIcon());
                     object.put("posttime",bar.getPosttime());
                     object.put("content",bar.getContent());
-                    object.put("pic","http://47.106.186.164:8080/imgs/"+bar.getPic());
+                    object.put("pic","http://ccnubt.club:8080/imgs/"+bar.getPic());
                     object.put("replynum",bar.getReplynum());
                     object.put("latesttime",bar.getLastreplytime());
                     post.put(object);

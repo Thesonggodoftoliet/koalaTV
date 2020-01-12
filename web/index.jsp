@@ -281,7 +281,7 @@
               //var data1={token:$.cookie("token")};
               $.ajax({
                   type: "POST",
-                  url: "http://47.106.186.164:8080/koalaTV/api/live/hotlive",
+                  url: "http://ccnubt.club:8080/koalaTV/api/live/hotlive",
                   cache: false,
                   contentType: false,    //不可缺
                   processData: false,    //不可缺

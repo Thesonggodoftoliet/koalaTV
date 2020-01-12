@@ -199,45 +199,24 @@
 
     <!-- 判断当前用户是否已经登陆了 -->
     $(document).ready(function(){
-        if(checkCookie("token") === false){
-            swal({
-                title:"你还没有登陆哦～",
-                icon:"warning",
-                button:{
-                    text: "我要登上我的考拉～",
-                    closeModal: false,
-                },
-            }).then(
-                function (value) {
-                    if(value){
-                        window.location.href="login.jsp";
-                    }
-                }
-            );
-
-        }
-        else{
             if(cate === "csgo") {cate = "CS:GO";}
-            data1={token: token,category: cate};
+            data1={category: cate};
             $.ajax({
                 type:"post",
-                url:"http://47.106.186.164:8080/koalaTV/api/live/getliveroom",
+                url:"http://ccnubt.club:8080/koalaTV/api/live/getliveroom",
                 data:JSON.stringify(data1),
                 cache: false,
                 dataType:"json",
                 success:function(json){
-                    setCookie(json.token);
                     var tem = " ";
-                   // alert(json.tag);
                     if(json.tag === -1){
-                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:90%;' /></div><div class='clearfix'></div>";
+                        tem+="<div class='col-xl-12' align='center'><img src='assets/images/sleep.png' style='width:auto;height:500px;' /></div><div class='clearfix'></div>";
                     }
                     else{
-                      //  alert("hhhhhhhhhhhh");
                         for(var i=0,l=json.rooms.length;i<l;i++){
-                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='border: 1px solid transparent;'>";
+                            tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3'><div class='card-header'>";
                             tem+="<h3>"+json.rooms[i].title+"</h3>";
-                            tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 100px;width:160px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                            tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body' style='width:100%;padding:0px'><img style='left:0;width: 100%;height: 190px' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'></img>";
                             tem+="</div></div></a></div></div>";
                         }
                     }
@@ -248,8 +227,6 @@
                     alert(textStatus);
                 }
             });
-
-        }
     });
 </script>
 <style type="text/css">

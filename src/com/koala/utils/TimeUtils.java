@@ -21,6 +21,7 @@ public class TimeUtils {
         return dateString;
     }
 
+
     /**
       *生成几分钟前的时间串.
       * @param minute int
@@ -31,5 +32,17 @@ public class TimeUtils {
         Date old = new Date(date.getTime()-minute*60*1000);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simpleDateFormat.format(old);
+    }
+
+    /**
+      *生成UTC标准时间.
+      * @param day int
+      * @return java.lang.String
+      **/
+    public static String dateToStrD(int day){
+        Date date = new Date();
+        Date resume = new Date(date.getTime()+day*24*60*60*1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        return simpleDateFormat.format(resume);
     }
 }

@@ -5,10 +5,7 @@ import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.common.profile.ClientProfile;
 import com.tencentcloudapi.common.profile.HttpProfile;
 import com.tencentcloudapi.live.v20180801.LiveClient;
-import com.tencentcloudapi.live.v20180801.models.DescribeLiveStreamOnlineListRequest;
-import com.tencentcloudapi.live.v20180801.models.DescribeLiveStreamOnlineListResponse;
-import com.tencentcloudapi.live.v20180801.models.DescribeStreamPlayInfoListRequest;
-import com.tencentcloudapi.live.v20180801.models.DescribeStreamPlayInfoListResponse;
+import com.tencentcloudapi.live.v20180801.models.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,5 +85,54 @@ public class LiveUtils {
         }
 
         return num;
+    }
+
+    public static void forbidRoom(int roomid,String time){
+
+        try{
+
+            Credential cred = new Credential("AKID73kDTT2nAIBqHWOEnSwBAvSkmbDZqsgF", "d27yaw73lERVLwIOFsFMGyRfdLp35xe5");
+
+            HttpProfile httpProfile = new HttpProfile();
+            httpProfile.setEndpoint("live.tencentcloudapi.com");
+
+            ClientProfile clientProfile = new ClientProfile();
+            clientProfile.setHttpProfile(httpProfile);
+
+            LiveClient client = new LiveClient(cred, "ap-guangzhou", clientProfile);
+
+            String params = "{\"AppName\":\"33772\",\"DomainName\":\"33772.livepush.myqcloud.com\",\"StreamName\":\""+roomid+"\",\"ResumeTime\":\""+time+"\"}";
+            ForbidLiveStreamRequest req = ForbidLiveStreamRequest.fromJsonString(params, ForbidLiveStreamRequest.class);
+
+            ForbidLiveStreamResponse resp = client.ForbidLiveStream(req);
+
+            System.out.println(ForbidLiveStreamRequest.toJsonString(resp));
+        } catch (TencentCloudSDKException e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public static void resumeRoom(int roomid){
+        try{
+
+            Credential cred = new Credential("AKID73kDTT2nAIBqHWOEnSwBAvSkmbDZqsgF", "d27yaw73lERVLwIOFsFMGyRfdLp35xe5");
+
+            HttpProfile httpProfile = new HttpProfile();
+            httpProfile.setEndpoint("live.tencentcloudapi.com");
+
+            ClientProfile clientProfile = new ClientProfile();
+            clientProfile.setHttpProfile(httpProfile);
+
+            LiveClient client = new LiveClient(cred, "ap-guangzhou", clientProfile);
+
+            String params = "{\"AppName\":\"33772\",\"DomainName\":\"33772.livepush.myqcloud.com\",\"StreamName\":\""+roomid+"\"}";
+            ResumeLiveStreamRequest req = ResumeLiveStreamRequest.fromJsonString(params, ResumeLiveStreamRequest.class);
+
+            ResumeLiveStreamResponse resp = client.ResumeLiveStream(req);
+
+            System.out.println(ResumeLiveStreamRequest.toJsonString(resp));
+        } catch (TencentCloudSDKException e) {
+            System.out.println(e.toString());
+        }
     }
 }
