@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>登录-KoalaTV 后台管理平台</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/pages/signin.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+	<div class="navbar navbar-fixed-top">
+
+	<div class="navbar-inner">
+
+		<div class="container">
+
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+
+			<a class="brand" href="index.html">
+				KoalaTV后台管理平台
+			</a>
+
+			<div class="nav-collapse">
+				<ul class="nav pull-right">
+
+
+				</ul>
+
+			</div><!--/.nav-collapse -->
+
+		</div> <!-- /container -->
+
+	</div> <!-- /navbar-inner -->
+
+</div> <!-- /navbar -->
+
+
+
+<div class="account-container">
+
+	<div class="content clearfix">
+
+		<form onsubmit="return false;" method="post">
+
+			<h1>管理员登录</h1>
+
+			<div class="login-fields">
+
+				<p>请输入管理员信息</p>
+
+				<div class="field">
+					<label for="username">账号:</label>
+					<input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+				</div> <!-- /field -->
+
+				<div class="field">
+					<label for="password">密码:</label>
+					<input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+				</div> <!-- /password -->
+
+			</div> <!-- /login-fields -->
+
+			<div class="login-actions">
+
+				<span class="login-checkbox">
+					<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
+					<label class="choice" for="Field">记住我</label>
+				</span>
+
+				<input type="submit" class="button btn btn-success btn-large" onclick=login()>登录</input>
+
+			</div> <!-- .actions -->
+
+
+
+		</form>
+
+	</div> <!-- /content -->
+
+</div> <!-- /account-container -->
+
+
+
+<!-- /login-extra -->
+
+
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<script src="js/signin.js"></script>
+<script type="text/javascript">
+  function login(){
+    var useraccount1=document.getElementById('username').value;
+    var userpassword1=document.getElementById('password').value;
+    var data1 = {
+                      useraccount:useraccount1,
+                      userpassword:userpassword1,
+                  };
+    console.log(data1);
+    $.ajax({
+      type: "POST",
+      url: "http://ccnubt.club:8080/koalaTV/api/manage/verifyadmin",
+      dataType: "json",
+      data: JSON.stringify(data1),
+      contentType: "appication/json",
+      success: function(msg) {
+        if(msg.tag==1){
+            alert("登录成功！！");
+            window.location.href="http://ccnubt.club:8080/koalaTV/management/index.html";
+        } else {
+          alert("登录失败！！");
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert(XMLHttpRequest.status);
+        alert(XMLHttpRequest.readyState);
+        alert(textStatus);
+      }
+    });
+  }
+</script>
+
+</body>
+
+</html>

@@ -114,10 +114,10 @@ public class BarManageImpl implements BarManage {
         if (all == null)
             return null;
         else {
-            for (int i=0;i<all.size();i++)
-                if (all.get(i).getAdminid() == userid)
+            for (int i=0;i<all.size();i++) {
+                if (all.get(i).getAdminid() == userid)//是话圈主持人
                     temp.add(all.get(i));
-
+            }
                 return temp;
         }
     }

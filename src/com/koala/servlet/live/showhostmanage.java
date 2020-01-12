@@ -56,6 +56,9 @@ public class showhostmanage extends HttpServlet {
             msg.put("title",room.getTitle());
             msg.put("category",room.getCategory());
             msg.put("adminid",bar.getAdminid());
+            msg.put("barname",bar.getBarname());
+            msg.put("coverpic","http://ccnubt.club:8080/imgs/"+bar.getCoverpic());
+            msg.put("numofpost",barManage.getNumofPost(bar.getHostid()));
             msg.put("adminname",userManage.getUserById(bar.getAdminid()).getNickname());
             msg.put("token",token);
         } catch (JSONException e) {

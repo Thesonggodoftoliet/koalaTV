@@ -238,9 +238,9 @@
                      }
                      else{
                          for(var i=0;i<json.rooms.length;i++){
-                             tem+="<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'><div class='card md-3 lg-3 xl-3' style='border: 1px solid transparent;'><div class='card-header' style='height:50px;border: 1px solid transparent;'>";
+                             tem+="<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'><div class='card md-3 lg-3 xl-3'><div class='card-header'>";
                              tem+="<h3>"+json.rooms[i].title+"</h3>";
-                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body'><div><img class='img-fluid' style='height: 150px;width:150px;' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'>";
+                             tem+="</div><a href='currentlive.jsp?roomid="+json.rooms[i].roomid+"'><div class='card-body' style='width:100%;padding:0px'><img style='left:0;width: 100%;height: 190px' data-toggle='magnify' src='"+json.rooms[i].coverpic+"'></img>";
                              tem+="</div></div></a></div></div>";
                          }
                      }

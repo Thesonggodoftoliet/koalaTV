@@ -43,22 +43,27 @@ public class getliveroom extends HttpServlet {
         //String url = "http://47.106.186.164:8080/imgs/";
 
         try {
-            token = jsonObject.getString("token");
             category = jsonObject.getString("category");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         JSONArray rooms = new JSONArray();
-        int userid = JwtUtils.decodeToken(token);
         RoomManage roomManage = new RoomManageImpl();
         List<room_tb> roomTbList;
         if (category.equals("all"))
             roomTbList=roomManage.getRoomsOnlive();
-        else if (category.equals("follow"))
+        else if (category.equals("follow")) {
+            try {
+                token = jsonObject.getString("token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            int userid = JwtUtils.decodeToken(token);
             roomTbList = roomManage.getRoomsFollow(userid);
+            token = JwtUtils.createToken(userid);
+        }
         else
             roomTbList = roomManage.getRoomsByCat(category);
-        token = JwtUtils.createToken(userid);
         if (roomTbList.isEmpty())
             tag = -1;
         else {

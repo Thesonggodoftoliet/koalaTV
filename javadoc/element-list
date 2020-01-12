@@ -1,5 +1,6 @@
 com.jieba
 com.jieba.viterbi
+com.koala
 com.koala.dao
 com.koala.dao.Implement
 com.koala.entity

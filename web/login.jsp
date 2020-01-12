@@ -122,7 +122,7 @@
                     <div class="card mb-3">
                         <div class="card-header"  style="text-align:center;">
                             <br/>
-                            <h3> 欢迎注登录KoalaTV</h3>
+                            <h3> 欢迎登录KoalaTV</h3>
 
                         </div>
 

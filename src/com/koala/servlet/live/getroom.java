@@ -40,23 +40,23 @@ public class getroom extends HttpServlet {
         PrintWriter out = response.getWriter();
         int tag = 0;
         int roomid = 0;
-        String token = null;
+       // String token = null;
         String url = "http://ccnubt.club:8080/imgs/";//暂时不用
         //String url = "http://47.106.186.164:8080/imgs/";
 
         try {
-            token = jsonObject.getString("token");
+           // token = jsonObject.getString("token");
             roomid = jsonObject.getInt("roomid");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        int userid= JwtUtils.decodeToken(token);
+     //   int userid= JwtUtils.decodeToken(token);
         RoomManage roomManage = new RoomManageImpl();
         UserManage userManage = new UserManageImpl();
         FanManage fanManage = new FanManageImpl();
         room_tb room = roomManage.getRoom(roomid);
         user_tb user = userManage.getUserById(room.getHostid());
-        token = JwtUtils.createToken(userid);
+     //   token = JwtUtils.createToken(userid);
 
         try {
             msg.put("roomid",roomid);
@@ -70,7 +70,7 @@ public class getroom extends HttpServlet {
             msg.put("username",user.getNickname());
             msg.put("userpic",url+user.getIcon());
             msg.put("fans",fanManage.getNumOfFan(room.getHostid()));
-            msg.put("token",token);
+         //   msg.put("token",token);
         } catch (JSONException e) {
             e.printStackTrace();
         }

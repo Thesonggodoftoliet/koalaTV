@@ -158,10 +158,10 @@
             <!-- end row -->
         </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7" style="padding: 4%">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7"style="padding-left: 3%;padding-bottom: 0;padding-top: 0;padding-right: 3%">
                         <div  id="id_video_container" style="width:100%; height:auto;"></div>
                     </div>
-                   <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5" style="padding: 4%">
+                   <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5" style="padding-left: 3%;padding-bottom: 0;padding-top: 0;padding-right: 3%">
                       <div class="card-box tilebox-one noradius">
                          <div id='chat'>
                              <div id="ChatBox" class="am-g am-g-fixed" >
@@ -193,7 +193,13 @@
                         </div>
                     </div>
                 </div>
-                                    </div> </div>
+                    <footer class="footer">
+	                    	<span class="text-right">
+	                    	Copyright <a target="_blank" href="#">Koala TV</a>
+	                      	</span>
+                            <span class="float-right">用心创造快乐 用爱拉近距离
+                            </span>
+                    </footer>
 </body>
 
 <script src="assets/js/modernizr.min.js"></script>
@@ -256,98 +262,107 @@
     }
 
     function canselone(hostid) {
-        var data4 = {hostid:hostid,token:$.cookie("token")};
-        $.ajax({
-            type:"POST",
-            url: "http://ccnubt.club:8080/koalaTV/api/youtuber/conselfollow",
-            data: JSON.stringify(data4),
-            cache: false,
-            contentType: false,    //不可缺
-            processData: false,    //不可缺
-            dataType: "json",
-            success:function (msg) {
-                setCookie(msg.token);
-                if(msg.tag === 1){
-                    var tem = "";
-                    swal({
-                        title:"嘤嘤嘤，你不要我了",
-                    });
-                    tem += "<button  class='btn btn-primary' style='float: right;' onclick='followone("+roomid+")'>"
-                    tem += "未关注";
-                    document.getElementById("focusbutton").innerHTML = tem;
-                }else if(msg.tag === -1){
-                    swal({
-                        title:"害，你就没关注过我好叭",
-                    });
+        var flag =  judgeCookie();
+        if(flag === 1) {
+            var data4 = {hostid: hostid, token: $.cookie("token")};
+            $.ajax({
+                type: "POST",
+                url: "http://ccnubt.club:8080/koalaTV/api/youtuber/conselfollow",
+                data: JSON.stringify(data4),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    if (msg.tag === 1) {
+                        var tem = "";
+                        swal({
+                            title: "嘤嘤嘤，你不要我了",
+                        });
+                        tem += "<button  class='btn btn-primary' style='float: right;' onclick='followone(" + roomid + ")'>"
+                        tem += "未关注";
+                        document.getElementById("focusbutton").innerHTML = tem;
+                    } else if (msg.tag === -1) {
+                        swal({
+                            title: "害，你就没关注过我好叭",
+                        });
+                    }
+
                 }
-
-            }
-        });
-
+            });
+        }
     }
 
     function followone(follow) {
-        var data3 = {follow:follow,token:$.cookie("token")};
-        $.ajax({
-            type:"POST",
-            url: "http://ccnubt.club:8080/koalaTV/api/youtuber/followyoutuber",
-            data: JSON.stringify(data3),
-            cache: false,
-            contentType: false,    //不可缺
-            processData: false,    //不可缺
-            dataType: "json",
-            success:function (msg) {
-                setCookie(msg.token);
-                if(msg.tag === 1){
-                    var tem = "";
-                    swal({
-                        title:"成功关注了！",
-                    });
-                    tem += "<button  class='btn btn-primary' style='float:right;' onclick='canselone("+roomid+")'>"
-                    tem += "已关注";
-                    document.getElementById("focusbutton").innerHTML = tem;
-                }else if(msg.tag === -1){
-                    swal({
-                        title:"之前关注过了",
-                    });
+        var flag =  judgeCookie();
+        if( flag === 1) {
+            var data3 = {follow: follow, token: $.cookie("token")};
+            $.ajax({
+                type: "POST",
+                url: "http://ccnubt.club:8080/koalaTV/api/youtuber/followyoutuber",
+                data: JSON.stringify(data3),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    if (msg.tag === 1) {
+                        var tem = "";
+                        swal({
+                            title: "成功关注了！",
+                        });
+                        tem += "<button  class='btn btn-primary' style='float:right;' onclick='canselone(" + roomid + ")'>"
+                        tem += "已关注";
+                        document.getElementById("focusbutton").innerHTML = tem;
+                    } else if (msg.tag === -1) {
+                        swal({
+                            title: "之前关注过了",
+                        });
+                    }
+
                 }
-
-            }
-        });
-
+            });
+        }
     }
 
     function getfocus(roomid){
-        var data2 = {roomid:roomid,token:$.cookie("token")};
-        $.ajax({
-            type:"POST",
-            url: "http://ccnubt.club:8080/koalaTV/api/live/showfocus",
-            data: JSON.stringify(data2),
-            cache: false,
-            contentType: false,    //不可缺
-            processData: false,    //不可缺
-            dataType: "json",
-            success:function (msg) {
-                setCookie(msg.token);
-                var tem = "";
-               // alert("msg.tag = "+msg.tag);
-                if(msg.tag === 1){
-                    tem += "<button  class='btn btn-primary' style='float: right;' onclick='canselone("+roomid+")'>"
-                    tem += "已关注";
-                }else if(msg.tag === -1){
-                    tem += "<button  class='btn btn-primary' style='float: right;' onclick='followone("+roomid+")'>"
-                    tem += "未关注";
-                }
-                tem +="</button>";
-                document.getElementById("focusbutton").innerHTML = tem;
+        var tem = "";
+        if(checkCookie("token") === false) {
+            tem += "<button  class='btn btn-primary' style='float: right;' onclick='followone(" + roomid + ")'>"
+            tem += "未关注";
+            document.getElementById("focusbutton").innerHTML = tem;
+        }else {
+            var data2 = {roomid: roomid, token: $.cookie("token")};
+            $.ajax({
+                type: "POST",
+                url: "http://ccnubt.club:8080/koalaTV/api/live/showfocus",
+                data: JSON.stringify(data2),
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType: "json",
+                success: function (msg) {
+                    setCookie(msg.token);
+                    if (msg.tag === 1) {
+                        tem += "<button  class='btn btn-primary' style='float: right;' onclick='canselone(" + roomid + ")'>"
+                        tem += "已关注";
+                    } else if (msg.tag === -1) {
+                        tem += "<button  class='btn btn-primary' style='float: right;' onclick='followone(" + roomid + ")'>"
+                        tem += "未关注";
+                    }
+                    tem += "</button>";
+                    document.getElementById("focusbutton").innerHTML = tem;
 
-            }
-        });
+                }
+            });
+
+        }
     }
 
-
-    <!-- 判断当前用户是否已经登陆了 -->
-    $(document).ready(function(){
+    function judgeCookie(){
+        var flag = 0;
         if(checkCookie("token") === false){
             swal({
                 title:"你还没有登陆哦～",
@@ -363,12 +378,90 @@
                     }
                 }
             );
-
         }
-        else{
+        else {
+            flag = 1;
+            return flag;
+        }
+    }
+
+    function getsenterinfo() {
+        var flag = judgeCookie();
+        var sentusername = "kaola";
+        var sentuserpic;
+        if(flag === 1) {
+            var data5 = {token: $.cookie("token")};
+            $.ajax({
+                type: "post",
+                url: "http://ccnubt.club:8080/koalaTV/api/manage/personalinfo",
+                data: JSON.stringify(data5),
+                dataType: "json",
+                async: false,
+                success: function (msg) {
+                    setCookie(msg.token);
+                    sentusername = msg.nickname + msg.userid;
+                    console.log(msg.icon)
+                    sentuserpic = msg.icon;
+                },
+            });
+        }
+        var info=[sentusername,sentuserpic,flag];
+        return info;
+    }
+
+    function newChat(){
+        //实例化编辑器
+        var um = UM.getEditor('myEditor',{
+            initialContent:"请输入聊天信息...",
+            autoHeightEnabled:false,
+            toolbar:[
+                'undo redo |superscript subscript | forecolor backcolor|',
+                'fontfamily fontsize|'
+            ]
+        });
+        var socket = new WebSocket("ws://${pageContext.request.getServerName()}:${pageContext.request.getServerPort()}${pageContext.request.contextPath}/websocket/"+roomid);
+        //接收服务器的消息
+        socket.onmessage=function(ev) {
+            var obj = eval('(' + ev.data + ')');
+            addMessage(obj);
+        }
+        $("#send").click(function(){
+            if (!um.hasContents()) {  // 判断消息输入框是否为空
+                // 消息输入框获取焦点
+                um.focus();
+                // 添加抖动效果
+                $('.edui-container').addClass('am-animation-shake');
+                setTimeout("$('.edui-container').removeClass('am-animation-shake')", 1000);
+            } else {
+                //获取输入框的内容
+                var info = getsenterinfo();
+                if(info[2]===1) {
+                    var nickname = info[0];
+                    var sentuserpic = info[1];
+                    var txt = um.getContent();
+                    //构建一个标准格式的JSON对象
+                    var obj = JSON.stringify({
+                        nickname: nickname,
+                        content: txt,
+                        sentuserpic: sentuserpic
+                    });
+                    // 发送消息
+                    socket.send(obj);
+                    // 清空消息输入框
+                    um.setContent('');
+                    // 消息输入框获取焦点
+                    um.focus();
+                }
+            }
+        });
+
+    }
+
+
+    $(document).ready(function(){
         //显示信息
             roomid=getQueryString("roomid");
-            var data1={token:$.cookie("token"),roomid:roomid};
+            var data1={roomid:roomid};
             $.ajax({
                 type: "POST",
                 url: "http://ccnubt.club:8080/koalaTV/api/live/getroom",
@@ -398,68 +491,7 @@
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                 }
             })
-
-            var data5={token:$.cookie("token")};
-            var sentuserpic;
-            var sentusername = "考拉考拉";
-          //  alert($.cookie("token"));
-            $.ajax({
-                type: "post",
-                url: "http://ccnubt.club:8080/koalaTV/api/manage/personalinfo",
-                data: JSON.stringify(data5),
-                dataType: "json",
-                async:false,
-                success: function (msg) {
-                    setCookie(msg.token);
-                    sentusername = msg.nickname+msg.userid;
-                    console.log(msg.icon)
-                    sentuserpic = msg.icon;
-                },
-            });
-
-            //实例化编辑器
-            var um = UM.getEditor('myEditor',{
-                initialContent:"请输入聊天信息...",
-                autoHeightEnabled:false,
-                toolbar:[
-                    'undo redo |superscript subscript | forecolor backcolor|',
-                    'fontfamily fontsize|'
-                ]
-            });
-
-            var nickname = sentusername;
-            var socket = new WebSocket("ws://${pageContext.request.getServerName()}:${pageContext.request.getServerPort()}${pageContext.request.contextPath}/websocket/"+roomid);
-            //接收服务器的消息
-            socket.onmessage=function(ev) {
-                var obj = eval('(' + ev.data + ')');
-                addMessage(obj);
-            }
-            $("#send").click(function(){
-                if (!um.hasContents()) {  // 判断消息输入框是否为空
-                    // 消息输入框获取焦点
-                    um.focus();
-                    // 添加抖动效果
-                    $('.edui-container').addClass('am-animation-shake');
-                    setTimeout("$('.edui-container').removeClass('am-animation-shake')", 1000);
-                } else {
-                    //获取输入框的内容
-                    var txt = um.getContent();
-                    //构建一个标准格式的JSON对象
-                    var obj = JSON.stringify({
-                        nickname:nickname,
-                        content:txt,
-                        sentuserpic:sentuserpic
-                    });
-                    // 发送消息
-                    socket.send(obj);
-                    // 清空消息输入框
-                    um.setContent('');
-                    // 消息输入框获取焦点
-                    um.focus();
-                }
-
-            });
-        }
+            newChat();
     });
 
     //人名nickname，时间date，是否自己isSelf，内容content
