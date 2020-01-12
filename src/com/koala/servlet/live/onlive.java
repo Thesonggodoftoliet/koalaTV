@@ -50,10 +50,12 @@ public class onlive extends HttpServlet {
         token = JwtUtils.createToken(currentLive.getRoomid());
         room_tb room  = roomManage.getRoom(currentLive.getRoomid());
         if (room.getIsForbidden() == 1){
-            if (roomManage.shutdownRoom(room.getRoomid(),0)) {
+            if (roomManage.shutdownRoom(room.getRoomid(),0,"")) {
                 tag = 0;
                 try {
                     msg.put("tag", -1);
+                    msg.put("time",room.getForbidend());
+                    msg.put("reason",room.getReason());
                     msg.put("token", token);
                 } catch (JSONException e) {
                     e.printStackTrace();

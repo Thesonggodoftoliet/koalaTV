@@ -86,7 +86,7 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public room_tb addRoom(room_tb room) {
-		String sql = "insert into room_tb values(?,?,'"+room.getTitle()+"','"+room.getCategory()+"','"+room.getCoverpic()+"',?,?,?)";
+		String sql = "insert into room_tb values(?,?,'"+room.getTitle()+"','"+room.getCategory()+"','"+room.getCoverpic()+"',?,?,?,'"+room.getReason()+"')";
         int tag = JdbcUtils.executeSQL(sql,room.getRoomid(), room.getHostid(),room.getIsLive(),room.getIsForbidden(),room.getForbidend());
         if (tag == 0)return null;
         else
@@ -112,7 +112,7 @@ public class RoomDaoImpl implements RoomDao {
 	  **/
 	@Override
 	public boolean shutRoom(room_tb room) {
-		String sql = "update room_tb set isforbidden = ?,forbidend = ? where roomid=?";
+		String sql = "update room_tb set isforbidden = ?,forbidend = ?,reason='"+room.getReason()+"' where roomid=?";
 		int tag = JdbcUtils.executeSQL(sql,room.getIsForbidden(),room.getForbidend(),room.getRoomid());
 		if (tag == 1) return true;
 		else return false;
