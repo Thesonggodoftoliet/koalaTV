@@ -16,6 +16,7 @@ public class room_tb {
     private int isLive;
     private int isForbidden;
     private long forbidend;
+    private String reason;//封禁原因
 
     public int getIsLive() {
         return isLive;
@@ -93,5 +94,13 @@ public class room_tb {
     @Override
     public int hashCode() {
         return Objects.hash(roomid, hostid);
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

@@ -193,7 +193,7 @@ public class RoomManageImpl implements RoomManage {
       * @return boolean
       **/
     @Override
-    public boolean shutdownRoom(int roomid, long time) {
+    public boolean shutdownRoom(int roomid, long time,String reason) {
         Calendar now = Calendar.getInstance();
         room_tb room = roomDao.getRoomByRoomId(roomid);
         if (time == 0){//查询封禁信息
@@ -208,6 +208,7 @@ public class RoomManageImpl implements RoomManage {
         else {//进行封禁处理
             room.setIsForbidden(1);
             room.setForbidend(time);
+            room.setReason(reason);
             return roomDao.shutRoom(room);
         }
 
