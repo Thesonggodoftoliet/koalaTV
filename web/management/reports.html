@@ -4,7 +4,10 @@
 <head>
   <meta charset="utf-8">
   <title>封禁解封-KoalaTV 后台管理平台</title>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-default@3/default.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+  <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 
 
@@ -213,7 +216,7 @@
   <script src="js/base.js"></script>
   <script type="text/javascript">
     function onswal() {
-      swal({
+      swal.fire({
           text: '请输入房间号',
           content: "input",
           button: {
@@ -236,10 +239,10 @@
               console.log(msg["isForbidden"] === 1);
               if (msg["isForbidden"] == 1) {
                 delock(String(msg["roomid"]));
-              } else if(msg["isForbidden"] == 0) {
+              } else if (msg["isForbidden"] == 0) {
                 lock(String(msg["roomid"]));
               } else {
-                swal("查无此房！")
+                swal.fire("查无此房！")
               }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -251,22 +254,21 @@
         })
         .catch(err => {
           if (err) {
-            swal("失败", "AJAX请求失败!", "error");
+            swal.fire("失败", "AJAX请求失败!", "error");
           } else {
-            swal.stopLoading();
-            swal.close();
+            swal.fire.stopLoading();
+            swal.fire.close();
           }
         });
     }
   </script>
   <script type="text/javascript">
     function delock(id) {
-      swal({
+      swal.fire({
           title: "确认解封",
           text: "封禁后，该用户可以继续直播！",
           icon: "warning",
-          buttons: true,
-          dangerMode: true,
+          confirmButtonText: '封禁',
         })
         .then((free) => {
           if (free) {
@@ -281,7 +283,7 @@
               contentType: "appication/json",
               success: function(msg) {
                 console.log(msg);
-                swal("该用户已经解封！", {
+                swal.fire("该用户已经解封！", {
                   icon: "success",
                 });
               },
@@ -292,7 +294,7 @@
               }
             });
           } else {
-            swal("该用户将继续被封禁！");
+            swal.fire("该用户将继续被封禁！");
           }
           fresh();
         });
@@ -300,42 +302,85 @@
   </script>
   <script type="text/javascript">
     function lock(id) {
-      swal({
-          text: '请输入封禁天数',
-          content: "input",
-          button: {
-            text: "搜索！",
-            closeModal: false,
+      swal.fire({
+        title: '请选择封禁理由',
+        input: 'radio',
+        width: '40rem',
+        inputOptions: {
+          a: '作弊',
+          b: '辱骂/仇恨言论',
+          c: '挂机',
+          d: '不恰当昵称或标题'
+        },
+        hightauto:false,
+        inputPlaceholder: '选择下列理由',
+        showCancelButton: true,
+      }).then(reasons => {
+        swal.fire({
+          title: '请输入封禁天数',
+          input: 'text',
+          inputAttributes: {
+            autocapitalize: 'off'
           },
-        })
-        .then(time => {
-          if (!time) throw null;
-          fetch(`http://ccnubt.club:8080/koalaTV/api/live/shutdownroom?roomid=${id}&time=${time}`)
-            .then(res => res.text())
-            .then(res => {
-              console.log(res[7]);
-              console.log(res[7]===String(1));
-               if(res[7]===String(1)){
-                 swal("封禁成功");
-               } else {
-                 swal("封禁失败");
-               }
-               fresh();
-            });
-        })
-        .catch(err => {
-          if (err) {
-            swal("失败", "AJAX请求失败!", "error");
-          } else {
-            swal.stopLoading();
-            swal.close();
-          }
+          showCancelButton: true,
+          confirmButtonText: '封禁',
+          showLoaderOnConfirm: true,
+          preConfirm: (time) => {
+            fetch(`http://ccnubt.club:8080/koalaTV/api/live/shutdownroom?roomid=${id}&time=${time}&reason=${reasons.value}`)
+              .then(res => res.text())
+              .then(res => {
+                console.log(res[7]);
+                console.log(res[7] === String(1));
+                if (res[7] === String(1)) {
+                  swal.fire("封禁成功");
+                } else {
+                  swal.fire("封禁失败");
+                }
+                fresh();
+              });
+          },
+          allowOutsideClick: () => !Swal.isLoading()
         });
+      });
+      // {
+      //         console.log(reasons);
+      //         swal.fire({
+      //             text: '请输入封禁天数',
+      //             content: "input",
+      //             button: {
+      //               text: "封禁！",
+      //               closeModal: false,
+      //             },
+      //           })
+      //           .then(time => {
+      //             if (!time) throw null;
+      //             fetch(`http://ccnubt.club:8080/koalaTV/api/live/shutdownroom?roomid=${id}&time=${time}`)
+      //               .then(res => res.text())
+      //               .then(res => {
+      //                 console.log(res[7]);
+      //                 console.log(res[7]===String(1));
+      //                  if(res[7]===String(1)){
+      //                    swal("封禁成功");
+      //                  } else {
+      //                    swal("封禁失败");
+      //                  }
+      //                  fresh();
+      //               });
+      //           })
+      //           .catch(err => {
+      //             if (err) {
+      //               swal("失败", "AJAX请求失败!", "error");
+      //             } else {
+      //               swal.stopLoading();
+      //               swal.fire.close();
+      //             }
+      //           });
+      //       });
     }
   </script>
   <script type="text/javascript">
     function fresh() {
-      javascript:location.reload();
+      javascript: location.reload();
       // $.ajax({
       //   type: "POST",
       //   url: "http://ccnubt.club:8080/koalaTV/api/live/getrooms ",

@@ -1,5 +1,7 @@
 package com.koala.utils;
 
+import com.koala.service.Tencent;
+import com.koala.service.impl.TencentImpl;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +19,8 @@ class PraseUtilsTest {
 
     @Test
     void addStr() throws JSONException, IOException {
-        String str = ",";
-        int tag = str.indexOf(",");
-        System.out.println("tag"+tag);
-        str = str.substring(0,tag);
-        if (!str.isEmpty())
-            System.out.println("str"+str);
+        Tencent tencent = new TencentImpl();
+        System.out.println(tencent.getProvince());
     }
 
     @Test

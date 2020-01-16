@@ -34,11 +34,13 @@ public class shutdownroom extends HttpServlet {
         PrintWriter out = response.getWriter();
         int time = Integer.parseInt(request.getParameter("time"));
         int roomid = Integer.parseInt(request.getParameter("roomid"));
-        String reason = request.getParameter("reson");
+        String reason = request.getParameter("reason");
         int tag = 0;
 
         Date now = new Date();
         RoomManage roomManage = new RoomManageImpl();
+
+        System.out.println("reason "+reason+"  o(*￣︶￣*)o"+request.getParameter("reason"));
 
         if (reason.equals("a"))
             reason = "作弊";

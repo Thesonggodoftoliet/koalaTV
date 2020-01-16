@@ -83,7 +83,7 @@ public class TencentImpl implements Tencent {
 
             DescribeGroupProIspPlayInfoListResponse resp = client.DescribeGroupProIspPlayInfoList(req);
 
-            System.out.println(DescribeGroupProIspPlayInfoListRequest.toJsonString(resp));
+            System.out.println("得到的回复"+DescribeGroupProIspPlayInfoListRequest.toJsonString(resp));
             return DescribeGroupProIspPlayInfoListRequest.toJsonString(resp);
         } catch (TencentCloudSDKException e) {
             System.out.println(e.toString());

@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 /**
   *开启直播.
@@ -49,12 +51,13 @@ public class onlive extends HttpServlet {
         RoomManage roomManage= new RoomManageImpl();
         token = JwtUtils.createToken(currentLive.getRoomid());
         room_tb room  = roomManage.getRoom(currentLive.getRoomid());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (room.getIsForbidden() == 1){
             if (roomManage.shutdownRoom(room.getRoomid(),0,"")) {
                 tag = 0;
                 try {
                     msg.put("tag", -1);
-                    msg.put("time",room.getForbidend());
+                    msg.put("time",simpleDateFormat.format(new Date(room.getForbidend())));
                     msg.put("reason",room.getReason());
                     msg.put("token", token);
                 } catch (JSONException e) {
