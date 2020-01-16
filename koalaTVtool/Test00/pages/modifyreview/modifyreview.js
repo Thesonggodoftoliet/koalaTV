@@ -71,7 +71,6 @@ Page({
 
           setTimeout(() => {
             wx.navigateBack({
-
             })
           }, 1000);
           that.setData({
