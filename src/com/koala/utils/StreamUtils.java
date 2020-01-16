@@ -47,7 +47,7 @@ public class StreamUtils {
 
         /* streamid*/
 
-        this.bizid = "33772";
+        this.bizid = "bizid";
         streamid = ""+this.liveHomeNumber;
 
         /* txSecret 10.27*/
