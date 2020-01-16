@@ -469,7 +469,7 @@
                      secretkey.innerText=msg.secretkey;
                 } else if(msg.tag === -1){
                     swal({
-                        title:"你的直播间被封禁了呢！联系人工客服TEL:15071091360"
+                        title:"你的直播间由于"+msg.reason+"被封禁，将于"+msg.time+"解封。详情请联系人工客服。TEL:15071091360"
                     }).then(
                         function (){
                            swal.close();

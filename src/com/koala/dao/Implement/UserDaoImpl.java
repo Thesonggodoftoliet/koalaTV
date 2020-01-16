@@ -137,7 +137,7 @@ public class UserDaoImpl implements UserDao {
                 "pic varchar(255)," +
                 "primary key(barid)" +
                 ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        String sql5 = "insert into room_tb values("+room.getRoomid()+","+ room.getHostid()+",'"+ room.getTitle()+"','"+ room.getCategory()+"','"+ room.getCoverpic()+"',"+room.getIsLive()+","+room.getIsForbidden()+","+room.getForbidend()+")";
+        String sql5 = "insert into room_tb values("+room.getRoomid()+","+ room.getHostid()+",'"+ room.getTitle()+"','"+ room.getCategory()+"','"+ room.getCoverpic()+"',"+room.getIsLive()+","+room.getIsForbidden()+","+room.getForbidend()+",'')";
         return JdbcUtils.executeTran(sql1,sql2,sql3,sql4,sql5);
     }
 

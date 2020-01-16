@@ -189,7 +189,8 @@
                 <div class="form-group text-right m-b-6">
                   <div class="checkbox">
                     <input id="remember-1" type="checkbox" data-parsley-multiple="remember-1">
-                    <label for="remember-1"> 记住我 </label>
+                    <label for="remember-1" >我已阅读</label>
+                    <a href="yonghu.html"><i>《考拉直播用户注册协议》</i></a>
                   </div>
                 </div>
 

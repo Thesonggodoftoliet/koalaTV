@@ -34,11 +34,26 @@ public class shutdownroom extends HttpServlet {
         PrintWriter out = response.getWriter();
         int time = Integer.parseInt(request.getParameter("time"));
         int roomid = Integer.parseInt(request.getParameter("roomid"));
+        String reason = request.getParameter("reason");
         int tag = 0;
 
         Date now = new Date();
         RoomManage roomManage = new RoomManageImpl();
-        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000)) {
+
+        System.out.println("reason "+reason+"  o(*￣︶￣*)o"+request.getParameter("reason"));
+
+        if (reason.equals("a"))
+            reason = "作弊";
+        else if (reason.equals("b"))
+            reason = "辱骂/仇恨言论";
+        else if (reason.equals("c"))
+            reason = "挂机";
+        else if (reason.equals("d"))
+            reason = "不恰当昵称或标题";
+        else
+            reason = "其他";
+
+        if (roomManage.shutdownRoom(roomid,now.getTime()+time*24*60*60*1000,reason)){
             LiveUtils.forbidRoom(roomid, TimeUtils.dateToStrD(time));
             tag = 1;
         }

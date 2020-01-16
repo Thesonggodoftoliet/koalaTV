@@ -174,6 +174,15 @@
                                             </div>
                                         </div>
                                     </div></div>
+
+                                    <div class="form-group text-right m-b-6">
+                                        <div class="checkbox">
+                                            <input id="remember-1" type="checkbox" data-parsley-multiple="remember-1">
+                                            <label for="remember-1" >我已阅读</label>
+                                            <a href="zhubo.html"><i>《考拉直播用户阳光行为规范》</i></a>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group col-md-8">
                                         <div class="col-sm-10" style="text-align:center;">
                                             <input type="submit" onclick="applyButton()" class="btn btn-primary" id="apply">
