@@ -27,7 +27,7 @@ public class LiveUtils {
     public static List<Integer> getLives(){
         List<Integer> roomid = new ArrayList<>();
         try{
-            Credential cred = new Credential("AKID73kDTT2nAIBqHWOEnSwBAvSkmbDZqsgF", "d27yaw73lERVLwIOFsFMGyRfdLp35xe5");
+            Credential cred = new Credential("ID", "秘钥");
 
             HttpProfile httpProfile = new HttpProfile();
             httpProfile.setEndpoint("live.tencentcloudapi.com");
