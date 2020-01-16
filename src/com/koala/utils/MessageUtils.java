@@ -24,7 +24,7 @@ public class MessageUtils {
      * @param phone String
       **/
     public static void Send(String code,String phone){
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4FtoLM8zU2c9SP9MW6Tq", "5dq0TYqxw9OS8OwAyRLbQqfSzh4csx");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "ID", "秘钥");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
